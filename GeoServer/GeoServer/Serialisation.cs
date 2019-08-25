@@ -4,18 +4,20 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace GeoServer
 {
-    class Serialisation
+  public  class Serialisation
     {
-        const int HEADERSIZE = 8;
+       public const int HEADERSIZE = 8;
 
         public static void Test()
         {
             //TestData testClass = new TestData();
             //testClass.number = 2456798;
 
-            AlternativeTestData testClass = new AlternativeTestData();
-            testClass.txt = "Es hat funktioniert.";
-            testClass.arr = FillArr(11);
+            AlternativeTestData testClass = new AlternativeTestData
+            {
+                txt = "Es hat funktioniert.",
+                arr = FillArr(11)
+            };
 
             GetSerializedData(testClass, out byte[] headerData, out byte[] serializedData);
 
@@ -32,7 +34,6 @@ namespace GeoServer
                 var data = ReadWholeArray(memStream, header[1]);
 
                 Deserialize(header[0], data);
-                Console.ReadKey();
             }
         }
 
@@ -46,7 +47,7 @@ namespace GeoServer
             Console.WriteLine(s);
         }
 
-        private static double[] FillArr(int count)
+        public static double[] FillArr(int count)
         {
             int min = -99;
             int max = 99;
@@ -60,13 +61,13 @@ namespace GeoServer
             return arr;
         }
 
-        private static void GetSerializedData<T>(T data, out byte[] header, out byte[] serializedData)
+        public static void GetSerializedData<T>(T data, out byte[] header, out byte[] serializedData)
         {
             serializedData = SerializeToBytes(data);
             header = GetHeader(data, serializedData.Length);
         }
 
-        private static void Deserialize(int typeFromHeader, byte[] data)
+        public static void Deserialize(int typeFromHeader, byte[] data)
         {
             Console.WriteLine("typeFromHeader: " + typeFromHeader);
 
@@ -167,17 +168,21 @@ namespace GeoServer
             }
         }
 
-        [Serializable]
-        class TestData
-        {
-            public int number = 6;
-        }
+ 
+    }
 
-        [Serializable]
-        class AlternativeTestData
-        {
-            public string txt = "not defined";
-            public double[] arr;
-        }
+    interface ISerializableData{}
+
+    [Serializable]
+    class TestData : ISerializableData
+    {
+        public int number = 6;
+    }
+
+    [Serializable]
+    class AlternativeTestData : ISerializableData
+    {
+        public string txt = "not defined";
+        public double[] arr;
     }
 }
