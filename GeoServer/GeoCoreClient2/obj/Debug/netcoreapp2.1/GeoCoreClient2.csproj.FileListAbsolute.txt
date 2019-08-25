@@ -1,0 +1,14 @@
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient2\bin\Debug\netcoreapp2.1\GeoCoreClient2.deps.json
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient2\bin\Debug\netcoreapp2.1\GeoCoreClient2.runtimeconfig.json
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient2\bin\Debug\netcoreapp2.1\GeoCoreClient2.runtimeconfig.dev.json
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient2\bin\Debug\netcoreapp2.1\GeoCoreClient2.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient2\bin\Debug\netcoreapp2.1\GeoCoreClient2.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient2\bin\Debug\netcoreapp2.1\GeoServer.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient2\bin\Debug\netcoreapp2.1\GeoServer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient2\obj\Debug\netcoreapp2.1\GeoCoreClient2.csproj.CoreCompileInputs.cache
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient2\obj\Debug\netcoreapp2.1\GeoCoreClient2.AssemblyInfoInputs.cache
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient2\obj\Debug\netcoreapp2.1\GeoCoreClient2.AssemblyInfo.cs
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient2\obj\Debug\netcoreapp2.1\GeoCoreClient2.csproj.CopyComplete
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient2\obj\Debug\netcoreapp2.1\GeoCoreClient2.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient2\obj\Debug\netcoreapp2.1\GeoCoreClient2.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient2\obj\Debug\netcoreapp2.1\GeoCoreClient2.csprojAssemblyReference.cache

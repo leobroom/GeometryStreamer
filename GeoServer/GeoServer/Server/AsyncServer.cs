@@ -79,17 +79,22 @@ public class AsynchronousSocketListener
         // Signal the main thread to continue.
         allDone.Set();
 
+        Console.WriteLine("AcceptCallback..." + ar.AsyncState);
+
         // Get the socket that handles the client request.
         Socket listener = (Socket)ar.AsyncState;
-        Socket handler = listener.EndAccept(ar);
+
+      
+
+        Socket socket = listener.EndAccept(ar);
+        Console.WriteLine(listener.LocalEndPoint.ToString());
+       
 
         // Create the state object.
-        StateObject state = new StateObject
-        { workSocket = handler };
+        StateObject state = new StateObject { workSocket = socket };
 
         state.buffer = new byte[Serialisation.HEADERSIZE];
-
-        handler.BeginReceive(state.buffer, 0, Serialisation.HEADERSIZE, 0, new AsyncCallback(ReadCallback), state);
+        socket.BeginReceive(state.buffer, 0, Serialisation.HEADERSIZE, 0, new AsyncCallback(ReadCallback), state);
     }
 
     public static void ReadCallback(IAsyncResult ar)
@@ -132,7 +137,7 @@ public class AsynchronousSocketListener
             { workSocket = handler };
             state.buffer = new byte[Serialisation.HEADERSIZE];
         }
-          
+
 
 
 

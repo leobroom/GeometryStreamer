@@ -7,7 +7,7 @@ namespace GeoCoreClient
     {
         static void Main(string[] args)
         {
-            Client.StartClient("127.0.0.1", 12345);
+            Client.StartClient("127.0.0.1", 12345, "Client 1");
             Console.Read();
         }
     }

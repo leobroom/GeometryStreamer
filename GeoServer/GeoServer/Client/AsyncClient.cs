@@ -24,7 +24,7 @@ namespace GeoServer
         private static Queue<string> sendingStringQueue = new Queue<string>();
         private static Queue<(byte[], byte[])> sendingDataQueue = new Queue<(byte[], byte[])>();
 
-        public static void StartClient(string ip, int port)
+        public static void StartClient(string ip, int port, string test)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Client started");
@@ -44,13 +44,13 @@ namespace GeoServer
                 Random rnd = new Random();
                 // creates a number between 1 and 12
 
-                for (int i = 0; i < 5000; i++)
+                for (int i = 0; i < 1; i++)
                 {
-                    int numb = rnd.Next(1, 2000);
+                    int numb = rnd.Next(1, 6);
                     //NEW STUFF
                     AlternativeTestData testClass = new AlternativeTestData
                     {
-                        txt = "Es hat funktioniert.",
+                        txt = test,
                         arr = Serialisation.FillArr(numb)
                     };
 
