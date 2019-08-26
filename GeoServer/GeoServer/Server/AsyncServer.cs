@@ -19,6 +19,7 @@ public class StateObject
     // header
     public int headerType = -1;
     public int dataSize = -1;
+    public Guid id = Guid.Empty;
 
 
     // Received data string.
@@ -84,11 +85,11 @@ public class AsynchronousSocketListener
         // Get the socket that handles the client request.
         Socket listener = (Socket)ar.AsyncState;
 
-      
+
 
         Socket socket = listener.EndAccept(ar);
         Console.WriteLine(listener.LocalEndPoint.ToString());
-       
+
 
         // Create the state object.
         StateObject state = new StateObject { workSocket = socket };
@@ -116,18 +117,29 @@ public class AsynchronousSocketListener
         {
             Console.WriteLine(" state.buffer: " + state.buffer.Length);
 
-            byte[] headerBytes = state.buffer.Take(8).ToArray();
-            int[] header = Serialisation.GetIntArrayFromByteArray(headerBytes);
+            byte[] headerBytes = state.buffer.Take(Serialisation.HEADERSIZE).ToArray();
 
-            state.headerType = header[0];
-            state.dataSize = header[1];
+            byte[] indexBytes = state.buffer.Take(8).ToArray();
+
+            byte[] headerType = new byte[4];
+            Array.Copy(headerBytes, 0, headerType, 0, 4);
+
+            byte[] dataSize = new byte[4];
+            Array.Copy(headerBytes, 4, dataSize, 0, 4);
+
+            byte[] id = new byte[16];
+            Array.Copy(headerBytes, 8, id, 0, 16);
+
+            state.headerType = BitConverter.ToInt32(headerType);
+            state.dataSize = BitConverter.ToInt32(dataSize);
+            state.id = new Guid(id);
 
             Console.WriteLine(" state.headerType: " + state.headerType);
             Console.WriteLine(" state.dataSize: " + state.dataSize);
+            Console.WriteLine(" state.id: " + state.id);
 
-            state.buffer = new byte[header[1]];
+            state.buffer = new byte[state.dataSize];
         }
-
 
         if (bytesRead == state.dataSize)
         {
@@ -137,30 +149,6 @@ public class AsynchronousSocketListener
             { workSocket = handler };
             state.buffer = new byte[Serialisation.HEADERSIZE];
         }
-
-
-
-
-
-
-        //Console.WriteLine("bytesRead: " + bytesRead);
-
-        //// There  might be more data, so store the data received so far.
-        //state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
-
-        //// Check for end-of-file tag. If it is not there, read 
-        //// more data.
-        //content = state.sb.ToString();
-
-        //if (content.IndexOf("<EOF>") > -1)
-        //{
-        //    Console.WriteLine("Read {0} bytes from socket. \n Data : {1}",
-        //        content.Length, content);
-        //    // Echo the data back to the client.
-        //    // Send(handler, content);
-
-        //    state.sb.Clear();
-        //}
 
         handler.BeginReceive(state.buffer, 0, state.buffer.Length, 0, new AsyncCallback(ReadCallback), state);
     }

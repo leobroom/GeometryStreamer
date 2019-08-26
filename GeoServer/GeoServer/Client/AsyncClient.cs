@@ -14,18 +14,16 @@ namespace GeoServer
         private static ManualResetEvent sendDone = new ManualResetEvent(false);
         private static ManualResetEvent receiveDone = new ManualResetEvent(false);
 
-        // The response from the remote device.  
-
-
         // Threads...
         private static Thread listingThread;
-
         private static Thread sendingThread;
-        private static Queue<string> sendingStringQueue = new Queue<string>();
         private static Queue<(byte[], byte[])> sendingDataQueue = new Queue<(byte[], byte[])>();
 
         public static void StartClient(string ip, int port, string test)
         {
+            Guid id = Guid.NewGuid();
+            Console.WriteLine(" id: " + id);
+
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Client started");
             // Connect to a remote device.  
@@ -42,11 +40,12 @@ namespace GeoServer
                 connectDone.WaitOne();
 
                 Random rnd = new Random();
-                // creates a number between 1 and 12
 
-                for (int i = 0; i < 1; i++)
+                // creates a number between 1 and 12
+                for (int i = 0; i < 10; i++)
                 {
-                    int numb = rnd.Next(1, 6);
+                    int numb = rnd.Next(1, 12);
+
                     //NEW STUFF
                     AlternativeTestData testClass = new AlternativeTestData
                     {
@@ -54,32 +53,20 @@ namespace GeoServer
                         arr = Serialisation.FillArr(numb)
                     };
 
-                    Serialisation.GetSerializedData(testClass, out byte[] headerData, out byte[] serializedData);
+                    Serialisation.GetSerializedData(testClass, id, out byte[] headerData, out byte[] serializedData);
 
                     sendingDataQueue.Enqueue((headerData, serializedData));
 
-                     numb = rnd.Next(1, 200000000);
-                    TestData testClass2 = new TestData();
-                    testClass2.number = numb;
+                    numb = rnd.Next(1, 200000000);
+                    TestData testClass2 = new TestData
+                    {  number = numb  };
 
-                    Serialisation.GetSerializedData(testClass2, out headerData, out serializedData);
+                    Serialisation.GetSerializedData(testClass2, id, out headerData, out serializedData);
                     sendingDataQueue.Enqueue((headerData, serializedData));
                     //TEST END
                 }
 
-
-
-
-
-                // Send test data to the remote device.  
-                //  sendingStringQueue.Enqueue("This is a test");
-                //sendingStringQueue.Enqueue("kjdfkljdklgjdfklgjdfl");
-                //sendingStringQueue.Enqueue("blubb");
-
-
                 // Receive the response from the remote device.  
-
-
                 StartListening(socket);
                 StartSending(socket);
 
@@ -126,32 +113,17 @@ namespace GeoServer
                 {
                     try
                     {
-                        if (sendingStringQueue.Count != 0)
-                        {
-                            string s = sendingStringQueue.Dequeue();
-                            Send(socket, $"{s}<EOF>");
-                            sendDone.WaitOne();
-                        }
-
-                        // Test Send Classes
-
                         if (sendingDataQueue.Count != 0)
                         {
                             (byte[] header, byte[] data) = sendingDataQueue.Dequeue();
                             Send(socket, header, data);
                             sendDone.WaitOne();
                         }
-
-
-                        //
-
-                      //  Thread.Sleep(100);
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
-
                 }
             });
 
@@ -177,7 +149,6 @@ namespace GeoServer
 
                }
            });
-
             listingThread.Start();
         }
     }
