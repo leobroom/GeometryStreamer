@@ -20,9 +20,7 @@ namespace GeoServer
             byte[] resultByte = header.Concat(data).ToArray();
 
             // Begin sending the data to the remote device.  
-            client.BeginSend(resultByte, 0, resultByte.Length, 0, new AsyncCallback(SendCallback), client);
-
-            
+            client.BeginSend(resultByte, 0, resultByte.Length, 0, new AsyncCallback(SendCallback), client);        
         }
 
         private static void SendCallback(IAsyncResult ar)

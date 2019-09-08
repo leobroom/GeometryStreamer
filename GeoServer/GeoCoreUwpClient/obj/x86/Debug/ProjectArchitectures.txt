@@ -1,1 +1,0 @@
-C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreUwpClient\GeoCoreUwpClient.csproj;x86

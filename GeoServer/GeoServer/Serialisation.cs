@@ -7,7 +7,7 @@ namespace GeoServer
     public class Serialisation
     {
         public const int HEADERSIZE = 24; //  8+16
-        private static void LogArr(double[] arr)
+        public static void LogArr(double[] arr)
         {
             string s = "Arr: ";
 
@@ -44,11 +44,11 @@ namespace GeoServer
             switch (typeFromHeader)
             {
                 case 1:
-                    var result1 = DeserializeFromBytes<TestData>(data);
+                    var result1 = DeserializeFromBytes<TestDataMsg>(data);
                     Console.WriteLine("Result1: " + result1.number);
                     break;
                 case 2:
-                    var result2 = DeserializeFromBytes<AlternativeTestData>(data);
+                    var result2 = DeserializeFromBytes<AlternativeTestDataMsg>(data);
                     Console.WriteLine("Result2: " + result2.txt);
                     LogArr(result2.arr);
                     break;
@@ -90,10 +90,12 @@ namespace GeoServer
         {
             int type = 0;
 
-            if (d is TestData)
+            if (d is ConnectToServerMsg)
                 type = 1;
-            else if (d is AlternativeTestData)
-                type = 2;
+            else if (d is TestDataMsg)
+                type = 98;
+            else if (d is AlternativeTestDataMsg)
+                type = 99;
 
             byte[] data = new byte[HEADERSIZE];
             byte[] byteId = id.ToByteArray();
@@ -131,23 +133,34 @@ namespace GeoServer
     public interface ISerializableData { }
 
     [Serializable]
-    public class TestData : ISerializableData
+    public class TestDataMsg : ISerializableData
     {
         public int number = 6;
     }
 
     [Serializable]
-    public class AlternativeTestData : ISerializableData
+    public class AlternativeTestDataMsg : ISerializableData
     {
         public string txt = "not defined";
         public double[] arr;
     }
 
     [Serializable]
-    public class ConnectData : ISerializableData
+    public class ConnectToServerMsg : ISerializableData
     {
         //0 = PC
-        public int deviceType = 0;
+        //1 = Hololens
+        public ClientType deviceType = ClientType.Default;
         public string clientName = "defaultClient";
+        public Guid id = Guid.Empty;
     }
+
+    //[Serializable]
+    //public class MessageFromServer : ISerializableData
+    //{
+    //    //0 = Default
+    //    //1 = Everything Okay
+    //    public int messageType = 0;
+    //    public string clientName = "default";
+    //}
 }

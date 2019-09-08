@@ -1,5 +1,6 @@
 ﻿using GeoServer;
 using System;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -21,17 +22,30 @@ public class StateObject
     public int dataSize = -1;
     public Guid id = Guid.Empty;
 
-
     // Received data string.
     public StringBuilder sb = new StringBuilder();
 }
 
-public class AsynchronousSocketListener
+class ClientObject
+{
+    public Guid id = Guid.Empty;
+    public string name = "";
+    public ClientType deviceType = ClientType.NotSet;
+
+    public override string ToString()=> $"Id: {id}, Name: {name}, DeviceType: {deviceType}";
+}
+
+public class Server
 {
     // Thread signal.
     public static ManualResetEvent allDone = new ManualResetEvent(false);
 
-    public AsynchronousSocketListener() { }
+    public Server() { }
+
+
+    //Client dataBase
+    static ConcurrentDictionary<Socket, ClientObject> socketToClientTable = new ConcurrentDictionary<Socket, ClientObject>();
+    //static ConcurrentDictionary<Guid, ClientObject> idToClientTable = new ConcurrentDictionary<Guid, ClientObject>();
 
     public static void StartListening(string ip, int port)
     {
@@ -85,17 +99,19 @@ public class AsynchronousSocketListener
         // Get the socket that handles the client request.
         Socket listener = (Socket)ar.AsyncState;
 
-
-
-        Socket socket = listener.EndAccept(ar);
+        Socket clientSocket = listener.EndAccept(ar);
         Console.WriteLine(listener.LocalEndPoint.ToString());
 
+        Console.WriteLine("socket hash" + clientSocket.GetHashCode());
 
         // Create the state object.
-        StateObject state = new StateObject { workSocket = socket };
+        StateObject state = new StateObject { workSocket = clientSocket };
 
         state.buffer = new byte[Serialisation.HEADERSIZE];
-        socket.BeginReceive(state.buffer, 0, Serialisation.HEADERSIZE, 0, new AsyncCallback(ReadCallback), state);
+
+        socketToClientTable.TryAdd(clientSocket, new ClientObject());
+
+        clientSocket.BeginReceive(state.buffer, 0, Serialisation.HEADERSIZE, 0, new AsyncCallback(ReadCallback), state);
     }
 
     public static void ReadCallback(IAsyncResult ar)
@@ -143,7 +159,7 @@ public class AsynchronousSocketListener
 
         if (bytesRead == state.dataSize)
         {
-            Serialisation.Deserialize(state.headerType, state.buffer);
+            Deserialize(handler, state.headerType, state.buffer);
 
             state = new StateObject
             { workSocket = handler };
@@ -153,15 +169,40 @@ public class AsynchronousSocketListener
         handler.BeginReceive(state.buffer, 0, state.buffer.Length, 0, new AsyncCallback(ReadCallback), state);
     }
 
-    private static void Send(Socket handler, String data)
+    public static void Deserialize(Socket client, int typeFromHeader, byte[] data)
     {
-        // Convert the string data to byte data using ASCII encoding.
-        byte[] byteData = Encoding.ASCII.GetBytes(data);
+        switch (typeFromHeader)
+        {
+            case 1:
+                var connectToServer = Serialisation.DeserializeFromBytes<ConnectToServerMsg>(data);
 
-        // Begin sending the data to the remote device.
-        handler.BeginSend(byteData, 0, byteData.Length, 0, new AsyncCallback(SendCallback), handler);
+                var clientObject = socketToClientTable[client];
+                clientObject.name = connectToServer.clientName;
+                clientObject.deviceType = connectToServer.deviceType;
+                clientObject.id = connectToServer.id;
+
+
+
+                Console.WriteLine("connectToServerMsg: " + clientObject);
+
+                // HIER NACHRICHT ZURÜCK SENDEN!!!!!
+                Console.WriteLine("HIER NACHRICHT ZURÜCK SENDEN!!!!!HIER NACHRICHT ZURÜCK SENDEN!!!!!HIER NACHRICHT ZURÜCK SENDEN!!!!! ");
+                break;
+            case 98:
+                var testData = Serialisation.DeserializeFromBytes<TestDataMsg>(data);
+                Console.WriteLine("Result1: " + testData.number);
+                break;
+            case 99:
+                var altTestData = Serialisation.DeserializeFromBytes<AlternativeTestDataMsg>(data);
+                Console.WriteLine("Result2: " + altTestData.txt);
+                Serialisation.LogArr(altTestData.arr);
+                break;
+            default:
+                throw new Exception($"Type: {typeFromHeader} ist nicht vorhanden!");
+        }
     }
 
+ 
     private static void SendCallback(IAsyncResult ar)
     {
         try
@@ -175,7 +216,6 @@ public class AsynchronousSocketListener
 
             //handler.Shutdown(SocketShutdown.Both);
             //handler.Close();
-
         }
         catch (Exception e)
         {

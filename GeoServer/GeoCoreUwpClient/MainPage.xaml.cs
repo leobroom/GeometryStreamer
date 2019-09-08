@@ -79,7 +79,7 @@ namespace GeoCoreUwpClient
             if (client == null)
                 return;
 
-            TestData test = new TestData
+            TestDataMsg test = new TestDataMsg
             { number = rnd.Next(1, 200000000) };
 
             client.Send(test);
@@ -92,7 +92,7 @@ namespace GeoCoreUwpClient
             if (client == null)
                 return;
 
-            AlternativeTestData test = new AlternativeTestData
+            AlternativeTestDataMsg test = new AlternativeTestDataMsg
             {
                 txt = "UWPtxt",
                 arr = Serialisation.FillArr(rnd.Next(1, 12))

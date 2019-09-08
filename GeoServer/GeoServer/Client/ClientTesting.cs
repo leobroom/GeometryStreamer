@@ -14,7 +14,7 @@ namespace GeoServer
                 int numb = rnd.Next(1, 12);
 
                 //NEW STUFF
-                AlternativeTestData testClass = new AlternativeTestData
+                AlternativeTestDataMsg testClass = new AlternativeTestDataMsg
                 {
                     txt = name,
                     arr = Serialisation.FillArr(numb)
@@ -24,7 +24,7 @@ namespace GeoServer
 
                 numb = rnd.Next(1, 200000000);
 
-                TestData testClass2 = new TestData
+                TestDataMsg testClass2 = new TestDataMsg
                 { number = numb };
 
                 Send(testClass2);

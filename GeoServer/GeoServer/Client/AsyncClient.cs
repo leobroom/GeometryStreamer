@@ -15,6 +15,7 @@ namespace GeoServer
 
     public enum ClientType
     {
+        NotSet,
         Default,
         UWP
     }
@@ -60,8 +61,6 @@ namespace GeoServer
 
         public event EventHandler<MessageArgs> Message;
 
-
-
         public Client(string ip, int port, string name, ThreadingType taskType, ClientType clientType = ClientType.Default)
         {
             this.ip = ip;
@@ -100,8 +99,11 @@ namespace GeoServer
 #endif
 
                 // Receive the response from the remote device.  
-                 StartListening(socket);
-                 StartSending(socket);
+                StartListening(socket);
+                StartSending(socket);
+
+                // Send first Message
+                ConnectToServer(clientType, name, id);
             }
             catch (Exception e)
             {

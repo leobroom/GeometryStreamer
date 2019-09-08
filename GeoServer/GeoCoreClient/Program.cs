@@ -12,7 +12,7 @@ namespace GeoCoreClient
             client.Message += OnMessage;
             client.Connect();
 
-            client.SendingRandomData(10);
+            client.SendingRandomData(1);
 
             Console.Read();
             client.Disconnect();
