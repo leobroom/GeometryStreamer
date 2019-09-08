@@ -6,20 +6,23 @@ namespace GeoServer
 {
     public partial class Client
     {
-        private static void Send(Socket client, byte[]header, byte[]data)
+        public void Send(ISerializableData data)
+        {
+            Serialisation.GetSerializedData(data, id, out byte[] headerData, out byte[] serializedData);
+            sendingDataQueue.Enqueue((headerData, serializedData));
+
+            SendMessage($"{data.GetType()} sent");
+        }
+
+        private static void SendBytes(Socket client, byte[] header, byte[] data)
         {
             // Convert the string data to byte data using ASCII encoding.  
             byte[] resultByte = header.Concat(data).ToArray();
 
             // Begin sending the data to the remote device.  
             client.BeginSend(resultByte, 0, resultByte.Length, 0, new AsyncCallback(SendCallback), client);
-        }
 
-        private static void Send(Socket client, byte[] data)
-        {
-
-            // Begin sending the data to the remote device.  
-            client.BeginSend(data, 0, data.Length, 0, new AsyncCallback(SendCallback), client);
+            
         }
 
         private static void SendCallback(IAsyncResult ar)

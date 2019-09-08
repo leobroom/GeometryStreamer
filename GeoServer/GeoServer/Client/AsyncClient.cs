@@ -13,12 +13,32 @@ namespace GeoServer
         Thread
     }
 
+    public enum ClientType
+    {
+        Default,
+        UWP
+    }
+
+    public class MessageArgs : EventArgs
+    {
+        private string message;
+
+        public MessageArgs(string message)
+        {
+            this.message = message;
+        }
+
+        public string Message => message;
+    }
+
     public partial class Client
     {
         // ManualResetEvent instances signal completion.  
         private static ManualResetEvent connectDone = new ManualResetEvent(false);
         private static ManualResetEvent sendDone = new ManualResetEvent(false);
         private static ManualResetEvent receiveDone = new ManualResetEvent(false);
+
+        Socket socket;
 
         readonly bool useThreads = false;
 
@@ -36,23 +56,32 @@ namespace GeoServer
         private int port;
         private Guid id = Guid.Empty;
         private string name;
+        private ClientType clientType;
 
-        public Client(string ip, int port, string name, ThreadingType taskType)
+        public event EventHandler<MessageArgs> Message;
+
+
+
+        public Client(string ip, int port, string name, ThreadingType taskType, ClientType clientType = ClientType.Default)
         {
             this.ip = ip;
             this.port = port;
             this.name = name;
+            this.clientType = clientType;
 
             id = Guid.NewGuid();
             useThreads = (taskType == ThreadingType.Thread) ? true : false;
         }
 
-        public void Start()
+        /// <summary>
+        /// Connects Client to Server
+        /// </summary>
+        public void Connect()
         {
-            Console.WriteLine(" id: " + id);
+            SendMessage("Try to Connect...");
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Client started");
+            ThreadingType t = useThreads ? ThreadingType.Thread : ThreadingType.Task;
+            SendMessage($"Id: {id}, IP: {ip}, Port: {port}, ThreadingType: {t}");
 
             // Connect to a remote device.  
             try
@@ -61,55 +90,36 @@ namespace GeoServer
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
 
                 // Create a TCP/IP socket.  
-                Socket socket = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+                socket = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
                 // Connect to the remote endpoint.  
                 socket.BeginConnect(remoteEP, new AsyncCallback(ConnectCallback), socket);
+
+#if (useThreads)
                 connectDone.WaitOne();
-
-                Random rnd = new Random();
-
-                // creates a number between 1 and 12
-                for (int i = 0; i < 10; i++)
-                {
-                    int numb = rnd.Next(1, 12);
-
-                    //NEW STUFF
-                    AlternativeTestData testClass = new AlternativeTestData
-                    {
-                        txt = name,
-                        arr = Serialisation.FillArr(numb)
-                    };
-
-                    Serialisation.GetSerializedData(testClass, id, out byte[] headerData, out byte[] serializedData);
-
-                    sendingDataQueue.Enqueue((headerData, serializedData));
-
-                    numb = rnd.Next(1, 200000000);
-                    TestData testClass2 = new TestData
-                    { number = numb };
-
-                    Serialisation.GetSerializedData(testClass2, id, out headerData, out serializedData);
-                    sendingDataQueue.Enqueue((headerData, serializedData));
-                    //TEST END
-                }
+#endif
 
                 // Receive the response from the remote device.  
-                StartListening(socket);
-                StartSending(socket);
-
-                //// Release the socket.  
-                Console.Read();
-
-                Abort();
-
-                socket.Shutdown(SocketShutdown.Both);
-                socket.Close();
+                 StartListening(socket);
+                 StartSending(socket);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                SendMessage(e.ToString());
             }
+        }
+
+        private void SendMessage(string message) => Message?.Invoke(this, new MessageArgs(message));
+
+        /// <summary>
+        /// Disconnect Client from Server
+        /// </summary>
+        public void Disconnect()
+        {
+            Abort();
+
+            socket?.Shutdown(SocketShutdown.Both);
+            socket?.Close();
         }
 
         private void Abort()
@@ -118,12 +128,12 @@ namespace GeoServer
                 listingThread?.Abort();
                 sendingThread?.Abort();
 #else
-            listingTask.Dispose();
-            sendingTask.Dispose();
+            //listingTask.Dispose();
+            //sendingTask.Dispose();
 #endif
         }
 
-        private static void ConnectCallback(IAsyncResult ar)
+        private void ConnectCallback(IAsyncResult ar)
         {
             try
             {
@@ -133,8 +143,7 @@ namespace GeoServer
                 // Complete the connection.  
                 client.EndConnect(ar);
 
-                Console.WriteLine("Socket connected to {0}",
-                    client.RemoteEndPoint.ToString());
+                SendMessage($"Socket connected to {client.RemoteEndPoint.ToString()}");
 
                 // Signal that the connection has been made.  
                 connectDone.Set();
@@ -164,13 +173,13 @@ namespace GeoServer
                         if (sendingDataQueue.Count != 0)
                         {
                             (byte[] header, byte[] data) = sendingDataQueue.Dequeue();
-                            Send(socket, header, data);
+                            SendBytes(socket, header, data);
                             sendDone.WaitOne();
                         }
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e.Message);
+                        SendMessage(e.Message);
                     }
                 }
             }
@@ -198,7 +207,7 @@ namespace GeoServer
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e.Message);
+                        SendMessage(e.Message);
                     }
                 }
             }

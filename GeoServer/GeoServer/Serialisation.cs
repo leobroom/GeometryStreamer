@@ -131,20 +131,20 @@ namespace GeoServer
     public interface ISerializableData { }
 
     [Serializable]
-    class TestData : ISerializableData
+    public class TestData : ISerializableData
     {
         public int number = 6;
     }
 
     [Serializable]
-    class AlternativeTestData : ISerializableData
+    public class AlternativeTestData : ISerializableData
     {
         public string txt = "not defined";
         public double[] arr;
     }
 
     [Serializable]
-    class ConnectData : ISerializableData
+    public class ConnectData : ISerializableData
     {
         //0 = PC
         public int deviceType = 0;
