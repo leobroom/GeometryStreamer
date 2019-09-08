@@ -31,7 +31,7 @@ namespace GeoServer
             return arr;
         }
 
-        public static void GetSerializedData<T>(T data, Guid id, out byte[] header, out byte[] serializedData)
+        public static void GetSerializedData(ISerializableData data, Guid id, out byte[] header, out byte[] serializedData)
         {
             serializedData = SerializeToBytes(data);
             header = GetHeader(data, serializedData.Length, id);
@@ -107,7 +107,7 @@ namespace GeoServer
             return data;
         }
 
-        public static byte[] SerializeToBytes<T>(T source)
+        public static byte[] SerializeToBytes(ISerializableData source)
         {
             using (var stream = new MemoryStream())
             {
@@ -128,7 +128,7 @@ namespace GeoServer
         }
     }
 
-    interface ISerializableData { }
+    public interface ISerializableData { }
 
     [Serializable]
     class TestData : ISerializableData
@@ -144,7 +144,7 @@ namespace GeoServer
     }
 
     [Serializable]
-    class RegisterData : ISerializableData
+    class ConnectData : ISerializableData
     {
         //0 = PC
         public int deviceType = 0;

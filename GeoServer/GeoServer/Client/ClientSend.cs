@@ -15,6 +15,13 @@ namespace GeoServer
             client.BeginSend(resultByte, 0, resultByte.Length, 0, new AsyncCallback(SendCallback), client);
         }
 
+        private static void Send(Socket client, byte[] data)
+        {
+
+            // Begin sending the data to the remote device.  
+            client.BeginSend(data, 0, data.Length, 0, new AsyncCallback(SendCallback), client);
+        }
+
         private static void SendCallback(IAsyncResult ar)
         {
             try

@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-
+using System.Threading.Tasks;
 
 namespace GeoServer
 {
+    public enum ThreadingType
+    {
+        Task,
+        Thread
+    }
+
     public partial class Client
     {
         // ManualResetEvent instances signal completion.  
@@ -14,18 +20,40 @@ namespace GeoServer
         private static ManualResetEvent sendDone = new ManualResetEvent(false);
         private static ManualResetEvent receiveDone = new ManualResetEvent(false);
 
-        // Threads...
-        private static Thread listingThread;
-        private static Thread sendingThread;
-        private static Queue<(byte[], byte[])> sendingDataQueue = new Queue<(byte[], byte[])>();
+        readonly bool useThreads = false;
 
-        public static void StartClient(string ip, int port, string test)
+#if (useThreads)
+        private Thread listingThread;
+        private Thread sendingThread;
+#else
+        private Task listingTask;
+        private Task sendingTask;
+#endif
+
+        private Queue<(byte[], byte[])> sendingDataQueue = new Queue<(byte[], byte[])>();
+
+        private string ip;
+        private int port;
+        private Guid id = Guid.Empty;
+        private string name;
+
+        public Client(string ip, int port, string name, ThreadingType taskType)
         {
-            Guid id = Guid.NewGuid();
+            this.ip = ip;
+            this.port = port;
+            this.name = name;
+
+            id = Guid.NewGuid();
+            useThreads = (taskType == ThreadingType.Thread) ? true : false;
+        }
+
+        public void Start()
+        {
             Console.WriteLine(" id: " + id);
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Client started");
+
             // Connect to a remote device.  
             try
             {
@@ -49,7 +77,7 @@ namespace GeoServer
                     //NEW STUFF
                     AlternativeTestData testClass = new AlternativeTestData
                     {
-                        txt = test,
+                        txt = name,
                         arr = Serialisation.FillArr(numb)
                     };
 
@@ -59,7 +87,7 @@ namespace GeoServer
 
                     numb = rnd.Next(1, 200000000);
                     TestData testClass2 = new TestData
-                    {  number = numb  };
+                    { number = numb };
 
                     Serialisation.GetSerializedData(testClass2, id, out headerData, out serializedData);
                     sendingDataQueue.Enqueue((headerData, serializedData));
@@ -72,8 +100,9 @@ namespace GeoServer
 
                 //// Release the socket.  
                 Console.Read();
-                listingThread?.Abort();
-                sendingThread?.Abort();
+
+                Abort();
+
                 socket.Shutdown(SocketShutdown.Both);
                 socket.Close();
             }
@@ -81,6 +110,17 @@ namespace GeoServer
             {
                 Console.WriteLine(e.ToString());
             }
+        }
+
+        private void Abort()
+        {
+#if (useThreads)
+                listingThread?.Abort();
+                sendingThread?.Abort();
+#else
+            listingTask.Dispose();
+            sendingTask.Dispose();
+#endif
         }
 
         private static void ConnectCallback(IAsyncResult ar)
@@ -105,9 +145,17 @@ namespace GeoServer
             }
         }
 
-        public static void StartSending(Socket socket)
+        public void StartSending(Socket socket)
         {
-            sendingThread = new Thread(() =>
+#if (useThreads)
+            sendingThread = new Thread(() => SendData());
+            sendingThread.Start();
+#else
+            sendingTask = new Task(() => SendData());
+            sendingTask.Start();
+#endif
+
+            void SendData()
             {
                 while (true)
                 {
@@ -125,31 +173,35 @@ namespace GeoServer
                         Console.WriteLine(e.Message);
                     }
                 }
-            });
-
-            sendingThread.Start();
+            }
         }
 
-        public static void StartListening(Socket socket)
+        public void StartListening(Socket socket)
         {
-            listingThread = new Thread(() =>
-           {
-               while (true)
-               {
-                   try
-                   {
-                       // Receive the response from the remote device.  
-                       Receive(socket);
-                       receiveDone.WaitOne();
-                   }
-                   catch (Exception e)
-                   {
-                       Console.WriteLine(e.Message);
-                   }
-
-               }
-           });
+#if (useThreads)
+            listingThread = new Thread(() =>ListenData());
             listingThread.Start();
+#else
+            listingTask = new Task(() => ListenData());
+            listingTask.Start();
+#endif
+
+            void ListenData()
+            {
+                while (true)
+                {
+                    try
+                    {
+                        // Receive the response from the remote device.  
+                        Receive(socket);
+                        receiveDone.WaitOne();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+            }
         }
     }
 }
