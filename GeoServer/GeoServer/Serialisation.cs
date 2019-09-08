@@ -4,38 +4,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace GeoServer
 {
-    class Serialisation
+    public class Serialisation
     {
-        const int HEADERSIZE = 8;
-
-        public static void Test()
-        {
-            //TestData testClass = new TestData();
-            //testClass.number = 2456798;
-
-            AlternativeTestData testClass = new AlternativeTestData();
-            testClass.txt = "Es hat funktioniert.";
-            testClass.arr = FillArr(11);
-
-            GetSerializedData(testClass, out byte[] headerData, out byte[] serializedData);
-
-            using (MemoryStream memStream = new MemoryStream(100))
-            {
-                memStream.Write(headerData, 0, HEADERSIZE);
-                memStream.Write(serializedData, 0, serializedData.Length);
-                memStream.Seek(0, SeekOrigin.Begin);
-
-                var headerBytes = new byte[HEADERSIZE];
-                memStream.Read(headerBytes, 0, HEADERSIZE);
-
-                int[] header = GetIntArrayFromByteArray(headerBytes);
-                var data = ReadWholeArray(memStream, header[1]);
-
-                Deserialize(header[0], data);
-                Console.ReadKey();
-            }
-        }
-
+        public const int HEADERSIZE = 24; //  8+16
         private static void LogArr(double[] arr)
         {
             string s = "Arr: ";
@@ -46,7 +17,7 @@ namespace GeoServer
             Console.WriteLine(s);
         }
 
-        private static double[] FillArr(int count)
+        public static double[] FillArr(int count)
         {
             int min = -99;
             int max = 99;
@@ -60,13 +31,13 @@ namespace GeoServer
             return arr;
         }
 
-        private static void GetSerializedData<T>(T data, out byte[] header, out byte[] serializedData)
+        public static void GetSerializedData(ISerializableData data, Guid id, out byte[] header, out byte[] serializedData)
         {
             serializedData = SerializeToBytes(data);
-            header = GetHeader(data, serializedData.Length);
+            header = GetHeader(data, serializedData.Length, id);
         }
 
-        private static void Deserialize(int typeFromHeader, byte[] data)
+        public static void Deserialize(int typeFromHeader, byte[] data)
         {
             Console.WriteLine("typeFromHeader: " + typeFromHeader);
 
@@ -115,10 +86,8 @@ namespace GeoServer
             return data;
         }
 
-        public static byte[] GetHeader(object d, int length)
+        public static byte[] GetHeader(object d, int length, Guid id)
         {
-            int[] header = new int[2];
-
             int type = 0;
 
             if (d is TestData)
@@ -126,28 +95,19 @@ namespace GeoServer
             else if (d is AlternativeTestData)
                 type = 2;
 
-            header[0] = type;
-            header[1] = length;
-
             byte[] data = new byte[HEADERSIZE];
+            byte[] byteId = id.ToByteArray();
 
-            for (int i = 0; i < 2; i++)
-                Array.Copy(BitConverter.GetBytes(header[i]), 0, data, i * 4, 4);
+            Array.Copy(BitConverter.GetBytes(type), 0, data, 0, 4);
+            Array.Copy(BitConverter.GetBytes(length), 0, data, 4, 4);
+
+            for (int i = 0; i < 16; i++)
+                data[i + 8] = byteId[i];
 
             return data;
         }
 
-        public static int[] GetIntArrayFromByteArray(byte[] byteArray)
-        {
-            int[] intArray = new int[byteArray.Length / 4];
-
-            for (int i = 0; i < byteArray.Length; i += 4)
-                intArray[i / 4] = BitConverter.ToInt32(byteArray, i);
-
-            return intArray;
-        }
-
-        public static byte[] SerializeToBytes<T>(T source)
+        public static byte[] SerializeToBytes(ISerializableData source)
         {
             using (var stream = new MemoryStream())
             {
@@ -166,18 +126,28 @@ namespace GeoServer
                 return (T)formatter.Deserialize(stream);
             }
         }
+    }
 
-        [Serializable]
-        class TestData
-        {
-            public int number = 6;
-        }
+    public interface ISerializableData { }
 
-        [Serializable]
-        class AlternativeTestData
-        {
-            public string txt = "not defined";
-            public double[] arr;
-        }
+    [Serializable]
+    public class TestData : ISerializableData
+    {
+        public int number = 6;
+    }
+
+    [Serializable]
+    public class AlternativeTestData : ISerializableData
+    {
+        public string txt = "not defined";
+        public double[] arr;
+    }
+
+    [Serializable]
+    public class ConnectData : ISerializableData
+    {
+        //0 = PC
+        public int deviceType = 0;
+        public string clientName = "defaultClient";
     }
 }

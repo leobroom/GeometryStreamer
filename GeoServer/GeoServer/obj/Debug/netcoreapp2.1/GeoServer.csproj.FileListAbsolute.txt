@@ -3,9 +3,9 @@ C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\n
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.runtimeconfig.dev.json
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.dll
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.pdb
-C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csprojAssemblyReference.cache
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csproj.CoreCompileInputs.cache
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfoInputs.cache
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfo.cs
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.dll
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csprojAssemblyReference.cache
