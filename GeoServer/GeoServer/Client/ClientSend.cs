@@ -10,20 +10,16 @@ namespace GeoServer
         {
             Serialisation.GetSerializedData(data, id, out byte[] headerData, out byte[] serializedData);
             sendingDataQueue.Enqueue((headerData, serializedData));
-
             SendMessage($"{data.GetType()} sent");
         }
 
-        private static void SendBytes(Socket client, byte[] header, byte[] data)
+        private void SendBytes(Socket client, byte[] header, byte[] data)
         {
-            // Convert the string data to byte data using ASCII encoding.  
             byte[] resultByte = header.Concat(data).ToArray();
-
-            // Begin sending the data to the remote device.  
             client.BeginSend(resultByte, 0, resultByte.Length, 0, new AsyncCallback(SendCallback), client);        
         }
 
-        private static void SendCallback(IAsyncResult ar)
+        private void SendCallback(IAsyncResult ar)
         {
             try
             {
@@ -39,7 +35,7 @@ namespace GeoServer
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                SendMessage(e.ToString());
             }
         }
     }

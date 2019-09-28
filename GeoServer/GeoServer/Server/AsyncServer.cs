@@ -1,6 +1,7 @@
 ﻿using GeoServer;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -32,26 +33,33 @@ class ClientObject
     public string name = "";
     public ClientType deviceType = ClientType.NotSet;
 
-    public override string ToString()=> $"Id: {id}, Name: {name}, DeviceType: {deviceType}";
+    public override string ToString() => $"Id: {id}, Name: {name}, DeviceType: {deviceType}";
 }
 
 public class Server
 {
+    private static ManualResetEvent connectDone = new ManualResetEvent(false);
+    private static ManualResetEvent sendDone = new ManualResetEvent(false);
+    private static ManualResetEvent receiveDone = new ManualResetEvent(false);
+
     // Thread signal.
     public static ManualResetEvent allDone = new ManualResetEvent(false);
+
+    private static Guid serverId;
+    private static Thread sendingThread;
 
     public Server() { }
 
 
     //Client dataBase
     static ConcurrentDictionary<Socket, ClientObject> socketToClientTable = new ConcurrentDictionary<Socket, ClientObject>();
-    //static ConcurrentDictionary<Guid, ClientObject> idToClientTable = new ConcurrentDictionary<Guid, ClientObject>();
+    static ConcurrentDictionary<Socket, Queue<(byte[], byte[])>> sendingDataQueueTable = new ConcurrentDictionary<Socket, Queue<(byte[], byte[])>>();
 
     public static void StartListening(string ip, int port)
     {
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("Server started");
-
+        serverId = Guid.NewGuid();
+        Console.WriteLine("Server started, id: " + serverId);
 
         // Establish the local endpoint for the socket.    
         IPAddress iPAdress = IPAddress.Parse(ip);
@@ -78,7 +86,6 @@ public class Server
                 // Wait until a connection is made before continuing.
                 allDone.WaitOne();
             }
-
         }
         catch (Exception e)
         {
@@ -94,67 +101,78 @@ public class Server
         // Signal the main thread to continue.
         allDone.Set();
 
-        Console.WriteLine("AcceptCallback..." + ar.AsyncState);
-
         // Get the socket that handles the client request.
         Socket listener = (Socket)ar.AsyncState;
-
         Socket clientSocket = listener.EndAccept(ar);
-        Console.WriteLine(listener.LocalEndPoint.ToString());
-
-        Console.WriteLine("socket hash" + clientSocket.GetHashCode());
-
-        // Create the state object.
-        StateObject state = new StateObject { workSocket = clientSocket };
-
-        state.buffer = new byte[Serialisation.HEADERSIZE];
 
         socketToClientTable.TryAdd(clientSocket, new ClientObject());
+        sendingDataQueueTable.TryAdd(clientSocket, new Queue<(byte[], byte[])>());
+
+        // Create the state object.
+        StateObject state = new StateObject
+        {
+            workSocket = clientSocket,
+            buffer = new byte[Serialisation.HEADERSIZE]
+        };
 
         clientSocket.BeginReceive(state.buffer, 0, Serialisation.HEADERSIZE, 0, new AsyncCallback(ReadCallback), state);
+
+        StartSending(clientSocket);
+    }
+
+    public static void StartSending(Socket socket)
+    {
+        sendingThread = new Thread(() => SendData());
+        sendingThread.Start();
+
+        void SendData()
+        {
+            while (true)
+            {
+                try
+                {
+                    var bytes = sendingDataQueueTable[socket];
+
+                    if (bytes.Count != 0)
+                    {
+                        (byte[] header, byte[] data) = bytes.Dequeue();
+                        SendBytes(socket, header, data);
+                        sendDone.WaitOne();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+        }
+    }
+
+    private static void SendBytes(Socket client, byte[] header, byte[] data)
+    {
+        byte[] resultByte = header.Concat(data).ToArray();
+        client.BeginSend(resultByte, 0, resultByte.Length, 0, new AsyncCallback(SendCallback), client);
     }
 
     public static void ReadCallback(IAsyncResult ar)
     {
-        String content = String.Empty;
-
-        // Retrieve the state object and the handler socket
-        // from the asynchronous state object.
+        // Retrieve the state object and the handler socket from the asynchronous state object.
         StateObject state = (StateObject)ar.AsyncState;
         Socket handler = state.workSocket;
 
         // Read data from the client socket. 
         int bytesRead = handler.EndReceive(ar);
-
         if (bytesRead == 0)
             return;
 
         if (state.headerType == -1)
         {
+            Utils.UpdateStateObject(state);
+
             Console.WriteLine(" state.buffer: " + state.buffer.Length);
-
-            byte[] headerBytes = state.buffer.Take(Serialisation.HEADERSIZE).ToArray();
-
-            byte[] indexBytes = state.buffer.Take(8).ToArray();
-
-            byte[] headerType = new byte[4];
-            Array.Copy(headerBytes, 0, headerType, 0, 4);
-
-            byte[] dataSize = new byte[4];
-            Array.Copy(headerBytes, 4, dataSize, 0, 4);
-
-            byte[] id = new byte[16];
-            Array.Copy(headerBytes, 8, id, 0, 16);
-
-            state.headerType = BitConverter.ToInt32(headerType);
-            state.dataSize = BitConverter.ToInt32(dataSize);
-            state.id = new Guid(id);
-
             Console.WriteLine(" state.headerType: " + state.headerType);
             Console.WriteLine(" state.dataSize: " + state.dataSize);
             Console.WriteLine(" state.id: " + state.id);
-
-            state.buffer = new byte[state.dataSize];
         }
 
         if (bytesRead == state.dataSize)
@@ -162,8 +180,10 @@ public class Server
             Deserialize(handler, state.headerType, state.buffer);
 
             state = new StateObject
-            { workSocket = handler };
-            state.buffer = new byte[Serialisation.HEADERSIZE];
+            {
+                workSocket = handler,
+                buffer = new byte[Serialisation.HEADERSIZE]
+            };
         }
 
         handler.BeginReceive(state.buffer, 0, state.buffer.Length, 0, new AsyncCallback(ReadCallback), state);
@@ -181,11 +201,17 @@ public class Server
                 clientObject.deviceType = connectToServer.deviceType;
                 clientObject.id = connectToServer.id;
 
-
-
                 Console.WriteLine("connectToServerMsg: " + clientObject);
 
                 // HIER NACHRICHT ZURÜCK SENDEN!!!!!
+
+                ConnectToServerMsg serverMsg = new ConnectToServerMsg();
+                serverMsg.clientName = "Bla";
+                serverMsg.deviceType = ClientType.UWP;
+                serverMsg.id = clientObject.id;
+
+                Send(serverMsg, client, serverId);
+
                 Console.WriteLine("HIER NACHRICHT ZURÜCK SENDEN!!!!!HIER NACHRICHT ZURÜCK SENDEN!!!!!HIER NACHRICHT ZURÜCK SENDEN!!!!! ");
                 break;
             case 98:
@@ -202,7 +228,12 @@ public class Server
         }
     }
 
- 
+    public static void Send(ISerializableData data, Socket client, Guid clientId)
+    {
+        Serialisation.GetSerializedData(data, clientId, out byte[] headerData, out byte[] serializedData);
+        sendingDataQueueTable[client].Enqueue((headerData, serializedData));
+    }
+
     private static void SendCallback(IAsyncResult ar)
     {
         try
