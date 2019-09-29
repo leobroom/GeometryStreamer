@@ -59,6 +59,8 @@ namespace GeoServer
         private string name;
         private ClientType clientType;
 
+        private bool allowSending = false;
+
         public event EventHandler<MessageArgs> Message;
 
         public Client(string ip, int port, string name, ThreadingType taskType, ClientType clientType = ClientType.Default)
@@ -77,10 +79,10 @@ namespace GeoServer
         /// </summary>
         public void Connect()
         {
-            SendMessage("Try to Connect...");
+            SendLog("Try to Connect...");
 
             ThreadingType t = useThreads ? ThreadingType.Thread : ThreadingType.Task;
-            SendMessage($"Id: {id}, IP: {ip}, Port: {port}, ThreadingType: {t}");
+            SendLog($"Id: {id}, IP: {ip}, Port: {port}, ThreadingType: {t}");
 
             // Connect to a remote device.  
             try
@@ -101,17 +103,15 @@ namespace GeoServer
                 // Receive the response from the remote device.  
                 StartListening(socket);
                 StartSending(socket);
-
-                // Send first Message
-                ConnectToServer(clientType, name, id);
             }
             catch (Exception e)
             {
-                SendMessage(e.ToString());
+                SendLog(e.ToString());
             }
         }
 
-        private void SendMessage(string message) => Message?.Invoke(this, new MessageArgs(message));
+        private void SendLog(string message) => Message?.Invoke(this, new MessageArgs(message));
+        private void SendLog(object message) => Message?.Invoke(this, new MessageArgs(message.ToString()));
 
         /// <summary>
         /// Disconnect Client from Server
@@ -145,7 +145,7 @@ namespace GeoServer
                 // Complete the connection.  
                 client.EndConnect(ar);
 
-                SendMessage($"Socket connected to {client.RemoteEndPoint.ToString()}");
+                SendLog($"Socket connected to {client.RemoteEndPoint.ToString()}");
 
                 // Signal that the connection has been made.  
                 connectDone.Set();
@@ -156,8 +156,9 @@ namespace GeoServer
             }
         }
 
-        public void StartSending(Socket socket)
+        private void StartSending(Socket socket)
         {
+            ConnectToServer(clientType, name, id);
 #if (useThreads)
             sendingThread = new Thread(() => SendData());
             sendingThread.Start();
@@ -168,11 +169,17 @@ namespace GeoServer
 
             void SendData()
             {
+       
+                //First connect To Server message
+                (byte[] header2, byte[] data2) = sendingDataQueue.Dequeue();
+                SendBytes(socket, header2, data2);
+                sendDone.WaitOne();
+
                 while (true)
                 {
                     try
                     {
-                        if (sendingDataQueue.Count != 0)
+                        if (allowSending && sendingDataQueue.Count != 0)
                         {
                             (byte[] header, byte[] data) = sendingDataQueue.Dequeue();
                             SendBytes(socket, header, data);
@@ -181,7 +188,7 @@ namespace GeoServer
                     }
                     catch (Exception e)
                     {
-                        SendMessage(e.Message);
+                        SendLog(e.Message);
                     }
                 }
             }
@@ -209,7 +216,7 @@ namespace GeoServer
                     }
                     catch (Exception e)
                     {
-                        SendMessage(e.Message);
+                        SendLog(e.Message);
                     }
                 }
             }

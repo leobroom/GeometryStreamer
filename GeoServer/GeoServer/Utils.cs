@@ -5,7 +5,11 @@ namespace GeoServer
 {
     public class Utils
     { 
-        public static void UpdateStateObject(StateObject state)
+        /// <summary>
+        /// Fills the StateObject with the actual INformation
+        /// </summary>
+        /// <param name="state"></param>
+        public static void WriteHeaderState(HeaderState state)
         {
             byte[] headerBytes = state.buffer.Take(Serialisation.HEADERSIZE).ToArray();
             byte[] indexBytes = state.buffer.Take(8).ToArray();

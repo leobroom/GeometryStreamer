@@ -37,26 +37,6 @@ namespace GeoServer
             header = GetHeader(data, serializedData.Length, id);
         }
 
-        public static void Deserialize(int typeFromHeader, byte[] data)
-        {
-            Console.WriteLine("typeFromHeader: " + typeFromHeader);
-
-            switch (typeFromHeader)
-            {
-                case 1:
-                    var result1 = DeserializeFromBytes<TestDataMsg>(data);
-                    Console.WriteLine("Result1: " + result1.number);
-                    break;
-                case 2:
-                    var result2 = DeserializeFromBytes<AlternativeTestDataMsg>(data);
-                    Console.WriteLine("Result2: " + result2.txt);
-                    LogArr(result2.arr);
-                    break;
-
-                default:
-                    throw new Exception($"Type: {typeFromHeader} ist nicht vorhanden!");
-            }
-        }
 
         /// <summary>
         /// Reads data into a complete array, throwing an EndOfStreamException
@@ -91,11 +71,15 @@ namespace GeoServer
             int type = 0;
 
             if (d is ConnectToServerMsg)
-                type = 1;
+                type = (int)Server.MessageType.ConnectToServer;
             else if (d is TestDataMsg)
-                type = 98;
+                type = (int)Server.MessageType.TestData;
             else if (d is AlternativeTestDataMsg)
-                type = 99;
+                type = (int)Server.MessageType.AlternativeTestData;
+            else if (d is SimpleMsg)
+                type = (int)Server.MessageType.SimpleMsg;
+            else if (d is BroadCastMsg)
+                type = (int)Server.MessageType.BroadCastTest;
 
             byte[] data = new byte[HEADERSIZE];
             byte[] byteId = id.ToByteArray();
@@ -153,14 +137,30 @@ namespace GeoServer
         public ClientType deviceType = ClientType.Default;
         public string clientName = "defaultClient";
         public Guid id = Guid.Empty;
+
+        public override string ToString()
+            => $"ConnectToServerMsg: DeviceType: {deviceType}, ClientName: {clientName}, Id: {id}";
     }
 
-    //[Serializable]
-    //public class MessageFromServer : ISerializableData
-    //{
-    //    //0 = Default
-    //    //1 = Everything Okay
-    //    public int messageType = 0;
-    //    public string clientName = "default";
-    //}
+    [Serializable]
+    public class SimpleMsg : ISerializableData
+    {
+        public Msg message = Msg.None;
+        public enum Msg
+        {
+            None = 0,
+            AllowClientToSendData,
+        }
+
+        public override string ToString() => $"SimpleMsg:  {message}";
+    }
+
+    /// <summary>
+    /// A Random BroadCastMessage, which a client can send to other clients over the server
+    /// </summary>
+    [Serializable]
+    public class BroadCastMsg : ISerializableData
+    {
+        public string broadcastMsg = "not set";
+    }
 }

@@ -33,7 +33,7 @@ namespace GeoServer
 
         public void DoesDllWork()
         {
-            SendMessage("Geometry Dll is correctly loaded");
+            SendLog("Geometry Dll is correctly loaded");
         }
 
     }

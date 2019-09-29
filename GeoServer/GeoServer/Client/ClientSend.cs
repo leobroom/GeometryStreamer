@@ -10,7 +10,7 @@ namespace GeoServer
         {
             Serialisation.GetSerializedData(data, id, out byte[] headerData, out byte[] serializedData);
             sendingDataQueue.Enqueue((headerData, serializedData));
-            SendMessage($"{data.GetType()} sent");
+            SendLog($"{data.GetType()} sent");
         }
 
         private void SendBytes(Socket client, byte[] header, byte[] data)
@@ -35,7 +35,7 @@ namespace GeoServer
             }
             catch (Exception e)
             {
-                SendMessage(e.ToString());
+                SendLog(e.ToString());
             }
         }
     }

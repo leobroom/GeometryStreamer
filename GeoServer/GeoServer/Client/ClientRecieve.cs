@@ -5,11 +5,11 @@ namespace GeoServer
 {
     public partial class Client
     {
-        private static void Receive(Socket client)
+        private void Receive(Socket client)
         {
             try
             {
-                StateObject state = new StateObject
+                HeaderState state = new HeaderState
                 {
                     workSocket = client,
                     buffer = new byte[Serialisation.HEADERSIZE]
@@ -23,10 +23,10 @@ namespace GeoServer
             }
         }
 
-        public static void ReadCallback(IAsyncResult ar)
+        public void ReadCallback(IAsyncResult ar)
         {
             // Retrieve the state object and the handler socket from the asynchronous state object.
-            StateObject state = (StateObject)ar.AsyncState;
+            HeaderState state = (HeaderState)ar.AsyncState;
             Socket handler = state.workSocket;
 
             // Read data from the client socket. 
@@ -36,22 +36,16 @@ namespace GeoServer
 
             if (state.headerType == -1)
             {
-                Utils.UpdateStateObject(state);
+                Utils.WriteHeaderState(state);
 
-                Console.WriteLine(" state.buffer: " + state.buffer.Length);
-                Console.WriteLine(" state.headerType: " + state.headerType);
-                Console.WriteLine(" state.dataSize: " + state.dataSize);
-                Console.WriteLine(" state.id: " + state.id);
+                SendLog(state.ToString());
             }
-
-            Console.WriteLine("bytesRead: " + bytesRead);
-            Console.WriteLine("state.dataSize: " + state.dataSize);
 
             if (bytesRead == state.dataSize)
             {
-                Deserialize(handler, state.headerType, state.buffer);
+                Deserialize(handler, (Server.MessageType)state.headerType, state.buffer);
 
-                state = new StateObject
+                state = new HeaderState
                 {
                     workSocket = handler,
                     buffer = new byte[Serialisation.HEADERSIZE]
@@ -61,22 +55,31 @@ namespace GeoServer
             handler.BeginReceive(state.buffer, 0, state.buffer.Length, 0, new AsyncCallback(ReadCallback), state);
         }
 
-        public static void Deserialize(Socket client, int typeFromHeader, byte[] data)
+        public void Deserialize(Socket client, Server.MessageType typeFromHeader, byte[] data)
         {
             Console.WriteLine("Deserialize");
 
             switch (typeFromHeader)
             {
-                case 1:
+                case Server.MessageType.ConnectToServer:
                     var connectToServer = Serialisation.DeserializeFromBytes<ConnectToServerMsg>(data);
 
-                    Console.WriteLine("NACHRICHT ZURÜCK - TESTEN OB ALLES GEHT! ");
+                    Console.WriteLine(connectToServer);
                     break;
-                case 98:
+                case Server.MessageType.SimpleMsg:
+                    var simpleMsg = Serialisation.DeserializeFromBytes<SimpleMsg>(data);
+
+                    GetSimpleMsg(simpleMsg);
+                    break;
+                case Server.MessageType.BroadCastTest:
+                    var bc = Serialisation.DeserializeFromBytes<BroadCastMsg>(data);
+                    SendLog("BroadCast: " + bc.broadcastMsg);
+                    break;
+                case Server.MessageType.TestData:
                     var testData = Serialisation.DeserializeFromBytes<TestDataMsg>(data);
-                    Console.WriteLine("Result1: " + testData.number);
+                    SendLog("Result1: " + testData.number);
                     break;
-                case 99:
+                case Server.MessageType.AlternativeTestData:
                     var altTestData = Serialisation.DeserializeFromBytes<AlternativeTestDataMsg>(data);
                     Console.WriteLine("Result2: " + altTestData.txt);
                     Serialisation.LogArr(altTestData.arr);
@@ -85,47 +88,21 @@ namespace GeoServer
                     throw new Exception($"Type: {typeFromHeader} ist nicht vorhanden!");
             }
         }
-        //private static void ReceiveCallback(IAsyncResult ar)
-        //{
-        //    Console.WriteLine("ReceiveCallback");
-        //    try
-        //    {
-        //        // Retrieve the state object and the client socket   
-        //        // from the asynchronous state object.  
-        //        StateObject state = (StateObject)ar.AsyncState;
-        //        Socket client = state.workSocket;
 
-        //        // Read data from the remote device.  
-        //        int bytesRead = client.EndReceive(ar);
+        private void GetSimpleMsg(SimpleMsg msg)
+        {
+            SendLog(msg);
 
-        //        // There  might be more data, so store the data received so far.
-        //        state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
-
-        //        String content = String.Empty;
-        //        content = state.sb.ToString();
-
-        //        if (bytesRead > 0)
-        //        {
-        //            if (content.IndexOf("<EOF>") > -1)
-        //            {
-        //                Console.WriteLine("Read {0} bytes from socket. \n Data : {1}",
-        //                    content.Length, content);
-
-        //                state.sb.Clear();
-        //            }
-
-        //            // Get the rest of the data.  
-        //            client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,new AsyncCallback(ReceiveCallback), state);        
-        //        }
-        //        else
-        //        {
-        //            receiveDone.Set();
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e.ToString());
-        //    }
-        //}
+            switch (msg.message)
+            {
+                case SimpleMsg.Msg.AllowClientToSendData:
+                    allowSending = true;
+                    SendLog("  allowSending = true");
+                    break;
+                default:
+                    break;
+            }
+        }
     }
+
 }

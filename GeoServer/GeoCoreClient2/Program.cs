@@ -8,7 +8,10 @@ namespace GeoCoreClient2
     {
         static void Main(string[] args)
         {
-            Thread.Sleep(1000);
+            Console.WriteLine("############");
+            Console.WriteLine("Client 2");
+            Console.WriteLine("############");
+            Thread.Sleep(2000);
             Console.ForegroundColor = ConsoleColor.Green;
             var client = new Client("127.0.0.1", 12345, "Client 2", ThreadingType.Task);
             client.Connect();
