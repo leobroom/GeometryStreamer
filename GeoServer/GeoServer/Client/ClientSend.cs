@@ -16,6 +16,7 @@ namespace GeoServer
         private void SendBytes(Socket client, byte[] header, byte[] data)
         {
             byte[] resultByte = header.Concat(data).ToArray();
+           // Locks einbauen - siehe hier: https://github.com/Spirch/AsyncClientServer/tree/master
             client.BeginSend(resultByte, 0, resultByte.Length, 0, new AsyncCallback(SendCallback), client);        
         }
 

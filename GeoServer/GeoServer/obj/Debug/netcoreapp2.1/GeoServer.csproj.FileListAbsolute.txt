@@ -14,7 +14,6 @@ C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debu
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.runtimeconfig.dev.json
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.pdb
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csproj.CoreCompileInputs.cache
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfoInputs.cache
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfo.cs
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.dll

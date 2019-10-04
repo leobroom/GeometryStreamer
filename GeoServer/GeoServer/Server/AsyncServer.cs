@@ -189,7 +189,7 @@ namespace GeoServer
                     SimpleMsg allowToSend = new SimpleMsg()
                     { message = SimpleMsg.Msg.AllowClientToSendData };
 
-                    Hier schmiert der Thread leider ab
+                 //   Hier schmiert der Thread leider ab
                     Send(allowToSend, client, serverId);
                     break;
                 case MessageType.BroadCastTest:

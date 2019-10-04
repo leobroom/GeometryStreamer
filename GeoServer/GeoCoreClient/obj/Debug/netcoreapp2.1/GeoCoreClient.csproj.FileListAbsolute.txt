@@ -20,7 +20,6 @@ C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.1\GeoServer.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.1\GeoServer.pdb
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.1\GeoCoreClient.csprojAssemblyReference.cache
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.1\GeoCoreClient.csproj.CoreCompileInputs.cache
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.1\GeoCoreClient.AssemblyInfoInputs.cache
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.1\GeoCoreClient.AssemblyInfo.cs
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.1\GeoCoreClient.csproj.CopyComplete

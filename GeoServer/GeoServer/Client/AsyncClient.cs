@@ -168,8 +168,7 @@ namespace GeoServer
 #endif
 
             void SendData()
-            {
-       
+            {    
                 //First connect To Server message
                 (byte[] header2, byte[] data2) = sendingDataQueue.Dequeue();
                 SendBytes(socket, header2, data2);
