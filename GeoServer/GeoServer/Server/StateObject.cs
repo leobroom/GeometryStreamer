@@ -24,6 +24,6 @@ namespace GeoServer
         // Received data string.
         public StringBuilder sb = new StringBuilder();
 
-        public override string ToString() => $"STATEOBJ: ID: {id}, BufferLength: {buffer.Length}, HeaderType: {(Server.MessageType)headerType}, DataSize: {dataSize}";
+        public override string ToString() => $"STATEOBJ: ID: {id}, BufferLength: {buffer.Length}, HeaderType: {(MessageType)headerType}, DataSize: {dataSize}";
     }
 }

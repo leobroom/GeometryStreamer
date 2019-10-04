@@ -43,7 +43,7 @@ namespace GeoServer
 
             if (bytesRead == state.dataSize)
             {
-                Deserialize(handler, (Server.MessageType)state.headerType, state.buffer);
+                Deserialize(handler, (MessageType)state.headerType, state.buffer);
 
                 state = new HeaderState
                 {
@@ -55,31 +55,31 @@ namespace GeoServer
             handler.BeginReceive(state.buffer, 0, state.buffer.Length, 0, new AsyncCallback(ReadCallback), state);
         }
 
-        public void Deserialize(Socket client, Server.MessageType typeFromHeader, byte[] data)
+        public void Deserialize(Socket client, MessageType typeFromHeader, byte[] data)
         {
             Console.WriteLine("Deserialize");
 
             switch (typeFromHeader)
             {
-                case Server.MessageType.ConnectToServer:
+                case MessageType.ConnectToServer:
                     var connectToServer = Serialisation.DeserializeFromBytes<ConnectToServerMsg>(data);
 
                     Console.WriteLine(connectToServer);
                     break;
-                case Server.MessageType.SimpleMsg:
+                case MessageType.SimpleMsg:
                     var simpleMsg = Serialisation.DeserializeFromBytes<SimpleMsg>(data);
 
                     GetSimpleMsg(simpleMsg);
                     break;
-                case Server.MessageType.BroadCastTest:
+                case MessageType.BroadCastTest:
                     var bc = Serialisation.DeserializeFromBytes<BroadCastMsg>(data);
                     SendLog("BroadCast: " + bc.broadcastMsg);
                     break;
-                case Server.MessageType.TestData:
+                case MessageType.TestData:
                     var testData = Serialisation.DeserializeFromBytes<TestDataMsg>(data);
                     SendLog("Result1: " + testData.number);
                     break;
-                case Server.MessageType.AlternativeTestData:
+                case MessageType.AlternativeTestData:
                     var altTestData = Serialisation.DeserializeFromBytes<AlternativeTestDataMsg>(data);
                     Console.WriteLine("Result2: " + altTestData.txt);
                     Serialisation.LogArr(altTestData.arr);

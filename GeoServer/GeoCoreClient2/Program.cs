@@ -16,7 +16,14 @@ namespace GeoCoreClient2
             var client = new Client("127.0.0.1", 12345, "Client 2", ThreadingType.Task);
             client.Connect();
             client.Message += OnMessage;
-            client.SendingRandomData(1);
+            client.SendingRandomData(1000);
+
+            for (int i = 0; i < 1000; i++)
+            {
+                BroadCastMsg bc = new BroadCastMsg() { broadcastMsg = " Hey hier ist client 2, bei mir alles gut" };
+
+                client.Send(bc);
+            }
 
             Console.Read();
             client.Disconnect();

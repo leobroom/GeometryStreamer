@@ -18,4 +18,3 @@ C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debu
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfo.cs
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.pdb
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csprojAssemblyReference.cache

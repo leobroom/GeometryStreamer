@@ -134,7 +134,6 @@ namespace GeoServer
             //sendingTask.Dispose();
 #endif
         }
-
         private void ConnectCallback(IAsyncResult ar)
         {
             try

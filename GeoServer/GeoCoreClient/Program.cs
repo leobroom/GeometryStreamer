@@ -18,13 +18,15 @@ namespace GeoCoreClient
             client.Message += OnMessage;
             client.Connect();
 
-            client.SendingRandomData(1);
+            client.SendingRandomData(1000);
 
+            for (int i = 0; i < 1000; i++)
+            {
+                BroadCastMsg bc = new BroadCastMsg() { broadcastMsg = " Hey hier ist client 1 Whats up????" };
 
-            BroadCastMsg bc = new BroadCastMsg() { broadcastMsg = " Hey hier ist client 1 Whats up????" };
-
-          //  client.Send(bc);
-
+                client.Send(bc);
+            }
+       
             Console.Read();
             client.Disconnect();
         }

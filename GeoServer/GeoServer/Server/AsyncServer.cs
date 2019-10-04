@@ -20,19 +20,7 @@ namespace GeoServer
         private static Guid serverId;
         private static Thread sendingThread;
 
-        public enum MessageType
-        {
-            NotSet = -1,
-            None = 0,
-            ConnectToServer = 1,
-            SimpleMsg = 2,
-            BroadCastTest = 3,
-            TestData = 98,
-            AlternativeTestData = 99
-        }
-
         public Server() { }
-
 
         //Client dataBase
         static ConcurrentDictionary<Socket, ClientObject> socketToClientTable = new ConcurrentDictionary<Socket, ClientObject>();
@@ -111,18 +99,13 @@ namespace GeoServer
             {
                 while (true)
                 {
-
-                    Console.WriteLine("update");
                     try
                     {
                         var bytes = sendingDataQueueTable[socket];
 
-                   
-
                         if (bytes.Count != 0)
                         {
-                            
-                            Console.WriteLine(socketToClientTable[socket].Name +"send dataaaa" + bytes.Count);
+                            Console.WriteLine(socketToClientTable[socket].Name + "send dataaaa" + bytes.Count);
                             (byte[] header, byte[] data) = bytes.Dequeue();
                             SendBytes(socket, header, data);
                             sendDone.WaitOne();
@@ -137,7 +120,7 @@ namespace GeoServer
         }
 
         private static void SendBytes(Socket client, byte[] header, byte[] data)
-        {   
+        {
             byte[] resultByte = header.Concat(data).ToArray();
             client.BeginSend(resultByte, 0, resultByte.Length, 0, new AsyncCallback(SendCallback), client);
         }
@@ -189,22 +172,25 @@ namespace GeoServer
                     SimpleMsg allowToSend = new SimpleMsg()
                     { message = SimpleMsg.Msg.AllowClientToSendData };
 
-                 //   Hier schmiert der Thread leider ab
                     Send(allowToSend, client, serverId);
                     break;
+
                 case MessageType.BroadCastTest:
                     var bc = Serialisation.DeserializeFromBytes<BroadCastMsg>(data);
-    
-            //        SendToOthers(bc, client);
+
+                    SendToOthers(bc, client);
                     break;
+
                 case MessageType.TestData:
                     var testData = Serialisation.DeserializeFromBytes<TestDataMsg>(data);
-      
+                    Console.WriteLine(testData.number);
                     break;
+
                 case MessageType.AlternativeTestData:
                     var altTestData = Serialisation.DeserializeFromBytes<AlternativeTestDataMsg>(data);
-
+                    Serialisation.LogArr(altTestData.arr);
                     break;
+
                 default:
                     throw new Exception($"Type: {typeFromHeader} ist nicht vorhanden!");
             }
@@ -214,23 +200,22 @@ namespace GeoServer
         /// Just for Debug purpose - shows all the clients in the database
         /// </summary>
         private static void ShowAllClients()
-        { 
+        {
             Console.WriteLine(Environment.NewLine + "############CLIENT LIST##############");
             foreach (var clientObject in socketToClientTable.Values)
                 Console.WriteLine(clientObject);
-            Console.WriteLine("#####################################" + System.Environment.NewLine);  
+            Console.WriteLine("#####################################" + System.Environment.NewLine);
         }
 
         public static void Send(ISerializableData data, Socket client, Guid clientId)
         {
             Serialisation.GetSerializedData(data, clientId, out byte[] headerData, out byte[] serializedData);
+
             sendingDataQueueTable[client].Enqueue((headerData, serializedData));
         }
 
         public static void SendToOthers(ISerializableData data, Socket client)
         {
-
-      
             Guid clientId = socketToClientTable[client].Id;
 
             Console.WriteLine("...Send to others");
@@ -241,12 +226,9 @@ namespace GeoServer
                 if (c == client)
                     continue;
 
-         
                 Console.WriteLine("...Send to: " + socketToClientTable[c].Name);
 
                 sendingDataQueueTable[c].Enqueue((headerData, serializedData));
-                Console.WriteLine("...fdgfdg");
-               Console.WriteLine(sendingDataQueueTable[c].Count);
             }
         }
 
@@ -260,8 +242,7 @@ namespace GeoServer
                 // Complete sending the data to the remote device.
                 int bytesSent = handler.EndSend(ar);
 
-                //handler.Shutdown(SocketShutdown.Both);
-                //handler.Close();
+                sendDone.Set();
             }
             catch (Exception e)
             {
