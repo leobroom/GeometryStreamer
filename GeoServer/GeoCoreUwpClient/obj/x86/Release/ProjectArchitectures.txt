@@ -1,0 +1,1 @@
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\GeoCoreUwpClient.csproj;x86

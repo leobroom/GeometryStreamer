@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading;
-using GeoServer;
+using GeoStreamer;
 
 namespace GeoCoreClient
 {
@@ -8,13 +8,15 @@ namespace GeoCoreClient
     {
         static void Main(string[] args)
         {
+            string ip = Utils.GetTestIpAdress();
+
             Console.WriteLine("############");
-            Console.WriteLine("Client 1");
+            Console.WriteLine("Client 1 : "+ip);
             Console.WriteLine("############");
 
-            Thread.Sleep(2000);
+            Thread.Sleep(8000);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            var client = new Client("127.0.0.1", 12345, "Client 1", ThreadingType.Thread);
+            var client =  EventClient.Initialize(ip, 12345, "Client 1", ThreadingType.Thread);
             client.Message += OnMessage;
             client.Connect();
 

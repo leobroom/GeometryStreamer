@@ -1,0 +1,7 @@
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\GeoStreamer.deps.json
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\GeoStreamer.dll
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\GeoStreamer.pdb
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netcoreapp2.0\GeoStreamer.AssemblyInfoInputs.cache
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netcoreapp2.0\GeoStreamer.AssemblyInfo.cs
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netcoreapp2.0\GeoStreamer.dll
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netcoreapp2.0\GeoStreamer.pdb

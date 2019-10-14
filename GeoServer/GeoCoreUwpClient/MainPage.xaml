@@ -28,7 +28,7 @@
 
         <ScrollViewer x:Name="scrollView" Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Width="Auto" Height="Auto" FontSize="12"     >
 
-            <TextBlock Name="debugLog"  TextWrapping="Wrap" Height="Auto" Margin="20" Text="" />
+            <TextBlock Name="debugLog"  TextWrapping="Wrap" Height="Auto" Margin="20" Text="This is a Tescxycxycyxcxyc"  />
 
 
 

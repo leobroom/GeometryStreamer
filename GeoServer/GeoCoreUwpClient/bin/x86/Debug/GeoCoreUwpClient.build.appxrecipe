@@ -31,8 +31,8 @@
     <AppxPackagedFile Include="C:\Users\N C Delille\.nuget\packages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.8\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.dll">
-      <PackagePath>GeoServer.dll</PackagePath>
+    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\GeoStreamer.dll">
+      <PackagePath>GeoStreamer.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\bin\10.0.17763.0\XamlCompiler\Microsoft.UI.Xaml.Markup.winmd">
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>

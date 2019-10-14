@@ -207,6 +207,16 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "GeoStreamer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "compile": {
+          "bin/placeholder/GeoStreamer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GeoStreamer.dll": {}
+        }
       }
     }
   },
@@ -680,10 +690,16 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "GeoStreamer/1.0.0": {
+      "type": "project",
+      "path": "../MultiTargetTest/GeoStreamer.csproj",
+      "msbuildProject": "../MultiTargetTest/GeoStreamer.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "GeoStreamer >= 1.0.0",
       "Microsoft.NETCore.App >= 2.1.0"
     ]
   },
@@ -716,7 +732,11 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj": {
+              "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

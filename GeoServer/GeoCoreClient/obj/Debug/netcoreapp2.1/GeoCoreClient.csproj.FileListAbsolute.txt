@@ -17,11 +17,11 @@ C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.1\GeoCoreClient.runtimeconfig.dev.json
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.1\GeoCoreClient.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.1\GeoCoreClient.pdb
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.1\GeoServer.dll
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.1\GeoServer.pdb
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.1\GeoCoreClient.csprojAssemblyReference.cache
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.1\GeoCoreClient.AssemblyInfoInputs.cache
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.1\GeoCoreClient.AssemblyInfo.cs
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.1\GeoCoreClient.csproj.CopyComplete
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.1\GeoCoreClient.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.1\GeoCoreClient.pdb
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.1\GeoStreamer.dll
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.1\GeoStreamer.pdb

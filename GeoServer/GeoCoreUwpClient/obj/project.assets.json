@@ -8157,9 +8157,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreUwpClient\\GeoCoreUwpClient.csproj",
-      "projectName": "GeoCoreUwpClient",
-      "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreUwpClient\\GeoCoreUwpClient.csproj",
+      "projectUniqueName": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreUwpClient\\Uwp.csproj",
+      "projectName": "Uwp",
+      "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreUwpClient\\Uwp.csproj",
       "packagesPath": "C:\\Users\\N C Delille\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreUwpClient\\obj\\",
       "projectStyle": "PackageReference",
