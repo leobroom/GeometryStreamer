@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uwp", "GeoCoreUwpClient\Uwp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoStreamer", "MultiTargetTest\GeoStreamer.csproj", "{792B044A-FFD5-469B-B85A-1025136AC36C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grasshopper", "GeoGrasshopper\Grasshopper.csproj", "{430A638C-DFA1-4263-AE50-8D7C16213B7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoGrasshopper", "GeoGrasshopper\GeoGrasshopper.csproj", "{430A638C-DFA1-4263-AE50-8D7C16213B7A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{CB963EF2-186E-44F9-BEDC-C06BDDC059B9}"
 EndProject

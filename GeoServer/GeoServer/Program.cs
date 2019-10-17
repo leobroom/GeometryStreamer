@@ -5,9 +5,11 @@ namespace GeoServer
 {
     class Program
     {
-        static string ip = "192.168.1.221";
+       
         static void Main()
         {
+             string ip = Utils.GetTestIpAdress();
+
             Console.WriteLine("############");
             Console.WriteLine("Server : " + ip);
             Console.WriteLine("############");

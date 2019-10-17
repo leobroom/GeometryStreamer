@@ -59,7 +59,7 @@ public class Factory
 
         linerenderer.material = Test.Instance.curveMat;
         Color c = Color.cyan;
-        float width = 0.04f;
+        float width = 0.004f;
         linerenderer.startColor = c;
         linerenderer.endColor = c;
         linerenderer.startWidth = width;

@@ -8,8 +8,8 @@ namespace GeoGrasshopper
 {
     public class GeoGrasshopperComponent : GH_Component
     {
-        private /*static */EventClient client;
-        private /*static */readonly List<string> debugLog = new List<string>();
+        private static EventClient client;
+        private static readonly List<string> debugLog = new List<string>();
 
         public GeoGrasshopperComponent() : base("GeometryStreamer", "GeoStream", "Streams Geometry", "Streaming", "Network") { }
 
@@ -51,6 +51,8 @@ namespace GeoGrasshopper
             DA.GetData(0, ref ipAdress);
             DA.GetData(1, ref connect);
 
+            DA.SetData(0,  ipAdress);
+
             if (!DA.GetDataList(3, meshes))
                 meshes = new List<Mesh>();
 
@@ -71,21 +73,27 @@ namespace GeoGrasshopper
             if (client == null || !connect)
                 return;
 
-            int mCount =meshes.Count;
-
-            for (int i = 0; i < mCount; i++)
+            if (meshes != null && meshes.Count !=0)
             {
-                Mesh mesh = meshes[i];
+                int mCount = meshes.Count;
 
-                if (mesh == null || mesh.Vertices == null)
-                    continue;
+                for (int i = 0; i < mCount; i++)
+                {
+                    Mesh mesh = meshes[i];
 
-                BroadCastMesh netMesh = GetMeshChanged(i, mesh);
-                client.Send(netMesh);
+                    if (mesh == null || mesh.Vertices == null)
+                        continue;
+
+                    BroadCastMesh netMesh = GetMeshChanged(i, mesh);
+                    client.Send(netMesh);
+                }
             }
+       
 
-            if (curves.Count != 0)
+            if (curves != null && curves.Count != 0)
             {
+                int mCount = meshes.Count;
+
                 double length = 100; //Hier ausbessern
 
                 BroadCastCurves netCurves = GetCurvesChanged(mCount, curves, length);
