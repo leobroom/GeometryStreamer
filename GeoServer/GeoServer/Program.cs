@@ -8,15 +8,21 @@ namespace GeoServer
        
         static void Main()
         {
-             string ip = Utils.GetTestIpAdress();
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(ProcessExit);
+            string ip = Utils.GetTestIpAdress();
 
             Console.WriteLine("############");
             Console.WriteLine("Server : " + ip);
             Console.WriteLine("############");
 
             Console.ForegroundColor = ConsoleColor.Red;
-            //Server.Start("127.0.0.1", 12345);
             Server.Start(ip, 12345); 
+
+        }
+
+        private static void ProcessExit(object sender, EventArgs e)
+        {
+            Server.Stop();
         }
     }
 }

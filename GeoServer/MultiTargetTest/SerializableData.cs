@@ -77,8 +77,11 @@ namespace GeoStreamer
     [Serializable]
     public class BroadCastCurves : ISerializableData
     {
-        public int[] ids;
-        public int[] curveLength;
+        public int[] length;
         public float[] positions;
+        /// <summary>
+        /// R,G,B...
+        /// </summary>
+        public int[] colors;
     }
 }

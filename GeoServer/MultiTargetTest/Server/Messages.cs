@@ -29,6 +29,9 @@ namespace GeoStreamer
             }
 
         }
+
+    
+
         private static void Message(string message) {
             Console.WriteLine(message);
         }

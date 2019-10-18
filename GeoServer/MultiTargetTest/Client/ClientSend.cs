@@ -8,6 +8,12 @@ namespace GeoStreamer
     {
         public void Send(ISerializableData data)
         {
+            if (abort)
+            {
+                SendLog($"No Connection");
+                return;
+            }
+
             Serialisation.GetSerializedData(data, id, out byte[] headerData, out byte[] serializedData);
             sendingDataQueue.Enqueue(new Tuple<byte[], byte[]>(headerData, serializedData));
             SendLog($"{data.GetType()} sent");
@@ -16,7 +22,17 @@ namespace GeoStreamer
         private void SendBytes(Socket client, byte[] header, byte[] data)
         {
             byte[] resultByte = header.Concat(data).ToArray();
-            client.BeginSend(resultByte, 0, resultByte.Length, 0, new AsyncCallback(SendCallback), client);
+
+            try
+            {
+                client.BeginSend(resultByte, 0, resultByte.Length, 0, new AsyncCallback(SendCallback), client);
+
+            }
+            catch (SocketException e)
+            {
+                SendLog(e.Message);
+                Disconnect();
+            }
         }
 
         private void SendCallback(IAsyncResult ar)

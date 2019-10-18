@@ -31,6 +31,7 @@ namespace GeoStreamer
             return arr;
         }
 
+ 
         public static void GetSerializedData(ISerializableData data, Guid id, out byte[] header, out byte[] serializedData)
         {
             serializedData = SerializeToBytes(data);
@@ -58,6 +59,20 @@ namespace GeoStreamer
             else
                 throw new Exception("MessageType is not added inside the GetHeader Method");
 
+            byte[] data = new byte[HEADERSIZE];
+            byte[] byteId = id.ToByteArray();
+
+            Array.Copy(BitConverter.GetBytes(type), 0, data, 0, 4);
+            Array.Copy(BitConverter.GetBytes(length), 0, data, 4, 4);
+
+            for (int i = 0; i < 16; i++)
+                data[i + 8] = byteId[i];
+
+            return data;
+        }
+
+        public static byte[] GetHeader(byte[] d, int type, int length, Guid id)
+        {
             byte[] data = new byte[HEADERSIZE];
             byte[] byteId = id.ToByteArray();
 

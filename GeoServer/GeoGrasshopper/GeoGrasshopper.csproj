@@ -59,20 +59,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GeoGrasshopperComponent.cs" />
+    <Compile Include="Components\GeoGrasshopperComponent.cs" />
     <Compile Include="GeoGrasshopperInfo.cs" />
+    <Compile Include="Components\StreamSettingsComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resource1.Designer.cs">
+    <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resource1.resx</DependentUpon>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SendGeometry.cs" />
+    <Compile Include="StreamSettings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bitmap.gif" />
-    <EmbeddedResource Include="Resource1.resx">
+    <Resource Include="Images\bitmap.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

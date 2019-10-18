@@ -14,15 +14,15 @@ namespace GeoCoreClient
             Console.WriteLine("Client 1 : "+ip);
             Console.WriteLine("############");
 
-            Thread.Sleep(8000);
+            Thread.Sleep(1000);
             Console.ForegroundColor = ConsoleColor.Yellow;
             var client =  EventClient.Initialize(ip, 12345, "Client 1", ThreadingType.Thread);
             client.Message += OnMessage;
             client.Connect();
 
-            client.SendingRandomData(1000);
+            client.SendingRandomData(10);
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 10; i++)
             {
                 BroadCastMsg bc = new BroadCastMsg() { broadcastMsg = " Hey hier ist client 1 Whats up????" };
 

@@ -18,7 +18,6 @@ namespace GeoStreamer
         public static ManualResetEvent allDone = new ManualResetEvent(false);
 
         private static Guid serverId;
-        private static Thread sendingThread;
 
         public Server() { }
 
@@ -66,6 +65,35 @@ namespace GeoStreamer
             Console.Read();
         }
 
+
+        public static void Stop()
+        {
+            List<Socket> clientsToRemove = new List<Socket>(socketToClientTable.Keys);
+
+            foreach (Socket toRemove in clientsToRemove)
+            {
+                RemoveClient(toRemove);
+            }
+        }
+
+        /// <summary>
+        /// Removes the Client from the Tables
+        /// </summary>
+        /// <param name="clientSocket"></param>
+        private static void RemoveClient(Socket clientSocket)
+        {
+            if (socketToClientTable.ContainsKey(clientSocket))
+            {
+                ClientObject client = socketToClientTable[clientSocket];
+                client.StopThread = true;
+                socketToClientTable.TryRemove(clientSocket, out client);
+            }
+
+            sendingDataQueueTable.TryRemove(clientSocket, out var value);
+
+            clientSocket.Close();
+        }
+
         public static void AcceptCallback(IAsyncResult ar)
         {
             // Signal the main thread to continue.
@@ -74,8 +102,9 @@ namespace GeoStreamer
             // Get the socket that handles the client request.
             Socket listener = (Socket)ar.AsyncState;
             Socket clientSocket = listener.EndAccept(ar);
+            ClientObject clientObject = new ClientObject();
 
-            socketToClientTable.TryAdd(clientSocket, new ClientObject());
+            socketToClientTable.TryAdd(clientSocket, clientObject);
             sendingDataQueueTable.TryAdd(clientSocket, new Queue<Tuple<byte[], byte[]>>());
 
             // Create the state object.
@@ -87,17 +116,17 @@ namespace GeoStreamer
 
             clientSocket.BeginReceive(state.buffer, 0, Serialisation.HEADERSIZE, 0, new AsyncCallback(ReadCallback), state);
 
-            StartSending(clientSocket);
+            StartSending(clientSocket, clientObject);
         }
 
-        public static void StartSending(Socket socket)
+        private static void StartSending(Socket socket, ClientObject clientObject)
         {
-            sendingThread = new Thread(() => SendData());
+            Thread sendingThread = new Thread(() => SendData(clientObject));
             sendingThread.Start();
 
-            void SendData()
+            void SendData(ClientObject client)
             {
-                while (true)
+                while (!client.StopThread)
                 {
                     try
                     {
@@ -106,7 +135,7 @@ namespace GeoStreamer
                         if (bytes.Count != 0)
                         {
                             Console.WriteLine(socketToClientTable[socket].Name + "send dataaaa" + bytes.Count);
-                            Tuple< byte[] , byte[]> headerData = bytes.Dequeue();
+                            Tuple<byte[], byte[]> headerData = bytes.Dequeue();
                             byte[] header = headerData.Item1;
                             byte[] data = headerData.Item2;
                             SendBytes(socket, header, data);
@@ -131,10 +160,22 @@ namespace GeoStreamer
         {
             // Retrieve the state object and the handler socket from the asynchronous state object.
             HeaderState state = (HeaderState)ar.AsyncState;
-            Socket handler = state.workSocket;
+            Socket socket = state.workSocket;
 
             // Read data from the client socket. 
-            int bytesRead = handler.EndReceive(ar);
+
+            int bytesRead = 0;
+            try
+            {
+                 bytesRead = socket.EndReceive(ar);      
+            }
+            catch (SocketException e)
+            {
+                var client = socketToClientTable[socket];
+                Message($"{client.Name}: {e.Message}");
+                RemoveClient(socket);
+            }
+
             if (bytesRead == 0)
                 return;
 
@@ -142,21 +183,31 @@ namespace GeoStreamer
             {
                 Utils.WriteHeaderState(state);
 
-                Message($"{socketToClientTable[handler].Name} | NEW { state.ToString()}");
+                Message($"{socketToClientTable[socket].Name} | NEW { state.ToString()}");
             }
 
             if (bytesRead == state.dataSize)
             {
-                Deserialize(handler, (MessageType)state.headerType, state.buffer);
+                Deserialize(socket, (MessageType)state.headerType, state.buffer);
 
                 state = new HeaderState
                 {
-                    workSocket = handler,
+                    workSocket = socket,
                     buffer = new byte[Serialisation.HEADERSIZE]
                 };
             }
 
-            handler.BeginReceive(state.buffer, 0, state.buffer.Length, 0, new AsyncCallback(ReadCallback), state);
+            try
+            {
+                socket.BeginReceive(state.buffer, 0, state.buffer.Length, 0, new AsyncCallback(ReadCallback), state);
+            }
+            catch (SocketException e)
+            {
+
+                var client = socketToClientTable[socket];
+                Message($"{client.Name}: {e.Message}");
+                RemoveClient(socket);
+            }
         }
 
         public static void Deserialize(Socket client, MessageType typeFromHeader, byte[] data)
@@ -194,12 +245,10 @@ namespace GeoStreamer
                     break;
 
                 case MessageType.BroadCastMesh:
-                    var mesh = Serialisation.DeserializeFromBytes<BroadCastMesh>(data);
-                    SendToOthers(mesh, client);
+                    SendToOthers(data, (int)typeFromHeader, client);
                     break;
                 case MessageType.BroadCastCurves:
-                    var curves = Serialisation.DeserializeFromBytes<BroadCastCurves>(data);
-                    SendToOthers(curves, client);
+                    SendToOthers(data, (int)typeFromHeader, client);
                     break;
                 default:
                     throw new Exception($"Type: {typeFromHeader} ist nicht vorhanden!");
@@ -239,6 +288,24 @@ namespace GeoStreamer
                 Console.WriteLine("...Send to: " + socketToClientTable[c].Name);
 
                 sendingDataQueueTable[c].Enqueue(new Tuple<byte[], byte[]>(headerData, serializedData));
+            }
+        }
+
+        public static void SendToOthers(byte[] data, int type, Socket client)
+        {
+            Guid clientId = socketToClientTable[client].Id;
+
+            Console.WriteLine("...Send to others");
+            byte[] headerData = Serialisation.GetHeader(data, type, data.Length, clientId);
+
+            foreach (Socket c in sendingDataQueueTable.Keys)
+            {
+                if (c == client)
+                    continue;
+
+                Console.WriteLine("...Send to: " + socketToClientTable[c].Name);
+
+                sendingDataQueueTable[c].Enqueue(new Tuple<byte[], byte[]>(headerData, data));
             }
         }
 

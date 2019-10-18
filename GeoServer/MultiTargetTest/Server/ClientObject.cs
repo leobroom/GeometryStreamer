@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace GeoStreamer
 {
@@ -14,6 +15,16 @@ namespace GeoStreamer
         public Guid Id => id;
         public string Name => name;
         public ClientType DeviceType => deviceType;
+
+
+
+        private bool stopThread =false;
+
+        public bool StopThread
+        {
+            get { return stopThread; }
+            set { stopThread  = value; }
+        }
 
         public override string ToString() => $"{name}, Id: {id} , ClientType: {deviceType}";
 

@@ -32,6 +32,6 @@ namespace GeoStreamer
         /// <summary>
         /// Just for debugging - do not use this
         /// </summary>
-        public static string GetTestIpAdress() => "172.18.26.161";
+        public static string GetTestIpAdress() => "127.0.0.1";
     }
 }

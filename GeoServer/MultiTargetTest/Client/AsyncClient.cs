@@ -20,8 +20,6 @@ namespace GeoStreamer
         UWP
     }
 
-
-
     public partial class Client<T> : BaseClient where T : IClient, new()
     {
         // ManualResetEvent instances signal completion.  
@@ -45,6 +43,8 @@ namespace GeoStreamer
 
         private static T instance;
 
+        private bool abort = true;
+
         protected Client() { }
 
         public static T Instance => instance;
@@ -64,6 +64,7 @@ namespace GeoStreamer
         /// </summary>
         public void Connect()
         {
+            abort = false;
             SendLog("Try to Connect...");
 
             ThreadingType t = useThreads ? ThreadingType.Thread : ThreadingType.Task;
@@ -100,22 +101,27 @@ namespace GeoStreamer
         /// </summary>
         public void Disconnect()
         {
-            Abort();
-
-            socket?.Shutdown(SocketShutdown.Both);
-            socket?.Close();
-        }
-
-        private void Abort()
-        {
 #if (useThreads)
+            abort = true;
                 listingThread?.Abort();
                 sendingThread?.Abort();
 #else
+            abort = true;
             //listingTask.Dispose();
             //sendingTask.Dispose();
 #endif
-        }
+
+            try
+            {
+                socket?.Shutdown(SocketShutdown.Both);
+                socket?.Close();
+            }
+            catch (SocketException e)
+            {
+                SendLog(e.Message);
+            }
+        
+        }  
         private void ConnectCallback(IAsyncResult ar)
         {
             try
@@ -157,7 +163,7 @@ namespace GeoStreamer
                 SendBytes(socket, header, data);
                 sendDone.WaitOne();
 
-                while (true)
+                while (!abort)
                 {
                     try
                     {
@@ -190,7 +196,7 @@ namespace GeoStreamer
 
             void ListenData()
             {
-                while (true)
+                while (!abort)
                 {
                     try
                     {

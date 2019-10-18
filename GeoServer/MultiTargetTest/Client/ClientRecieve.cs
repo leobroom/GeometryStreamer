@@ -23,14 +23,25 @@ namespace GeoStreamer
             }
         }
 
+
         public void ReadCallback(IAsyncResult ar)
         {
             // Retrieve the state object and the handler socket from the asynchronous state object.
             HeaderState state = (HeaderState)ar.AsyncState;
-            Socket handler = state.workSocket;
+            Socket server = state.workSocket;
 
             // Read data from the client socket. 
-            int bytesRead = handler.EndReceive(ar);
+            int bytesRead =0;
+
+            try
+            {
+                 bytesRead = server.EndReceive(ar);
+            }
+            catch (SocketException e)
+            {
+                Disconnect();
+            }
+ 
             if (bytesRead == 0)
                 return;
 
@@ -43,16 +54,16 @@ namespace GeoStreamer
 
             if (bytesRead == state.dataSize)
             {
-                Deserialize(handler, (MessageType)state.headerType, state.buffer);
+                Deserialize(server, (MessageType)state.headerType, state.buffer);
 
                 state = new HeaderState
                 {
-                    workSocket = handler,
+                    workSocket = server,
                     buffer = new byte[Serialisation.HEADERSIZE]
                 };
             }
 
-            handler.BeginReceive(state.buffer, 0, state.buffer.Length, 0, new AsyncCallback(ReadCallback), state);
+            server.BeginReceive(state.buffer, 0, state.buffer.Length, 0, new AsyncCallback(ReadCallback), state);
         }
 
         protected  void Deserialize(Socket client, MessageType typeFromHeader, byte[] data)
@@ -114,17 +125,17 @@ namespace GeoStreamer
         protected virtual void GetMesh(BroadCastMesh mesh)
         {
             Console.WriteLine("Mesh recieved: " + mesh.id);
-            Serialisation.LogArr(mesh.normals);
-            Serialisation.LogArr(mesh.triangles);
-            Serialisation.LogArr(mesh.vertices);
+            //Serialisation.LogArr(mesh.normals);
+            //Serialisation.LogArr(mesh.triangles);
+            //Serialisation.LogArr(mesh.vertices);
         }
 
         protected virtual void GetCurves(BroadCastCurves curves)
         {
             Console.WriteLine("Curves recieved:");
-            Serialisation.LogArr(curves.ids);
-            Serialisation.LogArr(curves.curveLength);
-            Serialisation.LogArr(curves.positions);
+            //Serialisation.LogArr(curves.length);
+            //Serialisation.LogArr(curves.positions);
+         //   Serialisation.LogArr(curves.colors);
         }
     }
 
