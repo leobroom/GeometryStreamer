@@ -9,4 +9,10 @@
     <ProjectReference Include="..\MultiTargetTest\GeoStreamer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="GeoStreamer">
+      <HintPath>..\MultiTargetTest\bin\Debug\netcoreapp2.0\GeoStreamer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

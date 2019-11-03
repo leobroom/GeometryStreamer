@@ -8,4 +8,8 @@
     <Exec Command="if $(OutDir)==bin\Debug\net45\ (copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(SolutionDir)..\RhinoGeoStreamer\$(ProjectName)_Net45.dll&quot;)&#xD;&#xA;if $(OutDir)==bin\Debug\net45\ (copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(SolutionDir)..\UnityGeoStreamer\Assets\DLL\$(ProjectName)_Net45.dll&quot;)&#xD;&#xA;" />
   </Target>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\SocketStreamer\SocketStreamer.csproj" />
+  </ItemGroup>
+
 </Project>

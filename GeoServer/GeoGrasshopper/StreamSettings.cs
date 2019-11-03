@@ -1,58 +1,37 @@
-﻿using Grasshopper.Kernel;
-using Grasshopper.Kernel.Types;
-using Rhino.DocObjects;
-using System;
+﻿using Rhino.Display;
 using System.Collections.Generic;
 
 namespace GeoGrasshopper
 {
-    public class GH_StreamSettings : GH_Goo<StreamSettings>
-    {
-        public GH_StreamSettings() { this.Value = StreamSettings.Default; }
-        public GH_StreamSettings(GH_StreamSettings goo) { this.Value = goo.Value; }
-        public GH_StreamSettings(StreamSettings native) { this.Value = native; }
-        public override IGH_Goo Duplicate() => new GH_StreamSettings(this);
-        public override bool IsValid => true;
-        public override string TypeName => "StreamSettings";
-        public override string TypeDescription => "Geometry StreamSettings";
-        public override string ToString() => this.Value?.ToString();
-        public override object ScriptVariable() => Value;
-
-        public override bool CastFrom(object source)
-        {
-            if (source is StreamSettings)
-            {
-                Value = source as StreamSettings;
-                return true;
-            }
-            return false;
-        }
-    }
-
     public class StreamSettings
     {
-        private static StreamSettings _default = new StreamSettings();
+        private static StreamSettings _default = new StreamSettings(System.Drawing.Color.Gray) { };
 
         /// <summary>
         /// Default Values
         /// </summary>
-        public StreamSettings()
+        public StreamSettings() { }
+
+        public StreamSettings(System.Drawing.Color defaultColor)
         {
-            curveMaterial = new Material() { };
-            curveMaterial.DiffuseColor = System.Drawing.Color.White;
+            var defaultMaterial = new DisplayMaterial();
+            defaultMaterial.Diffuse = defaultColor;
 
-            meshMaterial = new Material() { };
-            meshMaterial.DiffuseColor = System.Drawing.Color.DarkSlateGray;
+            materials.Add(defaultMaterial);
 
-            curveDivision = 100;
-            curveWidth = 0.02f;
+            double curveDivision = 100;
+            int curveWidth = 1;
+            int id = 0;
+
+            curveDivisions.Add(curveDivision);
+            curveWidths.Add(curveWidth);
+            objMatIds.Add(0);
         }
 
-        private Material curveMaterial;
-        private double curveDivision;
-        private float curveWidth;
-
-        private Material meshMaterial;
+        private List<DisplayMaterial> materials = new List<DisplayMaterial>();
+        private List<int> objMatIds = new List<int>();
+        private List<double> curveDivisions = new List<double>();
+        private List<int> curveWidths = new List<int>();
 
         public static StreamSettings Default
         {
@@ -60,48 +39,55 @@ namespace GeoGrasshopper
             set { _default = value; }
         }
 
-        public float CurveWidth
+        public List<int> ObjMatIds
         {
-            get { return curveWidth; }
-            set { curveWidth = value; }
+            get { return objMatIds; }
+            set { objMatIds = value; }
+        }
+
+        public List<int> CurveWidths
+        {
+            get { return curveWidths; }
+            set { curveWidths = value; }
         }
 
         /// <summary>
         /// Curve SegmentationLength
         /// </summary>
-        public double CurveDivision
+        public List<double> CurveDivisions
         {
-            get { return curveDivision; }
-            set { curveDivision = value; }
+            get { return curveDivisions; }
+            set { curveDivisions = value; }
         }
-        public Material CurveMaterial
+        public List<DisplayMaterial> Materials
         {
-            get { return curveMaterial; }
-            set { curveMaterial = value; }
+            get { return materials; }
+            set { materials = value; }
         }
 
-        public Material MeshMaterial
+        public override string ToString()
         {
-            get { return meshMaterial; }
-            set { meshMaterial = value; }
-        }
-    }
+            string s = "StreamSettings: ";
 
-    public class StreamSettingsParameter : GH_PersistentParam<GH_StreamSettings>
-    {
-        public StreamSettingsParameter() : base("StreamSettings", "Settings", "Settings", "Streaming", "Network") { }
-        public override GH_Exposure Exposure => GH_Exposure.secondary;
-        protected override System.Drawing.Bitmap Icon => null;
-        public override Guid ComponentGuid => new Guid("{eed378e7-9e25-4d0c-8f92-5ababf33111b}");
-        protected override GH_GetterResult Prompt_Singular(ref GH_StreamSettings value)
-        {
-            value = new GH_StreamSettings();
-            return GH_GetterResult.success;
+            foreach (var mat in materials)
+                s+= ", C: "+ DisplayColor(mat.Diffuse);
+
+            s += " | ";
+
+            foreach (var curveDivision in curveDivisions)
+                s += ", CDiv: " + curveDivision;
+
+            s += " | ";
+
+            foreach (var curveWidth in curveWidths)
+                s += ", CWidth: " + curveWidth;
+
+            return s;
         }
-        protected override GH_GetterResult Prompt_Plural(ref List<GH_StreamSettings> values)
+
+        private string DisplayColor(System.Drawing.Color c)
         {
-            values = new List<GH_StreamSettings>();
-            return GH_GetterResult.success;
+            return $"R: {c.R}, G: {c.G}, B: {c.B}, A: {c.A}";
         }
     }
 }

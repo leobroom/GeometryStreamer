@@ -1,20 +1,19 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 class GeometryStorage
 {
-    Dictionary<int, GameObject> storage = new Dictionary<int, GameObject>();
+    // Meshes
+    private readonly List<GameObject> meshGOStorage = new List<GameObject>();
+ 
+    // Curves
+    private readonly List<GameObject> curveGOStorage = new List<GameObject>();
 
     public enum GeoType
     {
         Mesh,
         Curve
     }
-
-
-    Dictionary<int, Mesh> meshStorage = new Dictionary<int, Mesh>();
 
     private static GeometryStorage instance;
 
@@ -31,61 +30,86 @@ class GeometryStorage
         }
     }
 
+    delegate GameObject GetGameObject();
+
     public GameObject GetGeometry(int id, GeoType type)
     {
-
-        GameObject stored;
-        Debug.Log("GetGeometry");
-
-        if (!storage.ContainsKey(id))
+        try
         {
+            GameObject stored;
 
-            GameObject go;
-            if (type == GeoType.Mesh)
+            switch (type)
             {
-                go = Factory.Instance.CreateMeshObject();
-            }
-            else
-            {
-                go = Factory.Instance.CreateCurveObject();
+                default:
+                case GeoType.Mesh:
+                    stored = meshGOStorage[id];
+                    break;
+                case GeoType.Curve:
+                    stored = curveGOStorage[id];
+                    break;
             }
 
-            storage.Add(id, go);
+            return stored;
         }
-
-        stored = storage[id];
-
-        Debug.Log("GotGeometry");
-        return stored;
-    }
-
-    public Mesh GetMesh(int id)
-    {
-        Debug.Log("GetMesh");
-
-        Mesh stored;
-
-        Mesh bla = new Mesh();
-
-        Debug.Log("blaaa");
-
-        lock (meshStorage)
+        catch (System.Exception e )
         {
-            if (!meshStorage.ContainsKey(id))
-                meshStorage.Add(id, new Mesh());
+            string error = $"ID: {id}, Typ: {type}, curveGOStorage {curveGOStorage.Count}, meshGOStorage {meshGOStorage.Count} " + e.Message;
+            throw new System.Exception(error);
+        }
+       
+    }
 
-            stored = meshStorage[id];
+    private void UpdateGeo(int count, List<GameObject> goTable, GetGameObject getGo)
+    {
+
+        Debug.Log($"UpdateGeo----------: " +  count +  "    "+goTable.Count);
+
+        int tableCount = goTable.Count;
+        if (count > tableCount)
+        {
+            int toCreate = count - tableCount;
+
+            Debug.Log($"Create: " + toCreate);
+
+            for (int i = 0; i < toCreate; i++)
+            {
+               var geo =  getGo();
+                goTable.Add(geo);
+            }
+        }
+        else if (count < tableCount)
+        {
+            int toDelete = tableCount - count;
+
+            int toCreate = count - tableCount;
+
+            Debug.Log($"Destroy: " + toDelete);
+
+            List<GameObject> geos = new List<GameObject>();
+
+            for (int i = 0; i < toDelete; i++)
+            {
+                geos.Add(goTable[i]);
+            }
+
+            for (int i = 0; i < geos.Count; i++)
+            {
+                goTable.RemoveAt(0);
+                Factory.Instance.DestroyGeometry(geos[i], i * 0.01f);
+            }
         }
 
 
-        return stored;
+        Debug.Log($"Nothing ");
+
     }
 
-    internal void SetMesh(int id, Mesh mesh)
+    public void UpdateGeometry(int curveCount, int meshCount)
     {
-        if (!storage.ContainsKey(id))
-            meshStorage.Add(id, mesh);
-        else
-            meshStorage[id] = mesh;
+        Debug.Log($"GeoUpdate CRV/MSH:  {curveCount},  {meshCount}");
+        UpdateGeo(curveCount, curveGOStorage, Factory.Instance.CreateCurveObject);
+        UpdateGeo(meshCount, meshGOStorage, Factory.Instance.CreateMeshObject);
+        Debug.Log($"---------------");
+        Debug.Log($"GeoUpdate CRV STOR/MSH STOR:  {curveGOStorage.Count},  {meshGOStorage.Count}");
     }
 }

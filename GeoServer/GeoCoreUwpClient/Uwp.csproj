@@ -157,8 +157,12 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="GeoStreamer">
+    <Reference Include="GeoStreamer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\MultiTargetTest\bin\Debug\netcoreapp2.0\GeoStreamer.dll</HintPath>
+    </Reference>
+    <Reference Include="SocketStreamer">
+      <HintPath>..\MultiTargetTest\bin\Debug\netcoreapp2.0\SocketStreamer.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

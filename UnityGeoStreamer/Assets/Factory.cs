@@ -16,11 +16,9 @@ public class Factory
         {
             if (instance == null)
             {
-
                 instance = new Factory();
                 instance.CreateParent();
             }
-
 
             return instance;
         }
@@ -31,7 +29,7 @@ public class Factory
     {
         parent = new GameObject();
         parent.transform.rotation = Quaternion.Euler(-90, 0, 0);
-
+        parent.transform.localScale = new Vector3(-1, 1, 1);
     }
 
     public GameObject CreateMeshObject()
@@ -64,13 +62,15 @@ public class Factory
         linerenderer.endColor = c;
         linerenderer.startWidth = width;
         linerenderer.endWidth = width;
+        linerenderer.receiveShadows = false;
+
+        linerenderer.positionCount = 0;
 
         return go;
     }
 
-    public void CreateMesh(BroadCastMesh broadcast)
+    public void UpdateMesh(BroadCastMesh broadcast)
     {
-        // Debug.Log(broadcast.ToString());
         Debug.Log("mesh updated");
 
         GameObject go = GeometryStorage.Instance.GetGeometry(broadcast.id, GeometryStorage.GeoType.Mesh);
@@ -81,9 +81,12 @@ public class Factory
         mesh.SetVertices(GetVector3Array(broadcast.vertices));
         mesh.SetTriangles(broadcast.triangles, 0);
         mesh.SetNormals(GetVector3Array(broadcast.normals));
+
+        Color c = GetUColor(broadcast.color);
+        go.GetComponent<Renderer>().material.color = c;
     }
 
-    private List<Vector3> GetVector3Array(float[] floats)
+    private List<Vector3> GetVector3Array(float[] floats, bool reverse = false)
     {
         int length = floats.Length / 3;
         List<Vector3> vecs = new List<Vector3>(length);
@@ -99,28 +102,48 @@ public class Factory
         return vecs;
     }
 
-    public void CreateCurves(BroadCastCurves broadcast)
+    public void UpdateCurve(BroadCastCurve broadcast)
     {
-        int count = broadcast.ids.Length;
-        int startPos = 0;
-
         var allPoints = GetVector3Array(broadcast.positions).ToArray();
-        for (int i = 0; i < count; i++)
-        {
-            int id = broadcast.ids[i];
-            int length = broadcast.curveLength[i];
 
-            Vector3[] vecs = new Vector3[length];
+        int id = broadcast.id;
+        int length = allPoints.Length;
 
-            for (int l = 0; l < length; l++)
-                vecs[l] = allPoints[startPos + l];
+        Color c = GetUColor(broadcast.colors);
 
-            GameObject go = GeometryStorage.Instance.GetGeometry(id, GeometryStorage.GeoType.Curve);
-            LineRenderer renderer = go.GetComponent<LineRenderer>();
-            renderer.positionCount = length;
-            renderer.SetPositions(vecs);
+        GameObject go = GeometryStorage.Instance.GetGeometry(id, GeometryStorage.GeoType.Curve);
+        LineRenderer renderer = go.GetComponent<LineRenderer>();
+        renderer.positionCount = length;
+        renderer.SetPositions(allPoints);
+        renderer.startColor = c;
+        renderer.endColor = c;
 
-            startPos += broadcast.curveLength[i];
-        }
+        float width = broadcast.width;
+
+        renderer.startWidth = width;
+        renderer.endWidth = width;
+    }
+
+    private Color GetUColor(byte[] colors)
+    {
+        float r = GetColorValue(colors[0]);
+        float g = GetColorValue(colors[1]);
+        float b = GetColorValue(colors[2]);
+        float a = GetColorValue(colors[3]);
+
+        return new Color(r, g, b, a);
+    }
+
+    private float GetColorValue(byte v)
+        => ((int)v) / 255f;
+
+    public void UpdateGeometry(BroadCastGeometryInfo broadcast)
+    {
+        GeometryStorage.Instance.UpdateGeometry(broadcast.curvesCount, broadcast.meshesCount);
+    }
+
+    public void DestroyGeometry(GameObject go, float time)
+    {
+        GameObject.Destroy(go, time);
     }
 }

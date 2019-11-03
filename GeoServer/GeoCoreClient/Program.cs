@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using GeoStreamer;
+using SocketStreamer;
 
 namespace GeoCoreClient
 {
@@ -16,7 +17,7 @@ namespace GeoCoreClient
 
             Thread.Sleep(1000);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            var client =  EventClient.Initialize(ip, 12345, "Client 1", ThreadingType.Thread);
+            var client = TestClient.Initialize(ip, 12345, "Client 1", ThreadingType.Thread);
             client.Message += OnMessage;
             client.Connect();
 
@@ -38,4 +39,6 @@ namespace GeoCoreClient
             Console.WriteLine(e.Message);
         }
     }
+
+    public class TestClient : GeoStreamer.GeoClient<TestClient> { }
 }

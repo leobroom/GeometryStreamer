@@ -35,6 +35,9 @@
     <Reference Include="GeoStreamer">
       <HintPath>..\MultiTargetTest\bin\Debug\net45\GeoStreamer.dll</HintPath>
     </Reference>
+    <Reference Include="SocketStreamer">
+      <HintPath>..\MultiTargetTest\bin\Debug\net45\SocketStreamer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -59,26 +62,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\GeoGrasshopperComponent.cs" />
+    <Compile Include="Component\GeoGrasshopperComponent.cs" />
+    <Compile Include="Component\StreamPreviewComponent.cs" />
     <Compile Include="GeoGrasshopperInfo.cs" />
-    <Compile Include="Components\StreamSettingsComponent.cs" />
+    <Compile Include="Component\StreamSettingsComponent.cs" />
+    <Compile Include="GH_StreamSettings.cs" />
+    <Compile Include="Parameter\StreamSettingsParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RhinoClient.cs" />
     <Compile Include="SendGeometry.cs" />
     <Compile Include="StreamSettings.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\bitmap.gif" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\gs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\gs_param.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\gs_settings.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

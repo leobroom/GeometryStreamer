@@ -6,3 +6,6 @@ C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\ob
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netcoreapp2.0\GeoStreamer.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netcoreapp2.0\GeoStreamer.pdb
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netcoreapp2.0\GeoStreamer.csprojAssemblyReference.cache
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\SocketStreamer.dll
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\SocketStreamer.pdb
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netcoreapp2.0\GeoStreamer.csproj.CopyComplete

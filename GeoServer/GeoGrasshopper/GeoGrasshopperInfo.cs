@@ -28,7 +28,7 @@ namespace GeoGrasshopper
             get
             {
                 //Return a short string describing the purpose of this GHA library.
-                return "Hopefully it will work";
+                return "Library to stream Geometry and Assembly Instructions";
             }
         }
         public override Guid Id

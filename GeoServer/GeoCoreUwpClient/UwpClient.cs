@@ -1,27 +1,21 @@
 ﻿using GeoStreamer;
-using System;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
-public class UwpClient : Client<UwpClient>
+public class UwpClient : GeoClient<UwpClient>
 {
-    private Task debugTask;
-
     private Queue<string> debugQueue = new Queue<string>();
 
-    public event EventHandler<MessageArgs> Message;
-    protected override void SendLog(string message)
-    {
-        Message?.Invoke(this, new MessageArgs(message));
+    //protected override void SendLog(string message)
+    //{
+    //    Message?.Invoke(this, new MessageArgs(message));
 
-        Message?.Invoke(this, new MessageArgs("dsjflkdsjf"));
+    //    Message?.Invoke(this, new MessageArgs("dsjflkdsjf"));
 
-        //lock (debugQueue)
-        //{
-        //    debugQueue.Enqueue(message);
-        //}
-    }
+    //    //lock (debugQueue)
+    //    //{
+    //    //    debugQueue.Enqueue(message);
+    //    //}
+    //}
 
     //public void StartDebugging()
     //{

@@ -22,6 +22,8 @@
         <StackPanel Grid.Row="1"  Orientation="Horizontal"   Margin="0" Padding="20" Spacing="20" HorizontalAlignment="Center">
             <Button x:Name="TestDataButton" Content="TestData" IsEnabled="False" Click="TestDataOnClick"/>
             <Button x:Name="AltTestButton" Content="AlternativeTestData" IsEnabled="False" Click="AlternativeTestDataOnClick"/>
+            <Button x:Name="BroadCastButton" Content="BroadcastData" IsEnabled="False" Click="BroadCastDataOnClick"/>
+
         </StackPanel>
 
 

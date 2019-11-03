@@ -63,9 +63,29 @@ namespace GeoGrasshopper {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bitmap {
+        internal static System.Drawing.Bitmap gs {
             get {
-                object obj = ResourceManager.GetObject("bitmap", resourceCulture);
+                object obj = ResourceManager.GetObject("gs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gs_param {
+            get {
+                object obj = ResourceManager.GetObject("gs_param", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gs_settings {
+            get {
+                object obj = ResourceManager.GetObject("gs_settings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

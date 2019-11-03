@@ -196,9 +196,30 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "SocketStreamer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "compile": {
+          "bin/placeholder/SocketStreamer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SocketStreamer.dll": {}
+        }
       }
     },
-    ".NETFramework,Version=v4.5": {}
+    ".NETFramework,Version=v4.5": {
+      "SocketStreamer/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5",
+        "compile": {
+          "bin/placeholder/SocketStreamer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SocketStreamer.dll": {}
+        }
+      }
+    }
   },
   "libraries": {
     "Microsoft.NETCore.App/2.0.0": {
@@ -669,13 +690,21 @@
         "netstandard.library.2.0.0.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "SocketStreamer/1.0.0": {
+      "type": "project",
+      "path": "../../SocketStreamer/SocketStreamer.csproj",
+      "msbuildProject": "../../SocketStreamer/SocketStreamer.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
-      "Microsoft.NETCore.App >= 2.0.0"
+      "Microsoft.NETCore.App >= 2.0.0",
+      "SocketStreamer >= 1.0.0"
     ],
-    ".NETFramework,Version=v4.5": []
+    ".NETFramework,Version=v4.5": [
+      "SocketStreamer >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\N C Delille\\.nuget\\packages\\": {},
@@ -708,10 +737,18 @@
       },
       "frameworks": {
         "netcoreapp2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj": {
+              "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj"
+            }
+          }
         },
         "net45": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj": {
+              "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

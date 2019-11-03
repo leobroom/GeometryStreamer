@@ -1,0 +1,7 @@
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.AssemblyInfoInputs.cache
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.AssemblyInfo.cs
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\bin\Debug\netcoreapp2.0\SocketStreamer.deps.json
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\bin\Debug\netcoreapp2.0\SocketStreamer.dll
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\bin\Debug\netcoreapp2.0\SocketStreamer.pdb
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.dll
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.pdb

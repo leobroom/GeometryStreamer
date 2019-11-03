@@ -289,6 +289,9 @@
     <Reference Include="GeoStreamer_Net45">
       <HintPath>C:/Users/N C Delille/Documents/Git/GeometryStreamer/UnityGeoStreamer/Assets/DLL/GeoStreamer_Net45.dll</HintPath>
     </Reference>
+    <Reference Include="SocketStreamer_Net45">
+      <HintPath>C:/Users/N C Delille/Documents/Git/GeometryStreamer/UnityGeoStreamer/Assets/DLL/SocketStreamer_Net45.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>C:/Users/N C Delille/Documents/Git/GeometryStreamer/UnityGeoStreamer/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>

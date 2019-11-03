@@ -13,17 +13,17 @@ namespace GeoCoreUwpClient
     public partial class App : global::Windows.UI.Xaml.Markup.IXamlMetadataProvider
     {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Windows.UI.Xaml.Build.Tasks"," 10.0.17.0")]
-        private global::GeoCoreUwpClient.GeoCoreUwpClient_XamlTypeInfo.XamlMetaDataProvider __appProvider;
+        private global::GeoCoreUwpClient.Uwp_XamlTypeInfo.XamlMetaDataProvider __appProvider;
 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Windows.UI.Xaml.Build.Tasks"," 10.0.17.0")]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private global::GeoCoreUwpClient.GeoCoreUwpClient_XamlTypeInfo.XamlMetaDataProvider _AppProvider
+        private global::GeoCoreUwpClient.Uwp_XamlTypeInfo.XamlMetaDataProvider _AppProvider
         {
             get
             {
                 if (__appProvider == null)
                 {
-                    __appProvider = new global::GeoCoreUwpClient.GeoCoreUwpClient_XamlTypeInfo.XamlMetaDataProvider();
+                    __appProvider = new global::GeoCoreUwpClient.Uwp_XamlTypeInfo.XamlMetaDataProvider();
                 }
                 return __appProvider;
             }
@@ -61,7 +61,7 @@ namespace GeoCoreUwpClient
     }
 }
 
-namespace GeoCoreUwpClient.GeoCoreUwpClient_XamlTypeInfo
+namespace GeoCoreUwpClient.Uwp_XamlTypeInfo
 {
     /// <summary>
     /// Main class for providing metadata for the app or library
@@ -70,15 +70,15 @@ namespace GeoCoreUwpClient.GeoCoreUwpClient_XamlTypeInfo
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     public sealed class XamlMetaDataProvider : global::Windows.UI.Xaml.Markup.IXamlMetadataProvider
     {
-        private global::GeoCoreUwpClient.GeoCoreUwpClient_XamlTypeInfo.XamlTypeInfoProvider _provider = null;
+        private global::GeoCoreUwpClient.Uwp_XamlTypeInfo.XamlTypeInfoProvider _provider = null;
 
-        private global::GeoCoreUwpClient.GeoCoreUwpClient_XamlTypeInfo.XamlTypeInfoProvider Provider
+        private global::GeoCoreUwpClient.Uwp_XamlTypeInfo.XamlTypeInfoProvider Provider
         {
             get
             {
                 if (_provider == null)
                 {
-                    _provider = new global::GeoCoreUwpClient.GeoCoreUwpClient_XamlTypeInfo.XamlTypeInfoProvider();
+                    _provider = new global::GeoCoreUwpClient.Uwp_XamlTypeInfo.XamlTypeInfoProvider();
                 }
                 return _provider;
             }

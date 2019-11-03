@@ -1,28 +1,28 @@
 ﻿using System;
 using GeoStreamer;
+using SocketStreamer;
 
-namespace GeoServer
+class Program
 {
-    class Program
+    static GeoServer server;
+
+    static void Main()
     {
-       
-        static void Main()
-        {
-            AppDomain.CurrentDomain.ProcessExit += new EventHandler(ProcessExit);
-            string ip = Utils.GetTestIpAdress();
+        AppDomain.CurrentDomain.ProcessExit += new EventHandler(ProcessExit);
+        string ip = Utils.GetTestIpAdress();
 
-            Console.WriteLine("############");
-            Console.WriteLine("Server : " + ip);
-            Console.WriteLine("############");
+        Console.WriteLine("############");
+        Console.WriteLine("Server : " + ip);
+        Console.WriteLine("############");
 
-            Console.ForegroundColor = ConsoleColor.Red;
-            Server.Start(ip, 12345); 
+        Console.ForegroundColor = ConsoleColor.Red;
 
-        }
+        server = GeoServer.Initialize(ip, 12345);
+        server.Start();
+    }
 
-        private static void ProcessExit(object sender, EventArgs e)
-        {
-            Server.Stop();
-        }
+    private static void ProcessExit(object sender, EventArgs e)
+    {
+        server?.Stop();
     }
 }

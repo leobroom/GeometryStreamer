@@ -7,18 +7,20 @@ using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using SocketStreamer;
 
 namespace GeoCoreUwpClient
 {
     public sealed partial class MainPage : Page
     {
 
-        private EventClient client;
+        private UwpClient client;
 
         private Random rnd = new Random();
 
         private ConcurrentQueue<string> debugQueue = new ConcurrentQueue<string>();
 
+        Serializer serializer = new Serializer();
         public MainPage()
         {
             this.InitializeComponent();
@@ -27,7 +29,7 @@ namespace GeoCoreUwpClient
 
         private async Task AddLineAsync(string s)
         {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { debugLog.Text += DateTime.Now + " - " + s + "\n"; });       
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { debugLog.Text += DateTime.Now + " - " + s + "\n"; });
         }
 
         private void ConnectOnClick(object sender, RoutedEventArgs e)
@@ -39,10 +41,10 @@ namespace GeoCoreUwpClient
             // AddLine("ConnectOnClick");
             string ip = Utils.GetTestIpAdress();
             //client =  Client.Initialize("192.168.178.34", 12345, "Client UWP", ThreadingType.Task, ClientType.UWP);
-            client = EventClient.Initialize(ip, 12345, "Client UWP", ThreadingType.Task, ClientType.UWP);
-      
+            client = UwpClient.Initialize(ip, 12345, "Client UWP", ThreadingType.Task, ClientType.UWP);
+
             client.Message += RecieveMessage;
-           // client.StartDebugging();
+            // client.StartDebugging();
 
             client.DoesDllWork();
 
@@ -52,6 +54,7 @@ namespace GeoCoreUwpClient
             DisconnectButton.IsEnabled = true;
             TestDataButton.IsEnabled = true;
             AltTestButton.IsEnabled = true;
+            BroadCastButton.IsEnabled = true;
         }
 
         private void RecieveMessage(object sender, MessageArgs e)
@@ -71,6 +74,7 @@ namespace GeoCoreUwpClient
             DisconnectButton.IsEnabled = false;
             TestDataButton.IsEnabled = false;
             AltTestButton.IsEnabled = false;
+            BroadCastButton.IsEnabled = false;
         }
 
         private void OnCloseRequest(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
@@ -103,21 +107,26 @@ namespace GeoCoreUwpClient
             AlternativeTestDataMsg test = new AlternativeTestDataMsg
             {
                 txt = "UWPtxt",
-                arr = Serialisation.FillArr(rnd.Next(1, 12))
+                arr = serializer.FillArr(rnd.Next(1, 12))
             };
 
             client.Send(test);
 
-            for (int i = 0; i < 1000; i++)
-            {
-                BroadCastMsg bc = new BroadCastMsg() { broadcastMsg = " Hey hier ist uwpblaaa, bei mir alles gut" };
+            UpdateScrollview();
+        }
 
-                client.Send(bc);
-            }
+        private void BroadCastDataOnClick(object sender, RoutedEventArgs e)
+        {
+            if (client == null)
+                return;
+
+
+            BroadCastMsg bc = new BroadCastMsg() { broadcastMsg = " Hey hier ist uwpblaaa, bei mir alles gut" };
+
+            client.Send(bc);
+
 
             UpdateScrollview();
-
-
         }
 
         /// <summary>

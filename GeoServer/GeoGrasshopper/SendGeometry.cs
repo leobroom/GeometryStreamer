@@ -1,6 +1,6 @@
 ﻿using GeoStreamer;
+using Rhino.Display;
 using Rhino.Geometry;
-using System;
 using System.Collections.Generic;
 
 namespace GeoGrasshopper
@@ -10,7 +10,18 @@ namespace GeoGrasshopper
     /// </summary>
     static class Send
     {
-        public static void Mesh(int id, Mesh mesh, EventClient client)
+        public static void GeometryInfo(int curveCount, int meshCount, RhinoClient client)
+        {
+            BroadCastGeometryInfo netMesh = new BroadCastGeometryInfo
+            {
+                curvesCount = curveCount,
+                meshesCount = meshCount
+            };
+
+            client.Send(netMesh);
+        }
+
+        public static void Mesh(int id, Mesh mesh, StreamSettings settings, RhinoClient client)
         {
             if (mesh == null || mesh.Vertices == null)
                 return;
@@ -20,7 +31,8 @@ namespace GeoGrasshopper
                 id = id,
                 vertices = GetVertices(mesh),
                 triangles = Triangulate(mesh),
-                normals = GetNormals(mesh)
+                normals = GetNormals(mesh),
+                color = GetColor(GetSettingsMaterial(id, settings).Diffuse)
             };
 
             client.Send(netMesh);
@@ -106,58 +118,78 @@ namespace GeoGrasshopper
 
         // CURVES
 
-        public static void Curves(List<Curve> curves, StreamSettings settings, EventClient client)
+        public static T GetSettingsValue<T>(int id, List<T> values, string error)
         {
-            int crvCount = curves.Count;
+            int count = values.Count;
 
-            List<float> positions = new List<float>();
-            int[] curveLength = new int[crvCount];
-            double segmentLength = settings.CurveDivision;
+            if (id < count)
+                return values[id];
+            else if (count > 0)
+                return values[count - 1];
+            else
+                throw new System.Exception(error);
+        }
 
-            //For every Curve
-            for (int crvIdx = 0; crvIdx < crvCount; crvIdx++)
+        public static DisplayMaterial GetSettingsMaterial(int id, StreamSettings settings)
+        {
+            int matCount = settings.Materials.Count;
+            int objMatIdsCount = settings.ObjMatIds.Count;
+
+            if (id < objMatIdsCount)
             {
-                Curve curve = curves[crvIdx];
+                int objMatId = settings.ObjMatIds[id];
 
-                if (curve.IsPolyline())
+                if (objMatId < matCount && objMatId >= 0)
+                    return settings.Materials[objMatId];
+                else
+                    throw new System.Exception("No Material with the ID: " + objMatId);
+            }
+            else if (objMatIdsCount > 0)
+                return settings.Materials[matCount - 1];
+            else
+                throw new System.Exception("No Material");
+        }
+
+        public static void Curve(int id, Curve curve, StreamSettings settings, RhinoClient client)
+        {
+            List<float> positions = new List<float>();
+
+            double segmentLength = GetSettingsValue(id, settings.CurveDivisions, "segment not set");
+
+            if (curve.IsPolyline())
+            {
+                var nc = curve.ToNurbsCurve();
+
+                int ptCount = nc.Points.Count;
+
+                for (int i = 0; i < ptCount; i++)
+                    AddPointValues(nc.Points[i].Location, positions);
+            }
+            else
+            {
+                AddPointValues(curve.PointAt(curve.Domain.Min), positions);
+                double maxLength = curve.GetLength();
+                if (segmentLength != 0 && segmentLength < maxLength)
                 {
-                    var nc = curve.ToNurbsCurve();
+                    Point3d[] pts;
+                    curve.DivideByLength(segmentLength, false, out pts);
 
-                    int ptCount = nc.Points.Count;
-
-                    for (int i = 0; i < ptCount; i++)
-                        AddPointValues(nc.Points[i].Location, positions);
-
-                    curveLength[crvIdx] = ptCount;
+                    foreach (var pt in pts)
+                        AddPointValues(pt, positions);
                 }
                 else
-                {
-                    AddPointValues(curve.PointAt(curve.Domain.Min), positions);
-                    double maxLength = curve.GetLength();
-                    if (segmentLength != 0 && segmentLength < maxLength)
-                    {
-                        Point3d[] pts;
-                        curve.DivideByLength(segmentLength, false, out pts);
-
-                        foreach (var pt in pts)
-                            AddPointValues(pt, positions);
-
-                        curveLength[crvIdx] = pts.Length + 2;
-                    }
-                    else
-                        curveLength[crvIdx] = 2;
                     AddPointValues(curve.PointAt(curve.Domain.Max), positions);
-                }
             }
 
-            BroadCastCurves netCurves = new BroadCastCurves
+            BroadCastCurve netCurve = new BroadCastCurve
             {
-                length = curveLength,
+                id = id,
                 positions = positions.ToArray(),
-                colors = GetCurveColors(crvCount,settings.CurveMaterial.DiffuseColor)
+                colors = GetColor(GetSettingsMaterial(id, settings).Diffuse),
+                width = (float)GetSettingsValue(id, settings.CurveWidths, "cruve width not set")
             };
 
-            client.Send(netCurves);
+            client.Send(netCurve);
         }
 
         private static void AddPointValues(Point3d pt, List<float> positions)
@@ -167,20 +199,10 @@ namespace GeoGrasshopper
             positions.Add((float)pt.Z);
         }
 
-        private static int[] GetCurveColors(int curveCount, System.Drawing.Color c)
-        {
-            int[] colors = new int[curveCount * 3];
+        private static byte[] GetColor(System.Drawing.Color c)
+            => new byte[4] { c.R, c.G, c.B, c.A };
 
-            for (int i = 0; i < curveCount; i++)
-            {
-                int idx = i * 3;
 
-                colors[idx] = 255;
-                colors[idx + 1] = 100;
-                colors[idx + 2] = 50;
-            }
-
-            return colors;
-        }
+     
     }
 }

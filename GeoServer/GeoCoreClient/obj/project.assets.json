@@ -200,11 +200,24 @@
       "GeoStreamer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "SocketStreamer": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/GeoStreamer.dll": {}
         },
         "runtime": {
           "bin/placeholder/GeoStreamer.dll": {}
+        }
+      },
+      "SocketStreamer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "compile": {
+          "bin/placeholder/SocketStreamer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SocketStreamer.dll": {}
         }
       }
     }
@@ -683,6 +696,11 @@
       "type": "project",
       "path": "../MultiTargetTest/GeoStreamer.csproj",
       "msbuildProject": "../MultiTargetTest/GeoStreamer.csproj"
+    },
+    "SocketStreamer/1.0.0": {
+      "type": "project",
+      "path": "../../SocketStreamer/SocketStreamer.csproj",
+      "msbuildProject": "../../SocketStreamer/SocketStreamer.csproj"
     }
   },
   "projectFileDependencyGroups": {

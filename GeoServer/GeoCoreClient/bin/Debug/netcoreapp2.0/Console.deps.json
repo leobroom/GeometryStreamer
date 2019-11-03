@@ -8,15 +8,24 @@
     ".NETCoreApp,Version=v2.0": {
       "Console/1.0.0": {
         "dependencies": {
-          "GeoStreamer": "1.0.0"
+          "GeoStreamer": "1.0.0",
+          "GeoStreamer.Reference": "1.0.0.0"
         },
         "runtime": {
           "Console.dll": {}
         }
       },
-      "GeoStreamer/1.0.0": {
+      "SocketStreamer/1.0.0": {
         "runtime": {
-          "GeoStreamer.dll": {}
+          "SocketStreamer.dll": {}
+        }
+      },
+      "GeoStreamer.Reference/1.0.0.0": {
+        "runtime": {
+          "GeoStreamer.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
@@ -27,8 +36,13 @@
       "serviceable": false,
       "sha512": ""
     },
-    "GeoStreamer/1.0.0": {
+    "SocketStreamer/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GeoStreamer.Reference/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

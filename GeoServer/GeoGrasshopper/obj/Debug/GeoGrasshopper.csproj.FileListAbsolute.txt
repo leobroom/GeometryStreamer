@@ -1,11 +1,12 @@
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoStreamer.dll
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\SocketStreamer.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoGrasshopper.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoGrasshopper.pdb
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoStreamer.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoStreamer.pdb
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.g.resources
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\SocketStreamer.pdb
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.Resources.resources
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.csproj.GenerateResource.cache
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.csproj.CopyComplete
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.pdb
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.Resources.resources
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.csprojAssemblyReference.cache

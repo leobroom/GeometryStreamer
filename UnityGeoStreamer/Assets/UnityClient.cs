@@ -1,59 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using GeoStreamer;
+using SocketStreamer;
 using UnityEngine;
 
-class UnityClient : Client<UnityClient>
+class UnityClient : GeoClient<UnityClient>
 {
-    public event EventHandler<MessageArgs> Message;
-    private Queue<ISerializableData> meshChanged = new Queue<ISerializableData>();
+    private Queue<ISerializableData> geometryChanged = new Queue<ISerializableData>();
 
-    protected override void SendLog(string message)
-    {
-        Message?.Invoke(this, new MessageArgs(message));
-    }
 
-    protected override void GetCurves(BroadCastCurves data)
+    private Queue<ISerializableData> doSomethingBefore = new Queue<ISerializableData>();
+
+    protected override void UpdateCurves(BroadCastCurve data)
     {
         Debug.Log("OnCurveChanged");
-        lock (meshChanged)
+        lock (geometryChanged)
         {
-            meshChanged.Enqueue(data);
+            geometryChanged.Enqueue(data);
         }
     }
 
-    protected override void GetMesh(BroadCastMesh data)
+    protected override void UpdateMesh(BroadCastMesh data)
     {
         Debug.Log("OnMeshChanged");
-        lock (meshChanged)
+        lock (geometryChanged)
         {
-            meshChanged.Enqueue(data);
+            geometryChanged.Enqueue(data);
+        }
+    }
+
+    protected override void UpdateGeometry(BroadCastGeometryInfo geoinfo)
+    {
+        lock (doSomethingBefore)
+        {
+            doSomethingBefore.Enqueue(geoinfo);
         }
     }
 
     public void ProcessMessages()
     {
-        if (meshChanged.Count == 0)
+        if (doSomethingBefore.Count > 0)
+        {
+            ISerializableData updateGeometry;
+
+            lock (doSomethingBefore)
+            {
+                updateGeometry = doSomethingBefore.Dequeue();
+            }
+
+            if (updateGeometry != null)
+                Factory.Instance.UpdateGeometry((BroadCastGeometryInfo)updateGeometry);
+        }
+
+
+
+        if (geometryChanged.Count == 0)
             return;
 
         ISerializableData broadcast;
 
-        lock (meshChanged)
+        lock (geometryChanged)
         {
-            broadcast = meshChanged.Dequeue();
+            broadcast = geometryChanged.Dequeue();
         }
 
         if (broadcast is BroadCastMesh)
         {
-            Factory.Instance.CreateMesh((BroadCastMesh)broadcast);
+            Factory.Instance.UpdateMesh((BroadCastMesh)broadcast);
         }
-        else if (broadcast is BroadCastCurves)
+        else if (broadcast is BroadCastCurve)
         {
-            Factory.Instance.CreateCurves((BroadCastCurves)broadcast);
+            Factory.Instance.UpdateCurve((BroadCastCurve)broadcast);
         }
     }
 }
