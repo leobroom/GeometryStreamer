@@ -36,7 +36,7 @@ namespace GeoStreamer
         public enum Msg
         {
             None = 0,
-            AllowClientToSendData,
+            AllowClientToSendData =1,
         }
 
         public override string ToString() => $"SimpleMsg:  {message}";
@@ -78,5 +78,12 @@ namespace GeoStreamer
         /// </summary>
         public byte[] colors;
         public float width;
+    }
+
+    [Serializable]
+    public class BroadCastIndex : ISerializableData
+    {
+        public int gateId = -1;
+        public int index = -999;
     }
 }

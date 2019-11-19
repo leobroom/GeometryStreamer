@@ -241,7 +241,6 @@ namespace SocketStreamer
                 Console.WriteLine(clientObject);
             Console.WriteLine("#####################################" + System.Environment.NewLine);
         }
-
         public void Send(ISerializableData data, Socket client, Guid clientId)
         {
             serializer.GetSerializedData(data, clientId, out byte[] headerData, out byte[] serializedData);
@@ -288,9 +287,6 @@ namespace SocketStreamer
 
         private void SendCallback(IAsyncResult ar)
         {
-
-
-
             try
             {
                 // Retrieve the socket from the state object.
@@ -303,6 +299,12 @@ namespace SocketStreamer
             }
             catch (Exception e)
             {
+                if (ar.AsyncState == null)
+                {
+                    Message($"r.AsyncState == null");
+                    return;
+                }
+
                 HeaderState state = (HeaderState)ar.AsyncState;
                 Socket socket = state.workSocket;
                 var client = socketToClientTable[socket];

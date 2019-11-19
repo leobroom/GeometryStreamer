@@ -16,7 +16,7 @@ namespace GeoGrasshopper.Component
           : base("StreamPreviewComponent", "StreamPreview",
               "Description","Streaming", "Preview"){}
 
-        private Dictionary<int, Tuple<Curve,int, Color>> curveTable = new Dictionary<int, Tuple<Curve, int, Color>>();
+        private Dictionary<int, Tuple<Curve, double, Color>> curveTable = new Dictionary<int, Tuple<Curve, double, Color>>();
         private Dictionary<int, Tuple<Mesh, DisplayMaterial>> meshTable = new Dictionary<int, Tuple<Mesh, DisplayMaterial>>();
 
 
@@ -61,9 +61,9 @@ namespace GeoGrasshopper.Component
 
                 if (geo is Curve)
                 {
-                    int width = Send.GetSettingsValue(id, settings.CurveWidths, "no Curve width");
+                    double width = Send.GetSettingsValue(id, settings.CurveWidths, "no Curve width");
                     Color color = Send.GetSettingsMaterial(id, settings).Diffuse;
-                    var data = new Tuple<Curve, int, Color>((Curve)geo, width, color);
+                    var data = new Tuple<Curve, double, Color>((Curve)geo, width, color);
                     curveTable.Add(id, data);
                 }
                 else if (geo is Mesh)
@@ -80,10 +80,10 @@ namespace GeoGrasshopper.Component
             foreach (var curveData in curveTable.Values)
             {
                 Curve curve = curveData.Item1;
-                int width = curveData.Item2;
+                double width = curveData.Item2;
                 Color color = curveData.Item3;
 
-                args.Display.DrawCurve(curve, color, width);
+                args.Display.DrawCurve(curve, color, (int)(width*100));
             }
 
             foreach (var meshData in meshTable.Values)

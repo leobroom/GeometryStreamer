@@ -23,6 +23,9 @@
             <Button x:Name="TestDataButton" Content="TestData" IsEnabled="False" Click="TestDataOnClick"/>
             <Button x:Name="AltTestButton" Content="AlternativeTestData" IsEnabled="False" Click="AlternativeTestDataOnClick"/>
             <Button x:Name="BroadCastButton" Content="BroadcastData" IsEnabled="False" Click="BroadCastDataOnClick"/>
+            <Button x:Name="IndexButton1" Content="Index7" IsEnabled="False" Click="IndexButton1_Click"/>
+            <Button x:Name="IndexButton2" Content="Index13" IsEnabled="False" Click="IndexButton2_Click"/>
+            <Slider Width="100" Height="32" ValueChanged="Slider_ValueChanged"/>
 
         </StackPanel>
 

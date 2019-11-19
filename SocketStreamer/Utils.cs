@@ -32,6 +32,6 @@ namespace SocketStreamer
         /// <summary>
         /// Just for debugging - do not use this
         /// </summary>
-        public static string GetTestIpAdress() => "127.0.0.1";
+        public static string GetTestIpAdress() => "192.168.43.45";
     }
 }

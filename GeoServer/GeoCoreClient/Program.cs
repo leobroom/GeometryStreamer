@@ -17,7 +17,7 @@ namespace GeoCoreClient
 
             Thread.Sleep(1000);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            var client = TestClient.Initialize(ip, 12345, "Client 1", ThreadingType.Thread);
+            var client = TestClient.Initialize(ip, 12345, "ConsoleClient", ThreadingType.Task);
             client.Message += OnMessage;
             client.Connect();
 

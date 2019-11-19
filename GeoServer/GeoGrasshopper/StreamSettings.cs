@@ -31,7 +31,7 @@ namespace GeoGrasshopper
         private List<DisplayMaterial> materials = new List<DisplayMaterial>();
         private List<int> objMatIds = new List<int>();
         private List<double> curveDivisions = new List<double>();
-        private List<int> curveWidths = new List<int>();
+        private List<double> curveWidths = new List<double>();
 
         public static StreamSettings Default
         {
@@ -45,7 +45,7 @@ namespace GeoGrasshopper
             set { objMatIds = value; }
         }
 
-        public List<int> CurveWidths
+        public List<double> CurveWidths
         {
             get { return curveWidths; }
             set { curveWidths = value; }

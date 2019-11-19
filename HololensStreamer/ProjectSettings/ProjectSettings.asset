@@ -138,8 +138,8 @@ PlayerSettings:
       minimumSupportedHeadTracking: 0
       maximumSupportedHeadTracking: 1
     hololens:
-      depthFormat: 1
-      depthBufferSharingEnabled: 0
+      depthFormat: 0
+      depthBufferSharingEnabled: 1
     oculus:
       sharedDepthBuffer: 0
       dashSupport: 0
@@ -582,7 +582,7 @@ PlayerSettings:
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   apiCompatibilityLevelPerPlatform:
-    Metro: 3
+    Metro: 6
     Standalone: 3
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
@@ -642,14 +642,14 @@ PlayerSettings:
       SpatialPerception: True
       SystemManagement: False
       UserAccountInformation: False
-      UserDataTasks: False
+      UserDataTasks: True
       UserNotificationListener: False
       VideosLibrary: False
       VoipCall: False
       WebCam: False
   metroTargetDeviceFamilies:
     Desktop: False
-    Holographic: False
+    Holographic: True
     IoT: False
     IoTHeadless: False
     Mobile: False

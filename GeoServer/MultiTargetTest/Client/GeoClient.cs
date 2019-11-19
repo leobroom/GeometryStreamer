@@ -32,9 +32,8 @@ namespace GeoStreamer
             serializer = new GeoSerializer();
         }
 
-        public static T Initialize(string ip, int port, string name,
-            ThreadingType taskType, ClientType clientType = ClientType.Default)
-            => Initialize(ip, port, name, taskType, (int)clientType);
+        public static T Initialize(string ip, int port, string name, ThreadingType tType, ClientType clientType = ClientType.Default)
+            => Initialize(ip, port, name, tType,(int)clientType);
 
         protected override void SendLog(string message)
         {
@@ -82,6 +81,10 @@ namespace GeoStreamer
                     var geoinfo = serializer.DeserializeFromBytes<BroadCastGeometryInfo>(data);
                     UpdateGeometry(geoinfo);
                     break;
+                case MessageType.BroadCastIndex:
+                    var index = serializer.DeserializeFromBytes<BroadCastIndex>(data);
+                    UpdateIndex(index);
+                    break;
                 default:
                     throw new Exception($"Type: {typeFromHeader} ist nicht vorhanden!");
             }
@@ -90,6 +93,11 @@ namespace GeoStreamer
         protected virtual void UpdateGeometry(BroadCastGeometryInfo geoinfo)
         {
             Console.WriteLine("Update Geometry");
+        }
+
+        protected virtual void UpdateIndex(BroadCastIndex updateIdex)
+        {
+            Console.WriteLine("Update Index");
         }
 
         protected override void StartSending(Socket socket)

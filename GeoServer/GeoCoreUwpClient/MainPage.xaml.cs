@@ -55,6 +55,8 @@ namespace GeoCoreUwpClient
             TestDataButton.IsEnabled = true;
             AltTestButton.IsEnabled = true;
             BroadCastButton.IsEnabled = true;
+            IndexButton1.IsEnabled = true;
+            IndexButton2.IsEnabled = true;
         }
 
         private void RecieveMessage(object sender, MessageArgs e)
@@ -75,6 +77,8 @@ namespace GeoCoreUwpClient
             TestDataButton.IsEnabled = false;
             AltTestButton.IsEnabled = false;
             BroadCastButton.IsEnabled = false;
+            IndexButton1.IsEnabled = false;
+            IndexButton2.IsEnabled = false;
         }
 
         private void OnCloseRequest(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
@@ -136,6 +140,48 @@ namespace GeoCoreUwpClient
         {
             scrollView.UpdateLayout();
             scrollView.ChangeView(0, scrollView.ScrollableHeight, 1, true);
+        }
+
+        private void IndexButton1_Click(object sender, RoutedEventArgs e)
+        {
+            if (client == null)
+                return;
+
+            BroadCastIndex bIndex = new BroadCastIndex() { index = 7 };
+
+            client.Send(bIndex);
+
+            UpdateScrollview();
+        }
+
+        private void IndexButton2_Click(object sender, RoutedEventArgs e)
+        {
+            if (client == null)
+                return;
+
+            BroadCastIndex bIndex = new BroadCastIndex() { index = 13 };
+
+            client.Send(bIndex);
+
+            UpdateScrollview();
+        }
+
+        private void Slider_ValueChanged(object sender, Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
+        {
+            if (client == null)
+                return;
+
+            int oldValue = (int)e.OldValue;
+            int newValue = (int)e.NewValue;
+
+            if (oldValue == newValue)
+                return;
+
+            BroadCastIndex bIndex = new BroadCastIndex() { index = newValue, gateId = 2 };
+
+            client.Send(bIndex);
+
+            UpdateScrollview();
         }
     }
 }

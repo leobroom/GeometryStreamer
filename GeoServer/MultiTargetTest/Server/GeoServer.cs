@@ -56,6 +56,9 @@ namespace GeoStreamer
                 case MessageType.BroadCastGeometryInfo:
                     SendToOthers(data, (int)typeFromHeader, client);
                     break;
+                case MessageType.BroadCastIndex:
+                    SendToOthers(data, (int)typeFromHeader, client);
+                    break;
                 default:
                     throw new Exception($"Type: {typeFromHeader} ist nicht vorhanden!");
             }

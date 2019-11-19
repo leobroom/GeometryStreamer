@@ -178,7 +178,11 @@ namespace SocketStreamer
                             header = headData.Item1;
                             data = headData.Item2;
                             SendBytes(socket, header, data);
-                            sendDone.WaitOne();
+
+#if (useThreads)
+              sendDone.WaitOne();
+#endif
+
                         }
                     }
                     catch (Exception e)
@@ -207,6 +211,7 @@ namespace SocketStreamer
                     {
                         // Receive the response from the remote device.  
                         Receive(socket);
+
                         receiveDone.WaitOne();
                     }
                     catch (Exception e)
