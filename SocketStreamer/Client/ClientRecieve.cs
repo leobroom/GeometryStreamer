@@ -26,6 +26,8 @@ namespace SocketStreamer
 
         public void ReadCallback(IAsyncResult ar)
         {
+            SendLog("ReadCallback");
+
             // Retrieve the state object and the handler socket from the asynchronous state object.
             HeaderState state = (HeaderState)ar.AsyncState;
             Socket server = state.workSocket;
@@ -41,9 +43,13 @@ namespace SocketStreamer
             {
                 Disconnect();
             }
- 
+
+            SendLog("bytesRead= " + 0);
+
             if (bytesRead == 0)
                 return;
+
+            SendLog("(state.headerType= " + (state.headerType);
 
             if (state.headerType == -1)
             {
@@ -51,6 +57,8 @@ namespace SocketStreamer
 
                 SendLog(state.ToString());
             }
+
+            SendLog(bytesRead + " == " + state.dataSize);
 
             if (bytesRead == state.dataSize)
             {

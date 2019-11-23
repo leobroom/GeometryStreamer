@@ -4,4 +4,3 @@ C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\net
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\net46\SocketStreamer.AssemblyInfo.cs
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\net46\SocketStreamer.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\net46\SocketStreamer.pdb
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\net46\SocketStreamer.csprojAssemblyReference.cache

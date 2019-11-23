@@ -70,6 +70,7 @@ namespace GeoStreamer
                     serializer.LogArr(altTestData.arr);
                     break;
                 case MessageType.BroadCastMesh:
+                    SendLog("MessageType.BroadCastMesh: ");
                     var mesh = serializer.DeserializeFromBytes<BroadCastMesh>(data);
                     UpdateMesh(mesh);
                     break;
@@ -78,7 +79,9 @@ namespace GeoStreamer
                     UpdateCurves(curves);
                     break;
                 case MessageType.BroadCastGeometryInfo:
+                    SendLog("BroadCastGeometryInfo:");
                     var geoinfo = serializer.DeserializeFromBytes<BroadCastGeometryInfo>(data);
+                    SendLog("Serializer läuft:");
                     UpdateGeometry(geoinfo);
                     break;
                 case MessageType.BroadCastIndex:
@@ -150,6 +153,10 @@ namespace GeoStreamer
             //   Serialisation.LogArr(curves.colors);
         }
 
+        //protected override void SendHeaderStateToDebug(HeaderState state)
+        //{
+        //    SendLog($"STATEOBJ: ID: {id}, BufferLength: {state.buffer.Length}, HeaderType: {(MessageType)state.headerType}, DataSize: {state.dataSize}");
+        //}
         public void SendingRandomData(int count)
         {
             Random rnd = new Random();

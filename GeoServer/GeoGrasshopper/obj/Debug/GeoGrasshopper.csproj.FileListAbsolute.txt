@@ -1,5 +1,3 @@
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoStreamer.dll
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\SocketStreamer.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoGrasshopper.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoGrasshopper.pdb
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoStreamer.pdb
@@ -10,3 +8,5 @@ C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.pdb
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.csprojAssemblyReference.cache
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoStreamer.dll
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\SocketStreamer.dll

@@ -23,7 +23,6 @@ namespace SocketStreamer
 
         // Received data string.
         public StringBuilder sb = new StringBuilder();
-
         public override string ToString() => $"STATEOBJ: ID: {id}, BufferLength: {buffer.Length}, HeaderType: {headerType}, DataSize: {dataSize}";
     }
 }

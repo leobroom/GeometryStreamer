@@ -14,8 +14,10 @@ namespace GeoGrasshopper
 
         public StreamSettings(System.Drawing.Color defaultColor)
         {
-            var defaultMaterial = new DisplayMaterial();
-            defaultMaterial.Diffuse = defaultColor;
+            var defaultMaterial = new DisplayMaterial
+            {
+                Diffuse = defaultColor
+            };
 
             materials.Add(defaultMaterial);
 
@@ -25,7 +27,7 @@ namespace GeoGrasshopper
 
             curveDivisions.Add(curveDivision);
             curveWidths.Add(curveWidth);
-            objMatIds.Add(0);
+            objMatIds.Add(id);
         }
 
         private List<DisplayMaterial> materials = new List<DisplayMaterial>();

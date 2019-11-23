@@ -110,6 +110,8 @@ namespace SocketStreamer
                 //listingTask.Dispose();
                 //sendingTask.Dispose();
 
+
+
                 listingTask = null;
             sendingTask = null;
 #endif
