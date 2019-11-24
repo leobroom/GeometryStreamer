@@ -13,3 +13,18 @@ C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.pdb
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\SocketStreamer.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\SocketStreamer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\Console.deps.json
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\Console.runtimeconfig.json
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\Console.runtimeconfig.dev.json
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\Console.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\Console.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\GeoStreamer.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\SocketStreamer.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\GeoStreamer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\SocketStreamer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.csprojAssemblyReference.cache
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.AssemblyInfoInputs.cache
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.AssemblyInfo.cs
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.csproj.CopyComplete
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.pdb

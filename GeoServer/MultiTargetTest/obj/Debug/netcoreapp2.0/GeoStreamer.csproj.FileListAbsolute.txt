@@ -9,3 +9,14 @@ C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\ob
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\SocketStreamer.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\SocketStreamer.pdb
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netcoreapp2.0\GeoStreamer.csproj.CopyComplete
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\GeoStreamer.deps.json
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\GeoStreamer.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\GeoStreamer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\SocketStreamer.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\SocketStreamer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netcoreapp2.0\GeoStreamer.csprojAssemblyReference.cache
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netcoreapp2.0\GeoStreamer.AssemblyInfoInputs.cache
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netcoreapp2.0\GeoStreamer.AssemblyInfo.cs
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netcoreapp2.0\GeoStreamer.csproj.CopyComplete
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netcoreapp2.0\GeoStreamer.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netcoreapp2.0\GeoStreamer.pdb
