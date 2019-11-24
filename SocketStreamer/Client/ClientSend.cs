@@ -25,33 +25,15 @@ namespace SocketStreamer
 
             try
             {
-                client.BeginSend(resultByte, 0, resultByte.Length, 0, new AsyncCallback(SendCallback), client);
-
+               // client.BeginSend(resultByte, 0, resultByte.Length, 0, new AsyncCallback(SendCallback), client);
+                client.Send(resultByte, 0, resultByte.Length, 0);
+                // Signal that all bytes have been sent.  
+                //sendDone.Set();
             }
             catch (SocketException e)
             {
                 SendLog(e.Message);
                 Disconnect();
-            }
-        }
-
-        private void SendCallback(IAsyncResult ar)
-        {
-            try
-            {
-                // Retrieve the socket from the state object.  
-                Socket client = (Socket)ar.AsyncState;
-
-                // Complete sending the data to the remote device.  
-                int bytesSent = client.EndSend(ar);
-                Console.WriteLine("Sent {0} bytes to server.", bytesSent);
-
-                // Signal that all bytes have been sent.  
-                sendDone.Set();
-            }
-            catch (Exception e)
-            {
-                SendLog(e.ToString());
             }
         }
     }

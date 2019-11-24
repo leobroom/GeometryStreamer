@@ -5,3 +5,11 @@ C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\net
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\netstandard2.0\SocketStreamer.AssemblyInfo.cs
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\netstandard2.0\SocketStreamer.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\netstandard2.0\SocketStreamer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\SocketStreamer\obj\Debug\netstandard2.0\SocketStreamer.AssemblyInfoInputs.cache
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\SocketStreamer\obj\Debug\netstandard2.0\SocketStreamer.AssemblyInfo.cs
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\SocketStreamer\obj\Debug\netstandard2.0\SocketStreamer.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\SocketStreamer\obj\Debug\netstandard2.0\SocketStreamer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\SocketStreamer\bin\Debug\netstandard2.0\SocketStreamer.deps.json
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\SocketStreamer\bin\Debug\netstandard2.0\SocketStreamer.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\SocketStreamer\bin\Debug\netstandard2.0\SocketStreamer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\SocketStreamer\obj\Debug\netstandard2.0\SocketStreamer.csprojAssemblyReference.cache

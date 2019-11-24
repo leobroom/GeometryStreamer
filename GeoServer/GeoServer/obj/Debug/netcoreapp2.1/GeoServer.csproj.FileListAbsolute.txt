@@ -3,7 +3,6 @@ C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\n
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.runtimeconfig.dev.json
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.dll
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.pdb
-C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csproj.CoreCompileInputs.cache
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfoInputs.cache
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfo.cs
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.dll
@@ -24,3 +23,8 @@ C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debu
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.pdb
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\SocketStreamer.dll
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\SocketStreamer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoStreamer.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\SocketStreamer.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\SocketStreamer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoStreamer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csproj.CopyComplete

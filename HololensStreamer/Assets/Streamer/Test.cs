@@ -2,7 +2,7 @@
 using GeoStreamer;
 using SocketStreamer;
 using TMPro;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
 public class Test : MonoBehaviour
 {
@@ -18,6 +18,8 @@ public class Test : MonoBehaviour
     private static Test instance;
 
     public static Test Instance => instance;
+
+    static Queue<string> debugTest = new Queue<string>();
 
     private void Awake()
     {
@@ -43,6 +45,18 @@ public class Test : MonoBehaviour
     private void Update()
     {
         client.ProcessMessages();
+
+
+        lock (debugTest)
+        {
+            if (debugTest.Count > 0)
+            {
+                var e = debugTest.Dequeue();
+                Debug.Log(e);
+                _ipText.text = e;
+            }
+        }
+
     }
 
     private void OnDisable()
@@ -52,8 +66,9 @@ public class Test : MonoBehaviour
 
     private static void OnMessage(object sender, MessageArgs e)
     {
-        Debug.Log(e.Message);
-        _ipText.text = e.Message;
-
+        lock (debugTest)
+        {
+            debugTest.Enqueue(e.Message);
+        }
     }
 }
