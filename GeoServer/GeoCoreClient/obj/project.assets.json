@@ -710,27 +710,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\leonb\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Users\\N C Delille\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\GeoCoreClient\\Console.csproj",
+      "projectUniqueName": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreClient\\Console.csproj",
       "projectName": "Console",
-      "projectPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\GeoCoreClient\\Console.csproj",
-      "packagesPath": "C:\\Users\\leonb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\GeoCoreClient\\obj\\",
+      "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreClient\\Console.csproj",
+      "packagesPath": "C:\\Users\\N C Delille\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreClient\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\leonb\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\N C Delille\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -742,8 +739,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj": {
-              "projectPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj"
+            "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj": {
+              "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj"
             }
           }
         }

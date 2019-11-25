@@ -49,7 +49,7 @@ namespace SocketStreamer
             if (bytesRead == 0)
                 return;
 
-            SendLog("(state.headerType= " + (state.headerType);
+            SendLog("(state.headerType= " + (state.headerType));
 
             if (state.headerType == -1)
             {
