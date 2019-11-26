@@ -58,11 +58,14 @@ namespace GeoGrasshopper
 
         private void SetDebug(IGH_DataAccess DA)
         {
-            lock (DA)
-            {
-                if (debugLog.Count != 0)
-                    DA.SetDataList(0, debugLog);
-            }
+            //lock (debugLog)
+            //{
+            //    lock (DA)
+            //    {
+            //        if (debugLog.Count != 0)
+            //            DA.SetDataList(0, debugLog);
+            //    }
+            //}
         }
 
         private void SendGeometry(IGH_DataAccess DA)

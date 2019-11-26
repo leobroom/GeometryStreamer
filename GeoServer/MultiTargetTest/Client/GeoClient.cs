@@ -79,9 +79,9 @@ namespace GeoStreamer
                     UpdateCurves(curves);
                     break;
                 case MessageType.BroadCastGeometryInfo:
-                    SendLog("BroadCastGeometryInfo:");
+                    SendLog("BroadCastGeometryInfo:" + data.Length);
                     var geoinfo = serializer.DeserializeFromBytes<BroadCastGeometryInfo>(data);
-                    SendLog("Serializer läuft:");
+                    SendLog("Serializer läuft:" + geoinfo.meshesCount + geoinfo.curvesCount);
                     UpdateGeometry(geoinfo);
                     break;
                 case MessageType.BroadCastIndex:

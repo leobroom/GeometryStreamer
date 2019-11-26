@@ -132,9 +132,62 @@ namespace SocketStreamer
                 buffer = new byte[Serializer.HEADERSIZE]
             };
 
-            clientSocket.BeginReceive(state.buffer, 0, Serializer.HEADERSIZE, 0, new AsyncCallback(ReadCallback), state);
-
             StartSending(clientSocket, clientObject);
+            StartListening(clientSocket, clientObject);
+        }
+
+        public void StartListening(Socket socket, ClientObject clientObject)
+        {
+            Thread listingThread = new Thread(() =>ListenData(clientObject));
+             listingThread.Start();
+
+
+            void ListenData(ClientObject client)
+            {
+                while (!client.StopThread)
+                {
+                    try
+                    {
+                        // Receive the response from the remote device.  
+                        Receive(socket);
+                        //receiveDone.WaitOne();
+                    }
+                    catch (Exception e)
+                    {
+                        Message($"SendData ERROR: {client.Name}: {e.Message}");
+                        RemoveClient(socket);
+                    }
+                }
+            }
+        }
+
+        private void Receive(Socket socket)
+        {
+            try
+            {
+                HeaderState state = new HeaderState
+                {
+                    workSocket = socket,
+                    buffer = new byte[Serializer.HEADERSIZE]
+                };
+
+                //Header
+                socket.Receive(state.buffer, 0, Serializer.HEADERSIZE, 0);
+
+                Utils.WriteHeaderState(state);
+
+                //Data
+                socket.Receive(state.buffer, 0, state.buffer.Length, 0);
+
+                Deserialize(socket, state.headerType, state.buffer);
+                //receiveDone.Set();
+            }
+            catch (Exception e)
+            {
+                var client = socketToClientTable[socket];
+                Message($"{client.Name}: {e.Message}");
+                RemoveClient(socket);
+            }
         }
 
         private void StartSending(Socket socket, ClientObject clientObject)
@@ -173,7 +226,18 @@ namespace SocketStreamer
         private void SendBytes(Socket client, byte[] header, byte[] data)
         {
             byte[] resultByte = header.Concat(data).ToArray();
-            client.BeginSend(resultByte, 0, resultByte.Length, 0, new AsyncCallback(SendCallback), client);
+
+            try
+            {
+                client.Send(resultByte, 0, resultByte.Length, 0);
+                sendDone.Set();
+            }
+            catch (Exception e)
+            {
+                var clientObj = socketToClientTable[client];
+                Message($"{clientObj.Name}: {e.Message}");
+                RemoveClient(client);
+            }
         }
 
         private void ReadCallback(IAsyncResult ar)

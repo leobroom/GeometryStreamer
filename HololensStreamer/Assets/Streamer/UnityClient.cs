@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using GeoStreamer;
 using SocketStreamer;
-using UnityEngine;
 
+/// <summary>
+/// ACHTUNG HIER DÜRFEN KEINE DEBUGLOGS DRIN STEHEN
+/// </summary>
 class UnityClient : GeoClient<UnityClient>
 {
     private Queue<ISerializableData> geometryChanged = new Queue<ISerializableData>();
@@ -13,7 +14,6 @@ class UnityClient : GeoClient<UnityClient>
 
     protected override void UpdateCurves(BroadCastCurve data)
     {
-        Debug.Log("OnCurveChanged");
         lock (geometryChanged)
         {
             geometryChanged.Enqueue(data);
@@ -22,7 +22,6 @@ class UnityClient : GeoClient<UnityClient>
 
     protected override void UpdateMesh(BroadCastMesh data)
     {
-        Debug.Log("OnMeshChanged");
         lock (geometryChanged)
         {
             geometryChanged.Enqueue(data);
@@ -31,8 +30,6 @@ class UnityClient : GeoClient<UnityClient>
 
     protected override void UpdateGeometry(BroadCastGeometryInfo geoinfo)
     {
-        Debug.Log("UpdateGeometry");
-
         lock (doSomethingBefore)
         {
             doSomethingBefore.Enqueue(geoinfo);
@@ -41,20 +38,19 @@ class UnityClient : GeoClient<UnityClient>
 
     public void ProcessMessages()
     {
-        if (doSomethingBefore.Count > 0)
+        lock (doSomethingBefore)
         {
-            ISerializableData updateGeometry;
-
-            lock (doSomethingBefore)
+            if (doSomethingBefore.Count > 0)
             {
+                ISerializableData updateGeometry;
+
+
                 updateGeometry = doSomethingBefore.Dequeue();
-            }
 
-            if (updateGeometry != null)
+
                 Factory.Instance.UpdateGeometry((BroadCastGeometryInfo)updateGeometry);
+            }
         }
-
-
 
         if (geometryChanged.Count == 0)
             return;
