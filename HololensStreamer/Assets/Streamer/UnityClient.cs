@@ -70,5 +70,20 @@ class UnityClient : GeoClient<UnityClient>
         {
             Factory.Instance.UpdateCurve((BroadCastCurve)broadcast);
         }
+        else if (broadcast is BroadCastText)
+        {
+            Factory.Instance.UpdateText((BroadCastText)broadcast);
+        }
+    }
+
+    public void SendIndex(int idx)
+    {
+        BroadCastIndex idxMsg = new BroadCastIndex
+        {
+            gateId = 0,
+            index = idx
+        };
+
+        Send(idxMsg);
     }
 }

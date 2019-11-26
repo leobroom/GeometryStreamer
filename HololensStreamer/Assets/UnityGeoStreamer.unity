@@ -264,6 +264,8 @@ MonoBehaviour:
   curveMat: {fileID: 2100000, guid: 8b39128ab1804304f81309ebac49d01d, type: 2}
   parent: {fileID: 530631664}
   ipText: {fileID: 2056279762}
+  txtObjPrefab: {fileID: 4901655508932194248, guid: 4126cd7896e46ee4e861d074ebd52e93,
+    type: 3}
 --- !u!1 &469484036 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100060, guid: fe09e6db67ea4024881f2b2f35750f0c,
@@ -496,8 +498,6 @@ MonoBehaviour:
   OnInputActionStarted:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Microsoft.MixedReality.Toolkit.Input.InputActionUnityEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnInputActionEnded:
     m_PersistentCalls:
       m_Calls:
@@ -512,8 +512,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.Input.InputActionUnityEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!4 &682790876
 Transform:
   m_ObjectHideFlags: 0
@@ -549,8 +547,6 @@ MonoBehaviour:
   OnInputActionStarted:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Microsoft.MixedReality.Toolkit.Input.InputActionUnityEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnInputActionEnded:
     m_PersistentCalls:
       m_Calls:
@@ -565,8 +561,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.Input.InputActionUnityEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &711489603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1868,8 +1862,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'IP: 111.111.111'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

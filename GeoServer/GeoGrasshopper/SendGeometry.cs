@@ -1,6 +1,7 @@
 ﻿using GeoStreamer;
 using Rhino.Display;
 using Rhino.Geometry;
+using System;
 using System.Collections.Generic;
 
 namespace GeoGrasshopper
@@ -10,12 +11,14 @@ namespace GeoGrasshopper
     /// </summary>
     static class Send
     {
-        public static void GeometryInfo(int curveCount, int meshCount, RhinoClient client)
+        public static void GeometryInfo(int curveCount, int meshCount, int textCount, RhinoClient client)
         {
             BroadCastGeometryInfo netMesh = new BroadCastGeometryInfo
             {
                 curvesCount = curveCount,
-                meshesCount = meshCount
+                meshesCount = meshCount, 
+                textCount = textCount
+
             };
 
             client.Send(netMesh);
@@ -150,6 +153,27 @@ namespace GeoGrasshopper
                 throw new System.Exception("No Material");
         }
 
+        internal static void Text(int id, StreamText geo, StreamSettings settings, RhinoClient client)
+        {
+            List<float> position = new List<float>();
+            List<float> normal  = new List<float>();
+
+            AddPointValues(geo.Position, position);
+            AddVector3dValues(geo.Normal, normal);
+
+            BroadCastText netText = new BroadCastText
+            {
+                id = id,
+                position = position.ToArray(),
+                rotation = normal.ToArray(), 
+                text = geo.Text, 
+                textSize = geo.TextSize,
+                color = GetColor(GetSettingsMaterial(id, settings).Diffuse),       
+            };
+
+            client.Send(netText);
+        }
+
         public static void Curve(int id, Curve curve, StreamSettings settings, RhinoClient client)
         {
             List<float> positions = new List<float>();
@@ -197,6 +221,13 @@ namespace GeoGrasshopper
             positions.Add((float)pt.X);
             positions.Add((float)pt.Y);
             positions.Add((float)pt.Z);
+        }
+
+        private static void AddVector3dValues(Vector3d vec, List<float> vectors)
+        {
+            vectors.Add((float)vec.X);
+            vectors.Add((float)vec.Y);
+            vectors.Add((float)vec.Z);
         }
 
         private static byte[] GetColor(System.Drawing.Color c)

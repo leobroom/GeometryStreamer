@@ -24,7 +24,7 @@ namespace GeoGrasshopper
             pManager.AddTextParameter("IpAdress", "IP", "Ip Adress to Connect to Server", GH_ParamAccess.item, defaultIP);
             pManager.AddBooleanParameter("Connect", "C", "Connection to the Server", GH_ParamAccess.item, false);
             pManager.AddBooleanParameter("UpdateDebug", "U/D", "Updates theDebugLog - put a Button there", GH_ParamAccess.item, false);
-            pManager.AddGeometryParameter("Geometry", "Geo", "Streaming Geometry - Just Meshes and Curves are right now allowed", GH_ParamAccess.list);
+            pManager.AddGenericParameter("Geometry", "Geo", "Streaming Geometry - Just Meshes and Curves are right now allowed", GH_ParamAccess.list);
             pManager.AddParameter(new StreamSettingsParameter(), "Settings", "Set", "Material and other Settings", GH_ParamAccess.item);
 
             pManager[3].Optional = true;
@@ -74,14 +74,15 @@ namespace GeoGrasshopper
             StreamSettings settings = (DA.GetData(4, ref settingsGH)) ?
                 settingsGH?.Value : StreamSettings.Default;
 
-            List<GeometryBase> geometry = new List<GeometryBase>();
+            List<object> geometry = new List<object>();
             if (!DA.GetDataList(3, geometry))
-                geometry = new List<GeometryBase>();
+                geometry = new List<object>();
 
             int geoCount = geometry.Count;
 
             int curveCount = 0;
             int meshCount = 0;
+            int textCount = 0;
 
             for (int id = 0; id < geoCount; id++)
             {
@@ -93,9 +94,11 @@ namespace GeoGrasshopper
                     curveCount++;
                 else if (geo is Mesh)
                     meshCount++;
+                else if (geo is StreamText)
+                    textCount++;
             }
 
-            Send.GeometryInfo(curveCount, meshCount, client);
+            Send.GeometryInfo(curveCount, meshCount, textCount, client);
 
             for (int id = 0; id < geoCount; id++)
             {
@@ -107,6 +110,8 @@ namespace GeoGrasshopper
                     Send.Curve(id, (Curve)geo, settings, client);
                 else if (geo is Mesh)
                     Send.Mesh(id, (Mesh)geo, settings, client);
+                else if (geo is StreamText)
+                    Send.Text(id, (StreamText)geo, settings, client);
                 else
                 {
                     string error = ($"Geometry is: {geo.GetType()} and it's not supported right now. Questions?: leonbrohmann@gmx.de");

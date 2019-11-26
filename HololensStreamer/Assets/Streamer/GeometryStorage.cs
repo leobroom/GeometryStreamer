@@ -3,16 +3,15 @@ using UnityEngine;
 
 class GeometryStorage
 {
-    // Meshes
     private readonly List<GameObject> meshGOStorage = new List<GameObject>();
- 
-    // Curves
     private readonly List<GameObject> curveGOStorage = new List<GameObject>();
+    private readonly List<GameObject> txtGOStorage = new List<GameObject>();
 
     public enum GeoType
     {
         Mesh,
-        Curve
+        Curve,
+        Txt
     }
 
     private static GeometryStorage instance;
@@ -46,6 +45,9 @@ class GeometryStorage
                     break;
                 case GeoType.Curve:
                     stored = curveGOStorage[id];
+                    break;
+                case GeoType.Txt:
+                    stored = txtGOStorage[id];
                     break;
             }
 
@@ -104,11 +106,12 @@ class GeometryStorage
 
     }
 
-    public void UpdateGeometry(int curveCount, int meshCount)
+    public void UpdateGeometry(int curveCount, int meshCount, int txtCount)
     {
         Debug.Log($"GeoUpdate CRV/MSH:  {curveCount},  {meshCount}");
         UpdateGeo(curveCount, curveGOStorage, Factory.Instance.CreateCurveObject);
         UpdateGeo(meshCount, meshGOStorage, Factory.Instance.CreateMeshObject);
+        UpdateGeo(txtCount, txtGOStorage, Factory.Instance.CreateTextObject);
         Debug.Log($"---------------");
         Debug.Log($"GeoUpdate CRV STOR/MSH STOR:  {curveGOStorage.Count},  {meshGOStorage.Count}");
     }

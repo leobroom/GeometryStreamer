@@ -17,7 +17,7 @@ namespace GeoStreamer
 
             switch (messageType)
             {
-                case MessageType.ConnectToServer:
+                case MessageType.ConnectToServerMsg:
                     var connectToServer = serializer.DeserializeFromBytes<ConnectToServerMsg>(data);
 
                     ClientObject clientObject = socketToClientTable[client];
@@ -31,18 +31,18 @@ namespace GeoStreamer
                     Send(allowToSend, client, serverId);
                     break;
 
-                case MessageType.BroadCastTest:
+                case MessageType.BroadCastMsg:
                     var bc = serializer.DeserializeFromBytes<BroadCastMsg>(data);
 
                     SendToOthers(bc, client);
                     break;
 
-                case MessageType.TestData:
+                case MessageType.TestDataMsg:
                     var testData = serializer.DeserializeFromBytes<TestDataMsg>(data);
                     Console.WriteLine(testData.number);
                     break;
 
-                case MessageType.AlternativeTestData:
+                case MessageType.AlternativeTestDataMsg:
                     var altTestData = serializer.DeserializeFromBytes<AlternativeTestDataMsg>(data);
                     serializer.LogArr(altTestData.arr);
                     break;
@@ -50,7 +50,7 @@ namespace GeoStreamer
                 case MessageType.BroadCastMesh:
                     SendToOthers(data, (int)typeFromHeader, client);
                     break;
-                case MessageType.BroadCastCurves:
+                case MessageType.BroadCastCurve:
                     SendToOthers(data, (int)typeFromHeader, client);
                     break;
                 case MessageType.BroadCastGeometryInfo:

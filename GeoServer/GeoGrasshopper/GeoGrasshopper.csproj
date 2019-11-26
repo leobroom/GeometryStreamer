@@ -69,8 +69,11 @@
     <Compile Include="FiberWinding\Utils.cs" />
     <Compile Include="GeoGrasshopperInfo.cs" />
     <Compile Include="Component\StreamSettingsComponent.cs" />
-    <Compile Include="GH_StreamSettings.cs" />
+    <Compile Include="Parameter\GH_StreamSettings.cs" />
+    <Compile Include="Parameter\GH_StreamText.cs" />
     <Compile Include="Parameter\StreamSettingsParameter.cs" />
+    <Compile Include="Parameter\StreamText.cs" />
+    <Compile Include="Parameter\StreamTextParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -79,7 +82,7 @@
     </Compile>
     <Compile Include="RhinoClient.cs" />
     <Compile Include="SendGeometry.cs" />
-    <Compile Include="StreamSettings.cs" />
+    <Compile Include="Parameter\StreamSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">
