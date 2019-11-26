@@ -1,26 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\GeoCoreClient\\Console.csproj": {}
+    "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreClient\\Console.csproj": {}
   },
   "projects": {
-    "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\GeoCoreClient\\Console.csproj": {
+    "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreClient\\Console.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\GeoCoreClient\\Console.csproj",
+        "projectUniqueName": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreClient\\Console.csproj",
         "projectName": "Console",
-        "projectPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\GeoCoreClient\\Console.csproj",
-        "packagesPath": "C:\\Users\\leonb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\GeoCoreClient\\obj\\",
+        "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreClient\\Console.csproj",
+        "packagesPath": "C:\\Users\\N C Delille\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreClient\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\leonb\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\N C Delille\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.0"
@@ -32,8 +30,8 @@
         "frameworks": {
           "netcoreapp2.0": {
             "projectReferences": {
-              "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj": {
-                "projectPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj"
+              "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj": {
+                "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj"
               }
             }
           }
@@ -68,24 +66,22 @@
         }
       }
     },
-    "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj": {
+    "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj",
+        "projectUniqueName": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj",
         "projectName": "GeoStreamer",
-        "projectPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj",
-        "packagesPath": "C:\\Users\\leonb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\MultiTargetTest\\obj\\",
+        "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj",
+        "packagesPath": "C:\\Users\\N C Delille\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\leonb\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\N C Delille\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net45",
@@ -100,29 +96,29 @@
         "frameworks": {
           "netcoreapp2.0": {
             "projectReferences": {
-              "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj": {
-                "projectPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj"
+              "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj": {
+                "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj"
               }
             }
           },
           "net45": {
             "projectReferences": {
-              "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj": {
-                "projectPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj"
+              "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj": {
+                "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj"
               }
             }
           },
           "net46": {
             "projectReferences": {
-              "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj": {
-                "projectPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj"
+              "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj": {
+                "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj"
               }
             }
           },
           "netstandard2.0": {
             "projectReferences": {
-              "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj": {
-                "projectPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj"
+              "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj": {
+                "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj"
               }
             }
           }
@@ -184,24 +180,22 @@
         }
       }
     },
-    "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj": {
+    "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj",
+        "projectUniqueName": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj",
         "projectName": "SocketStreamer",
-        "projectPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj",
-        "packagesPath": "C:\\Users\\leonb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\SocketStreamer\\obj\\",
+        "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj",
+        "packagesPath": "C:\\Users\\N C Delille\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\leonb\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\N C Delille\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net45",

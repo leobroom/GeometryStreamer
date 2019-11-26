@@ -11,3 +11,4 @@ C:\Users\leonb\Documents\GitHub\GeometryStreamer\SocketStreamer\obj\Debug\net46\
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\SocketStreamer\bin\Debug\net46\SocketStreamer.dll
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\SocketStreamer\bin\Debug\net46\SocketStreamer.pdb
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\SocketStreamer\obj\Debug\net46\SocketStreamer.csprojAssemblyReference.cache
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\net46\SocketStreamer.csprojAssemblyReference.cache

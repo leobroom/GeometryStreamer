@@ -8151,28 +8151,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\leonb\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Users\\N C Delille\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\GeoCoreUwpClient\\Uwp.csproj",
+      "projectUniqueName": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreUwpClient\\Uwp.csproj",
       "projectName": "Uwp",
-      "projectPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\GeoCoreUwpClient\\Uwp.csproj",
-      "packagesPath": "C:\\Users\\leonb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\leonb\\Documents\\GitHub\\GeometryStreamer\\GeoServer\\GeoCoreUwpClient\\obj\\",
+      "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreUwpClient\\Uwp.csproj",
+      "packagesPath": "C:\\Users\\N C Delille\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreUwpClient\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\leonb\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\N C Delille\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "uap10.0.17763"
