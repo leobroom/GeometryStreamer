@@ -145,7 +145,7 @@ namespace GeoGrasshopper.Component
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>
-        protected override Bitmap Icon => Resources.gs_settings;
+        protected override Bitmap Icon => Resources.gs_gate;
 
         /// <summary>
         /// Gets the unique ID for this component. Do not change this ID after release.

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -8,7 +9,23 @@ namespace SocketStreamer
 
     public class Serializer
     {
+        private readonly Dictionary<Type, int> types = new Dictionary<Type, int>();
+
         public const int HEADERSIZE = 24; //  8+16
+
+        /// <summary>
+        /// Add Message Type
+        /// </summary>
+        protected void AddMType(Type type, int typeIdx) => types.Add(type, typeIdx);
+
+        public int GetMessageType(object d)
+        {
+            int type = 0;
+
+            type = types[d.GetType()];
+
+            return type;
+        }
         public void LogArr<T>(T[] arr)
         {
             string s = "Arr: ";
@@ -40,8 +57,6 @@ namespace SocketStreamer
             int messageType = GetMessageType(data);
             header = GetHeader(messageType, serializedData.Length, id);
         }
-
-        public virtual int GetMessageType(object d) => throw new Exception("Types not set");
 
         public byte[] GetHeader(int messageType, int length, Guid id)
         {

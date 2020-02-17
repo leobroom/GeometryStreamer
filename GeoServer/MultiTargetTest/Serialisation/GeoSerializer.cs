@@ -7,45 +7,34 @@ namespace GeoStreamer
     {
         NotSet = -1,
         None = 0,
-        ConnectToServer = 1,
+        ConnectToServerMsg = 1,
         SimpleMsg = 2,
-        BroadCastTest = 3,
+        BroadCastMsg = 3,
         BroadCastMesh = 4,
-        BroadCastCurves = 5,
+        BroadCastCurve = 5,
         BroadCastGeometryInfo = 6,
         BroadCastIndex = 7,
-        TestData = 98,
-        AlternativeTestData = 99
+        BroadCastText = 8,
+        TestDataMsg = 98,
+        AlternativeTestDataMsg = 99
     }
 
     public class GeoSerializer : Serializer
     {
-        public override int GetMessageType(object d)
+        public GeoSerializer()
         {
-            int type = 0;
-
-            if (d is ConnectToServerMsg)
-                type = (int)MessageType.ConnectToServer;
-            else if (d is TestDataMsg)
-                type = (int)MessageType.TestData;
-            else if (d is AlternativeTestDataMsg)
-                type = (int)MessageType.AlternativeTestData;
-            else if (d is SimpleMsg)
-                type = (int)MessageType.SimpleMsg;
-            else if (d is BroadCastMsg)
-                type = (int)MessageType.BroadCastTest;
-            else if (d is BroadCastMesh)
-                type = (int)MessageType.BroadCastMesh;
-            else if (d is BroadCastCurve)
-                type = (int)MessageType.BroadCastCurves;
-            else if (d is BroadCastGeometryInfo)
-                type = (int)MessageType.BroadCastGeometryInfo;
-            else if (d is BroadCastIndex)
-                type = (int)MessageType.BroadCastIndex;
-            else
-                throw new Exception("MessageType is not added inside the GetHeader Method");
-
-            return type;
+            AddMType(typeof(ConnectToServerMsg), MessageType.ConnectToServerMsg);
+            AddMType(typeof(SimpleMsg), MessageType.SimpleMsg);
+            AddMType(typeof(BroadCastMsg), MessageType.BroadCastMsg);
+            AddMType(typeof(BroadCastMesh), MessageType.BroadCastMesh);
+            AddMType(typeof(BroadCastCurve), MessageType.BroadCastCurve);
+            AddMType(typeof(BroadCastGeometryInfo), MessageType.BroadCastGeometryInfo);
+            AddMType(typeof(BroadCastIndex), MessageType.BroadCastIndex);
+            AddMType(typeof(BroadCastText), MessageType.BroadCastText);
+            AddMType(typeof(TestDataMsg), MessageType.TestDataMsg);
+            AddMType(typeof(AlternativeTestDataMsg), MessageType.AlternativeTestDataMsg);
         }
+
+        protected void AddMType(Type type, MessageType typeIdx) => AddMType(type, (int)typeIdx);
     }
 }
