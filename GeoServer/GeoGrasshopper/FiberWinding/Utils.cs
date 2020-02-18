@@ -1,205 +1,145 @@
 ﻿using Rhino.Geometry;
 using System;
+using System.Collections.Generic;
 
 namespace GeoGrasshopper.FiberWinding
 {
     public static class Utils
     {
-        public enum CircleTangent
+        public static void FindAndMoveDoublePins(List<Plane> weavingPlanes, Vector3d norm, int actualIdx, double fiberMulti, ref Point3d actualPt)
         {
-            Center = 0,
-            Left = 1,
-            Right = 2
-        }
-        //http://csharphelper.com/blog/2014/12/find-the-tangent-lines-between-two-circles-in-c/
-        public static bool FindCircleTangent(CircleTangent startTan1, CircleTangent startTan2, Circle c1, Circle c2, out Point3d p1, out Point3d p2)
-        {
-            p1 = Point3d.Origin;
-            p2 = Point3d.Origin;
+            if (fiberMulti == 0)
+                return;
 
-            if (startTan1 == CircleTangent.Left && startTan2 == CircleTangent.Left || startTan1 == CircleTangent.Right && startTan2 == CircleTangent.Right)
+            int samePoints = 0;
+
+            if (actualIdx > 0)
             {
-                return FindOuterCircleTangents(startTan1, c1.Center, c1.Radius, c2.Center, c2.Radius, out p1, out p2);
-            }
-            else if (startTan1 == CircleTangent.Left && startTan2 == CircleTangent.Right || startTan1 == CircleTangent.Right && startTan2 == CircleTangent.Left)
-            {
-                return FindInnerCircleTangents(startTan1, c1.Center, c1.Radius, c2.Center, c2.Radius, out p1, out p2);
-            }
-            else if (startTan1 == CircleTangent.Center && startTan2 == CircleTangent.Left || startTan1 == CircleTangent.Center && startTan2 == CircleTangent.Right)
-            {
-                return FindTangent(startTan1, startTan2, false, c1.Center, c1.Radius, c2.Center, c2.Radius, out p1, out p2);
-            }
-            else if (startTan1 == CircleTangent.Left && startTan2 == CircleTangent.Center || startTan1 == CircleTangent.Right && startTan2 == CircleTangent.Center)
-            {
-                return FindTangent(startTan1, startTan2, true, c1.Center, c1.Radius, c2.Center, c2.Radius, out p1, out p2);
-            }
-            else
-            {
-                p1 = c1.Center;
-                p2 = c2.Center;
-
-                return true;
-            }
-        }
-
-        private static bool FindOuterCircleTangents(CircleTangent ctanType, Point3d c1,
-          double radius1, Point3d c2, double radius2, out Point3d p1, out Point3d p2)
-        {
-            if (ctanType == CircleTangent.Center)
-                throw new Exception();
-
-            //Radius cant be the same size
-            if (radius1 == radius2)
-                radius1 += 0.00001;
-
-            // Make sure radius1 <= radius2.
-            if (radius1 > radius2)
-            {
-                ctanType = (ctanType == CircleTangent.Left) ? CircleTangent.Right : CircleTangent.Left;
-
-                // Call this method switching the circles.
-                return FindOuterCircleTangents(ctanType, c2, radius2, c1, radius1, out p1, out p2);
-            }
-
-            // Initialize the return values in case
-            // some tangents are missing.
-            p1 = Point3d.Origin;
-            p2 = Point3d.Origin;
-
-            Point3d outer1_p2 = Point3d.Origin;
-            Point3d outer2_p2 = Point3d.Origin;
-
-            // ***************************
-            // * Find the outer tangents *
-            // ***************************
-            {
-                double radius2a = radius2 - radius1;
-                if (!FindTangents(c2, radius2a, c1,
-                  out outer1_p2, out outer2_p2))
+                for (int u = 0; u < actualIdx; u++)
                 {
-                    return false;    // There are no tangents.
+                    Point3d comparePt = weavingPlanes[u].Origin;
+                    if (comparePt.Equals(actualPt))
+                        samePoints++;
                 }
-
-                double vx, vy;
-
-                // Get the vector perpendicular to the
-                // second tangent with length radius1.
-                if (ctanType == CircleTangent.Right)
-                {
-                    p2 = outer1_p2;
-                    vx = -(p2.Y - c1.Y);
-                    vy = p2.X - c1.X;
-                }
-                else
-                {
-                    p2 = outer2_p2;
-                    vx = p2.Y - c1.Y;
-                    vy = -(p2.X - c1.X);
-                }
-
-                double vLength = (double)Math.Sqrt(vx * vx + vy * vy);
-                double rL = radius1 / vLength;
-                vx *= rL;
-                vy *= rL;
-
-                // Offset the tangent vector's points.
-                p1 = new Point3d(c1.X + vx, c1.Y + vy, 0);
-                p2 = new Point3d(p2.X + vx, p2.Y + vy, 0);
             }
 
-            return true;
+            Transform moveActualPoint = Transform.Translation(norm * samePoints * (fiberMulti * 2));
+            actualPt.Transform(moveActualPoint);
         }
 
-        // Find the tangent points for these two circles.
-        // Return the number of tangents: 4, 2, or 0.
-        private static bool FindInnerCircleTangents(CircleTangent ctanType,
-          Point3d c1, double radius1, Point3d c2, double radius2, out Point3d p1, out Point3d p2)
+        public static Plane GetBendingPlane(Plane pStart, Plane pEnd, Point3d pt1, Point3d pt2, Vector3d bendingVec, double bendingMulti, double bendingDistance)
         {
-            if (ctanType == CircleTangent.Center)
-                throw new Exception();
+            Vector3d xAxis = pEnd.XAxis + pStart.XAxis;
+            Vector3d yAxis = pEnd.YAxis + pStart.YAxis;
 
-            if (radius1 == radius2)
-            {
-                radius1 += 0.0001;
-            }
+            double distance = pt2.DistanceTo(pt1);
 
-            // Make sure radius1 <= radius2.
-            if (radius1 > radius2)
-            {
-                // Call this method switching the circles.
-                return FindInnerCircleTangents(ctanType, c2, radius2, c1, radius1, out p2, out p1);
-            }
+            Vector3d vecMiddle = (Vector3d)(pt2 - pt1) * bendingDistance + (bendingVec * bendingMulti * distance);
+            Transform transMiddle = Transform.Translation(vecMiddle);
+            var ptMiddle = pt1;
+            ptMiddle.Transform(transMiddle);
 
-            // Initialize the return values in case
-            // some tangents are missing.
-
-            p1 = Point3d.Origin;
-            p2 = Point3d.Origin;
-
-            Point3d inner1_p2 = Point3d.Origin;
-            Point3d inner2_p2 = Point3d.Origin;
-
-            // If the circles intersect, then there are no inner tangents.
-            double dx = c2.X - c1.X;
-            double dy = c2.Y - c1.Y;
-
-            double dist = Math.Sqrt(dx * dx + dy * dy);
-            if (dist <= radius1 + radius2)
-                return false;
-
-            // ***************************
-            // * Find the inner tangents *
-            // ***************************
-            double radius1a = radius1 + radius2;
-            FindTangents(c1, radius1a, c2,
-              out inner1_p2, out inner2_p2);
-
-            double vx, vy;
-
-            if (ctanType == CircleTangent.Left)
-            {
-                p2 = inner1_p2;
-
-                // Get the vector perpendicular to the
-                // first tangent with length radius2.
-                vx = p2.Y - c2.Y;
-                vy = -(p2.X - c2.X);
-            }
-            else
-            {
-                p2 = inner2_p2;
-
-                // Get the vector perpendicular to the
-                // second tangent with length radius2.
-                vx = -(inner2_p2.Y - c2.Y);
-                vy = inner2_p2.X - c2.X;
-            }
-
-            double vLength = (double)Math.Sqrt(vx * vx + vy * vy);
-            double rL = radius2 / vLength;
-            vx *= rL;
-            vy *= rL;
-            // Offset the tangent vector's points.
-            p1 = new Point3d(c2.X + vx, c2.Y + vy, 0);
-            p2 = new Point3d(p2.X + vx, p2.Y + vy, 0);
-
-
-            return true;
+            return new Plane(ptMiddle, xAxis, yAxis);
         }
 
-        //http://csharphelper.com/blog/2014/11/find-the-tangent-lines-between-a-point-and-a-circle-in-c/
+        public static void CheckIfFramesHasToBeFlipped(bool isFlipped, Plane[] frames)
+        {
+            if (!isFlipped)
+                return;
 
+            for (int u = 0; u < frames.Length; u++)
+            {
+                Plane f = frames[u];
+                f.Rotate(Math.PI, f.ZAxis);
+
+                frames[u] = f;
+            }
+        }
+
+        public static bool  CheckIfFlipped(Plane pCross, ref Vector3d norm, ref Vector3d bendingVec)
+        {
+            bendingVec = pCross.ZAxis;
+
+            bool isFlipped = Vector3d.Multiply(norm, pCross.Normal) < 0;
+            if (isFlipped)
+            {
+                norm = -norm;
+                bendingVec = -bendingVec;
+            }
+
+            return isFlipped;
+        }
+
+        /// <summary>
+        /// Get Arc params
+        /// </summary>
+        /// <param name="divArc">arcDivisions</param>
+        /// <returns></returns>
+        public static double[] GetArcParams(int divArc)
+        {
+            double[] arcT = new double[divArc];
+            for (int i = 0; i < divArc; i++)
+                arcT[i] = 1.00 / (divArc - 1) * i;
+
+            return arcT;
+        }
+
+        public static NurbsCurve DrawArcCurve
+          (Plane pCross, Point3d nextPt, Point3d actualPt, Point3d prevPt, Vector3d norm, double radius)
+        {
+            Plane normalPlane = new Plane(actualPt, norm);
+            Circle nMCircle = new Circle(normalPlane, radius);
+
+            Plane planeRev = nMCircle.Plane;
+            Transform trans = Rhino.Geometry.Transform.PlaneToPlane(planeRev, Plane.WorldXY);
+
+            nMCircle.Transform(trans);
+
+            Point3d a = GetTangentialPoint(trans, prevPt, nMCircle, pCross, false);
+            Point3d b = GetTangentialPoint(trans, nextPt, nMCircle, pCross, true);
+
+            Transform transRev = Rhino.Geometry.Transform.PlaneToPlane(Plane.WorldXY, planeRev);
+            double param;
+            nMCircle.ClosestParameter(b, out param);
+            var tan = nMCircle.TangentAt(param);
+
+            NurbsCurve arc = (new Arc(b, tan, a)).ToNurbsCurve();
+
+            arc.Reverse();
+            arc.Transform(transRev);
+            arc.Domain = new Interval(0, 1);
+            return arc;
+        }
+
+        public static Point3d GetTangentialPoint(Transform trans, Point3d next, Circle c, Plane plane, bool reverse)
+        {
+            next.Transform(trans);
+
+            Point3d pt1;
+            Point3d pt2;
+
+            bool success = FindTangents(c.Plane, c.Center, c.Radius, next, out pt1, out pt2);
+
+            if (success)
+                return (reverse) ? pt2 : pt1;
+
+            return new Point3d();
+        }
+
+        // <Custom additional code>
         // Find the tangent points for this circle and external point.
         // Return true if we find the tangents, false if the point is
         // inside the circle.
-        private static bool FindTangents(Point3d center, double radius,
+        private static bool FindTangents(Plane plane, Point3d center, double radius,
           Point3d external_point, out Point3d pt1, out Point3d pt2)
         {
             // Find the distance squared from the
             // external point to the circle's center.
             double dx = center.X - external_point.X;
             double dy = center.Y - external_point.Y;
+
             double D_squared = dx * dx + dy * dy;
+
             if (D_squared < radius * radius)
             {
                 pt1 = new Point3d(-1, -1, 0);
@@ -216,48 +156,13 @@ namespace GeoGrasshopper.FiberWinding
             // center external_point and radius dist.
             FindCircleCircleIntersections(
               center.X, center.Y, radius,
-              external_point.X, external_point.Y, (float)L,
+              external_point.X, external_point.Y, L,
               out pt1, out pt2);
 
+            //    pt1.Z = center.Z;
+            //       pt2.Z = center.Z;
+
             return true;
-        }
-
-        // Find the tangent points for this circle and external point.
-        // Return true if we find the tangents, false if the point is
-        // inside the circle.
-        private static bool FindTangent(CircleTangent ctanType1, CircleTangent ctanType2, bool reverse, Point3d center1, double radius1, Point3d center2, double radius2, out Point3d pt1, out Point3d pt2)
-        {
-            bool success;
-
-            CircleTangent ctanType = (reverse) ? ctanType1 : ctanType2;
-
-            if (!reverse)
-            {
-                success = FindTangents(center2, radius2,
-                  center1, out pt1, out pt2);
-            }
-
-            else
-            {
-                success = FindTangents(center1, radius1,
-                  center2, out pt2, out pt1);
-            }
-
-            Point3d external_point = (reverse) ? center2 : center1;
-
-            if (ctanType == CircleTangent.Right)
-            {
-
-                pt1 = external_point;
-
-            }
-            else
-            {
-                pt2 = pt1;
-                pt1 = external_point;
-            }
-
-            return success;
         }
 
         // Find the points where the two circles intersect.
@@ -306,11 +211,11 @@ namespace GeoGrasshopper.FiberWinding
 
                 // Get the points P3.
                 intersection1 = new Point3d(
-                  (cx2 + h * (cy1 - cy0) / dist),
-                  (cy2 - h * (cx1 - cx0) / dist), 0);
+                  (double)(cx2 + h * (cy1 - cy0) / dist),
+                  (double)(cy2 - h * (cx1 - cx0) / dist), 0);
                 intersection2 = new Point3d(
-                  (cx2 - h * (cy1 - cy0) / dist),
-                  (cy2 + h * (cx1 - cx0) / dist), 0);
+                  (double)(cx2 - h * (cy1 - cy0) / dist),
+                  (double)(cy2 + h * (cx1 - cx0) / dist), 0);
 
                 // See if we have 1 or 2 solutions.
                 if (dist == radius0 + radius1) return 1;
