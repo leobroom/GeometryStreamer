@@ -723,23 +723,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\N C Delille\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Leon Brohmann\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoServer\\GeoServer.csproj",
+      "projectUniqueName": "C:\\Users\\Leon Brohmann\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoServer\\GeoServer.csproj",
       "projectName": "GeoServer",
-      "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoServer\\GeoServer.csproj",
-      "packagesPath": "C:\\Users\\N C Delille\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoServer\\obj\\",
+      "projectPath": "C:\\Users\\Leon Brohmann\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoServer\\GeoServer.csproj",
+      "packagesPath": "C:\\Users\\Leon Brohmann\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Leon Brohmann\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoServer\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\N C Delille\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Leon Brohmann\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -752,11 +748,11 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj": {
-              "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj"
+            "C:\\Users\\Leon Brohmann\\Documents\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj": {
+              "projectPath": "C:\\Users\\Leon Brohmann\\Documents\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj"
             },
-            "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj": {
-              "projectPath": "C:\\Users\\N C Delille\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj"
+            "C:\\Users\\Leon Brohmann\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj": {
+              "projectPath": "C:\\Users\\Leon Brohmann\\Documents\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj"
             }
           }
         }
@@ -787,7 +783,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
