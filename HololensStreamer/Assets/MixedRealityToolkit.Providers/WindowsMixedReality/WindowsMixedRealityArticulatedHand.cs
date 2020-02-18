@@ -186,7 +186,9 @@ namespace Microsoft.MixedReality.Toolkit.WindowsMixedReality.Input
 
         private async void SetHandMeshObserver(SpatialInteractionSourceState sourceState)
         {
-            handMeshObserver = await sourceState.Source.TryCreateHandMeshObserverAsync();
+            //handMeshObserver = await sourceState.Source.TryCreateHandMeshObserverAsync();
+
+        handMeshObserver = null;
         }
 #endif
 

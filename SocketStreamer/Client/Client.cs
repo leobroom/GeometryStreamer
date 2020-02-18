@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+
+#if (!useThreads)
 using System.Threading.Tasks;
+#endif
+
 
 namespace SocketStreamer
 {
@@ -44,6 +48,9 @@ namespace SocketStreamer
 
         public static T Instance => instance;
 
+        CancellationTokenSource tokenSource = new CancellationTokenSource();
+        CancellationToken token;
+
         public static T Initialize(string ip, int port, string name, ThreadingType taskType, int clientType = 1)
         {
             if (instance == null)
@@ -81,6 +88,8 @@ namespace SocketStreamer
                 connectDone.WaitOne();
 #endif
 
+                token = tokenSource.Token;
+
                 // Receive the response from the remote device.  
                 StartListening(socket);
                 StartSending(socket);
@@ -110,13 +119,13 @@ namespace SocketStreamer
                 //listingTask.Dispose();
                 //sendingTask.Dispose();
 
+                tokenSource.Cancel();
+
+
                 listingTask = null;
             sendingTask = null;
 #endif
 
-      
-
-          
                 socket?.Shutdown(SocketShutdown.Both);
                 socket?.Close();
 
@@ -125,8 +134,7 @@ namespace SocketStreamer
             catch (SocketException e)
             {
                 SendLog(e.Message);
-            }
-          
+            }    
         }
         private void ConnectCallback(IAsyncResult ar)
         {
@@ -166,9 +174,8 @@ namespace SocketStreamer
                 byte[] header = headData.Item1;
                 byte[] data = headData.Item2;
                 SendBytes(socket, header, data);
-                sendDone.WaitOne();
 
-                while (!abort)
+                while (!token.IsCancellationRequested)
                 {
                     try
                     {
@@ -178,7 +185,6 @@ namespace SocketStreamer
                             header = headData.Item1;
                             data = headData.Item2;
                             SendBytes(socket, header, data);
-                            sendDone.WaitOne();
                         }
                     }
                     catch (Exception e)
@@ -186,6 +192,8 @@ namespace SocketStreamer
                         SendLog(e.Message);
                     }
                 }
+
+                SendLog($"Stopped Sending");
             }
         }
 
@@ -201,19 +209,20 @@ namespace SocketStreamer
 
             void ListenData()
             {
-                while (!abort)
+                while (!token.IsCancellationRequested)
                 {
                     try
                     {
                         // Receive the response from the remote device.  
                         Receive(socket);
-                        receiveDone.WaitOne();
                     }
                     catch (Exception e)
                     {
                         SendLog(e.Message);
                     }
                 }
+
+                SendLog($"Stopped Listing");
             }
         }
     }

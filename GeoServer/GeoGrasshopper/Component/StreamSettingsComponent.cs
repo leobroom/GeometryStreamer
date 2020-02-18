@@ -24,7 +24,7 @@ namespace GeoGrasshopper
             pManager.AddParameter(new Param_OGLShader(), "Material", "Mat", "Material for Streaming Objects", GH_ParamAccess.list);
             pManager.AddIntegerParameter("Object Material Ids", "MatID", "Object Material Ids", GH_ParamAccess.list);
             pManager.AddNumberParameter("Curve Division", "CrvDiv", "The curve Intersection", GH_ParamAccess.list);
-            pManager.AddIntegerParameter("Curve Width", "CrvW", "The curve width", GH_ParamAccess.list);
+            pManager.AddNumberParameter("Curve Width", "CrvW", "The curve width", GH_ParamAccess.list);
 
             pManager[0].Optional = true;
             pManager[1].Optional = true;
@@ -60,7 +60,7 @@ namespace GeoGrasshopper
             if (DA.GetDataList(2, curveDivisions))
                 settings.CurveDivisions = curveDivisions;
 
-            List<int> curveWidths = new List<int>();
+            List<double> curveWidths = new List<double>();
             if (DA.GetDataList(3, curveWidths))
                 settings.CurveWidths = curveWidths;
 
@@ -75,9 +75,6 @@ namespace GeoGrasshopper
         /// <summary>
         /// Gets the unique ID for this component. Do not change this ID after release.
         /// </summary>
-        public override Guid ComponentGuid
-        {
-            get { return new Guid("7b71e06a-0725-44d7-b3d7-2485a9c2508c"); }
-        }
+        public override Guid ComponentGuid=> new Guid("7b71e06a-0725-44d7-b3d7-2485a9c2508c");
     }
 }

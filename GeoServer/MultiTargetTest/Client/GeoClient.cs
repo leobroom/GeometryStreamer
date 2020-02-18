@@ -32,9 +32,8 @@ namespace GeoStreamer
             serializer = new GeoSerializer();
         }
 
-        public static T Initialize(string ip, int port, string name,
-            ThreadingType taskType, ClientType clientType = ClientType.Default)
-            => Initialize(ip, port, name, taskType, (int)clientType);
+        public static T Initialize(string ip, int port, string name, ThreadingType tType, ClientType clientType = ClientType.Default)
+            => Initialize(ip, port, name, tType,(int)clientType);
 
         protected override void SendLog(string message)
         {
@@ -71,6 +70,7 @@ namespace GeoStreamer
                     serializer.LogArr(altTestData.arr);
                     break;
                 case MessageType.BroadCastMesh:
+                    SendLog("MessageType.BroadCastMesh: ");
                     var mesh = serializer.DeserializeFromBytes<BroadCastMesh>(data);
                     UpdateMesh(mesh);
                     break;
@@ -79,8 +79,14 @@ namespace GeoStreamer
                     UpdateCurves(curves);
                     break;
                 case MessageType.BroadCastGeometryInfo:
+                    SendLog("BroadCastGeometryInfo:" + data.Length);
                     var geoinfo = serializer.DeserializeFromBytes<BroadCastGeometryInfo>(data);
+                    SendLog("Serializer läuft:" + geoinfo.meshesCount + geoinfo.curvesCount);
                     UpdateGeometry(geoinfo);
+                    break;
+                case MessageType.BroadCastIndex:
+                    var index = serializer.DeserializeFromBytes<BroadCastIndex>(data);
+                    UpdateIndex(index);
                     break;
                 default:
                     throw new Exception($"Type: {typeFromHeader} ist nicht vorhanden!");
@@ -90,6 +96,11 @@ namespace GeoStreamer
         protected virtual void UpdateGeometry(BroadCastGeometryInfo geoinfo)
         {
             Console.WriteLine("Update Geometry");
+        }
+
+        protected virtual void UpdateIndex(BroadCastIndex updateIdex)
+        {
+            Console.WriteLine("Update Index");
         }
 
         protected override void StartSending(Socket socket)
@@ -142,6 +153,10 @@ namespace GeoStreamer
             //   Serialisation.LogArr(curves.colors);
         }
 
+        //protected override void SendHeaderStateToDebug(HeaderState state)
+        //{
+        //    SendLog($"STATEOBJ: ID: {id}, BufferLength: {state.buffer.Length}, HeaderType: {(MessageType)state.headerType}, DataSize: {state.dataSize}");
+        //}
         public void SendingRandomData(int count)
         {
             Random rnd = new Random();

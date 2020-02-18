@@ -7,7 +7,7 @@ namespace GeoCoreClient
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             string ip = Utils.GetTestIpAdress();
 
@@ -17,10 +17,9 @@ namespace GeoCoreClient
 
             Thread.Sleep(1000);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            var client = TestClient.Initialize(ip, 12345, "Client 1", ThreadingType.Thread);
+            var client = TestClient.Initialize(ip, 12345, "ConsoleClient", ThreadingType.Thread);
             client.Message += OnMessage;
             client.Connect();
-
             client.SendingRandomData(10);
 
             for (int i = 0; i < 10; i++)
@@ -29,7 +28,7 @@ namespace GeoCoreClient
 
                 client.Send(bc);
             }
-       
+
             Console.Read();
             client.Disconnect();
         }

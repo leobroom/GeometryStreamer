@@ -13,6 +13,7 @@ namespace GeoStreamer
         BroadCastMesh = 4,
         BroadCastCurves = 5,
         BroadCastGeometryInfo = 6,
+        BroadCastIndex = 7,
         TestData = 98,
         AlternativeTestData = 99
     }
@@ -39,6 +40,8 @@ namespace GeoStreamer
                 type = (int)MessageType.BroadCastCurves;
             else if (d is BroadCastGeometryInfo)
                 type = (int)MessageType.BroadCastGeometryInfo;
+            else if (d is BroadCastIndex)
+                type = (int)MessageType.BroadCastIndex;
             else
                 throw new Exception("MessageType is not added inside the GetHeader Method");
 
