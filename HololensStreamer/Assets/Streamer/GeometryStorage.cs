@@ -3,16 +3,15 @@ using UnityEngine;
 
 class GeometryStorage
 {
-    // Meshes
     private readonly List<GameObject> meshGOStorage = new List<GameObject>();
- 
-    // Curves
     private readonly List<GameObject> curveGOStorage = new List<GameObject>();
+    private readonly List<GameObject> txtGOStorage = new List<GameObject>();
 
     public enum GeoType
     {
         Mesh,
-        Curve
+        Curve,
+        Txt
     }
 
     private static GeometryStorage instance;
@@ -42,48 +41,64 @@ class GeometryStorage
             {
                 default:
                 case GeoType.Mesh:
-                    stored = meshGOStorage[id];
+                 
+                    if (meshGOStorage.Count - 1 < id)
+                    {
+                        stored = Factory.Instance.CreateMeshObject();
+                        meshGOStorage.Add(stored);
+                    }
+                    else
+                    {
+                        stored = meshGOStorage[id];
+                    }
                     break;
                 case GeoType.Curve:
-                    stored = curveGOStorage[id];
+               
+                    if (curveGOStorage.Count-1 < id)
+                    {
+                        stored = Factory.Instance.CreateCurveObject();
+                        curveGOStorage.Add(stored);
+                    }
+                    else
+                    {
+                        stored = curveGOStorage[id];
+                    }
+                    break;
+                case GeoType.Txt:
+             
+                    if (curveGOStorage.Count - 1 < id)
+                    {
+                        stored = Factory.Instance.CreateTextObject();
+                        txtGOStorage.Add(stored);
+                    }
+                    else
+                    {
+                        stored = txtGOStorage[id];
+                    }
                     break;
             }
 
             return stored;
         }
-        catch (System.Exception e )
+        catch (System.Exception e)
         {
             string error = $"ID: {id}, Typ: {type}, curveGOStorage {curveGOStorage.Count}, meshGOStorage {meshGOStorage.Count} " + e.Message;
             throw new System.Exception(error);
         }
-       
     }
 
     private void UpdateGeo(int count, List<GameObject> goTable, GetGameObject getGo)
     {
-
-        Debug.Log($"UpdateGeo----------: " +  count +  "    "+goTable.Count);
+        //Debug.Log($"UpdateGeo----------: " +  count +  "    "+goTable.Count);
 
         int tableCount = goTable.Count;
-        if (count > tableCount)
-        {
-            int toCreate = count - tableCount;
-
-            Debug.Log($"Create: " + toCreate);
-
-            for (int i = 0; i < toCreate; i++)
-            {
-               var geo =  getGo();
-                goTable.Add(geo);
-            }
-        }
-        else if (count < tableCount)
+        if (count < tableCount)
         {
             int toDelete = tableCount - count;
 
             int toCreate = count - tableCount;
 
-            Debug.Log($"Destroy: " + toDelete);
+            //Debug.Log($"Destroy: " + toDelete);
 
             List<GameObject> geos = new List<GameObject>();
 
@@ -99,17 +114,16 @@ class GeometryStorage
             }
         }
 
-
-        Debug.Log($"Nothing ");
-
+        //Debug.Log($"Nothing ");
     }
 
-    public void UpdateGeometry(int curveCount, int meshCount)
+    public void UpdateGeometry(int curveCount, int meshCount, int txtCount)
     {
-        Debug.Log($"GeoUpdate CRV/MSH:  {curveCount},  {meshCount}");
+        //Debug.Log($"GeoUpdate CRV/MSH:  {curveCount},  {meshCount}");
         UpdateGeo(curveCount, curveGOStorage, Factory.Instance.CreateCurveObject);
         UpdateGeo(meshCount, meshGOStorage, Factory.Instance.CreateMeshObject);
-        Debug.Log($"---------------");
-        Debug.Log($"GeoUpdate CRV STOR/MSH STOR:  {curveGOStorage.Count},  {meshGOStorage.Count}");
+        UpdateGeo(txtCount, txtGOStorage, Factory.Instance.CreateTextObject);
+        //Debug.Log($"---------------");
+        //Debug.Log($"GeoUpdate CRV STOR/MSH STOR:  {curveGOStorage.Count},  {meshGOStorage.Count}");
     }
 }

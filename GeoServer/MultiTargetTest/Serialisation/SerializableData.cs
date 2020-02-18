@@ -66,6 +66,7 @@ namespace GeoStreamer
     {
         public int curvesCount = -1;
         public int meshesCount = -1;
+        public int textCount = -1;
     }
 
     [Serializable]
@@ -78,6 +79,17 @@ namespace GeoStreamer
         /// </summary>
         public byte[] colors;
         public float width;
+    }
+
+    [Serializable]
+    public class BroadCastText : ISerializableData
+    {
+        public int id = -1;
+        public float[] position;
+        public float[] rotation;
+        public byte[] color;
+        public string text;
+        public int textSize;
     }
 
     [Serializable]

@@ -1,5 +1,7 @@
 ﻿using GeoStreamer;
+using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Factory
@@ -25,6 +27,14 @@ public class Factory
     }
 
     GameObject parent;
+
+    private GameObject txtPrefab;
+
+    public GameObject TxtPrefab
+    {
+        set { txtPrefab = value; }
+    }
+
     private void CreateParent()
     {
         parent = new GameObject();
@@ -77,10 +87,20 @@ public class Factory
         return go;
     }
 
+    internal void UpdateText(BroadCastText broadcast)
+    {
+        GameObject go = GeometryStorage.Instance.GetGeometry(broadcast.id, GeometryStorage.GeoType.Txt);
+        TextMeshPro textMesh = go.GetComponent<TextMeshPro>();
+
+        textMesh.color = GetUColor(broadcast.color);
+        go.transform.localPosition = GetVector(broadcast.position);
+        go.transform.localEulerAngles = GetVector(broadcast.rotation);
+        textMesh.text = broadcast.text;
+        textMesh.fontSize = broadcast.textSize;
+    }
+
     public void UpdateMesh(BroadCastMesh broadcast)
     {
-        Debug.Log("mesh updated");
-
         GameObject go = GeometryStorage.Instance.GetGeometry(broadcast.id, GeometryStorage.GeoType.Mesh);
         MeshFilter filter = go.GetComponent<MeshFilter>();
 
@@ -93,6 +113,8 @@ public class Factory
         Color c = GetUColor(broadcast.color);
         go.GetComponent<Renderer>().material.color = c;
     }
+
+    private Vector3 GetVector(float[] floats) => new Vector3(floats[0] / scale, floats[1] / scale, floats[2] / scale);
 
     private List<Vector3> GetVector3Array(float[] floats, bool reverse = false)
     {
@@ -108,6 +130,11 @@ public class Factory
         }
 
         return vecs;
+    }
+
+    internal GameObject CreateTextObject()
+    {
+        return GameObject.Instantiate(txtPrefab, parent.transform, false);
     }
 
     public void UpdateCurve(BroadCastCurve broadcast)
@@ -147,7 +174,7 @@ public class Factory
 
     public void UpdateGeometry(BroadCastGeometryInfo broadcast)
     {
-        GeometryStorage.Instance.UpdateGeometry(broadcast.curvesCount, broadcast.meshesCount);
+        GeometryStorage.Instance.UpdateGeometry(broadcast.curvesCount, broadcast.meshesCount, broadcast.textCount);
     }
 
     public void DestroyGeometry(GameObject go, float time)

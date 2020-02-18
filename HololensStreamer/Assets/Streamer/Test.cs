@@ -12,6 +12,7 @@ public class Test : MonoBehaviour
     public Material curveMat;
     public GameObject parent;
     public TextMeshPro ipText;
+    public GameObject txtObjPrefab;
 
     static TextMeshPro _ipText;
 
@@ -29,6 +30,7 @@ public class Test : MonoBehaviour
 
     void Start()
     {
+        Factory.Instance.TxtPrefab = txtObjPrefab;
         Factory.Instance.CreateParent(parent);
 
         client = UnityClient.Initialize(Utils.GetTestIpAdress(), 12345, "Hololens", ThreadingType.Task);

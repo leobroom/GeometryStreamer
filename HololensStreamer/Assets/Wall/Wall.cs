@@ -22,35 +22,23 @@ public class Wall : MonoBehaviour
     void Start()
     {
         propBlock = new MaterialPropertyBlock();
-      //  CreatePointer();
     }
 
-    private void CreatePointer()
-    {
-        pointer = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        pointer.AddComponent<SphereCollider>().enabled = false;
-        pointer.transform.localScale = new Vector3(pointerSize, pointerSize, pointerSize);
-        pointer.GetComponent<Renderer>().material.color = Color.cyan;
-        pointer.GetComponent<Collider>().enabled = false;
-    }
+    public void OnSelect() => Set();
 
-    public void OnSelect() => SetPos();
-
-    public void OnClear()
-    {
-
-    }
+    public void OnClear(){}
 
     int actualIndex = 0;
 
     enum Modus
     {
         None,
+        SetIdx
     }
 
     Modus actualModus = Modus.None;
 
-    private void SetPos()
+    private void Set()
     {
         switch (actualModus)
         {
@@ -60,6 +48,13 @@ public class Wall : MonoBehaviour
                 wall.transform.position = hitposition;
                 wall.transform.localRotation = Quaternion.LookRotation(hit, Vector3.up);
                 actualIndex = 0;
+                actualModus = Modus.SetIdx;
+                UnityClient.Instance.SendIndex(actualIndex);
+                actualIndex++;
+                break;
+            case Modus.SetIdx:
+                UnityClient.Instance.SendIndex(actualIndex);
+                actualIndex++;
                 break;
         }
     }
@@ -69,6 +64,6 @@ public class Wall : MonoBehaviour
         hitposition = provider.HitPosition;
 
         if (Input.GetKeyUp(KeyCode.KeypadEnter))
-            SetPos();
+            Set();
     }
 }

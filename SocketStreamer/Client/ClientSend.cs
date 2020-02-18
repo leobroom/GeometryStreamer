@@ -25,7 +25,10 @@ namespace SocketStreamer
 
             try
             {
+               // client.BeginSend(resultByte, 0, resultByte.Length, 0, new AsyncCallback(SendCallback), client);
                 client.Send(resultByte, 0, resultByte.Length, 0);
+                // Signal that all bytes have been sent.  
+                //sendDone.Set();
             }
             catch (SocketException e)
             {

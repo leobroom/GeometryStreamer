@@ -46,7 +46,7 @@ namespace GeoStreamer
 
             switch (messageType)
             {
-                case MessageType.ConnectToServer:
+                case MessageType.ConnectToServerMsg:
                     var connectToServer = serializer.DeserializeFromBytes<ConnectToServerMsg>(data);
 
                     Console.WriteLine(connectToServer);
@@ -56,15 +56,15 @@ namespace GeoStreamer
 
                     GetSimpleMsg(simpleMsg);
                     break;
-                case MessageType.BroadCastTest:
+                case MessageType.BroadCastMsg:
                     var bc = serializer.DeserializeFromBytes<BroadCastMsg>(data);
                     SendLog("BroadCast: " + bc.broadcastMsg);
                     break;
-                case MessageType.TestData:
+                case MessageType.TestDataMsg:
                     var testData = serializer.DeserializeFromBytes<TestDataMsg>(data);
                     SendLog("Result1: " + testData.number);
                     break;
-                case MessageType.AlternativeTestData:
+                case MessageType.AlternativeTestDataMsg:
                     var altTestData = serializer.DeserializeFromBytes<AlternativeTestDataMsg>(data);
                     Console.WriteLine("Result2: " + altTestData.txt);
                     serializer.LogArr(altTestData.arr);
@@ -74,7 +74,7 @@ namespace GeoStreamer
                     var mesh = serializer.DeserializeFromBytes<BroadCastMesh>(data);
                     UpdateMesh(mesh);
                     break;
-                case MessageType.BroadCastCurves:
+                case MessageType.BroadCastCurve:
                     var curves = serializer.DeserializeFromBytes<BroadCastCurve>(data);
                     UpdateCurves(curves);
                     break;
@@ -88,9 +88,18 @@ namespace GeoStreamer
                     var index = serializer.DeserializeFromBytes<BroadCastIndex>(data);
                     UpdateIndex(index);
                     break;
+                case MessageType.BroadCastText:
+                    var txt = serializer.DeserializeFromBytes<BroadCastText>(data);
+                    UpdateText(txt);
+                    break;
                 default:
                     throw new Exception($"Type: {typeFromHeader} ist nicht vorhanden!");
             }
+        }
+
+        protected virtual void UpdateText(BroadCastText text)
+        {
+            Console.WriteLine("UpdateText");
         }
 
         protected virtual void UpdateGeometry(BroadCastGeometryInfo geoinfo)

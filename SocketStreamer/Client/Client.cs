@@ -174,6 +174,7 @@ namespace SocketStreamer
                 byte[] header = headData.Item1;
                 byte[] data = headData.Item2;
                 SendBytes(socket, header, data);
+                //sendDone.WaitOne();
 
                 while (!token.IsCancellationRequested)
                 {
@@ -185,6 +186,11 @@ namespace SocketStreamer
                             header = headData.Item1;
                             data = headData.Item2;
                             SendBytes(socket, header, data);
+
+//#if (useThreads)
+//              sendDone.WaitOne();
+//#endif
+
                         }
                     }
                     catch (Exception e)
@@ -192,7 +198,6 @@ namespace SocketStreamer
                         SendLog(e.Message);
                     }
                 }
-
                 SendLog($"Stopped Sending");
             }
         }
@@ -215,6 +220,8 @@ namespace SocketStreamer
                     {
                         // Receive the response from the remote device.  
                         Receive(socket);
+
+                        //receiveDone.WaitOne();
                     }
                     catch (Exception e)
                     {
