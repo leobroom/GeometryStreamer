@@ -28,3 +28,18 @@ C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\n
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\SocketStreamer.pdb
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoStreamer.pdb
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csproj.CopyComplete
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.deps.json
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.runtimeconfig.json
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.runtimeconfig.dev.json
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\SocketStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\SocketStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csprojAssemblyReference.cache
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfoInputs.cache
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfo.cs
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csproj.CopyComplete
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.pdb

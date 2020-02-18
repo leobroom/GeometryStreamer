@@ -12,7 +12,7 @@ namespace GeoGrasshopper.FiberWinding
         /// Initializes a new instance of the FiberwindingComponent class.
         /// </summary>
         public FiberwindingComponent()
-          : base("FiberwindingComponent", "FiberWind", "Tool to Help with Fiberwinding", "Streaming", "Network")
+          : base("FiberwindingComponent", "FiberWind", "Tool to Help with Fiberwinding", "ITE", "Network")
         { }
 
         /// <summary>

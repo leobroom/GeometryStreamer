@@ -18,3 +18,13 @@ C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\MultiTargetTest\obj\D
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net46\GeoStreamer.csproj.CopyComplete
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net46\GeoStreamer.dll
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net46\GeoStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\net46\GeoStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\net46\GeoStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\net46\SocketStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\net46\SocketStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net46\GeoStreamer.csprojAssemblyReference.cache
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net46\GeoStreamer.AssemblyInfoInputs.cache
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net46\GeoStreamer.AssemblyInfo.cs
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net46\GeoStreamer.csproj.CopyComplete
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net46\GeoStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net46\GeoStreamer.pdb
