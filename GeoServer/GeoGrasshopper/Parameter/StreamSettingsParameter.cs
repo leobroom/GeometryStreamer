@@ -6,7 +6,7 @@ namespace GeoGrasshopper
 {
     public class StreamSettingsParameter : GH_PersistentParam<GH_StreamSettings>
     {
-        public StreamSettingsParameter() : base("StreamSettings", "Settings", "Settings", "Streaming", "Parameters") { }
+        public StreamSettingsParameter() : base("StreamSettings", "Settings", "Settings", "ITE", "Parameters") { }
         public override GH_Exposure Exposure => GH_Exposure.secondary;
         protected override System.Drawing.Bitmap Icon => Resources.gs_param;
         public override Guid ComponentGuid => new Guid("{eed378e7-9e25-4d0c-8f92-5ababf33111b}");

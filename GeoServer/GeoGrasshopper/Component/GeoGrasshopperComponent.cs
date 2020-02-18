@@ -12,7 +12,7 @@ namespace GeoGrasshopper
         private static RhinoClient client;
         private static readonly List<string> debugLog = new List<string>();
 
-        public GeoGrasshopperComponent() : base("GeometryStreamer", "GeoStream", "Streams Geometry, Author: Leon Brohmann - leonbrohmann@gmx.de", "Streaming", "Network") { }
+        public GeoGrasshopperComponent() : base("GeometryStreamer", "GeoStream", "Streams Geometry, Author: Leon Brohmann - leonbrohmann@gmx.de", "ITE", "Network") { }
 
         /// <summary>
         /// Registers all the input parameters for this component.

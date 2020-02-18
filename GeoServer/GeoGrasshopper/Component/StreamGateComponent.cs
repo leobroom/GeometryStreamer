@@ -27,7 +27,7 @@ namespace GeoGrasshopper.Component
         public StreamGateComponent()
           : base("StreamGate", "S-Gate",
               "Shares an Input with a Network and a Grasshopper Input",
-              "Streaming", "Network")
+              "ITE", "Network")
         {
             RhinoClient.OnIndexChanged += OnIndexChanged;
         }

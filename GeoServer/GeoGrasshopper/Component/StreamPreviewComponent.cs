@@ -14,7 +14,7 @@ namespace GeoGrasshopper.Component
         /// </summary>
         public StreamPreviewComponent()
           : base("StreamPreviewComponent", "StreamPreview",
-              "Description","Streaming", "Preview"){}
+              "Description","ITE", "Preview"){}
 
         private Dictionary<int, Tuple<Curve, double, Color>> curveTable = new Dictionary<int, Tuple<Curve, double, Color>>();
         private Dictionary<int, Tuple<Mesh, DisplayMaterial>> meshTable = new Dictionary<int, Tuple<Mesh, DisplayMaterial>>();

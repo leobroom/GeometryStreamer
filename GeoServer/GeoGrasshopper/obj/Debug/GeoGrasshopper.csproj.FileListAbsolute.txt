@@ -22,3 +22,15 @@ C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoGrasshopper\obj\De
 C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.pdb
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoStreamer.pdb
 C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\SocketStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoGrasshopper.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoGrasshopper.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\SocketStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\SocketStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.csprojAssemblyReference.cache
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.Resources.resources
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.csproj.GenerateResource.cache
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.csproj.CopyComplete
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Debug\GeoGrasshopper.pdb

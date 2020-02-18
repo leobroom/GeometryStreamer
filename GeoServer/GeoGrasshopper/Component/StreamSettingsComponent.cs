@@ -13,7 +13,7 @@ namespace GeoGrasshopper
         /// </summary>
         public StreamSettingsComponent()
           : base("StreamSettings", "GS-Settings",
-                "Settings for the Geometry Streamer", "Streaming", "Network")
+                "Settings for the Geometry Streamer", "ITE", "Network")
         { }
 
         /// <summary>
