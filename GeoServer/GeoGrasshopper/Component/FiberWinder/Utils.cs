@@ -1,12 +1,69 @@
-﻿using Rhino.Geometry;
+﻿using Grasshopper.Kernel;
+using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
 
 namespace GeoGrasshopper.FiberWinding
 {
-    public static class Utils
+    public partial class FiberWinder : GH_Component
     {
-        public static void FindAndMoveDoublePins(List<Plane> weavingPlanes, Vector3d norm, int actualIdx, double fiberMulti, ref Point3d actualPt)
+        /// <summary>
+        /// Set the MiddlePoints between Pins
+        /// </summary>
+        private void SetMiddlePlanes(List<Plane> previewPlanes, NurbsCurve arc, Plane[] frames, Point3d pt1, Vector3d bendingVec)
+        {
+            Plane pStart = previewPlanes[previewPlanes.Count - 1];
+            Plane pEnd = frames[0];
+            var pt2 = arc.Points[0].Location;
+            Plane normPlane1 = GetBendingPlane(pStart, pEnd, pt1, pt2, bendingVec, bendingMulti, bendingDistance / 2);
+            Plane normPlane2 = GetBendingPlane(pStart, pEnd, pt1, pt2, bendingVec, bendingMulti, 1 - bendingDistance / 2);
+            previewPlanes.Add(normPlane1);
+            previewPlanes.Add(normPlane2);
+        }
+
+        private void SetEndPlane(List<Plane> previewPlanes, Plane[] arcFrames)
+        {
+            Plane lastPlane = arcFrames[arcFrames.Length - 1];
+            previewPlanes.Add(new Plane(endPoint, lastPlane.XAxis, lastPlane.YAxis));
+        }
+
+        private void SetStartPlane(List<Plane> previewPlanes, Plane[] arcFrames)
+        {
+            Plane firstPlane = arcFrames[0];
+            previewPlanes.Add(new Plane(startPoint, firstPlane.XAxis, firstPlane.YAxis));
+        }
+
+        private void SetArcPlanes(List<Plane> previewPlanes, Plane[] arcFrames)
+            => previewPlanes.AddRange(arcFrames);
+
+        private void SetDefaultValues()
+        {
+            weavingPlanes = new List<Plane>();
+            markerSize = 0;
+            idx = 0;
+            pinSize = 0.05;
+            fiberMulti = 0;
+            bendingMulti = 0;
+            bendingDistance = 0;
+            startPoint = Point3d.Origin;
+            endPoint = Point3d.Origin;
+
+            geometry = new List<NurbsCurve>();
+            matId = new List<int>();
+            crvWidth = new List<double>();
+            crvDiv = new List<double>();
+
+            previousColor = System.Drawing.Color.Gray;
+            nextColor = System.Drawing.Color.DarkCyan;
+
+            previous = null;
+            next = null;
+            arrowLine = null;
+            textActual = "";
+            alignAxis = 0;
+            toolRotation = 0;
+        }
+        public void GetAndMoveDoublePins(Vector3d norm, int actualIdx, ref Point3d actualPt)
         {
             if (fiberMulti == 0)
                 return;
@@ -27,7 +84,7 @@ namespace GeoGrasshopper.FiberWinding
             actualPt.Transform(moveActualPoint);
         }
 
-        public static Plane GetBendingPlane(Plane pStart, Plane pEnd, Point3d pt1, Point3d pt2, Vector3d bendingVec, double bendingMulti, double bendingDistance)
+        public Plane GetBendingPlane(Plane pStart, Plane pEnd, Point3d pt1, Point3d pt2, Vector3d bendingVec, double bendingMulti, double bendingDistance)
         {
             Vector3d xAxis = pEnd.XAxis + pStart.XAxis;
             Vector3d yAxis = pEnd.YAxis + pStart.YAxis;
@@ -42,9 +99,9 @@ namespace GeoGrasshopper.FiberWinding
             return new Plane(ptMiddle, xAxis, yAxis);
         }
 
-        public static void CheckIfFramesHasToBeFlipped(bool isFlipped, Plane[] frames)
+        public void CheckIfFramesHasToBeFlipped(bool isFlipped, Plane[] frames)
         {
-            if (!isFlipped)
+            if (isFlipped)
                 return;
 
             for (int u = 0; u < frames.Length; u++)
@@ -56,7 +113,7 @@ namespace GeoGrasshopper.FiberWinding
             }
         }
 
-        public static bool  CheckIfFlipped(Plane pCross, ref Vector3d norm, ref Vector3d bendingVec)
+        public bool CheckIfFlipped(Plane pCross, ref Vector3d norm, ref Vector3d bendingVec)
         {
             bendingVec = pCross.ZAxis;
 
@@ -73,53 +130,21 @@ namespace GeoGrasshopper.FiberWinding
         /// <summary>
         /// Get Arc params
         /// </summary>
-        /// <param name="divArc">arcDivisions</param>
         /// <returns></returns>
-        public static double[] GetArcParams(int divArc)
+        public double[] GetArcParams()
         {
-            double[] arcT = new double[divArc];
-            for (int i = 0; i < divArc; i++)
-                arcT[i] = 1.00 / (divArc - 1) * i;
+            double[] arcT = new double[arcP];
+            for (int i = 0; i < arcP; i++)
+                arcT[i] = 1.00 / (arcP - 1) * i;
 
             return arcT;
         }
 
-        public static NurbsCurve DrawArcCurve
-          (Plane pCross, Point3d nextPt, Point3d actualPt, Point3d prevPt, Vector3d norm, double radius)
-        {
-            Plane normalPlane = new Plane(actualPt, norm);
-            Circle nMCircle = new Circle(normalPlane, radius);
-
-            Plane planeRev = nMCircle.Plane;
-            Transform trans = Rhino.Geometry.Transform.PlaneToPlane(planeRev, Plane.WorldXY);
-
-            nMCircle.Transform(trans);
-
-            Point3d a = GetTangentialPoint(trans, prevPt, nMCircle, pCross, false);
-            Point3d b = GetTangentialPoint(trans, nextPt, nMCircle, pCross, true);
-
-            Transform transRev = Rhino.Geometry.Transform.PlaneToPlane(Plane.WorldXY, planeRev);
-            double param;
-            nMCircle.ClosestParameter(b, out param);
-            var tan = nMCircle.TangentAt(param);
-
-            NurbsCurve arc = (new Arc(b, tan, a)).ToNurbsCurve();
-
-            arc.Reverse();
-            arc.Transform(transRev);
-            arc.Domain = new Interval(0, 1);
-            return arc;
-        }
-
-        public static Point3d GetTangentialPoint(Transform trans, Point3d next, Circle c, Plane plane, bool reverse)
+        public Point3d GetTangentialPoint(Transform trans, Point3d next, Circle c, bool reverse)
         {
             next.Transform(trans);
 
-            Point3d pt1;
-            Point3d pt2;
-
-            bool success = FindTangents(c.Plane, c.Center, c.Radius, next, out pt1, out pt2);
-
+            bool success = GetTangents(c.Center, c.Radius, next, out Point3d pt1, out Point3d pt2);
             if (success)
                 return (reverse) ? pt2 : pt1;
 
@@ -130,7 +155,7 @@ namespace GeoGrasshopper.FiberWinding
         // Find the tangent points for this circle and external point.
         // Return true if we find the tangents, false if the point is
         // inside the circle.
-        private static bool FindTangents(Plane plane, Point3d center, double radius,
+        private bool GetTangents(Point3d center, double radius,
           Point3d external_point, out Point3d pt1, out Point3d pt2)
         {
             // Find the distance squared from the
@@ -154,19 +179,16 @@ namespace GeoGrasshopper.FiberWinding
             // Find the points of intersection between
             // the original circle and the circle with
             // center external_point and radius dist.
-            FindCircleCircleIntersections(
+            GetCircleCircleIntersections(
               center.X, center.Y, radius,
               external_point.X, external_point.Y, L,
               out pt1, out pt2);
-
-            //    pt1.Z = center.Z;
-            //       pt2.Z = center.Z;
 
             return true;
         }
 
         // Find the points where the two circles intersect.
-        private static int FindCircleCircleIntersections(
+        private int GetCircleCircleIntersections(
           double cx0, double cy0, double radius0,
           double cx1, double cy1, double radius1,
           out Point3d intersection1, out Point3d intersection2)
@@ -221,6 +243,80 @@ namespace GeoGrasshopper.FiberWinding
                 if (dist == radius0 + radius1) return 1;
                 return 2;
             }
+        }
+
+
+        private int GetActualPlaneIdx(int previewPlaneCount)
+        {
+            int actualPlaneIdx = idx * (arcP + 2) + 2;
+            actualPlaneIdx = (actualPlaneIdx > previewPlaneCount) ? previewPlaneCount : actualPlaneIdx;
+
+            return actualPlaneIdx;
+        }
+
+
+        private void RotatePlane90Degree(Plane[] arcFrames)
+        {
+            double d = Math.PI / 180;
+
+            for (int q = 0; q < arcFrames.Length; q++)
+            {
+                Plane f = arcFrames[q];
+
+                f.Rotate(90 * d, f.XAxis);
+
+                if (toolRotation != 0)
+                    f.Rotate(toolRotation * d, f.ZAxis);
+
+                arcFrames[q] = f;
+            }
+        }
+
+
+
+        enum AlignAxis
+        {
+            None = 0,
+            X = 1,
+            Y = 2
+        }
+
+        private void AlignPlanes(AlignAxis axis, List<Plane> previewPlanes)
+        {
+            if (axis == AlignAxis.None)
+                return;
+
+            for (int q = 0; q < previewPlanes.Count; q++)
+            {
+                Plane p = previewPlanes[q];
+
+                double rotateAngle = 0;
+
+                switch (axis)
+                {
+                    case AlignAxis.X:
+                        rotateAngle = Vector3d.VectorAngle(p.XAxis, Vector3d.XAxis, p);
+                        break;
+                    case AlignAxis.Y:
+                        rotateAngle = Vector3d.VectorAngle(p.YAxis, Vector3d.YAxis, p);
+                        break;
+                }
+
+                p.Rotate(rotateAngle, p.ZAxis);
+
+                if (toolRotation != 0)
+                    p.Rotate(toolRotation * Math.PI / 180, p.ZAxis);
+
+                previewPlanes[q] = p;
+            }
+        }
+
+        private void SetAlignAxis(int _alignAxis)
+        {
+            if (_alignAxis > 2 || _alignAxis < 0)
+                _alignAxis = 0;
+
+            alignAxis = (AlignAxis)_alignAxis;
         }
     }
 }

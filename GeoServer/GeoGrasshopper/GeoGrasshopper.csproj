@@ -63,11 +63,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component\FiberWinder\Draw.cs" />
+    <Compile Include="Component\FiberWinder\StreamSettings.cs" />
     <Compile Include="Component\GeoGrasshopperComponent.cs" />
     <Compile Include="Component\StreamGateComponent.cs" />
     <Compile Include="Component\StreamPreviewComponent.cs" />
-    <Compile Include="FiberWinding\FiberWinder.cs" />
-    <Compile Include="FiberWinding\Utils.cs" />
+    <Compile Include="Component\FiberWinder\FiberWinder.cs" />
+    <Compile Include="Component\FiberWinder\Utils.cs" />
     <Compile Include="GeoGrasshopperInfo.cs" />
     <Compile Include="Component\StreamSettingsComponent.cs" />
     <Compile Include="Parameter\GH_StreamSettings.cs" />

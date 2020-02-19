@@ -18,4 +18,3 @@ C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\n
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\net45\SocketStreamer.AssemblyInfo.cs
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\net45\SocketStreamer.dll
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\net45\SocketStreamer.pdb
-C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\net45\SocketStreamer.csprojAssemblyReference.cache
