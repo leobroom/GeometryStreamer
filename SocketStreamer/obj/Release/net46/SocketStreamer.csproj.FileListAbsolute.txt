@@ -1,0 +1,6 @@
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\bin\Release\net46\SocketStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\bin\Release\net46\SocketStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Release\net46\SocketStreamer.AssemblyInfoInputs.cache
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Release\net46\SocketStreamer.AssemblyInfo.cs
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Release\net46\SocketStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Release\net46\SocketStreamer.pdb

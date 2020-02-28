@@ -17,13 +17,6 @@ MonoBehaviour:
   recognitionConfidenceLevel: 1
   speechCommands:
   - localizationKey: 
-    keyword: Menu
-    keyCode: 51
-    action:
-      id: 2
-      description: Menu
-      axisConstraint: 2
-  - localizationKey: 
     keyword: Select
     keyCode: 13
     action:
@@ -31,9 +24,30 @@ MonoBehaviour:
       description: Select
       axisConstraint: 2
   - localizationKey: 
-    keyword: ClearAll
-    keyCode: 12
+    keyword: Orient
+    keyCode: 0
     action:
-      id: 14
-      description: Clear
-      axisConstraint: 7
+      id: 17
+      description: Orient
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Next
+    keyCode: 0
+    action:
+      id: 15
+      description: Next
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: Previous
+    keyCode: 0
+    action:
+      id: 16
+      description: Previous
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: Reset
+    keyCode: 0
+    action:
+      id: 18
+      description: Reset
+      axisConstraint: 2

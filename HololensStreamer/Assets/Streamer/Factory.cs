@@ -27,6 +27,8 @@ public class Factory
     }
 
     GameObject parent;
+    private MaterialPropertyBlock propBlock = new MaterialPropertyBlock();
+
 
     private GameObject txtPrefab;
 
@@ -59,7 +61,7 @@ public class Factory
 
         var renderer = meshObject.AddComponent<MeshRenderer>();
 
-        renderer.material = Test.Instance.surfaceMat;
+        renderer.sharedMaterial = Test.Instance.surfaceMat;
 
         return meshObject;
     }
@@ -72,15 +74,15 @@ public class Factory
         LineRenderer linerenderer = go.AddComponent<LineRenderer>();
         linerenderer.useWorldSpace = false;
 
-        linerenderer.material = Test.Instance.curveMat;
-        Color c = Color.cyan;
+        linerenderer.sharedMaterial = Test.Instance.curveMat;
         float width = 0.004f;
-        linerenderer.startColor = c;
-        linerenderer.endColor = c;
         linerenderer.startWidth = width;
         linerenderer.endWidth = width;
         linerenderer.receiveShadows = false;
+        linerenderer.allowOcclusionWhenDynamic = false;
         linerenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        linerenderer.motionVectorGenerationMode = MotionVectorGenerationMode.ForceNoMotion;
+
 
         linerenderer.positionCount = 0;
 
@@ -89,34 +91,55 @@ public class Factory
 
     internal void UpdateText(BroadCastText broadcast)
     {
-        GameObject go = GeometryStorage.Instance.GetGeometry(broadcast.id, GeometryStorage.GeoType.Txt);
+        Debug.Log("UpdateText");
+        GameObject go = GeometryStorage.Instance.GetGeometry(broadcast.textNr, GeometryStorage.GeoType.Txt);
         TextMeshPro textMesh = go.GetComponent<TextMeshPro>();
 
         textMesh.color = GetUColor(broadcast.color);
         go.transform.localPosition = GetVector(broadcast.position);
         go.transform.localEulerAngles = GetVector(broadcast.rotation);
         textMesh.text = broadcast.text;
-        textMesh.fontSize = broadcast.textSize;
+        textMesh.fontSize = broadcast.textSize/2;
     }
 
     public void UpdateMesh(BroadCastMesh broadcast)
     {
-        GameObject go = GeometryStorage.Instance.GetGeometry(broadcast.id, GeometryStorage.GeoType.Mesh);
+        GameObject go = GeometryStorage.Instance.GetGeometry(broadcast.meshNr, GeometryStorage.GeoType.Mesh);
         MeshFilter filter = go.GetComponent<MeshFilter>();
 
         Mesh mesh = filter.mesh;
         mesh.Clear();
-        mesh.SetVertices(GetVector3Array(broadcast.vertices));
+        mesh.SetVertices(GetVector3List(broadcast.vertices));
         mesh.SetTriangles(broadcast.triangles, 0);
-        mesh.SetNormals(GetVector3Array(broadcast.normals));
+        mesh.SetNormals(GetVector3List(broadcast.normals));
 
         Color c = GetUColor(broadcast.color);
-        go.GetComponent<Renderer>().material.color = c;
+        var renderer = go.GetComponent<Renderer>();
+
+        renderer.GetPropertyBlock(propBlock);
+        propBlock.SetColor("_Color", c);
+        renderer.SetPropertyBlock(propBlock);
     }
 
     private Vector3 GetVector(float[] floats) => new Vector3(floats[0] / scale, floats[1] / scale, floats[2] / scale);
 
-    private List<Vector3> GetVector3Array(float[] floats, bool reverse = false)
+    private Vector3[] GetVector3Array(float[] floats, bool reverse = false)
+    {
+        int length = floats.Length / 3;
+        Vector3[] vecs = new Vector3[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            int a = i * 3;
+            Vector3 pos = new Vector3(floats[a] / scale, floats[a + 1] / scale, floats[a + 2] / scale);
+
+            vecs[i] = pos;
+        }
+
+        return vecs;
+    }
+
+    private List<Vector3> GetVector3List(float[] floats, bool reverse = false)
     {
         int length = floats.Length / 3;
         List<Vector3> vecs = new List<Vector3>(length);
@@ -134,29 +157,41 @@ public class Factory
 
     internal GameObject CreateTextObject()
     {
-        return GameObject.Instantiate(txtPrefab, parent.transform, false);
+        Debug.Log("TextERSTELLT!");
+
+        GameObject go = GameObject.Instantiate(txtPrefab);
+
+        go.name = "TEXT";
+        go.transform.SetParent(parent.transform, false);
+
+     
+
+        return go;
     }
 
     public void UpdateCurve(BroadCastCurve broadcast)
     {
-        var allPoints = GetVector3Array(broadcast.positions).ToArray();
+        var allPoints = GetVector3Array(broadcast.positions);
 
-        int id = broadcast.id;
         int length = allPoints.Length;
 
-        Color c = GetUColor(broadcast.colors);
-
-        GameObject go = GeometryStorage.Instance.GetGeometry(id, GeometryStorage.GeoType.Curve);
+        GameObject go = GeometryStorage.Instance.GetGeometry(broadcast.curveNr, GeometryStorage.GeoType.Curve);
         LineRenderer renderer = go.GetComponent<LineRenderer>();
         renderer.positionCount = length;
         renderer.SetPositions(allPoints);
-        renderer.startColor = c;
-        renderer.endColor = c;
 
-        float width = broadcast.width;
+        renderer.GetPropertyBlock(propBlock);
+        Color c = GetUColor(broadcast.colors);
+        propBlock.SetColor("_Color", c);
+        renderer.SetPropertyBlock(propBlock);
 
-        renderer.startWidth = width;
-        renderer.endWidth = width;
+        float width = broadcast.width * 2;
+
+        if (renderer.startWidth != width)
+        {
+            renderer.startWidth = width;
+            renderer.endWidth = width;
+        }
     }
 
     private Color GetUColor(byte[] colors)
@@ -174,7 +209,7 @@ public class Factory
 
     public void UpdateGeometry(BroadCastGeometryInfo broadcast)
     {
-        GeometryStorage.Instance.UpdateGeometry(broadcast.curvesCount, broadcast.meshesCount, broadcast.textCount);
+        GeometryStorage.Instance.DeleteToomuchGeometry(broadcast.curvesCount, broadcast.meshesCount, broadcast.textCount);
     }
 
     public void DestroyGeometry(GameObject go, float time)

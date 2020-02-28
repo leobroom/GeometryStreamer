@@ -46,6 +46,11 @@
       <RootProperty Name="IsEnabled" />
       <RootEvent Name="Click" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Slider">
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootEvent Name="ValueChanged" />
+    </RootType>
     <RootType FullName="GeoCoreUwpClient.MainPage" />
   </Roots.RootTypes>
 </Roots>

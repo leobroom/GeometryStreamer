@@ -15,7 +15,12 @@ namespace SocketStreamer
             }
 
             serializer.GetSerializedData(data, id, out byte[] headerData, out byte[] serializedData);
-            sendingDataQueue.Enqueue(new Tuple<byte[], byte[]>(headerData, serializedData));
+
+            lock (sendingDataQueue)
+            {
+                sendingDataQueue.Enqueue(new Tuple<byte[], byte[]>(headerData, serializedData));
+            }
+
             SendLog($"{data.GetType()} sent");
         }
 

@@ -182,14 +182,22 @@ namespace SocketStreamer
                     {
                         if (allowSending && sendingDataQueue.Count != 0)
                         {
+
+
                             headData = sendingDataQueue.Dequeue();
                             header = headData.Item1;
                             data = headData.Item2;
                             SendBytes(socket, header, data);
 
-//#if (useThreads)
-//              sendDone.WaitOne();
-//#endif
+#if (useThreads)
+            sendingThread.Sleep(200);
+#else
+                            sendingTask.Wait(TimeSpan.FromSeconds(0.2));
+#endif
+
+                            //#if (useThreads)
+                            //              sendDone.WaitOne();
+                            //#endif
 
                         }
                     }

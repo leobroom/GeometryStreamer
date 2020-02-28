@@ -7,6 +7,38 @@ namespace GeoGrasshopper.FiberWinding
 {
     public partial class FiberWinder : GH_Component
     {
+        Rhino.Display.DisplayMaterial arrowMat;
+
+        private void ConstructMarkers()
+        {
+            double size = 4;
+
+            pinMarkers = new Mesh();
+
+            for (int i = 0; i < weavingPlanes.Count; i++)
+            {
+                Plane p = weavingPlanes[i];
+                Point3d origin = p.Origin;
+                Point3d a = origin + (p.XAxis + -p.YAxis) * size;
+                Point3d b = origin + (p.XAxis + p.YAxis) * size;
+                Point3d c = origin + (-p.XAxis + p.YAxis) * size;
+                Point3d d = origin + (-p.XAxis + -p.YAxis) * size;
+
+                Mesh m = new Mesh();
+                m.Vertices.Add(a);
+                m.Vertices.Add(b);
+                m.Vertices.Add(c);
+                m.Vertices.Add(d);
+
+                m.Faces.AddFace(0, 1, 2,3);
+                m.FaceNormals.ComputeFaceNormals();
+                m.Normals.ComputeNormals();
+                m.Compact();
+
+                pinMarkers.Append(m);
+            }
+        }
+
         private void ConstructArrow(Polyline pline, int ptCount)
         {
             int plCpCount = pline.Count;
@@ -25,19 +57,33 @@ namespace GeoGrasshopper.FiberWinding
                 arrowLine = null;
         }
 
-        private void ConstructText(Polyline pline)
+        private GH_StreamText ConstructText(Polyline pline)
         {
             //TextPositions
-            Vector3d moveTxt = new Vector3d(23, 0, 6);
+            Vector3d normal = new Vector3d(23, 0, 6);
+            string text = idx.ToString();
+            Point3d pos = pline[pline.Count - 3];
 
             if (pline.Count > 0)
             {
-                textPosActual = pline[pline.Count - 3] + moveTxt;
-                textActual = idx.ToString();
+                textPosActual = pos + normal;
+                textActual = text;
+
+                StreamText sText = new StreamText(text)
+                {
+                    Color = nextColor,
+                    Position = pos,
+                    Normal = normal,
+                    TextSize = txtSize
+                };
+
+                return new GH_StreamText(sText);
             }
+
+            return null;
         }
 
-        private Polyline ContructPrevLine( List<Plane> previewPlanes, int actualPlaneIdx, int ptCount)
+        private Polyline ContructPrevLine(List<Plane> previewPlanes, int actualPlaneIdx, int ptCount)
         {
             int prevIdx = (idx < ptCount) ? actualPlaneIdx - arcP + 4 : actualPlaneIdx;
 
@@ -52,7 +98,7 @@ namespace GeoGrasshopper.FiberWinding
             return pline;
         }
 
-        private Polyline ContructNextLine( List<Plane> previewPlanes, int actualPlaneIdx, int ptCount)
+        private Polyline ContructNextLine(List<Plane> previewPlanes, int actualPlaneIdx, int ptCount)
         {
             Polyline nLine = new Polyline();
             int nextIdx = actualPlaneIdx - arcP + 3;
@@ -71,7 +117,7 @@ namespace GeoGrasshopper.FiberWinding
         }
 
         public NurbsCurve DrawArcCurve
-   ( Point3d nextPt, Point3d actualPt, Point3d prevPt, Vector3d norm, double radius)
+   (Point3d nextPt, Point3d actualPt, Point3d prevPt, Vector3d norm, double radius)
         {
             Plane normalPlane = new Plane(actualPt, norm);
             Circle nMCircle = new Circle(normalPlane, radius);
@@ -96,7 +142,7 @@ namespace GeoGrasshopper.FiberWinding
             return arc;
         }
 
-        public NurbsCurve DrawArrowTip(Curve crv, double param)
+        public Mesh DrawArrowTip(Curve crv, double param)
         {
             crv.PerpendicularFrameAt(param, out Plane p);
 
@@ -107,7 +153,20 @@ namespace GeoGrasshopper.FiberWinding
 
             Polyline arrow = Polyline.CreateInscribedPolygon(new Circle(p2, markerSize), 3);
 
-            return arrow.ToNurbsCurve();
+            Mesh arrow2 = new Mesh();
+            arrow2.Vertices.Add(arrow[0]);
+            arrow2.Vertices.Add(arrow[1]);
+            arrow2.Vertices.Add(arrow[2]);
+
+
+            arrow2.Faces.AddFace(0, 1, 2);
+            arrow2.Faces.AddFace(2, 1, 0);
+
+            arrow2.FaceNormals.ComputeFaceNormals();
+            arrow2.Normals.ComputeNormals();
+            arrow2.Compact();
+
+            return arrow2;
         }
 
         public override void DrawViewportMeshes(IGH_PreviewArgs args)
@@ -119,7 +178,7 @@ namespace GeoGrasshopper.FiberWinding
 
             //Arrow
             if (arrowLine != null)
-                args.Display.DrawCurve(arrowLine, nextColor, drawingThickness);
+                args.Display.DrawMeshShaded(arrowLine, arrowMat);
         }
 
         public override void DrawViewportWires(IGH_PreviewArgs args)
@@ -127,10 +186,11 @@ namespace GeoGrasshopper.FiberWinding
             if (textActual != "")
                 DrawText(textActual, textPosActual, nextColor, args);
         }
+        int txtSize = 40;
 
         public void DrawText(string txt, Point3d pos, System.Drawing.Color c, IGH_PreviewArgs args)
         {
-            var drawText = new Rhino.Display.Text3d(txt, new Plane(pos, Vector3d.ZAxis), 40);
+            var drawText = new Rhino.Display.Text3d(txt, new Plane(pos, Vector3d.ZAxis), txtSize);
             args.Display.Draw3dText(drawText, c);
             drawText.Dispose();
         }

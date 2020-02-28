@@ -10,6 +10,7 @@ class Program
     {
         AppDomain.CurrentDomain.ProcessExit += new EventHandler(ProcessExit);
         string ip = Utils.GetTestIpAdress();
+        int port = Utils.GetTestPort();
 
         Console.WriteLine("############");
         Console.WriteLine("Server : " + ip);
@@ -17,7 +18,7 @@ class Program
 
         Console.ForegroundColor = ConsoleColor.Red;
 
-        server = GeoServer.Initialize(ip, 12345);
+        server = GeoServer.Initialize(ip, port);
         server.Start();
     }
 

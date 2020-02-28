@@ -22,7 +22,7 @@ namespace GeoGrasshopper
             client.Send(netMesh);
         }
 
-        public static void Mesh(int id, Mesh mesh, StreamSettings settings, RhinoClient client)
+        public static void Mesh(int id, int meshNr, Mesh mesh, StreamSettings settings, RhinoClient client)
         {
             if (mesh == null || mesh.Vertices == null)
                 return;
@@ -30,6 +30,7 @@ namespace GeoGrasshopper
             BroadCastMesh netMesh = new BroadCastMesh
             {
                 id = id,
+                meshNr = meshNr,
                 vertices = GetVertices(mesh),
                 triangles = Triangulate(mesh),
                 normals = GetNormals(mesh),
@@ -151,7 +152,7 @@ namespace GeoGrasshopper
                 throw new System.Exception("No Material");
         }
 
-        internal static void Text(int id, StreamText geo, StreamSettings settings, RhinoClient client)
+        internal static void Text(int id, int textNr, StreamText geo, StreamSettings settings, RhinoClient client)
         {
             List<float> position = new List<float>();
             List<float> normal = new List<float>();
@@ -162,6 +163,7 @@ namespace GeoGrasshopper
             BroadCastText netText = new BroadCastText
             {
                 id = id,
+                textNr = textNr,
                 position = position.ToArray(),
                 rotation = normal.ToArray(),
                 text = geo.Text,
@@ -172,7 +174,7 @@ namespace GeoGrasshopper
             client.Send(netText);
         }
 
-        public static void Curve(int id, Curve curve, StreamSettings settings, RhinoClient client)
+        public static void Curve(int id, int curvNr, Curve curve, StreamSettings settings, RhinoClient client)
         {
             List<float> positions = new List<float>();
 
@@ -206,6 +208,7 @@ namespace GeoGrasshopper
             BroadCastCurve netCurve = new BroadCastCurve
             {
                 id = id,
+                curveNr = curvNr,
                 positions = positions.ToArray(),
                 colors = GetColor(GetSettingsMaterial(id, settings).Diffuse),
                 width = (float)GetSettingsValue(id, settings.CurveWidths, "cruve width not set")

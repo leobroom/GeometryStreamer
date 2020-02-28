@@ -33,7 +33,9 @@ public class Test : MonoBehaviour
         Factory.Instance.TxtPrefab = txtObjPrefab;
         Factory.Instance.CreateParent(parent);
 
-        client = UnityClient.Initialize(Utils.GetTestIpAdress(), 12345, "Hololens", ThreadingType.Task);
+        int port = Utils.GetTestPort();
+
+        client = UnityClient.Initialize(Utils.GetTestIpAdress(), port, "Hololens", ThreadingType.Task);
         client.Message += OnMessage;
         client.Connect();
 
@@ -47,7 +49,6 @@ public class Test : MonoBehaviour
     private void Update()
     {
         client.ProcessMessages();
-
 
         lock (debugTest)
         {

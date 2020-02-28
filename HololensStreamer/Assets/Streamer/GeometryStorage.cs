@@ -31,7 +31,7 @@ class GeometryStorage
 
     delegate GameObject GetGameObject();
 
-    public GameObject GetGeometry(int id, GeoType type)
+    public GameObject GetGeometry(int objNr, GeoType type)
     {
         try
         {
@@ -42,38 +42,38 @@ class GeometryStorage
                 default:
                 case GeoType.Mesh:
                  
-                    if (meshGOStorage.Count - 1 < id)
+                    if (meshGOStorage.Count - 1 < objNr)
                     {
                         stored = Factory.Instance.CreateMeshObject();
                         meshGOStorage.Add(stored);
                     }
                     else
                     {
-                        stored = meshGOStorage[id];
+                        stored = meshGOStorage[objNr];
                     }
                     break;
                 case GeoType.Curve:
                
-                    if (curveGOStorage.Count-1 < id)
+                    if (curveGOStorage.Count-1 < objNr)
                     {
                         stored = Factory.Instance.CreateCurveObject();
                         curveGOStorage.Add(stored);
                     }
                     else
                     {
-                        stored = curveGOStorage[id];
+                        stored = curveGOStorage[objNr];
                     }
                     break;
                 case GeoType.Txt:
              
-                    if (curveGOStorage.Count - 1 < id)
+                    if (txtGOStorage.Count - 1 < objNr)
                     {
                         stored = Factory.Instance.CreateTextObject();
                         txtGOStorage.Add(stored);
                     }
                     else
                     {
-                        stored = txtGOStorage[id];
+                        stored = txtGOStorage[objNr];
                     }
                     break;
             }
@@ -82,12 +82,12 @@ class GeometryStorage
         }
         catch (System.Exception e)
         {
-            string error = $"ID: {id}, Typ: {type}, curveGOStorage {curveGOStorage.Count}, meshGOStorage {meshGOStorage.Count} " + e.Message;
+            string error = $"ID: {objNr}, Typ: {type}, curveGOStorage {curveGOStorage.Count}, meshGOStorage {meshGOStorage.Count}, textGOStorage {txtGOStorage.Count} " + e.Message;
             throw new System.Exception(error);
         }
     }
 
-    private void UpdateGeo(int count, List<GameObject> goTable, GetGameObject getGo)
+    private void UpdateGeo(int count, List<GameObject> goTable)
     {
         //Debug.Log($"UpdateGeo----------: " +  count +  "    "+goTable.Count);
 
@@ -98,7 +98,7 @@ class GeometryStorage
 
             int toCreate = count - tableCount;
 
-            //Debug.Log($"Destroy: " + toDelete);
+            Debug.Log($"Destroy: " + toDelete);
 
             List<GameObject> geos = new List<GameObject>();
 
@@ -117,13 +117,12 @@ class GeometryStorage
         //Debug.Log($"Nothing ");
     }
 
-    public void UpdateGeometry(int curveCount, int meshCount, int txtCount)
+    public void DeleteToomuchGeometry(int curveCount, int meshCount, int txtCount)
     {
-        //Debug.Log($"GeoUpdate CRV/MSH:  {curveCount},  {meshCount}");
-        UpdateGeo(curveCount, curveGOStorage, Factory.Instance.CreateCurveObject);
-        UpdateGeo(meshCount, meshGOStorage, Factory.Instance.CreateMeshObject);
-        UpdateGeo(txtCount, txtGOStorage, Factory.Instance.CreateTextObject);
+        Debug.Log($"GeoUpdate CRV/MSH/TXT:  {curveCount},  {meshCount},  {txtCount}");
+        UpdateGeo(curveCount, curveGOStorage);
+        UpdateGeo(meshCount, meshGOStorage);
+        UpdateGeo(txtCount, txtGOStorage);
         //Debug.Log($"---------------");
-        //Debug.Log($"GeoUpdate CRV STOR/MSH STOR:  {curveGOStorage.Count},  {meshGOStorage.Count}");
     }
 }

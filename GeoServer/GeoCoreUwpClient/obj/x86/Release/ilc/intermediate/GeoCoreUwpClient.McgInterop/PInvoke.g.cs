@@ -420,6 +420,31 @@ namespace __Interop
 	/// </summary>
 	public unsafe static partial class ws2_32_dll
 	{
+		// Signature, listen, [fwd] [return] [EETypeRva:0x00042D30] System_Net_Sockets_SocketError__System_Net_Primitives__SocketError__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00043474] System_Net_Sockets_SafeCloseSocket__System_Net_Sockets____w64 int, [fwd] [in] [EETypeRva:0x00041980] int__int, 
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.Sockets, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "listen")]
+		public static global::System_Net_Sockets.SocketError__System_Net_Primitives listen(
+					global::System.Net.Sockets.SafeCloseSocket__System_Net_Sockets socketHandle, 
+					int backlog)
+		{
+			// Setup
+			bool addRefed = false;
+			global::System_Net_Sockets.SocketError__System_Net_Primitives unsafe___value;
+			// Marshalling
+			socketHandle.DangerousAddRef(ref addRefed);
+			global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
+			// Call to native method
+			unsafe___value = global::__Interop.ws2_32_dll_PInvokes.listen(
+								socketHandle.DangerousGetHandle(), 
+								backlog
+							);
+			global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
+			global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
+			if (addRefed)
+				socketHandle.DangerousRelease();
+			// Return
+			return unsafe___value;
+		}
+
 		// Signature, shutdown, [fwd] [return] [EETypeRva:0x00042D30] System_Net_Sockets_SocketError__System_Net_Primitives__SocketError__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00043474] System_Net_Sockets_SafeCloseSocket__System_Net_Sockets____w64 int, [fwd] [in] [EETypeRva:0x00041980] int__int, 
 		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.Sockets, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "shutdown")]
 		public static global::System_Net_Sockets.SocketError__System_Net_Primitives shutdown(
@@ -481,31 +506,6 @@ namespace __Interop
 			return unsafe___value;
 		}
 
-		// Signature, listen, [fwd] [return] [EETypeRva:0x00042D30] System_Net_Sockets_SocketError__System_Net_Primitives__SocketError__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00043474] System_Net_Sockets_SafeCloseSocket__System_Net_Sockets____w64 int, [fwd] [in] [EETypeRva:0x00041980] int__int, 
-		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.Sockets, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "listen")]
-		public static global::System_Net_Sockets.SocketError__System_Net_Primitives listen(
-					global::System.Net.Sockets.SafeCloseSocket__System_Net_Sockets socketHandle, 
-					int backlog)
-		{
-			// Setup
-			bool addRefed = false;
-			global::System_Net_Sockets.SocketError__System_Net_Primitives unsafe___value;
-			// Marshalling
-			socketHandle.DangerousAddRef(ref addRefed);
-			global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
-			// Call to native method
-			unsafe___value = global::__Interop.ws2_32_dll_PInvokes.listen(
-								socketHandle.DangerousGetHandle(), 
-								backlog
-							);
-			global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
-			global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
-			if (addRefed)
-				socketHandle.DangerousRelease();
-			// Return
-			return unsafe___value;
-		}
-
 		// Signature, ioctlsocket, [fwd] [return] [EETypeRva:0x00042D30] System_Net_Sockets_SocketError__System_Net_Primitives__SocketError__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00043474] System_Net_Sockets_SafeCloseSocket__System_Net_Sockets____w64 int, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [out] [managedbyref] [nativebyref] [EETypeRva:0x00041980] int__int, 
 		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.Sockets, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "ioctlsocket")]
 		public static global::System_Net_Sockets.SocketError__System_Net_Primitives ioctlsocket(
@@ -560,6 +560,39 @@ namespace __Interop
 									optionName, 
 									pinned_optionValue, 
 									optionLength
+								);
+				global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
+				global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
+			}
+			if (addRefed)
+				socketHandle.DangerousRelease();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, bind, [fwd] [return] [EETypeRva:0x00042D30] System_Net_Sockets_SocketError__System_Net_Primitives__SocketError__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00043474] System_Net_Sockets_SafeCloseSocket__System_Net_Sockets____w64 int, [fwd] [in] [EETypeRva:0x00042A10] rg_byte__unsigned char *, [fwd] [in] [EETypeRva:0x00041980] int__int, 
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.Sockets, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "bind")]
+		public static global::System_Net_Sockets.SocketError__System_Net_Primitives bind(
+					global::System.Net.Sockets.SafeCloseSocket__System_Net_Sockets socketHandle, 
+					byte[] socketAddress, 
+					int socketAddressSize)
+		{
+			// Setup
+			bool addRefed = false;
+			byte* unsafe_socketAddress;
+			global::System_Net_Sockets.SocketError__System_Net_Primitives unsafe___value;
+			// Marshalling
+			socketHandle.DangerousAddRef(ref addRefed);
+			fixed (byte* pinned_socketAddress = ((socketAddress != null 
+						&& socketAddress.Length == 0) ? new byte[1] : socketAddress))
+			{
+				unsafe_socketAddress = (byte*)pinned_socketAddress;
+				global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
+				// Call to native method
+				unsafe___value = global::__Interop.ws2_32_dll_PInvokes.bind(
+									socketHandle.DangerousGetHandle(), 
+									unsafe_socketAddress, 
+									socketAddressSize
 								);
 				global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
 				global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
@@ -699,39 +732,6 @@ namespace __Interop
 			return unsafe___value;
 		}
 
-		// Signature, bind, [fwd] [return] [EETypeRva:0x00042D30] System_Net_Sockets_SocketError__System_Net_Primitives__SocketError__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00043474] System_Net_Sockets_SafeCloseSocket__System_Net_Sockets____w64 int, [fwd] [in] [EETypeRva:0x00042A10] rg_byte__unsigned char *, [fwd] [in] [EETypeRva:0x00041980] int__int, 
-		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.Sockets, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "bind")]
-		public static global::System_Net_Sockets.SocketError__System_Net_Primitives bind(
-					global::System.Net.Sockets.SafeCloseSocket__System_Net_Sockets socketHandle, 
-					byte[] socketAddress, 
-					int socketAddressSize)
-		{
-			// Setup
-			bool addRefed = false;
-			byte* unsafe_socketAddress;
-			global::System_Net_Sockets.SocketError__System_Net_Primitives unsafe___value;
-			// Marshalling
-			socketHandle.DangerousAddRef(ref addRefed);
-			fixed (byte* pinned_socketAddress = ((socketAddress != null 
-						&& socketAddress.Length == 0) ? new byte[1] : socketAddress))
-			{
-				unsafe_socketAddress = (byte*)pinned_socketAddress;
-				global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
-				// Call to native method
-				unsafe___value = global::__Interop.ws2_32_dll_PInvokes.bind(
-									socketHandle.DangerousGetHandle(), 
-									unsafe_socketAddress, 
-									socketAddressSize
-								);
-				global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
-				global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
-			}
-			if (addRefed)
-				socketHandle.DangerousRelease();
-			// Return
-			return unsafe___value;
-		}
-
 		// Signature, recv, [fwd] [return] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00041980] byte___ptrunsigned char *, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00042D30] System_Net_Sockets_SocketFlags__System_Net_Sockets__SocketFlags__System_Net_Sockets, 
 		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.Sockets, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "recv")]
 		public static int recv(
@@ -827,6 +827,31 @@ namespace __Interop
 			return __value;
 		}
 
+		// Signature, send, [fwd] [return] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00041980] byte___ptrunsigned char *, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00042D30] System_Net_Sockets_SocketFlags__System_Net_Sockets__SocketFlags__System_Net_Sockets, 
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.Sockets, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "send")]
+		public static int send(
+					global::System.IntPtr socketHandle, 
+					byte* pinnedBuffer, 
+					int len, 
+					global::System_Net_Sockets.SocketFlags__System_Net_Sockets socketFlags)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
+			// Call to native method
+			unsafe___value = global::__Interop.ws2_32_dll_PInvokes.send(
+								socketHandle, 
+								((byte*)pinnedBuffer), 
+								len, 
+								socketFlags
+							);
+			global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
+			global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
+			// Return
+			return unsafe___value;
+		}
+
 		// Signature, WSAStartup, [fwd] [return] [EETypeRva:0x00042D30] System_Net_Sockets_SocketError__System_Net_Primitives__SocketError__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00041980] short__short, [fwd] [out] [managedbyref] [nativebyref] [EETypeRva:0x00042190] __Interop_Winsock_WSAData__System_Net_NameResolution____Interop_Winsock_WSAData__System_Net_NameResolution, 
 		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.NameResolution, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "WSAStartup")]
 		public static global::System_Net_Sockets.SocketError__System_Net_Primitives WSAStartup(
@@ -850,6 +875,41 @@ namespace __Interop
 								ref unsafe_lpWSAData, 
 								out lpWSAData
 							);
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, WSARecv, [fwd] [return] [EETypeRva:0x00042D30] System_Net_Sockets_SocketError__System_Net_Primitives__SocketError__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00041980] System_Net_Sockets_WSABuffer__System_Net_Sockets___ptrSystem_Net_Sockets__WSABuffer__System_Net_Sockets *, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [out] [managedbyref] [nativebyref] [EETypeRva:0x00041980] int__int, [fwd] [in] [out] [managedbyref] [nativebyref] [EETypeRva:0x00042D30] System_Net_Sockets_SocketFlags__System_Net_Sockets__SocketFlags__System_Net_Sockets, [fwd] [in] [EETypeRva:0x00041980] System_Threading_NativeOverlapped__System_Private_CoreLib___ptrSystem_Threading__NativeOverlapped__System_Private_CoreLib *, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.Sockets, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "WSARecv")]
+		public static global::System_Net_Sockets.SocketError__System_Net_Primitives WSARecv(
+					global::System.IntPtr socketHandle, 
+					global::System_Net_Sockets.WSABuffer__System_Net_Sockets* buffer, 
+					int bufferCount, 
+					out int bytesTransferred, 
+					ref global::System_Net_Sockets.SocketFlags__System_Net_Sockets socketFlags, 
+					global::System_Threading.NativeOverlapped__System_Private_CoreLib* overlapped, 
+					global::System.IntPtr completionRoutine)
+		{
+			// Setup
+			global::System_Net_Sockets.SocketError__System_Net_Primitives unsafe___value;
+			// Marshalling
+			fixed (int* pinned_bytesTransferred = &(bytesTransferred))
+				fixed (global::System_Net_Sockets.SocketFlags__System_Net_Sockets* pinned_socketFlags = &(socketFlags))
+				{
+					global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
+					// Call to native method
+					unsafe___value = global::__Interop.ws2_32_dll_PInvokes.WSARecv(
+										socketHandle, 
+										((global::System_Net_Sockets.WSABuffer__System_Net_Sockets*)buffer), 
+										bufferCount, 
+										pinned_bytesTransferred, 
+										pinned_socketFlags, 
+										((global::System_Threading.NativeOverlapped__System_Private_CoreLib*)overlapped), 
+										completionRoutine
+									);
+					global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
+					global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
+				}
 			// Return
 			return unsafe___value;
 		}
@@ -960,75 +1020,6 @@ namespace __Interop
 			return unsafe___value;
 		}
 
-		// Signature, WSARecv, [fwd] [return] [EETypeRva:0x00042D30] System_Net_Sockets_SocketError__System_Net_Primitives__SocketError__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00041980] System_Net_Sockets_WSABuffer__System_Net_Sockets___ptrSystem_Net_Sockets__WSABuffer__System_Net_Sockets *, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [out] [managedbyref] [nativebyref] [EETypeRva:0x00041980] int__int, [fwd] [in] [out] [managedbyref] [nativebyref] [EETypeRva:0x00042D30] System_Net_Sockets_SocketFlags__System_Net_Sockets__SocketFlags__System_Net_Sockets, [fwd] [in] [EETypeRva:0x00041980] System_Threading_NativeOverlapped__System_Private_CoreLib___ptrSystem_Threading__NativeOverlapped__System_Private_CoreLib *, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, 
-		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.Sockets, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "WSARecv")]
-		public static global::System_Net_Sockets.SocketError__System_Net_Primitives WSARecv(
-					global::System.IntPtr socketHandle, 
-					global::System_Net_Sockets.WSABuffer__System_Net_Sockets* buffer, 
-					int bufferCount, 
-					out int bytesTransferred, 
-					ref global::System_Net_Sockets.SocketFlags__System_Net_Sockets socketFlags, 
-					global::System_Threading.NativeOverlapped__System_Private_CoreLib* overlapped, 
-					global::System.IntPtr completionRoutine)
-		{
-			// Setup
-			global::System_Net_Sockets.SocketError__System_Net_Primitives unsafe___value;
-			// Marshalling
-			fixed (int* pinned_bytesTransferred = &(bytesTransferred))
-				fixed (global::System_Net_Sockets.SocketFlags__System_Net_Sockets* pinned_socketFlags = &(socketFlags))
-				{
-					global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
-					// Call to native method
-					unsafe___value = global::__Interop.ws2_32_dll_PInvokes.WSARecv(
-										socketHandle, 
-										((global::System_Net_Sockets.WSABuffer__System_Net_Sockets*)buffer), 
-										bufferCount, 
-										pinned_bytesTransferred, 
-										pinned_socketFlags, 
-										((global::System_Threading.NativeOverlapped__System_Private_CoreLib*)overlapped), 
-										completionRoutine
-									);
-					global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
-					global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
-				}
-			// Return
-			return unsafe___value;
-		}
-
-		// Signature, WSASend, [fwd] [return] [EETypeRva:0x00042D30] System_Net_Sockets_SocketError__System_Net_Primitives__SocketError__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00041980] System_Net_Sockets_WSABuffer__System_Net_Sockets___ptrSystem_Net_Sockets__WSABuffer__System_Net_Sockets *, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [out] [managedbyref] [nativebyref] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00042D30] System_Net_Sockets_SocketFlags__System_Net_Sockets__SocketFlags__System_Net_Sockets, [fwd] [in] [EETypeRva:0x00041980] System_Threading_NativeOverlapped__System_Private_CoreLib___ptrSystem_Threading__NativeOverlapped__System_Private_CoreLib *, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, 
-		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.Sockets, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "WSASend")]
-		public static global::System_Net_Sockets.SocketError__System_Net_Primitives WSASend(
-					global::System.IntPtr socketHandle, 
-					global::System_Net_Sockets.WSABuffer__System_Net_Sockets* buffers, 
-					int bufferCount, 
-					out int bytesTransferred, 
-					global::System_Net_Sockets.SocketFlags__System_Net_Sockets socketFlags, 
-					global::System_Threading.NativeOverlapped__System_Private_CoreLib* overlapped, 
-					global::System.IntPtr completionRoutine)
-		{
-			// Setup
-			global::System_Net_Sockets.SocketError__System_Net_Primitives unsafe___value;
-			// Marshalling
-			fixed (int* pinned_bytesTransferred = &(bytesTransferred))
-			{
-				global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
-				// Call to native method
-				unsafe___value = global::__Interop.ws2_32_dll_PInvokes.WSASend(
-									socketHandle, 
-									((global::System_Net_Sockets.WSABuffer__System_Net_Sockets*)buffers), 
-									bufferCount, 
-									pinned_bytesTransferred, 
-									socketFlags, 
-									((global::System_Threading.NativeOverlapped__System_Private_CoreLib*)overlapped), 
-									completionRoutine
-								);
-				global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
-				global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
-			}
-			// Return
-			return unsafe___value;
-		}
-
 		// Signature, gethostname, [fwd] [return] [EETypeRva:0x00042D30] System_Net_Sockets_SocketError__System_Net_Primitives__SocketError__System_Net_Primitives, [fwd] [out] [EETypeRva:0x00041CC4] System_Text_StringBuilder__unsigned char *, [fwd] [in] [EETypeRva:0x00041980] int__int, 
 		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.NameResolution, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "gethostname")]
 		public static global::System_Net_Sockets.SocketError__System_Net_Primitives gethostname(
@@ -1072,6 +1063,51 @@ namespace __Interop
 				if (unsafe_hostName != null)
 					global::System.Runtime.InteropServices.McgMarshal.SafeCoTaskMemFree(unsafe_hostName);
 			}
+		}
+
+		// Signature, WSASocketW__0, [fwd] [return] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00042D30] System_Net_Sockets_AddressFamily__System_Net_Primitives__AddressFamily__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00042D30] System_Net_Sockets_SocketType__System_Net_Sockets__SocketType__System_Net_Sockets, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] int__int, 
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.Sockets, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "WSASocketW")]
+		public static global::System.IntPtr WSASocketW__0(
+					global::System_Net_Sockets.AddressFamily__System_Net_Primitives addressFamily, 
+					global::System_Net_Sockets.SocketType__System_Net_Sockets socketType, 
+					int protocolType, 
+					global::System.IntPtr protocolInfo, 
+					int group, 
+					int flags)
+		{
+			// Setup
+			global::System.IntPtr unsafe___value;
+			// Marshalling
+			global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
+			// Call to native method
+			unsafe___value = global::__Interop.ws2_32_dll_PInvokes.WSASocketW__0(
+								addressFamily, 
+								socketType, 
+								protocolType, 
+								protocolInfo, 
+								group, 
+								flags
+							);
+			global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
+			global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, closesocket, [fwd] [return] [EETypeRva:0x00042D30] System_Net_Sockets_SocketError__System_Net_Primitives__SocketError__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.Sockets, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "closesocket")]
+		public static global::System_Net_Sockets.SocketError__System_Net_Primitives closesocket(global::System.IntPtr socketHandle)
+		{
+			// Setup
+			global::System_Net_Sockets.SocketError__System_Net_Primitives unsafe___value;
+			// Marshalling
+			global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
+			// Call to native method
+			unsafe___value = global::__Interop.ws2_32_dll_PInvokes.closesocket(socketHandle);
+			global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
+			global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
+			// Return
+			return unsafe___value;
 		}
 
 		// Signature, getsockopt, [fwd] [return] [EETypeRva:0x00042D30] System_Net_Sockets_SocketError__System_Net_Primitives__SocketError__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00043474] System_Net_Sockets_SafeCloseSocket__System_Net_Sockets____w64 int, [fwd] [in] [EETypeRva:0x00042D30] System_Net_Sockets_SocketOptionLevel__System_Net_Sockets__SocketOptionLevel__System_Net_Sockets, [fwd] [in] [EETypeRva:0x00042D30] System_Net_Sockets_SocketOptionName__System_Net_Sockets__SocketOptionName__System_Net_Sockets, [fwd] [out] [managedbyref] [nativebyref] [EETypeRva:0x00041980] int__int, [fwd] [in] [out] [managedbyref] [nativebyref] [EETypeRva:0x00041980] int__int, 
@@ -1118,51 +1154,6 @@ namespace __Interop
 			global::__Interop.ws2_32_dll_PInvokes.FreeAddrInfoExW(((global::System_Net_Sockets.AddressInfoEx__System_Net_NameResolution*)pAddrInfo));
 			global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
 			// Return
-		}
-
-		// Signature, WSASocketW__0, [fwd] [return] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00042D30] System_Net_Sockets_AddressFamily__System_Net_Primitives__AddressFamily__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00042D30] System_Net_Sockets_SocketType__System_Net_Sockets__SocketType__System_Net_Sockets, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] int__int, 
-		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.Sockets, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "WSASocketW")]
-		public static global::System.IntPtr WSASocketW__0(
-					global::System_Net_Sockets.AddressFamily__System_Net_Primitives addressFamily, 
-					global::System_Net_Sockets.SocketType__System_Net_Sockets socketType, 
-					int protocolType, 
-					global::System.IntPtr protocolInfo, 
-					int group, 
-					int flags)
-		{
-			// Setup
-			global::System.IntPtr unsafe___value;
-			// Marshalling
-			global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
-			// Call to native method
-			unsafe___value = global::__Interop.ws2_32_dll_PInvokes.WSASocketW__0(
-								addressFamily, 
-								socketType, 
-								protocolType, 
-								protocolInfo, 
-								group, 
-								flags
-							);
-			global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
-			global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
-			// Return
-			return unsafe___value;
-		}
-
-		// Signature, closesocket, [fwd] [return] [EETypeRva:0x00042D30] System_Net_Sockets_SocketError__System_Net_Primitives__SocketError__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, 
-		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Net.Sockets, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Winsock", "closesocket")]
-		public static global::System_Net_Sockets.SocketError__System_Net_Primitives closesocket(global::System.IntPtr socketHandle)
-		{
-			// Setup
-			global::System_Net_Sockets.SocketError__System_Net_Primitives unsafe___value;
-			// Marshalling
-			global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
-			// Call to native method
-			unsafe___value = global::__Interop.ws2_32_dll_PInvokes.closesocket(socketHandle);
-			global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
-			global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
-			// Return
-			return unsafe___value;
 		}
 
 		// Signature, ioctlsocket__0, [fwd] [return] [EETypeRva:0x00042D30] System_Net_Sockets_SocketError__System_Net_Primitives__SocketError__System_Net_Primitives, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [out] [managedbyref] [nativebyref] [EETypeRva:0x00041980] int__int, 
@@ -1633,67 +1624,6 @@ namespace __Interop
 	/// </summary>
 	public unsafe static partial class kernel32_dll
 	{
-		// Signature, SetConsoleTextAttribute, [fwd] [return] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00041980] short__short, 
-		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Console, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Kernel32", "SetConsoleTextAttribute")]
-		public static int SetConsoleTextAttribute(
-					global::System.IntPtr hConsoleOutput, 
-					short wAttributes)
-		{
-			// Setup
-			int unsafe___value;
-			// Marshalling
-			global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
-			// Call to native method
-			unsafe___value = global::__Interop.kernel32_dll_PInvokes.SetConsoleTextAttribute(
-								hConsoleOutput, 
-								wAttributes
-							);
-			global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
-			global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
-			// Return
-			return unsafe___value;
-		}
-
-		// Signature, GetConsoleScreenBufferInfo, [fwd] [return] [EETypeRva:0x00040818] bool__System.Boolean, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [out] [managedbyref] [nativebyref] [EETypeRva:0x0004311C] __Interop_Kernel32_CONSOLE_SCREEN_BUFFER_INFO__System_Console____Interop_Kernel32_CONSOLE_SCREEN_BUFFER_INFO__System_Console, 
-		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Console, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Kernel32", "GetConsoleScreenBufferInfo")]
-		public static bool GetConsoleScreenBufferInfo(
-					global::System.IntPtr hConsoleOutput, 
-					out global::_.Interop_Kernel32_CONSOLE_SCREEN_BUFFER_INFO__System_Console lpConsoleScreenBufferInfo)
-		{
-			// Setup
-			int unsafe___value;
-			// Marshalling
-			fixed (global::_.Interop_Kernel32_CONSOLE_SCREEN_BUFFER_INFO__System_Console* pinned_lpConsoleScreenBufferInfo = &(lpConsoleScreenBufferInfo))
-			{
-				global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
-				// Call to native method
-				unsafe___value = global::__Interop.kernel32_dll_PInvokes.GetConsoleScreenBufferInfo(
-									hConsoleOutput, 
-									pinned_lpConsoleScreenBufferInfo
-								);
-				global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
-				global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
-			}
-			// Return
-			return unsafe___value != 0;
-		}
-
-		// Signature, GetStdHandle, [fwd] [return] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00041980] int__int, 
-		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Console, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Kernel32", "GetStdHandle")]
-		public static global::System.IntPtr GetStdHandle(int nStdHandle)
-		{
-			// Setup
-			global::System.IntPtr unsafe___value;
-			// Marshalling
-			global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
-			// Call to native method
-			unsafe___value = global::__Interop.kernel32_dll_PInvokes.GetStdHandle(nStdHandle);
-			global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
-			global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
-			// Return
-			return unsafe___value;
-		}
-
 		// Signature, GetCPInfoExW, [fwd] [return] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] uint__unsigned int, [fwd] [in] [EETypeRva:0x00041980] uint__unsigned int, [fwd] [in] [EETypeRva:0x00041980] __Interop_Kernel32_CPINFOEXW__System_Text_Encoding_CodePages___ptr__Interop_Kernel32_CPINFOEXW__System_Text_Encoding_CodePages *, 
 		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Text.Encoding.CodePages, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Kernel32", "GetCPInfoExW")]
 		public static int GetCPInfoExW(
@@ -1711,6 +1641,22 @@ namespace __Interop
 								((global::_.Interop_Kernel32_CPINFOEXW__System_Text_Encoding_CodePages*)lpCPInfoEx)
 							);
 			global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, GetStdHandle, [fwd] [return] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00041980] int__int, 
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Console, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Kernel32", "GetStdHandle")]
+		public static global::System.IntPtr GetStdHandle(int nStdHandle)
+		{
+			// Setup
+			global::System.IntPtr unsafe___value;
+			// Marshalling
+			global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
+			// Call to native method
+			unsafe___value = global::__Interop.kernel32_dll_PInvokes.GetStdHandle(nStdHandle);
+			global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
+			global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
 			// Return
 			return unsafe___value;
 		}
@@ -1737,43 +1683,6 @@ namespace __Interop
 				global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
 				// Call to native method
 				unsafe___value = global::__Interop.kernel32_dll_PInvokes.FormatMessage(
-									dwFlags, 
-									lpSource, 
-									dwMessageId, 
-									dwLanguageId, 
-									((ushort*)lpBuffer), 
-									nSize, 
-									unsafe_arguments
-								);
-				global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
-				global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
-			}
-			// Return
-			return unsafe___value;
-		}
-
-		// Signature, FormatMessage__0, [fwd] [return] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00041980] uint__unsigned int, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] char___ptrwchar_t *, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00042A10] rg_System_IntPtr____w64 int *, 
-		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Console, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Kernel32", "FormatMessage")]
-		public static int FormatMessage__0(
-					int dwFlags, 
-					global::System.IntPtr lpSource, 
-					uint dwMessageId, 
-					int dwLanguageId, 
-					char* lpBuffer, 
-					int nSize, 
-					global::System.IntPtr[] arguments)
-		{
-			// Setup
-			global::System.IntPtr* unsafe_arguments;
-			int unsafe___value;
-			// Marshalling
-			fixed (global::System.IntPtr* pinned_arguments = ((arguments != null 
-						&& arguments.Length == 0) ? new global::System.IntPtr[1] : arguments))
-			{
-				unsafe_arguments = (global::System.IntPtr*)pinned_arguments;
-				global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
-				// Call to native method
-				unsafe___value = global::__Interop.kernel32_dll_PInvokes.FormatMessage__0(
 									dwFlags, 
 									lpSource, 
 									dwMessageId, 
@@ -2210,6 +2119,43 @@ namespace __Interop
 			}
 			// Return
 			return unsafe___value != 0;
+		}
+
+		// Signature, FormatMessage__0, [fwd] [return] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00041980] uint__unsigned int, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] char___ptrwchar_t *, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00042A10] rg_System_IntPtr____w64 int *, 
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("System.Console, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "Interop+Kernel32", "FormatMessage")]
+		public static int FormatMessage__0(
+					int dwFlags, 
+					global::System.IntPtr lpSource, 
+					uint dwMessageId, 
+					int dwLanguageId, 
+					char* lpBuffer, 
+					int nSize, 
+					global::System.IntPtr[] arguments)
+		{
+			// Setup
+			global::System.IntPtr* unsafe_arguments;
+			int unsafe___value;
+			// Marshalling
+			fixed (global::System.IntPtr* pinned_arguments = ((arguments != null 
+						&& arguments.Length == 0) ? new global::System.IntPtr[1] : arguments))
+			{
+				unsafe_arguments = (global::System.IntPtr*)pinned_arguments;
+				global::System.Runtime.InteropServices.McgMarshal.ClearLastWin32Error();
+				// Call to native method
+				unsafe___value = global::__Interop.kernel32_dll_PInvokes.FormatMessage__0(
+									dwFlags, 
+									lpSource, 
+									dwMessageId, 
+									dwLanguageId, 
+									((ushort*)lpBuffer), 
+									nSize, 
+									unsafe_arguments
+								);
+				global::System.Diagnostics.DebugAnnotations.PreviousCallContainsDebuggerStepInCode();
+				global::System.Runtime.InteropServices.McgMarshal.SaveLastWin32Error();
+			}
+			// Return
+			return unsafe___value;
 		}
 
 		// Signature, FormatMessage__1, [fwd] [return] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] System_IntPtr____w64 int, [fwd] [in] [EETypeRva:0x00041980] uint__unsigned int, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00041980] char___ptrwchar_t *, [fwd] [in] [EETypeRva:0x00041980] int__int, [fwd] [in] [EETypeRva:0x00042A10] rg_System_IntPtr____w64 int *, 
@@ -3072,6 +3018,11 @@ namespace __Interop
 	public unsafe static partial class ws2_32_dll_PInvokes
 	{
 		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
+		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives listen(
+					global::System.IntPtr socketHandle, 
+					int backlog);
+
+		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
 		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives shutdown(
 					global::System.IntPtr socketHandle, 
 					int how);
@@ -3081,11 +3032,6 @@ namespace __Interop
 					global::System.IntPtr socketHandle, 
 					byte* socketAddress, 
 					int* socketAddressSize);
-
-		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
-		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives listen(
-					global::System.IntPtr socketHandle, 
-					int backlog);
 
 		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
 		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives ioctlsocket(
@@ -3100,6 +3046,12 @@ namespace __Interop
 					global::System_Net_Sockets.SocketOptionName__System_Net_Sockets optionName, 
 					int* optionValue, 
 					int optionLength);
+
+		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
+		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives bind(
+					global::System.IntPtr socketHandle, 
+					byte* socketAddress, 
+					int socketAddressSize);
 
 		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
 		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives getsockname(
@@ -3122,12 +3074,6 @@ namespace __Interop
 					global::System.IntPtr* writefds, 
 					global::System.IntPtr* exceptfds, 
 					global::System.IntPtr nullTimeout);
-
-		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
-		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives bind(
-					global::System.IntPtr socketHandle, 
-					byte* socketAddress, 
-					int socketAddressSize);
 
 		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
 		public extern static int recv(
@@ -3154,9 +3100,26 @@ namespace __Interop
 					global::_.Interop_Winsock_SocketConstructorFlags__System_Net_Sockets flags);
 
 		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
+		public extern static int send(
+					global::System.IntPtr socketHandle, 
+					byte* pinnedBuffer, 
+					int len, 
+					global::System_Net_Sockets.SocketFlags__System_Net_Sockets socketFlags);
+
+		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
 		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives WSAStartup(
 					short wVersionRequested, 
 					global::_.Interop_Winsock_WSAData__System_Net_NameResolution__Impl.UnsafeType* lpWSAData);
+
+		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
+		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives WSARecv(
+					global::System.IntPtr socketHandle, 
+					global::System_Net_Sockets.WSABuffer__System_Net_Sockets* buffer, 
+					int bufferCount, 
+					int* bytesTransferred, 
+					global::System_Net_Sockets.SocketFlags__System_Net_Sockets* socketFlags, 
+					global::System_Threading.NativeOverlapped__System_Private_CoreLib* overlapped, 
+					global::System.IntPtr completionRoutine);
 
 		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
 		public extern static int GetAddrInfoExW(
@@ -3182,40 +3145,9 @@ namespace __Interop
 					global::System.IntPtr gQOS);
 
 		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
-		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives WSARecv(
-					global::System.IntPtr socketHandle, 
-					global::System_Net_Sockets.WSABuffer__System_Net_Sockets* buffer, 
-					int bufferCount, 
-					int* bytesTransferred, 
-					global::System_Net_Sockets.SocketFlags__System_Net_Sockets* socketFlags, 
-					global::System_Threading.NativeOverlapped__System_Private_CoreLib* overlapped, 
-					global::System.IntPtr completionRoutine);
-
-		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
-		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives WSASend(
-					global::System.IntPtr socketHandle, 
-					global::System_Net_Sockets.WSABuffer__System_Net_Sockets* buffers, 
-					int bufferCount, 
-					int* bytesTransferred, 
-					global::System_Net_Sockets.SocketFlags__System_Net_Sockets socketFlags, 
-					global::System_Threading.NativeOverlapped__System_Private_CoreLib* overlapped, 
-					global::System.IntPtr completionRoutine);
-
-		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
 		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives gethostname(
 					byte* hostName, 
 					int bufferLength);
-
-		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
-		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives getsockopt(
-					global::System.IntPtr socketHandle, 
-					global::System_Net_Sockets.SocketOptionLevel__System_Net_Sockets optionLevel, 
-					global::System_Net_Sockets.SocketOptionName__System_Net_Sockets optionName, 
-					int* optionValue, 
-					int* optionLength);
-
-		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
-		public extern static void FreeAddrInfoExW(global::System_Net_Sockets.AddressInfoEx__System_Net_NameResolution* pAddrInfo);
 
 		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", EntryPoint="WSASocketW", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
 		public extern static global::System.IntPtr WSASocketW__0(
@@ -3228,6 +3160,17 @@ namespace __Interop
 
 		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
 		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives closesocket(global::System.IntPtr socketHandle);
+
+		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
+		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives getsockopt(
+					global::System.IntPtr socketHandle, 
+					global::System_Net_Sockets.SocketOptionLevel__System_Net_Sockets optionLevel, 
+					global::System_Net_Sockets.SocketOptionName__System_Net_Sockets optionName, 
+					int* optionValue, 
+					int* optionLength);
+
+		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
+		public extern static void FreeAddrInfoExW(global::System_Net_Sockets.AddressInfoEx__System_Net_NameResolution* pAddrInfo);
 
 		[global::System.Runtime.InteropServices.DllImport("ws2_32.dll", EntryPoint="ioctlsocket", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
 		public extern static global::System_Net_Sockets.SocketError__System_Net_Primitives ioctlsocket__0(
@@ -3331,36 +3274,16 @@ namespace __Interop
 	public unsafe static partial class kernel32_dll_PInvokes
 	{
 		[global::System.Runtime.InteropServices.DllImport("kernel32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
-		public extern static int SetConsoleTextAttribute(
-					global::System.IntPtr hConsoleOutput, 
-					short wAttributes);
-
-		[global::System.Runtime.InteropServices.DllImport("kernel32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
-		public extern static int GetConsoleScreenBufferInfo(
-					global::System.IntPtr hConsoleOutput, 
-					global::_.Interop_Kernel32_CONSOLE_SCREEN_BUFFER_INFO__System_Console* lpConsoleScreenBufferInfo);
-
-		[global::System.Runtime.InteropServices.DllImport("kernel32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
-		public extern static global::System.IntPtr GetStdHandle(int nStdHandle);
-
-		[global::System.Runtime.InteropServices.DllImport("kernel32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
 		public extern static int GetCPInfoExW(
 					uint CodePage, 
 					uint dwFlags, 
 					global::_.Interop_Kernel32_CPINFOEXW__System_Text_Encoding_CodePages* lpCPInfoEx);
 
-		[global::System.Runtime.InteropServices.DllImport("kernel32.dll", EntryPoint="FormatMessageW", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
-		public extern static int FormatMessage(
-					int dwFlags, 
-					global::System.IntPtr lpSource, 
-					uint dwMessageId, 
-					int dwLanguageId, 
-					ushort* lpBuffer, 
-					int nSize, 
-					global::System.IntPtr* arguments);
+		[global::System.Runtime.InteropServices.DllImport("kernel32.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
+		public extern static global::System.IntPtr GetStdHandle(int nStdHandle);
 
 		[global::System.Runtime.InteropServices.DllImport("kernel32.dll", EntryPoint="FormatMessageW", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
-		public extern static int FormatMessage__0(
+		public extern static int FormatMessage(
 					int dwFlags, 
 					global::System.IntPtr lpSource, 
 					uint dwMessageId, 
@@ -3469,6 +3392,16 @@ namespace __Interop
 		public extern static int GetConsoleMode(
 					global::System.IntPtr handle, 
 					int* mode);
+
+		[global::System.Runtime.InteropServices.DllImport("kernel32.dll", EntryPoint="FormatMessageW", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
+		public extern static int FormatMessage__0(
+					int dwFlags, 
+					global::System.IntPtr lpSource, 
+					uint dwMessageId, 
+					int dwLanguageId, 
+					ushort* lpBuffer, 
+					int nSize, 
+					global::System.IntPtr* arguments);
 
 		[global::System.Runtime.InteropServices.DllImport("kernel32.dll", EntryPoint="FormatMessageW", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Winapi)]
 		public extern static int FormatMessage__1(

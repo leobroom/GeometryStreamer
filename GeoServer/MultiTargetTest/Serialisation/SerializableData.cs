@@ -55,6 +55,7 @@ namespace GeoStreamer
     public class BroadCastMesh : ISerializableData
     {
         public int id = -1;
+        public int meshNr = -1;
         public float[] vertices;
         public float[] normals;
         public int[] triangles;
@@ -73,6 +74,7 @@ namespace GeoStreamer
     public class BroadCastCurve : ISerializableData
     {
         public int id = -1;
+        public int curveNr = -1;
         public float[] positions;
         /// <summary>
         /// R,G,B,A...
@@ -85,6 +87,7 @@ namespace GeoStreamer
     public class BroadCastText : ISerializableData
     {
         public int id = -1;
+        public int textNr = -1;
         public float[] position;
         public float[] rotation;
         public byte[] color;

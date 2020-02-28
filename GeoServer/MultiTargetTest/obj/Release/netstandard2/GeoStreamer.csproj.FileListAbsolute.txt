@@ -1,0 +1,11 @@
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Release\netstandard2\GeoStreamer.deps.json
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Release\netstandard2\GeoStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Release\netstandard2\GeoStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Release\netstandard2\SocketStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Release\netstandard2\SocketStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Release\netstandard2\GeoStreamer.csprojAssemblyReference.cache
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Release\netstandard2\GeoStreamer.AssemblyInfoInputs.cache
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Release\netstandard2\GeoStreamer.AssemblyInfo.cs
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Release\netstandard2\GeoStreamer.csproj.CopyComplete
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Release\netstandard2\GeoStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Release\netstandard2\GeoStreamer.pdb

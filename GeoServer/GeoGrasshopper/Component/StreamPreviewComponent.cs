@@ -48,9 +48,9 @@ namespace GeoGrasshopper.Component
            settings = (DA.GetData(1, ref settingsGH)) ?
                 settingsGH?.Value : StreamSettings.Default;
 
-            List<GeometryBase> geometry = new List<GeometryBase>();
+            List<object> geometry = new List<object>();
             if (!DA.GetDataList(0, geometry))
-                geometry = new List<GeometryBase>();
+                geometry = new List<object>();
 
             curveTable.Clear();
             meshTable.Clear();

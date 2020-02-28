@@ -42,6 +42,9 @@ namespace SocketStreamer
         /// </summary>
         //public static string GetTestIpAdress() => "192.168.43.45";
         //public static string GetTestIpAdress() => "192.168.178.69";
-        public static string GetTestIpAdress() => "192.168.0.52";
+        //public static string GetTestIpAdress() => "192.168.178.38"; //HOME
+
+        public static string GetTestIpAdress() => "192.168.0.69"; //ITE
+        public static int GetTestPort() => 11223;
     }
 }

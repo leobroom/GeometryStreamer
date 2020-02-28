@@ -10,13 +10,13 @@ namespace GeoGrasshopper.FiberWinding
         /// <summary>
         /// Set the MiddlePoints between Pins
         /// </summary>
-        private void SetMiddlePlanes(List<Plane> previewPlanes, NurbsCurve arc, Plane[] frames, Point3d pt1, Vector3d bendingVec)
+        private void SetMiddlePlanes(List<Plane> previewPlanes, NurbsCurve arc, Plane[] frames, Point3d pt1, Vector3d[] bendingVecs)
         {
             Plane pStart = previewPlanes[previewPlanes.Count - 1];
             Plane pEnd = frames[0];
             var pt2 = arc.Points[0].Location;
-            Plane normPlane1 = GetBendingPlane(pStart, pEnd, pt1, pt2, bendingVec, bendingMulti, bendingDistance / 2);
-            Plane normPlane2 = GetBendingPlane(pStart, pEnd, pt1, pt2, bendingVec, bendingMulti, 1 - bendingDistance / 2);
+            Plane normPlane1 = GetBendingPlane(pStart, pEnd, pt1, pt2, bendingVecs[0], bendingMulti, bendingDistance / 2);
+            Plane normPlane2 = GetBendingPlane(pStart, pEnd, pt1, pt2, bendingVecs[1], bendingMulti, 1 - bendingDistance / 2);
             previewPlanes.Add(normPlane1);
             previewPlanes.Add(normPlane2);
         }
@@ -48,13 +48,20 @@ namespace GeoGrasshopper.FiberWinding
             startPoint = Point3d.Origin;
             endPoint = Point3d.Origin;
 
-            geometry = new List<NurbsCurve>();
+            geometry = new List<object>();
             matId = new List<int>();
             crvWidth = new List<double>();
             crvDiv = new List<double>();
 
-            previousColor = System.Drawing.Color.Gray;
+            previousColor = System.Drawing.Color.White;
             nextColor = System.Drawing.Color.DarkCyan;
+            markerColor = System.Drawing.Color.OrangeRed;
+
+            if (arrowMat == null)
+            {
+                arrowMat = new Rhino.Display.DisplayMaterial(nextColor);
+            }
+          
 
             previous = null;
             next = null;
@@ -62,6 +69,7 @@ namespace GeoGrasshopper.FiberWinding
             textActual = "";
             alignAxis = 0;
             toolRotation = 0;
+            bendingVectors = new List<Vector3d>();
         }
         public void GetAndMoveDoublePins(Vector3d norm, int actualIdx, ref Point3d actualPt)
         {
@@ -113,15 +121,19 @@ namespace GeoGrasshopper.FiberWinding
             }
         }
 
-        public bool CheckIfFlipped(Plane pCross, ref Vector3d norm, ref Vector3d bendingVec)
-        {
-            bendingVec = pCross.ZAxis;
-
+        public bool CheckIfFlipped(Plane pCross, ref Vector3d norm, ref Vector3d[] bendingVecs, bool hasNewBendingVecs)
+        {     
             bool isFlipped = Vector3d.Multiply(norm, pCross.Normal) < 0;
+           
             if (isFlipped)
             {
                 norm = -norm;
-                bendingVec = -bendingVec;
+
+                if (hasNewBendingVecs)
+                    return isFlipped;
+
+                bendingVecs[0] = -bendingVecs[0];
+                bendingVecs[1] = -bendingVecs[1];
             }
 
             return isFlipped;

@@ -8,12 +8,13 @@ sg.exe          : 2.2.27420.00 built by: PROJECTNREL
 
 Framework:
 clrcompression.dll                                    : 4.6.27328.03 @BuiltBy: dlab14-DDVSOWINAGE079 @Branch: release/uwp6.2-MSRC @SrcCode: https://github.com/dotnet/corefx/tree/92f4f000de17e0b82e0ad637ac478abc9b410daa
-GeoServer.dll                                         : 1.0.0.0
+GeoStreamer.dll                                       : 1.0.0.0
 Microsoft.CSharp.dll                                  : 4.6.27328.03
 Microsoft.VisualBasic.dll                             : 4.6.27328.03
 Microsoft.Win32.Primitives.dll                        : 4.6.27328.03
 mscorlib.dll                                          : 4.6.27328.03
 netstandard.dll                                       : 4.6.27328.3
+SocketStreamer.dll                                    : 1.0.0.0
 System.AppContext.dll                                 : 4.6.27328.03
 System.Buffers.dll                                    : 4.6.27328.03
 System.Collections.Concurrent.dll                     : 4.6.27328.03

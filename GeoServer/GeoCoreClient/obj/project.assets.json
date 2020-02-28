@@ -710,7 +710,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Leon Brohmann\\.nuget\\packages\\": {}
+    "C:\\Users\\Leon Brohmann\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
@@ -721,6 +722,9 @@
       "packagesPath": "C:\\Users\\Leon Brohmann\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Leon Brohmann\\Documents\\Git\\GeometryStreamer\\GeoServer\\GeoCoreClient\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "C:\\Users\\Leon Brohmann\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

@@ -1,0 +1,7 @@
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\bin\Release\netstandard2.0\SocketStreamer.deps.json
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\bin\Release\netstandard2.0\SocketStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\bin\Release\netstandard2.0\SocketStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Release\netstandard2.0\SocketStreamer.AssemblyInfoInputs.cache
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Release\netstandard2.0\SocketStreamer.AssemblyInfo.cs
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Release\netstandard2.0\SocketStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Release\netstandard2.0\SocketStreamer.pdb

@@ -4,11 +4,12 @@
     <RemoteDebugMachine>HoloLens-ITE</RemoteDebugMachine>
     <AuthenticationMode>Universal</AuthenticationMode>
     <RemoteDebugEnabled>false</RemoteDebugEnabled>
-    <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
-    <UseEmulator>false</UseEmulator>
+    <DeviceId>30f105c9-681e-420b-a277-7c086ead8a4e</DeviceId>
+    <UseEmulator>true</UseEmulator>
     <DebugEngines>
     </DebugEngines>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <BackgroundTaskDebugEngines>{A4D0363B-3DD1-49BA-9E98-4932BA9EA05A}</BackgroundTaskDebugEngines>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DebugEngines>{3B476D35-A401-11D2-AAD4-00C04F990171}</DebugEngines>

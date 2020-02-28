@@ -56,3 +56,15 @@ MonoBehaviour:
   - id: 14
     description: Clear
     axisConstraint: 7
+  - id: 15
+    description: Next
+    axisConstraint: 2
+  - id: 16
+    description: Previous
+    axisConstraint: 2
+  - id: 17
+    description: Orient
+    axisConstraint: 2
+  - id: 18
+    description: Reset
+    axisConstraint: 2

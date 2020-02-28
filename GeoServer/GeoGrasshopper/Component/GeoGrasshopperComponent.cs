@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using GeoStreamer;
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Types;
-using Rhino.Geometry;
 using SocketStreamer;
 
 namespace GeoGrasshopper
@@ -14,6 +12,8 @@ namespace GeoGrasshopper
     {
         private static RhinoClient client;
         private static readonly List<string> debugLog = new List<string>();
+        private Timer timer;
+        private static Tuple<StreamSettings, List<object>> actualValues = null;
 
         public GeoGrasshopperComponent() : base("GeometryStreamer", "GeoStream", "Streams Geometry, Author: Leon Brohmann - leonbrohmann@gmx.de", "ITE", "Network") { }
 
@@ -54,7 +54,6 @@ namespace GeoGrasshopper
             if (timer == null)
                 timer = new Timer(SendLoop, "Some state", TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1));
 
-
             SetDebug(DA);
 
             if (client == null || !isConnected)
@@ -73,8 +72,6 @@ namespace GeoGrasshopper
 
             lock (actualValues)
             {
-              
-
                 settings = actualValues.Item1;
                 geometry = actualValues.Item2;
 
@@ -102,6 +99,10 @@ namespace GeoGrasshopper
 
             Send.GeometryInfo(curveCount, meshCount, textCount, client);
 
+            int meshNr = 0;
+            int curveNr = 0;
+            int textNr = 0;
+
             for (int id = 0; id < geoCount; id++)
             {
                 var geo = geometry[id];
@@ -109,15 +110,31 @@ namespace GeoGrasshopper
                     continue;
 
                 if (geo is GH_Curve)
-                    Send.Curve(id, ((GH_Curve)geo).Value, settings, client);
-                else if (geo is GH_Mesh)
-                    Send.Mesh(id, ((GH_Mesh)geo).Value, settings, client);
-                else if (geo is GH_StreamText)
-                    Send.Text(id, ((GH_StreamText)geo).Value, settings, client);
-                else
                 {
-                    //string error = ($"Geometry is: {geo.GetType()} and it's not supported right now. Questions?: leonbrohmann@gmx.de");
-                    //AddRuntimeMessage(GH_RuntimeMessageLevel.Error, error);
+                    Send.Curve(id, curveNr,((GH_Curve)geo).Value, settings, client);
+                    curveNr++;
+                }
+
+                else if (geo is GH_Mesh)
+                {
+                    Send.Mesh(id, meshNr,((GH_Mesh)geo).Value, settings, client);
+                    meshNr++;
+                }
+
+                else if (geo is GH_StreamText)
+                {
+
+                    StreamText bla = ((GH_StreamText)geo).Value;
+
+                   var df = bla.Text; 
+
+                    Send.Text(id, textNr, ((GH_StreamText)geo).Value, settings, client);
+                    textNr++;
+                }
+
+                else
+                {          
+                    throw new Exception("TYPE IS NOT ALLOWED" + ((GH_ObjectWrapper)geo).Value.GetType());
                 }
             }
         }
@@ -134,8 +151,7 @@ namespace GeoGrasshopper
             //}
         }
 
-        Timer timer;
-        static Tuple<StreamSettings, List<object>> actualValues = null;
+
 
         private void SendGeometry(IGH_DataAccess DA)
         {
@@ -203,11 +219,12 @@ namespace GeoGrasshopper
             DA.GetData(1, ref connect);
 
             string ipAdress = "";
+            int port = Utils.GetTestPort();
             DA.GetData(0, ref ipAdress);
 
             if (client == null && connect)
             {
-                client = RhinoClient.Initialize(ipAdress, 12345, "RhinoClient", ThreadingType.Thread, (int)ClientType.Default);
+                client = RhinoClient.Initialize(ipAdress, port, "RhinoClient", ThreadingType.Thread, (int)ClientType.Default);
                 client.Message += OnMessage;
                 client.Connect();
             }

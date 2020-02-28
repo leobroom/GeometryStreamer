@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using GeoStreamer;
 using SocketStreamer;
+using UnityEngine;
 
 /// <summary>
 /// ACHTUNG HIER DÜRFEN KEINE DEBUGLOGS DRIN STEHEN
@@ -28,6 +29,14 @@ class UnityClient : GeoClient<UnityClient>
         }
     }
 
+    protected override void UpdateText(BroadCastText data)
+    {
+        lock (geometryChanged)
+        {
+            geometryChanged.Enqueue(data);
+        }
+    }
+
     protected override void UpdateGeometry(BroadCastGeometryInfo geoinfo)
     {
         lock (doSomethingBefore)
@@ -41,29 +50,24 @@ class UnityClient : GeoClient<UnityClient>
 
     public void ProcessMessages()
     {
-        lock (doSomethingBefore)
-        {
-            if (doSomethingBefore.Count > 0)
-            {
-                ISerializableData updateGeometry;
+        ISerializableData updateGeometry = null;
 
+        lock (doSomethingBefore)
+            if (doSomethingBefore.Count > 0)
                 updateGeometry = doSomethingBefore.Dequeue();
 
-                Factory.Instance.UpdateGeometry((BroadCastGeometryInfo)updateGeometry);
+        if (updateGeometry != null)
+            Factory.Instance.UpdateGeometry((BroadCastGeometryInfo)updateGeometry);
 
-  
-            }
-        }
-
-        if (geometryChanged.Count == 0)
-            return;
-
-        ISerializableData broadcast;
+        //GeometryChanged
+        ISerializableData broadcast = null;
 
         lock (geometryChanged)
-        {
-            broadcast = geometryChanged.Dequeue();
-        }
+            if (geometryChanged.Count > 0)
+                broadcast = geometryChanged.Dequeue();
+
+        if (broadcast == null)
+            return;
 
         if (broadcast is BroadCastMesh)
         {

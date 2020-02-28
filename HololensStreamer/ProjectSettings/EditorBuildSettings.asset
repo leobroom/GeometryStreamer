@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/UnityGeoStreamer.unity
-    guid: 2223d0bf6120a5f4c85073c7a0ba88ca
+    path: Assets/UnityGeoStreamer_neu.unity
+    guid: de461cb27a5b3d74da8ffad1e6b1c851
   m_configObjects: {}

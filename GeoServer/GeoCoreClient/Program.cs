@@ -10,6 +10,7 @@ namespace GeoCoreClient
         static void Main()
         {
             string ip = Utils.GetTestIpAdress();
+            int port = Utils.GetTestPort();
 
             Console.WriteLine("############");
             Console.WriteLine("Client 1 : "+ip);
@@ -17,7 +18,7 @@ namespace GeoCoreClient
 
             Thread.Sleep(1000);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            var client = TestClient.Initialize(ip, 12345, "ConsoleClient", ThreadingType.Task);
+            var client = TestClient.Initialize(ip, port, "ConsoleClient", ThreadingType.Task);
             client.Message += OnMessage;
             client.Connect();
             client.SendingRandomData(10);

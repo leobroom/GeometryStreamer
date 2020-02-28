@@ -7,7 +7,10 @@ namespace GeoGrasshopper.FiberWinding
 {
     public partial class FiberWinder : GH_Component
     {
-        private NurbsCurve previous, next, arrowLine;
+        private NurbsCurve previous, next;
+        private GH_StreamText streamText;
+        private Mesh arrowLine;
+        private Mesh pinMarkers;
         private Point3d textPosActual, startPoint, endPoint;
         private string textActual;
         /// <summary>
@@ -16,15 +19,16 @@ namespace GeoGrasshopper.FiberWinding
         private const int arcP = 6;
         private const int drawingThickness = 3;
 
-        private List<NurbsCurve> geometry;
+        private List<object> geometry;
         private List<int> matId;
         private List<double> crvWidth, crvDiv;
 
-        private System.Drawing.Color nextColor, previousColor;
+        private System.Drawing.Color nextColor, previousColor, markerColor;
 
         private List<Plane> weavingPlanes;
         private int markerSize, idx;
         private double pinSize, fiberMulti, bendingMulti, bendingDistance, toolRotation;
+        private List<Vector3d> bendingVectors;
         private AlignAxis alignAxis;
 
         /// <summary>
@@ -46,12 +50,12 @@ namespace GeoGrasshopper.FiberWinding
             pManager.AddNumberParameter("FiberMulti", "Fm", "", GH_ParamAccess.item, 0);
             pManager.AddNumberParameter("BendingMulti", "Bm", "Between 0 and 1", GH_ParamAccess.item, 0.5);
             pManager.AddNumberParameter("BendingDistance", "Bd", "Between 0 and 1", GH_ParamAccess.item, 0);
+            pManager.AddVectorParameter("BendingVectors", "Bv", "WeavingPlanes Count -1 * 2 | If nor set, some vector parameters gets created", GH_ParamAccess.list);
             pManager.AddIntegerParameter("MarkerSize", "Ms", "Size of Marker", GH_ParamAccess.item, 40);
             pManager.AddIntegerParameter("AlignAxis", "AX", "AlignAxis 0: None, 1:X, 2:Y", GH_ParamAccess.item, 0);
             pManager.AddNumberParameter("ToolRotation", "TR", "In Degree", GH_ParamAccess.item, 0.00);
 
-
-            for (int i = 3; i <= 10; i++)
+            for (int i = 3; i <= 11; i++)
                 pManager[i].Optional = true;
         }
 
@@ -86,9 +90,10 @@ namespace GeoGrasshopper.FiberWinding
             DA.GetData(5, ref fiberMulti);
             DA.GetData(6, ref bendingMulti);
             DA.GetData(7, ref bendingDistance);
-            DA.GetData(8, ref markerSize);
-            DA.GetData(9, ref _alignAxis);
-            DA.GetData(10, ref toolRotation);
+            DA.GetDataList(8, bendingVectors);
+            DA.GetData(9, ref markerSize);
+            DA.GetData(10, ref _alignAxis);
+            DA.GetData(11, ref toolRotation);
 
             //########INPUT#########
 
@@ -104,6 +109,7 @@ namespace GeoGrasshopper.FiberWinding
             Point3d lastPoint = startPoint;
 
             List<Plane> previewPlanes = new List<Plane>();
+            int bendingVCount = bendingVectors.Count;
 
             for (int i = 0; i < ptCount; i++)
             {
@@ -114,11 +120,23 @@ namespace GeoGrasshopper.FiberWinding
                 Plane pCross = new Plane(actualPt, actualPt - prevPt, actualPt - nextPt);
 
                 Vector3d norm = weavingPlanes[i].Normal;
-                Vector3d bendingVec = pCross.ZAxis;
 
                 GetAndMoveDoublePins(norm, i, ref actualPt);
 
-                bool isFlipped = CheckIfFlipped(pCross, ref norm, ref bendingVec);
+                Vector3d[] bendingVecs = new Vector3d[] { pCross.ZAxis, pCross.ZAxis };
+
+                int bendIdx = (i - 1) * 2;
+
+                bool hasNewBendingVecs = false;
+
+                if (i > 0 && bendingVCount > bendIdx)
+                {
+                    bendingVecs[0] = bendingVectors[bendIdx];
+                    bendingVecs[1] = bendingVectors[bendIdx + 1];
+                    hasNewBendingVecs = true;
+                }
+
+                bool isFlipped = CheckIfFlipped(pCross, ref norm, ref bendingVecs, hasNewBendingVecs);
 
                 if (i >= ptCount)
                     return;
@@ -138,7 +156,7 @@ namespace GeoGrasshopper.FiberWinding
                 lastPoint = arc.Points[arc.Points.Count - 1].Location;
 
                 if (i > 0)
-                    SetMiddlePlanes(previewPlanes, arc, arcFrames, pt1, bendingVec);
+                    SetMiddlePlanes(previewPlanes, arc, arcFrames, pt1, bendingVecs);
 
                 SetArcPlanes(previewPlanes, arcFrames);
 
@@ -155,16 +173,22 @@ namespace GeoGrasshopper.FiberWinding
             Polyline nLine = ContructNextLine(previewPlanes, actualPlaneIdx, ptCount);
 
             ConstructArrow(nLine, ptCount);
-            ConstructText(nLine);
+            ConstructMarkers();
+            streamText = ConstructText(nLine);
 
             StreamSettings streamSet = GetStreamSettings();
 
             //#########OUTPUT#########
 
-            List<NurbsCurve> lines = new List<NurbsCurve>()
-            { pLine.ToNurbsCurve(), nLine.ToNurbsCurve(), arrowLine };
+            List<object> streaminggeometry = new List<object>()
+            { pLine.ToNurbsCurve(), nLine.ToNurbsCurve(), arrowLine, pinMarkers};
 
-            DA.SetDataList(0, lines);
+            if (streamText != null)
+            {
+                streaminggeometry.Add(streamText);
+            }
+
+            DA.SetDataList(0, streaminggeometry);
             DA.SetData(1, streamSet);
             DA.SetDataList(2, previewPlanes);
         }

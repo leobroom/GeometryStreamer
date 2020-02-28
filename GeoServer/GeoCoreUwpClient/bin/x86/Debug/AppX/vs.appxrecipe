@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Machine>DESKTOP-8NCUU8J</Machine>
-    <WindowsUser>N C Delille</WindowsUser>
+    <Machine>ITELB</Machine>
+    <WindowsUser>Leon Brohmann</WindowsUser>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetOsVersion>10.0</TargetOsVersion>
     <TargetOsDescription>Windows 10.0</TargetOsDescription>
@@ -10,7 +10,7 @@
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>51ddd128-3db2-4f84-bbff-640f705f4062</PackageIdentityName>
     <PackageIdentityPublisher>CN=leonb</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x86\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x86\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -18,8 +18,8 @@
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>A4DC1346032658428BEEF7EA22EC364081B32DD9536D95F60160E4EC2FE8DAF5</RegisteredManifestChecksum>
+    <LayoutDir>C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\AppX</LayoutDir>
+    <RegisteredManifestChecksum>18C8600BA7BEE3DB6206AB93F25EEDEF2FAE4E855434B0066826268F2CD6D432</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>51ddd128-3db2-4f84-bbff-640f705f4062_1.0.0.0_x86__f6cfzqjstt9kg</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>51ddd128-3db2-4f84-bbff-640f705f4062_f6cfzqjstt9kg!App</RegisteredUserModeAppID>
     <RegisteredPackageID>51ddd128-3db2-4f84-bbff-640f705f4062</RegisteredPackageID>
@@ -27,148 +27,148 @@
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-04T21:37:18.264</Modified>
+      <Modified>2020-02-22T16:13:46.972</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\GeoCoreUwpClient.exe">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\GeoCoreUwpClient.exe">
       <PackagePath>entrypoint\GeoCoreUwpClient.exe</PackagePath>
-      <Modified>2019-11-04T21:37:17.085</Modified>
+      <Modified>2020-02-22T15:54:48.016</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\.nuget\packages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.8\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\.nuget\packages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.8\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
       <Modified>2019-03-12T21:22:24.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\GeoStreamer.dll">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\GeoStreamer.dll">
       <PackagePath>GeoStreamer.dll</PackagePath>
-      <Modified>2019-11-04T21:35:37.712</Modified>
+      <Modified>2020-02-22T15:02:00.032</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\SocketStreamer.dll">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\netcoreapp2.0\SocketStreamer.dll">
       <PackagePath>SocketStreamer.dll</PackagePath>
-      <Modified>2019-11-04T12:59:40.513</Modified>
+      <Modified>2020-02-22T15:01:59.024</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\bin\10.0.17763.0\XamlCompiler\Microsoft.UI.Xaml.Markup.winmd">
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>
-      <Modified>2018-10-22T23:33:40.000</Modified>
+      <Modified>2018-10-23T00:33:40.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
-      <Modified>2019-10-04T10:16:41.355</Modified>
+      <Modified>2020-02-18T19:06:56.298</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
-      <Modified>2019-10-04T10:16:41.310</Modified>
+      <Modified>2020-02-18T19:06:52.860</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-10-04T10:16:41.320</Modified>
+      <Modified>2020-02-18T19:06:52.868</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-10-04T10:16:41.324</Modified>
+      <Modified>2020-02-18T19:06:52.872</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-10-04T10:16:41.328</Modified>
+      <Modified>2020-02-18T19:06:52.877</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-10-04T10:16:41.331</Modified>
+      <Modified>2020-02-18T19:06:52.882</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-10-04T10:16:41.335</Modified>
+      <Modified>2020-02-18T19:06:52.886</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-10-04T10:16:41.337</Modified>
+      <Modified>2020-02-18T19:06:52.890</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\GeoCoreUwpClient.xr.xml">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\GeoCoreUwpClient.xr.xml">
       <PackagePath>GeoCoreUwpClient.xr.xml</PackagePath>
-      <Modified>2019-11-04T13:53:00.431</Modified>
+      <Modified>2020-02-18T19:07:02.083</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2019-11-04T21:37:16.901</Modified>
+      <Modified>2020-02-22T16:13:45.993</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\MainPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2019-11-04T21:37:16.902</Modified>
+      <Modified>2020-02-22T16:13:45.993</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17763.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
-      <Modified>2018-10-22T22:44:28.000</Modified>
+      <Modified>2018-10-22T23:44:28.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2019-11-04T09:53:39.746</Modified>
+      <Modified>2020-02-22T16:13:46.322</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\Core\GeoCoreUwpClient.exe">
+    <AppxPackagedFile Include="C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\bin\x86\Debug\Core\GeoCoreUwpClient.exe">
       <PackagePath>GeoCoreUwpClient.exe</PackagePath>
-      <Modified>2019-11-04T21:37:18.221</Modified>
+      <Modified>2020-02-22T16:13:46.933</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
-    <ResolvedSDKReference Include="C:\Users\N C Delille\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\Leon Brohmann\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
       <Name>Microsoft.NET.CoreRuntime.2.2</Name>
       <Version>2.2.27404.2</Version>
       <Architecture>x86</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreRuntime.2.2, MinVersion = 2.2.27404.2, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\N C Delille\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\Leon Brohmann\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Users\N C Delille\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\Leon Brohmann\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
       <Name>Microsoft.NET.CoreRuntime.2.2</Name>
       <Version>2.2.27404.2</Version>
       <Architecture>x64</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreRuntime.2.2, MinVersion = 2.2.27404.2, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\N C Delille\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\Leon Brohmann\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Users\N C Delille\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\Leon Brohmann\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
       <Name>Microsoft.NET.CoreRuntime.2.2</Name>
       <Version>2.2.27404.2</Version>
       <Architecture>arm</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreRuntime.2.2, MinVersion = 2.2.27404.2, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\N C Delille\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\Leon Brohmann\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Users\N C Delille\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\Leon Brohmann\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
       <Name>Microsoft.NET.CoreFramework.Debug.2.2</Name>
       <Version>2.2.27505.2</Version>
       <Architecture>x86</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreFramework.Debug.2.2, MinVersion = 2.2.27505.2, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\N C Delille\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\Leon Brohmann\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Users\N C Delille\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\Leon Brohmann\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
       <Name>Microsoft.NET.CoreFramework.Debug.2.2</Name>
       <Version>2.2.27505.2</Version>
       <Architecture>x64</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreFramework.Debug.2.2, MinVersion = 2.2.27505.2, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\N C Delille\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\Leon Brohmann\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Users\N C Delille\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\Leon Brohmann\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
       <Name>Microsoft.NET.CoreFramework.Debug.2.2</Name>
       <Version>2.2.27505.2</Version>
       <Architecture>arm</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreFramework.Debug.2.2, MinVersion = 2.2.27505.2, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\N C Delille\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\Leon Brohmann\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.8\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
