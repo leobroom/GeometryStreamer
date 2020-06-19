@@ -1,36 +1,50 @@
 ﻿using Grasshopper.Kernel;
+using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
 
-namespace GeoGrasshopper.FiberWinding
+namespace GeoGrasshopper
 {
     public partial class FiberWinder : GH_Component
     {
         /// <summary>
         /// Set the MiddlePoints between Pins
         /// </summary>
-        private void SetMiddlePlanes(List<Plane> previewPlanes, NurbsCurve arc, Plane[] frames, Point3d pt1, Vector3d[] bendingVecs)
+        private void SetMiddlePlanes(List<Plane> previewPlanes, List<GH_Plane> bendingPlanes, NurbsCurve arc, Plane[] frames, Point3d pt1, Vector3d[] bendingVecs)
         {
             Plane pStart = previewPlanes[previewPlanes.Count - 1];
             Plane pEnd = frames[0];
+
+
             var pt2 = arc.Points[0].Location;
+
             Plane normPlane1 = GetBendingPlane(pStart, pEnd, pt1, pt2, bendingVecs[0], bendingMulti, bendingDistance / 2);
             Plane normPlane2 = GetBendingPlane(pStart, pEnd, pt1, pt2, bendingVecs[1], bendingMulti, 1 - bendingDistance / 2);
             previewPlanes.Add(normPlane1);
             previewPlanes.Add(normPlane2);
+            bendingPlanes.Add(new GH_Plane(normPlane1));
+            bendingPlanes.Add(new GH_Plane(normPlane2));
         }
 
-        private void SetEndPlane(List<Plane> previewPlanes, Plane[] arcFrames)
+        private Plane SetEndPlane(List<Plane> previewPlanes, Plane[] arcFrames)
         {
             Plane lastPlane = arcFrames[arcFrames.Length - 1];
-            previewPlanes.Add(new Plane(endPoint, lastPlane.XAxis, lastPlane.YAxis));
+            Plane end = new Plane(endPoint, lastPlane.XAxis, lastPlane.YAxis);
+
+            previewPlanes.Add(end);
+
+            return end;
         }
 
-        private void SetStartPlane(List<Plane> previewPlanes, Plane[] arcFrames)
+        private Plane SetStartPlane(List<Plane> previewPlanes, Plane[] arcFrames)
         {
             Plane firstPlane = arcFrames[0];
-            previewPlanes.Add(new Plane(startPoint, firstPlane.XAxis, firstPlane.YAxis));
+            Plane start = new Plane(startPoint, firstPlane.XAxis, firstPlane.YAxis);
+
+            previewPlanes.Add(start);
+
+            return start;
         }
 
         private void SetArcPlanes(List<Plane> previewPlanes, Plane[] arcFrames)
@@ -53,7 +67,7 @@ namespace GeoGrasshopper.FiberWinding
             crvWidth = new List<double>();
             crvDiv = new List<double>();
 
-            previousColor = System.Drawing.Color.White;
+            previousColor = System.Drawing.Color.Gray;
             nextColor = System.Drawing.Color.DarkCyan;
             markerColor = System.Drawing.Color.OrangeRed;
 
@@ -61,7 +75,6 @@ namespace GeoGrasshopper.FiberWinding
             {
                 arrowMat = new Rhino.Display.DisplayMaterial(nextColor);
             }
-          
 
             previous = null;
             next = null;
@@ -122,9 +135,9 @@ namespace GeoGrasshopper.FiberWinding
         }
 
         public bool CheckIfFlipped(Plane pCross, ref Vector3d norm, ref Vector3d[] bendingVecs, bool hasNewBendingVecs)
-        {     
+        {
             bool isFlipped = Vector3d.Multiply(norm, pCross.Normal) < 0;
-           
+
             if (isFlipped)
             {
                 norm = -norm;
@@ -302,25 +315,48 @@ namespace GeoGrasshopper.FiberWinding
             {
                 Plane p = previewPlanes[q];
 
-                double rotateAngle = 0;
-
-                switch (axis)
-                {
-                    case AlignAxis.X:
-                        rotateAngle = Vector3d.VectorAngle(p.XAxis, Vector3d.XAxis, p);
-                        break;
-                    case AlignAxis.Y:
-                        rotateAngle = Vector3d.VectorAngle(p.YAxis, Vector3d.YAxis, p);
-                        break;
-                }
-
-                p.Rotate(rotateAngle, p.ZAxis);
-
-                if (toolRotation != 0)
-                    p.Rotate(toolRotation * Math.PI / 180, p.ZAxis);
+                AlignPlane(axis, ref p);
 
                 previewPlanes[q] = p;
             }
+        }
+
+        private void AlignPlanes(AlignAxis axis, List<GH_Plane> previewPlanes)
+        {
+            if (axis == AlignAxis.None)
+                return;
+
+            for (int q = 0; q < previewPlanes.Count; q++)
+            {
+                Plane p = previewPlanes[q].Value;
+
+                AlignPlane(axis, ref p);
+
+                previewPlanes[q].Value = p;
+            }
+        }
+
+        private void AlignPlane(AlignAxis axis, ref Plane p)
+        {
+            if (axis == AlignAxis.None)
+                return;
+
+            double rotateAngle = 0;
+
+            switch (axis)
+            {
+                case AlignAxis.X:
+                    rotateAngle = Vector3d.VectorAngle(p.XAxis, Vector3d.XAxis, p);
+                    break;
+                case AlignAxis.Y:
+                    rotateAngle = Vector3d.VectorAngle(p.YAxis, Vector3d.YAxis, p);
+                    break;
+            }
+
+            p.Rotate(rotateAngle, p.ZAxis);
+
+            if (toolRotation != 0)
+                p.Rotate(toolRotation * Math.PI / 180, p.ZAxis);
         }
 
         private void SetAlignAxis(int _alignAxis)

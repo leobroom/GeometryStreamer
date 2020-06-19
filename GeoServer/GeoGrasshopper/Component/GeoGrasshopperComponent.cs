@@ -10,8 +10,10 @@ namespace GeoGrasshopper
 {
     public class GeoGrasshopperComponent : GH_Component
     {
-        private static RhinoClient client;
-        private static readonly List<string> debugLog = new List<string>();
+        private double timeIntervalInSeconds = 0.1;
+
+        private  RhinoClient client;
+        private  readonly List<string> debugLog = new List<string>();
         private Timer timer;
         private static Tuple<StreamSettings, List<object>> actualValues = null;
 
@@ -52,17 +54,19 @@ namespace GeoGrasshopper
             bool isConnected = ConnectClient(DA);
 
             if (timer == null)
-                timer = new Timer(SendLoop, "Some state", TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1));
+                timer = new Timer(SendLoop, "Some state", TimeSpan.FromSeconds(timeIntervalInSeconds), TimeSpan.FromSeconds(timeIntervalInSeconds));
 
             SetDebug(DA);
 
-            if (client == null || !isConnected)
+            if (client == null || !isConnected) 
+            {
                 return;
+            }
 
             SendGeometry(DA);
         }
 
-        private static void SendLoop(object state)
+        private  void SendLoop(object state)
         {
             StreamSettings settings;
             List<object> geometry;
@@ -163,49 +167,7 @@ namespace GeoGrasshopper
             if (!DA.GetDataList(3, geometry))
                 geometry = new List<object>();
 
-
-
-            actualValues = new Tuple<StreamSettings, List<object>>(settings, geometry);
-
-            //int geoCount = geometry.Count;
-            //int curveCount = 0;
-            //int meshCount = 0;
-            //int textCount = 0;
-
-            //for (int id = 0; id < geoCount; id++)
-            //{
-            //    var geo = geometry[id];
-            //    if (geo == null)
-            //        continue;
-
-            //    if (geo is GH_Curve)
-            //        curveCount++;
-            //    else if (geo is GH_Mesh)
-            //        meshCount++;
-            //    else if (geo is GH_StreamText)
-            //        textCount++;
-            //}
-
-            //Send.GeometryInfo(curveCount, meshCount, textCount, client);
-
-            //for (int id = 0; id < geoCount; id++)
-            //{
-            //    var geo = geometry[id];
-            //    if (geo == null)
-            //        continue;
-
-            //    if (geo is GH_Curve)
-            //        Send.Curve(id, ((GH_Curve)geo).Value, settings, client);
-            //    else if (geo is GH_Mesh)
-            //        Send.Mesh(id, ((GH_Mesh)geo).Value, settings, client);
-            //    else if (geo is GH_StreamText)
-            //        Send.Text(id, ((GH_StreamText)geo).Value, settings, client);
-            //    else
-            //    {
-            //        string error = ($"Geometry is: {geo.GetType()} and it's not supported right now. Questions?: leonbrohmann@gmx.de");
-            //        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, error);
-            //    }
-            //}
+            actualValues = new Tuple<StreamSettings, List<object>>(settings, geometry);   
         }
 
         /// <summary>
@@ -220,22 +182,40 @@ namespace GeoGrasshopper
 
             string ipAdress = "";
             int port = Utils.GetTestPort();
+
+            bool isConnected = false;
+
             DA.GetData(0, ref ipAdress);
 
-            if (client == null && connect)
+            if (connect)
             {
-                client = RhinoClient.Initialize(ipAdress, port, "RhinoClient", ThreadingType.Thread, (int)ClientType.Default);
-                client.Message += OnMessage;
-                client.Connect();
+                if (client == null)
+                {
+                    client = RhinoClient.Initialize(ipAdress, port, "RhinoClient", ThreadingType.Task, 20, (int)ClientType.Default);
+                }
+
+                if (!client.IsConnected)
+                {
+                  //  client = RhinoClient.Initialize(ipAdress, port, "RhinoClient", ThreadingType.Thread, 20, (int)ClientType.Default);
+                   // client.Message += OnMessage;
+                    client.Connect();          
+                }
+
+                isConnected = client.IsConnected;
             }
-            else if (client != null && !connect)
+            else
             {
-                client.Disconnect();
-                client = null;
+                if (client != null)
+                {
+                    client.Disconnect();
+                }
+           
+                //client = null;
+                isConnected = false;
                 debugLog.Add("Try to Disconnect...");
             }
 
-            return connect;
+            return isConnected;
         }
 
         public override void RemovedFromDocument(GH_Document document)

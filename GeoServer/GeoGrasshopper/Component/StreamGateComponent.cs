@@ -57,8 +57,8 @@ namespace GeoGrasshopper.Component
             var output = source.Attributes.OutputGrip;
 
             var path = GH_Painter.ConnectionPath
-                (input, output,GH_WireDirection.left,GH_WireDirection.right);
-           
+                (input, output, GH_WireDirection.left, GH_WireDirection.right);
+
             var edge = new Pen(Color.Red, 14)
             {
                 DashCap = DashCap.Triangle,
@@ -132,6 +132,10 @@ namespace GeoGrasshopper.Component
             {
                 drawWire = false;
                 output = newNumber;
+
+                //Hier über RhinoClient senden
+                if (RhinoClient.Instance != null)
+                    RhinoClient.Instance.SendIndex(Convert.ToInt32(output));
             }
 
             // Set Output

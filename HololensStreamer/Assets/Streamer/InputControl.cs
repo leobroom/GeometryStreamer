@@ -1,48 +1,94 @@
 ﻿using Microsoft.MixedReality.Toolkit.Input;
-using System.Collections.Generic;
 using UnityEngine;
-using Microsoft.MixedReality.Toolkit;
 
+//##################################################################
+// Author Leon Brohmann
+// E-Mail: Leonbrohmann@gmx.de | leon.brohmann@tu-braunschweig.de
+//##################################################################
 
+/// <summary>
+/// This class controlls, what happens, if you use the select gesture etc.
+/// </summary>
 public class InputControl : MonoBehaviour
 {
-    public GameObject cursorDummy;
+    /// <summary>
+    /// The custom cursor  - indicates which modus is set
+    /// </summary>
+    [SerializeField]
+    private GameObject cursor;
 
-    public GameObject providerObj;
+    /// <summary>
+    /// HelperObject to get the GazeProvider provider
+    /// </summary>
+    [SerializeField]
+    private GameObject providerObj;
+
+    /// <summary>
+    /// There can be just one modus active, these are the different modi
+    /// </summary>
+    private enum Modus
+    {
+        /// <summary>
+        /// Default Mode - the initial state, you can do nothing here
+        /// </summary>
+        Reset = 0,
+        /// <summary>
+        /// Orient the World Coordinates
+        /// </summary>
+        Orient = 1,
+        /// <summary>
+        /// Set the index + and send it to the server, which sends it to rhino
+        /// </summary>
+        Next = 2,
+        /// <summary>
+        /// Set the index - and send it to the server, which sends it to rhino
+        /// </summary>
+        Previous = 3
+    }
+
+    /// <summary>
+    /// The actual Modus of the App
+    /// </summary>
+    private Modus actualModus = Modus.Reset;
+
+    /// <summary>
+    /// The actual Index of the Rhino Geometry/Fiberwinding Component
+    /// </summary>
+    private int actualIndex = 0;
+
+    /// <summary>
+    /// MRTK - GazeProvider - The floating point you see, when you have the hololens on your head
+    /// </summary>
     private GazeProvider provider;
-    private GameObject pointer;
 
-    public GameObject WorldCoordinateObject;
-
-    public Material mat;
-
-    Vector3 hitposition;
-
-    MaterialPropertyBlock propBlock;
-    readonly float pointerSize = 0.03f;
-
-
-    //Orient
-    private List<GameObject> orientSpheres = new List<GameObject>();
-
+    /// <summary>
+    /// Set Up, when the Programm Starts
+    /// </summary>
     void Start()
     {
         provider = providerObj.GetComponentInChildren<GazeProvider>();
-        propBlock = new MaterialPropertyBlock();
-
+        Cursor.Instantiate(cursor, provider);
         SetMode((int)Modus.Reset);
     }
 
+    /// <summary>
+    /// When the Select Action gets triggerd, this method is called - 
+    /// see in Unity in the inputManager / Input Action scripts
+    /// </summary>
     public void OnSelect()
     {
         switch (actualModus)
         {
             default:
             case Modus.Reset:
-
+                // Do nothing
                 break;
             case Modus.Orient:
-                SetOrient();
+                bool reset;
+                Orientation.Instance.SetOrient(provider.HitPosition, out reset);
+
+                if (reset)
+                    SetMode(Modus.Reset);
                 break;
             case Modus.Next:
                 NextStep();
@@ -53,205 +99,67 @@ public class InputControl : MonoBehaviour
         }
     }
 
-    private void SetOrient()
+    /// <summary>
+    /// This Method is called from the Unity Inspector in the InputAction Script
+    /// </summary>
+    /// <param name="modus"></param>
+    public void SetMode(int modus) => SetMode((Modus)modus);
+
+    /// <summary>
+    /// Set the actual mode
+    /// </summary>
+    /// <param name="modus"></param>
+    private void SetMode(Modus modus)
     {
-        Debug.Log("SetOrient");
-
-        if (orientSpheres.Count == 2)
-        {
-            CreateSphere(hitposition);
-            SetOrientPlane();
-            SetMode((int)Modus.Reset);
-            return;
-        }
-
-        CreateSphere(hitposition);
-    }
-
-    void CreateSphere(Vector3 pos)
-    {
-        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-
-        go.GetComponent<Collider>().enabled = false;
-
-        float s = 0.02f;
-        go.transform.localScale = new Vector3(s, s, s);
-        go.transform.position = pos;
-
-        orientSpheres.Add(go);
-    }
-
-    int actualIndex = 0;
-
-    public enum Modus
-    {
-        Reset = 0,
-        Orient = 1,
-        Next = 2,
-        Previous = 3
-    }
-
-    Modus actualModus = Modus.Reset;
-
-    public void SetMode(int modus)
-    {
-        actualModus = (Modus)modus;
-
+        actualModus = modus;
         Debug.Log(actualModus);
 
         switch (actualModus)
         {
             case Modus.Orient:
-                SetCursor(CursorMode.Orient);
-                DestroyAllSpheres();
-                SetSpatialMapping(true);
+                Cursor.Instance.SetMode(Cursor.Mode.Orient);
+                Orientation.Instance.Reset();
                 break;
             default:
             case Modus.Reset:
-                SetCursor(CursorMode.None);
-                DestroyAllSpheres();
-                SetSpatialMapping(false);            
+                Cursor.Instance.SetMode(Cursor.Mode.None);
+                Orientation.Instance.Reset();
                 break;
             case Modus.Next:
-                SetCursor(CursorMode.Next);
-                DestroyAllSpheres();
-                SetSpatialMapping(false);
+                Cursor.Instance.SetMode(Cursor.Mode.Next);
+                Orientation.Instance.Reset();
                 break;
             case Modus.Previous:
-                SetCursor(CursorMode.Previous);
-                DestroyAllSpheres();
-                SetSpatialMapping(false);
+                Cursor.Instance.SetMode(Cursor.Mode.Previous);
+                Orientation.Instance.Reset();
                 break;
-
-
         }
-    }
-
-    void SetSpatialMapping(bool active)
-    {
-        ////GEht noch nicht
-
-        //if (active)
-        //{
-        //    MixedRealityToolkit.SpatialAwarenessSystem.Enable();
-        //    //var observers = MixedRealityToolkit.SpatialAwarenessSystem.GetObservers();
-
-        //    //foreach (var o in observers)
-        //    //{
-        //    //    o.Reset();
-        //    //}
-
-        //}
-        //else
-        //{
-        //    MixedRealityToolkit.SpatialAwarenessSystem.Disable();
-        //}
     }
 
     void Update()
     {
-        hitposition = provider.HitPosition;
+        Cursor.Instance.SetPosition();
 
-        cursorDummy.gameObject.transform.position = hitposition;
-        Vector3 hit = new Vector3(provider.GazeDirection.x, 0, provider.GazeDirection.z);
-        cursorDummy.gameObject.transform.localRotation = Quaternion.LookRotation(provider.transform.forward, provider.transform.up);
-
+        // Just for Debug - you can use the Enter Key for simulating the select finger pose
         if (Input.GetKeyUp(KeyCode.KeypadEnter))
             OnSelect();
     }
 
+    /// <summary>
+    /// Sets the next Index and send it to Rhino
+    /// </summary>
     public void NextStep()
     {
         actualIndex++;
         UnityClient.Instance.SendIndex(actualIndex);
     }
 
+    /// <summary>
+    /// Sets the previous Index and send it to Rhino
+    /// </summary>
     public void PreviousStep()
     {
         actualIndex--;
         UnityClient.Instance.SendIndex(actualIndex);
-    }
-
-
-    // Cursor
-
-    enum CursorMode
-    {
-        None,
-        Orient,
-        Next,
-        Previous
-    }
-
-    CursorMode actualCursor;
-    void SetCursor(CursorMode actualCursor)
-    {
-        this.actualCursor = actualCursor;
-
-        switch (actualCursor)
-        {
-            default:
-            case CursorMode.None:
-                SetCursorStatus(false);
-                break;
-            case CursorMode.Orient:
-                SetCursorStatus(true);
-                SetCursorColor(Color.grey);
-                break;
-            case CursorMode.Next:
-                SetCursorStatus(true);
-                SetCursorColor(Color.white);
-                break;
-            case CursorMode.Previous:
-                SetCursorStatus(true);
-                SetCursorColor(Color.red);
-                break;
-        }
-    }
-
-
-    void SetCursorStatus(bool isActive) => cursorDummy.SetActive(isActive);
-
-    void SetCursorColor(Color c)
-    {
-        LineRenderer[] renderers = cursorDummy.GetComponentsInChildren<LineRenderer>();
-
-        foreach (var r in renderers)
-        {
-            r.GetPropertyBlock(propBlock);
-            propBlock.SetColor("_Color", c);
-            r.SetPropertyBlock(propBlock);
-        }
-    }
-
-    // ORIENT
-
-    private void DestroyAllSpheres()
-    {
-        foreach (var go in orientSpheres)
-        {
-            GameObject.Destroy(go);
-        }
-
-        orientSpheres.Clear();
-    }
-
-    void SetOrientPlane()
-    {
-        WorldCoordinateObject.SetActive(true);
-
-        Vector3 a = orientSpheres[0].transform.position;
-        Vector3 b = orientSpheres[1].transform.position;
-        Vector3 c = orientSpheres[2].transform.position;
-
-        Vector3 forward = b - a;
-        Vector3 right = c - a;
-
-        Vector3 up = Vector3.Cross(forward, right);
-
-        WorldCoordinateObject.transform.localPosition = a;
-        WorldCoordinateObject.transform.localRotation = Quaternion.LookRotation(forward, up);
-        Vector3 movingVec = (WorldCoordinateObject.transform.forward + WorldCoordinateObject.transform.right) * 0.5f;
-        WorldCoordinateObject.transform.localPosition += movingVec;
     }
 }

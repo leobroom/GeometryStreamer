@@ -3,7 +3,7 @@ using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
 
-namespace GeoGrasshopper.FiberWinding
+namespace GeoGrasshopper
 {
     public partial class FiberWinder : GH_Component
     {

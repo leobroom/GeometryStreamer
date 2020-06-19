@@ -32,8 +32,8 @@ namespace GeoStreamer
             serializer = new GeoSerializer();
         }
 
-        public static T Initialize(string ip, int port, string name, ThreadingType tType, ClientType clientType = ClientType.Default)
-            => Initialize(ip, port, name, tType,(int)clientType);
+        public static T Initialize(string ip, int port, string name, ThreadingType tType, int waitInMiliseconds, ClientType clientType = ClientType.Default)
+            => Initialize(ip, port, name, tType, waitInMiliseconds, (int)clientType);
 
         protected override void SendLog(string message)
         {
@@ -141,6 +141,8 @@ namespace GeoStreamer
                     allowSending = true;
                     SendLog("  allowSending = true");
                     break;
+                case SimpleMsg.Msg.ServerKillMe:
+                    throw new Exception("I am not Server can't kill anyone");
                 default:
                     break;
             }
@@ -204,7 +206,15 @@ namespace GeoStreamer
 
             try
             {
+                SimpleMsg killMe = new SimpleMsg
+                {
+                    message = SimpleMsg.Msg.ServerKillMe
+                };
+
+                Send(killMe);
+
                 base.Disconnect();
+
             }
             catch (Exception e)
             {

@@ -34,5 +34,21 @@ namespace GeoGrasshopper
                 OnIndexChanged?.Invoke(this, new IndexEventArgs(updateIndex.gateId,updateIndex.index));
             });    
         }
+
+        /// <summary>
+        /// Send the actual GeometryIndex to the Server - Rhino reads it, actualise its StreamingGate
+        /// - Geometry will change afterwards
+        /// </summary>
+        /// <param name="idx"></param>
+        public void SendIndex(int idx)
+        {
+            BroadCastIndex idxMsg = new BroadCastIndex
+            {
+                gateId = 0,
+                index = idx
+            };
+
+            Send(idxMsg);
+        }
     }
 }

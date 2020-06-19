@@ -37,6 +37,7 @@ namespace GeoStreamer
         {
             None = 0,
             AllowClientToSendData =1,
+            ServerKillMe =2
         }
 
         public override string ToString() => $"SimpleMsg:  {message}";

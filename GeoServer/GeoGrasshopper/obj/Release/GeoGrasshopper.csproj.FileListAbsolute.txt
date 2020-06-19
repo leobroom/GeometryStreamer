@@ -10,4 +10,3 @@ C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\o
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Release\GeoGrasshopper.dll
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Release\GeoGrasshopper.pdb
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GH_IO.dll
-C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\obj\Release\GeoGrasshopper.csprojAssemblyReference.cache

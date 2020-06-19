@@ -62,8 +62,20 @@ namespace GeoStreamer
                 case MessageType.BroadCastText:
                     SendToOthers(data, (int)typeFromHeader, client);
                     break;
+                case MessageType.SimpleMsg:
+                    var simMsgData = serializer.DeserializeFromBytes<SimpleMsg>(data);
+
+                    if (simMsgData.message == SimpleMsg.Msg.ServerKillMe) 
+                    {
+                        Console.WriteLine("SimpleMsg.Msg.ServerKillMe, try to kill socket...");
+                        RemoveClient(client);
+                    }
+                    break;
                 default:
                     throw new Exception($"Type: {typeFromHeader} ist nicht vorhanden!");
+                    //Console.WriteLine($"Type: {typeFromHeader} ist nicht vorhanden!");
+                    //break;
+                    //throw new Exception($"Type: {typeFromHeader} ist nicht vorhanden!");
             }
         }
 

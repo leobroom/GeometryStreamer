@@ -7,8 +7,6 @@ namespace SocketStreamer
     {
         private void Receive(Socket client)
         {
-            //try
-            //{
                 HeaderState state = new HeaderState
                 {
                     workSocket = client,
@@ -24,12 +22,6 @@ namespace SocketStreamer
                 client.Receive(state.buffer, 0, state.buffer.Length, 0);
 
                 Deserialize(client, state.headerType, state.buffer);
-                //receiveDone.Set();
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.ToString());
-            //}
         }
 
         /// <summary>

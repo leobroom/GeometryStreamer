@@ -1,9 +1,8 @@
 ﻿using Grasshopper.Kernel;
 using Rhino.Display;
-using Rhino.Geometry;
 using System.Collections.Generic;
 
-namespace GeoGrasshopper.FiberWinding
+namespace GeoGrasshopper
 {
     public partial class FiberWinder : GH_Component
     {

@@ -8,7 +8,6 @@ using System.Threading;
 using System.Threading.Tasks;
 #endif
 
-
 namespace SocketStreamer
 {
     public enum ThreadingType
@@ -20,9 +19,9 @@ namespace SocketStreamer
     public partial class Client<T> : BaseClient where T : IClient, new()
     {
         // ManualResetEvent instances signal completion.  
-        private static ManualResetEvent connectDone = new ManualResetEvent(false);
-        private static ManualResetEvent sendDone = new ManualResetEvent(false);
-        private static ManualResetEvent receiveDone = new ManualResetEvent(false);
+        private static readonly ManualResetEvent connectDone = new ManualResetEvent(false);
+        private static readonly ManualResetEvent sendDone = new ManualResetEvent(false);
+        private static readonly ManualResetEvent receiveDone = new ManualResetEvent(false);
 
         private Socket socket;
 
@@ -34,7 +33,7 @@ namespace SocketStreamer
         private Task sendingTask;
 #endif
 
-        private Queue<Tuple<byte[], byte[]>> sendingDataQueue = new Queue<Tuple<byte[], byte[]>>();
+        private readonly Queue<Tuple<byte[], byte[]>> sendingDataQueue = new Queue<Tuple<byte[], byte[]>>();
 
         protected bool allowSending = false;
 
@@ -48,15 +47,23 @@ namespace SocketStreamer
 
         public static T Instance => instance;
 
-        CancellationTokenSource tokenSource = new CancellationTokenSource();
+        CancellationTokenSource tokenSource;
         CancellationToken token;
 
-        public static T Initialize(string ip, int port, string name, ThreadingType taskType, int clientType = 1)
+
+        private bool isConnected;
+
+        public bool IsConnected
+        {
+            get { return isConnected; }
+        }
+
+        public static T Initialize(string ip, int port, string name, ThreadingType taskType, int waitInMiliseconds, int clientType = 1)
         {
             if (instance == null)
                 instance = new T();
 
-            instance.Set(ip, port, name, taskType, clientType);
+            instance.Set(ip, port, name, taskType, waitInMiliseconds, clientType);
 
             return instance;
         }
@@ -78,16 +85,21 @@ namespace SocketStreamer
                 IPAddress ipAddress = IPAddress.Parse(ip);
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
 
+
+
+
                 // Create a TCP/IP socket.  
                 socket = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
                 // Connect to the remote endpoint.  
                 socket.BeginConnect(remoteEP, new AsyncCallback(ConnectCallback), socket);
 
+                isConnected = true;
+
 #if (useThreads)
                 connectDone.WaitOne();
 #endif
-
+                tokenSource = new CancellationTokenSource();
                 token = tokenSource.Token;
 
                 // Receive the response from the remote device.  
@@ -109,6 +121,7 @@ namespace SocketStreamer
             {
                 abort = true;
 
+                tokenSource.Cancel();
 #if (useThreads)
                 listingThread?.Abort();
                 sendingThread?.Abort();
@@ -116,25 +129,22 @@ namespace SocketStreamer
             listingThread= null;
 #else
 
-                //listingTask.Dispose();
-                //sendingTask.Dispose();
-
-                tokenSource.Cancel();
 
 
                 listingTask = null;
-            sendingTask = null;
+                sendingTask = null;
 #endif
 
-                socket?.Shutdown(SocketShutdown.Both);
-                socket?.Close();
+
+                socket?.Dispose();
 
                 socket = null;
+
             }
             catch (SocketException e)
             {
                 SendLog(e.Message);
-            }    
+            }
         }
         private void ConnectCallback(IAsyncResult ar)
         {
@@ -169,35 +179,31 @@ namespace SocketStreamer
 
             void SendData()
             {
+
                 //First connect To Server message
                 Tuple<byte[], byte[]> headData = sendingDataQueue.Dequeue();
                 byte[] header = headData.Item1;
                 byte[] data = headData.Item2;
                 SendBytes(socket, header, data);
-                //sendDone.WaitOne();
+                Thread.Sleep(100);
 
-                while (!token.IsCancellationRequested)
+                while (!token.IsCancellationRequested && isConnected)
                 {
                     try
                     {
                         if (allowSending && sendingDataQueue.Count != 0)
                         {
-
-
                             headData = sendingDataQueue.Dequeue();
                             header = headData.Item1;
                             data = headData.Item2;
                             SendBytes(socket, header, data);
 
 #if (useThreads)
-            sendingThread.Sleep(200);
+            sendingThread.Sleep(waitInMiliseconds);
 #else
-                            sendingTask.Wait(TimeSpan.FromSeconds(0.2));
+                            double wait = waitInMiliseconds / 1000.00;
+                            sendingTask.Wait(TimeSpan.FromSeconds(wait));
 #endif
-
-                            //#if (useThreads)
-                            //              sendDone.WaitOne();
-                            //#endif
 
                         }
                     }
@@ -206,12 +212,16 @@ namespace SocketStreamer
                         SendLog(e.Message);
                     }
                 }
+
+                isConnected = false;
                 SendLog($"Stopped Sending");
             }
         }
 
         public void StartListening(Socket socket)
         {
+
+
 #if (useThreads)
             listingThread = new Thread(() =>ListenData());
             listingThread.Start();
@@ -222,7 +232,7 @@ namespace SocketStreamer
 
             void ListenData()
             {
-                while (!token.IsCancellationRequested)
+                while (!token.IsCancellationRequested && isConnected)
                 {
                     try
                     {
@@ -237,7 +247,8 @@ namespace SocketStreamer
                     }
                 }
 
-                SendLog($"Stopped Listing");
+                SendLog($"Stopped Listening");
+                isConnected = false;
             }
         }
     }

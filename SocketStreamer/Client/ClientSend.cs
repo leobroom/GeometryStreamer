@@ -35,7 +35,7 @@ namespace SocketStreamer
                 // Signal that all bytes have been sent.  
                 //sendDone.Set();
             }
-            catch (SocketException e)
+            catch (Exception e)
             {
                 SendLog(e.Message);
                 Disconnect();

@@ -91,7 +91,7 @@ namespace SocketStreamer
         /// Removes the Client from the Tables
         /// </summary>
         /// <param name="clientSocket"></param>
-        private void RemoveClient(Socket clientSocket)
+        protected void RemoveClient(Socket clientSocket)
         {
             try
             {
@@ -106,7 +106,9 @@ namespace SocketStreamer
 
                 sendingDataQueueTable.TryRemove(clientSocket, out _);
 
-                clientSocket.Close();
+                clientSocket?.Dispose();
+
+                Message("sendingDataQueueTable:" + sendingDataQueueTable.Count);
             }
             catch (Exception)
             { }
@@ -122,8 +124,12 @@ namespace SocketStreamer
             Socket clientSocket = listener.EndAccept(ar);
             ClientObject clientObject = new ClientObject();
 
-            socketToClientTable.TryAdd(clientSocket, clientObject);
-            sendingDataQueueTable.TryAdd(clientSocket, new Queue<Tuple<byte[], byte[]>>());
+            bool addClientToTable = socketToClientTable.TryAdd(clientSocket, clientObject);
+            bool addToSendingTable = sendingDataQueueTable.TryAdd(clientSocket, new Queue<Tuple<byte[], byte[]>>());
+
+            Message("addClientToTable: " + addClientToTable);
+            Message("addToSendingTable: " + addToSendingTable);
+
 
             // Create the state object.
             HeaderState state = new HeaderState
@@ -138,9 +144,8 @@ namespace SocketStreamer
 
         public void StartListening(Socket socket, ClientObject clientObject)
         {
-            Thread listingThread = new Thread(() =>ListenData(clientObject));
-             listingThread.Start();
-
+            Thread listingThread = new Thread(() => ListenData(clientObject));
+            listingThread.Start();
 
             void ListenData(ClientObject client)
             {
@@ -158,6 +163,9 @@ namespace SocketStreamer
                         RemoveClient(socket);
                     }
                 }
+
+                Message("Read Data: client.Name: " + client.Name + ",StopThread: " + client.StopThread);
+
             }
         }
 
@@ -197,6 +205,8 @@ namespace SocketStreamer
 
             void SendData(ClientObject client)
             {
+                Message("Send Data: client.Name: " + client.Name + ",StopThread: " + client.StopThread);      
+
                 while (!client.StopThread)
                 {
                     try
@@ -220,6 +230,8 @@ namespace SocketStreamer
                         RemoveClient(socket);
                     }
                 }
+
+                Message("Send Data: client.Name: " + client.Name + ",StopThread: " + client.StopThread);
             }
         }
 

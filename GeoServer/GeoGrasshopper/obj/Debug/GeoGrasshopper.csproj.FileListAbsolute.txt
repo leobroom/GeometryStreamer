@@ -25,6 +25,7 @@ C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoGrasshopper.dll
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoGrasshopper.pdb
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GH_IO.dll
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\SocketStreamer.dll
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\GeoStreamer.pdb
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoGrasshopper\bin\SocketStreamer.pdb

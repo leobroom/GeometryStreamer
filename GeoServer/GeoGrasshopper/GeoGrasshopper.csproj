@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="GeoStreamer">
       <HintPath>..\MultiTargetTest\bin\Debug\net45\GeoStreamer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="GH_IO">
       <HintPath>..\..\DLL\GH_IO.dll</HintPath>
@@ -64,6 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Component\FiberWinder\Draw.cs" />
+    <Compile Include="Component\FiberWinder\DeconstructFiberWinding.cs" />
+    <Compile Include="Component\FiberWinder\ConstructFiberWinding.cs" />
     <Compile Include="Component\FiberWinder\StreamSettings.cs" />
     <Compile Include="Component\GeoGrasshopperComponent.cs" />
     <Compile Include="Component\StreamGateComponent.cs" />
@@ -72,6 +75,9 @@
     <Compile Include="Component\FiberWinder\Utils.cs" />
     <Compile Include="GeoGrasshopperInfo.cs" />
     <Compile Include="Component\StreamSettingsComponent.cs" />
+    <Compile Include="Parameter\FiberWinding.cs" />
+    <Compile Include="Parameter\FiberWindingParameter.cs" />
+    <Compile Include="Parameter\GH_FiberWinding.cs" />
     <Compile Include="Parameter\GH_StreamSettings.cs" />
     <Compile Include="Parameter\GH_StreamText.cs" />
     <Compile Include="Parameter\StreamSettingsParameter.cs" />

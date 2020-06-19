@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Grasshopper.Kernel;
+using Grasshopper.Kernel.Data;
+using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 
-namespace GeoGrasshopper.FiberWinding
+namespace GeoGrasshopper
 {
     public partial class FiberWinder : GH_Component
     {
@@ -64,6 +66,7 @@ namespace GeoGrasshopper.FiberWinding
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
+            pManager.AddGenericParameter("FiberWinding", "FW", "FiberWinding", GH_ParamAccess.list);
             pManager.AddGenericParameter("StreamGeometry", "Geo", "Geometry which can be streamed", GH_ParamAccess.list);
             pManager.AddGenericParameter("StreamSettings", "Set", "StreamSettings", GH_ParamAccess.item);
             pManager.AddGenericParameter("RobotPlanes", "P", "Planes for RobotControl", GH_ParamAccess.list);
@@ -109,8 +112,14 @@ namespace GeoGrasshopper.FiberWinding
             Point3d lastPoint = startPoint;
 
             List<Plane> previewPlanes = new List<Plane>();
+            //  List<Plane> bendingPlanes = new List<Plane>();
             int bendingVCount = bendingVectors.Count;
 
+            Plane start = Plane.WorldXY, end = Plane.WorldXY;
+
+            GH_Structure<GH_Plane> bendingPlaneTree =
+                new GH_Structure<GH_Plane>(), arcPlaneTree = new GH_Structure<GH_Plane>();
+            int pathIdx = 0;
             for (int i = 0; i < ptCount; i++)
             {
                 Point3d prevPt = (i > 1 && i < ptCount) ? weavingPlanes[i - 1].Origin : startPoint;
@@ -142,6 +151,7 @@ namespace GeoGrasshopper.FiberWinding
                     return;
 
                 NurbsCurve arc = DrawArcCurve(nextPt, actualPt, prevPt, norm, radius);
+
                 Plane[] arcFrames = arc.GetPerpendicularFrames(arcT);
 
                 CheckIfFramesHasToBeFlipped(isFlipped, arcFrames);
@@ -150,22 +160,46 @@ namespace GeoGrasshopper.FiberWinding
 
                 // StartPlane
                 if (i == 0)
-                    SetStartPlane(previewPlanes, arcFrames);
+                    start = SetStartPlane(previewPlanes, arcFrames);
 
                 Point3d pt1 = lastPoint;
                 lastPoint = arc.Points[arc.Points.Count - 1].Location;
 
                 if (i > 0)
-                    SetMiddlePlanes(previewPlanes, arc, arcFrames, pt1, bendingVecs);
+                {
+                    List<GH_Plane> bendingPlanes = new List<GH_Plane>();
+                    SetMiddlePlanes(previewPlanes, bendingPlanes, arc, arcFrames, pt1, bendingVecs);
+
+                    bendingPlaneTree.AppendRange(bendingPlanes, new GH_Path(pathIdx));
+                    pathIdx++;       
+                }
+
+                for (int z = 0; z < arcFrames.Length; z++)
+                    arcPlaneTree.Append(new GH_Plane(arcFrames[z]), new GH_Path(i));
 
                 SetArcPlanes(previewPlanes, arcFrames);
 
                 if (i == ptCount - 1)
-                    SetEndPlane(previewPlanes, arcFrames);
+                {
+                    end = SetEndPlane(previewPlanes, arcFrames);
+                }
             }
 
             SetAlignAxis(_alignAxis);
             AlignPlanes(alignAxis, previewPlanes);
+
+            AlignPlane(alignAxis, ref start);
+
+            //Dirty Hack LB - muss verbessert werden
+
+            foreach (var item in bendingPlaneTree.Branches)
+                AlignPlanes(alignAxis, item);
+
+            foreach (var item in arcPlaneTree.Branches)
+                AlignPlanes(alignAxis, item);
+
+            AlignPlane(alignAxis, ref end);
+
 
             int actualPlaneIdx = GetActualPlaneIdx(previewPlanes.Count);
 
@@ -184,13 +218,16 @@ namespace GeoGrasshopper.FiberWinding
             { pLine.ToNurbsCurve(), nLine.ToNurbsCurve(), arrowLine, pinMarkers};
 
             if (streamText != null)
-            {
                 streaminggeometry.Add(streamText);
-            }
 
-            DA.SetDataList(0, streaminggeometry);
-            DA.SetData(1, streamSet);
-            DA.SetDataList(2, previewPlanes);
+            //FiberWinding
+            FiberWinding winding =
+                new FiberWinding(weavingPlanes, arcPlaneTree, bendingPlaneTree, start, end);
+
+            DA.SetData(0, winding);
+            DA.SetDataList(1, streaminggeometry);
+            DA.SetData(2, streamSet);
+            DA.SetDataList(3, previewPlanes);
         }
 
         /// <summary>

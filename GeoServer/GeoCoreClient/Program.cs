@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using GeoStreamer;
 using SocketStreamer;
@@ -13,12 +15,12 @@ namespace GeoCoreClient
             int port = Utils.GetTestPort();
 
             Console.WriteLine("############");
-            Console.WriteLine("Client 1 : "+ip);
+            Console.WriteLine("Client 1 : " + ip);
             Console.WriteLine("############");
 
             Thread.Sleep(1000);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            var client = TestClient.Initialize(ip, port, "ConsoleClient", ThreadingType.Task);
+            var client = TestClient.Initialize(ip, port, "ConsoleClient", ThreadingType.Task, 100);
             client.Message += OnMessage;
             client.Connect();
             client.SendingRandomData(10);

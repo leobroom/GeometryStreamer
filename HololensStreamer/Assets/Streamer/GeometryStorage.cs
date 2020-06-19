@@ -1,11 +1,21 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+//##################################################################
+// Author Leon Brohmann
+// E-Mail: Leonbrohmann@gmx.de | leon.brohmann@tu-braunschweig.de
+//##################################################################
+
+/// <summary>
+/// A internal Geometry "Database", which stores al the Geometry
+/// </summary>
 class GeometryStorage
 {
     private readonly List<GameObject> meshGOStorage = new List<GameObject>();
     private readonly List<GameObject> curveGOStorage = new List<GameObject>();
     private readonly List<GameObject> txtGOStorage = new List<GameObject>();
+
+    private delegate GameObject GetGameObject();
 
     public enum GeoType
     {
@@ -29,56 +39,24 @@ class GeometryStorage
         }
     }
 
-    delegate GameObject GetGameObject();
 
+    /// <summary>
+    /// Gets the Geometry from the Database, if there is no any, it is getting created
+    /// </summary>
     public GameObject GetGeometry(int objNr, GeoType type)
     {
         try
         {
-            GameObject stored;
-
             switch (type)
             {
                 default:
                 case GeoType.Mesh:
-                 
-                    if (meshGOStorage.Count - 1 < objNr)
-                    {
-                        stored = Factory.Instance.CreateMeshObject();
-                        meshGOStorage.Add(stored);
-                    }
-                    else
-                    {
-                        stored = meshGOStorage[objNr];
-                    }
-                    break;
+                    return GetGeometry(objNr, meshGOStorage, Factory.Instance.CreateMeshObject);
                 case GeoType.Curve:
-               
-                    if (curveGOStorage.Count-1 < objNr)
-                    {
-                        stored = Factory.Instance.CreateCurveObject();
-                        curveGOStorage.Add(stored);
-                    }
-                    else
-                    {
-                        stored = curveGOStorage[objNr];
-                    }
-                    break;
+                    return GetGeometry(objNr, curveGOStorage, Factory.Instance.CreateCurveObject);
                 case GeoType.Txt:
-             
-                    if (txtGOStorage.Count - 1 < objNr)
-                    {
-                        stored = Factory.Instance.CreateTextObject();
-                        txtGOStorage.Add(stored);
-                    }
-                    else
-                    {
-                        stored = txtGOStorage[objNr];
-                    }
-                    break;
+                    return GetGeometry(objNr, txtGOStorage, Factory.Instance.CreateTextObject);
             }
-
-            return stored;
         }
         catch (System.Exception e)
         {
@@ -87,6 +65,29 @@ class GeometryStorage
         }
     }
 
+    /// <summary>
+    /// Gets the right Object- if it is not there, it is getting created
+    /// </summary>
+    private GameObject GetGeometry(int objNr, List<GameObject> storage, GetGameObject CreateObj)
+    {
+        GameObject stored;
+
+        if (storage.Count - 1 < objNr)
+        {
+            stored = CreateObj();
+            storage.Add(stored);
+        }
+        else
+            stored = storage[objNr];
+
+        return stored;
+    }
+
+    /// <summary>
+    /// Updates the Geometry/ Deletes it
+    /// </summary>
+    /// <param name="count"></param>
+    /// <param name="goTable"></param>
     private void UpdateGeo(int count, List<GameObject> goTable)
     {
         //Debug.Log($"UpdateGeo----------: " +  count +  "    "+goTable.Count);
@@ -96,33 +97,29 @@ class GeometryStorage
         {
             int toDelete = tableCount - count;
 
-            int toCreate = count - tableCount;
-
-            Debug.Log($"Destroy: " + toDelete);
+            // Debug.Log($"Destroy: " + toDelete);
 
             List<GameObject> geos = new List<GameObject>();
 
             for (int i = 0; i < toDelete; i++)
-            {
                 geos.Add(goTable[i]);
-            }
 
             for (int i = 0; i < geos.Count; i++)
             {
                 goTable.RemoveAt(0);
-                Factory.Instance.DestroyGeometry(geos[i], i * 0.01f);
+                GameObject.Destroy(geos[i], i * 0.01f);
             }
         }
-
-        //Debug.Log($"Nothing ");
     }
 
-    public void DeleteToomuchGeometry(int curveCount, int meshCount, int txtCount)
+    /// <summary>
+    /// If the new GeometryCound is lower than before, Gemoetry gets deleted
+    /// </summary>
+    public void DeleteIfNeccesaryGeometry(int curveCount, int meshCount, int txtCount)
     {
-        Debug.Log($"GeoUpdate CRV/MSH/TXT:  {curveCount},  {meshCount},  {txtCount}");
+        //Debug.Log($"GeoUpdate CRV/MSH/TXT:  {curveCount},  {meshCount},  {txtCount}");
         UpdateGeo(curveCount, curveGOStorage);
         UpdateGeo(meshCount, meshGOStorage);
         UpdateGeo(txtCount, txtGOStorage);
-        //Debug.Log($"---------------");
     }
 }

@@ -33,8 +33,8 @@ namespace SocketStreamer
         /// </summary>
         public void Set(Guid id, string name, int clientType)
         {
-            if (isSet)
-                throw new Exception("ClientObject already set!");
+            //if (isSet)
+                //throw new Exception("ClientObject already set!");
 
             this.id =id;
             this.name = name;
