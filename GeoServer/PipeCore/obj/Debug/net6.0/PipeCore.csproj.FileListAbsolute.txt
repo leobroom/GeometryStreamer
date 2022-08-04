@@ -1,0 +1,12 @@
+C:\Git\GeometryStreamer\GeoServer\PipeCore\bin\Debug\net6.0\PipeCore.deps.json
+C:\Git\GeometryStreamer\GeoServer\PipeCore\bin\Debug\net6.0\PipeCore.dll
+C:\Git\GeometryStreamer\GeoServer\PipeCore\bin\Debug\net6.0\PipeCore.pdb
+C:\Git\GeometryStreamer\GeoServer\PipeCore\obj\Debug\net6.0\PipeCore.csproj.AssemblyReference.cache
+C:\Git\GeometryStreamer\GeoServer\PipeCore\obj\Debug\net6.0\PipeCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\GeometryStreamer\GeoServer\PipeCore\obj\Debug\net6.0\PipeCore.AssemblyInfoInputs.cache
+C:\Git\GeometryStreamer\GeoServer\PipeCore\obj\Debug\net6.0\PipeCore.AssemblyInfo.cs
+C:\Git\GeometryStreamer\GeoServer\PipeCore\obj\Debug\net6.0\PipeCore.csproj.CoreCompileInputs.cache
+C:\Git\GeometryStreamer\GeoServer\PipeCore\obj\Debug\net6.0\PipeCore.dll
+C:\Git\GeometryStreamer\GeoServer\PipeCore\obj\Debug\net6.0\refint\PipeCore.dll
+C:\Git\GeometryStreamer\GeoServer\PipeCore\obj\Debug\net6.0\PipeCore.pdb
+C:\Git\GeometryStreamer\GeoServer\PipeCore\obj\Debug\net6.0\ref\PipeCore.dll

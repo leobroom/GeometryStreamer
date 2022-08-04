@@ -22,3 +22,13 @@ C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\n
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.dll
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.pdb
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.csprojAssemblyReference.cache
+C:\Git\GeometryStreamer\SocketStreamer\bin\Debug\netcoreapp2.0\SocketStreamer.deps.json
+C:\Git\GeometryStreamer\SocketStreamer\bin\Debug\netcoreapp2.0\SocketStreamer.dll
+C:\Git\GeometryStreamer\SocketStreamer\bin\Debug\netcoreapp2.0\SocketStreamer.pdb
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.csproj.AssemblyReference.cache
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.AssemblyInfoInputs.cache
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.AssemblyInfo.cs
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.csproj.CoreCompileInputs.cache
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.dll
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.pdb

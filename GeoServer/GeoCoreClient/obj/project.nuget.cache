@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "kVcNvgS27FKRO2COkilx8yJSaH9uMXHjl1MB1iFK4LIgWBWc8xAZXszvhS7+wIoVsCDZrrTtAJ86XCy7QQKOsw==",
+  "success": true,
+  "projectFilePath": "C:\\Git\\GeometryStreamer\\GeoServer\\GeoCoreClient\\Console.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\leonb\\.nuget\\packages\\microsoft.netcore.app\\2.0.0\\microsoft.netcore.app.2.0.0.nupkg.sha512",
+    "C:\\Users\\leonb\\.nuget\\packages\\microsoft.netcore.dotnetapphost\\2.0.0\\microsoft.netcore.dotnetapphost.2.0.0.nupkg.sha512",
+    "C:\\Users\\leonb\\.nuget\\packages\\microsoft.netcore.dotnethostpolicy\\2.0.0\\microsoft.netcore.dotnethostpolicy.2.0.0.nupkg.sha512",
+    "C:\\Users\\leonb\\.nuget\\packages\\microsoft.netcore.dotnethostresolver\\2.0.0\\microsoft.netcore.dotnethostresolver.2.0.0.nupkg.sha512",
+    "C:\\Users\\leonb\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\leonb\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

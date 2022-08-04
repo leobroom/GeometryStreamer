@@ -28,3 +28,5 @@ C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net46\GeoStreamer.csproj.CopyComplete
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net46\GeoStreamer.dll
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net46\GeoStreamer.pdb
+C:\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net46\GeoStreamer.dll
+C:\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net46\GeoStreamer.pdb

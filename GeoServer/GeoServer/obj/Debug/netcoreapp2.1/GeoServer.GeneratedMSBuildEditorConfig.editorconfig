@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = GeoServer
+build_property.ProjectDir = C:\Git\GeometryStreamer\GeoServer\GeoServer\

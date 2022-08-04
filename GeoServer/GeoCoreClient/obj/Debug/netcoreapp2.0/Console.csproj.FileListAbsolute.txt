@@ -43,3 +43,21 @@ C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\ob
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.csproj.CopyComplete
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.dll
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.pdb
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\Console.deps.json
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\Console.runtimeconfig.json
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\Console.runtimeconfig.dev.json
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\Console.dll
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\Console.pdb
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\GeoStreamer.dll
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\SocketStreamer.dll
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\GeoStreamer.pdb
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\bin\Debug\netcoreapp2.0\SocketStreamer.pdb
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.csproj.AssemblyReference.cache
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.AssemblyInfoInputs.cache
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.AssemblyInfo.cs
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.csproj.CoreCompileInputs.cache
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.csproj.CopyComplete
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.dll
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.pdb
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.genruntimeconfig.cache

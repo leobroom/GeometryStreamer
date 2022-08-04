@@ -676,23 +676,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Leon Brohmann\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\leonb\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Leon Brohmann\\Documents\\Git\\GeometryStreamer\\GeoServer\\ConsoleApp1\\ConsoleApp1.csproj",
+      "projectUniqueName": "C:\\Git\\GeometryStreamer\\GeoServer\\ConsoleApp1\\ConsoleApp1.csproj",
       "projectName": "ConsoleApp1",
-      "projectPath": "C:\\Users\\Leon Brohmann\\Documents\\Git\\GeometryStreamer\\GeoServer\\ConsoleApp1\\ConsoleApp1.csproj",
-      "packagesPath": "C:\\Users\\Leon Brohmann\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Leon Brohmann\\Documents\\Git\\GeometryStreamer\\GeoServer\\ConsoleApp1\\obj\\",
+      "projectPath": "C:\\Git\\GeometryStreamer\\GeoServer\\ConsoleApp1\\ConsoleApp1.csproj",
+      "packagesPath": "C:\\Users\\leonb\\.nuget\\packages\\",
+      "outputPath": "C:\\Git\\GeometryStreamer\\GeoServer\\ConsoleApp1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Leon Brohmann\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\leonb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -704,6 +705,7 @@
       },
       "frameworks": {
         "netcoreapp2.0": {
+          "targetAlias": "netcoreapp2.0",
           "projectReferences": {}
         }
       },
@@ -715,6 +717,7 @@
     },
     "frameworks": {
       "netcoreapp2.0": {
+        "targetAlias": "netcoreapp2.0",
         "dependencies": {
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
@@ -733,7 +736,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
