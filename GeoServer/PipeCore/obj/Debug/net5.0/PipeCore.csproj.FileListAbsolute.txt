@@ -1,0 +1,5 @@
+C:\Git\GeometryStreamer\GeoServer\PipeCore\obj\Debug\net5.0\PipeCore.csproj.AssemblyReference.cache
+C:\Git\GeometryStreamer\GeoServer\PipeCore\obj\Debug\net5.0\PipeCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\GeometryStreamer\GeoServer\PipeCore\obj\Debug\net5.0\PipeCore.AssemblyInfoInputs.cache
+C:\Git\GeometryStreamer\GeoServer\PipeCore\obj\Debug\net5.0\PipeCore.AssemblyInfo.cs
+C:\Git\GeometryStreamer\GeoServer\PipeCore\obj\Debug\net5.0\PipeCore.csproj.CoreCompileInputs.cache

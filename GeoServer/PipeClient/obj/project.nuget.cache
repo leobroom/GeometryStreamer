@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "LoSV/dJmw4L7o8HmMLuy61IOwVqtYz2gfnhNNBiXuIQvvNPaej/0EYRQAITL+JG7tmD2Aoy0XPLprR4WTZXECQ==",
+  "dgSpecHash": "BTJMmB2FRmrK+xiwcq6OoXS7HmFbMUyBA8Pc6fiu1+5yZTeoiCPixFrsZOSp771vw1VYoKSDiWZqFbDb1AIIDg==",
   "success": true,
   "projectFilePath": "C:\\Git\\GeometryStreamer\\GeoServer\\PipeClient\\PipeClient.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\leonb\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
