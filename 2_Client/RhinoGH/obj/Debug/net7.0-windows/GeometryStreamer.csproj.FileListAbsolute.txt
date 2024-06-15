@@ -1,6 +1,0 @@
-C:\Git\GeometryStreamer\2_Client\RhinoGH\GeometryStreamer\obj\Debug\net7.0-windows\GeometryStreamer.csproj.AssemblyReference.cache
-C:\Git\GeometryStreamer\2_Client\RhinoGH\GeometryStreamer\obj\Debug\net7.0-windows\GeometryStreamer.GeneratedMSBuildEditorConfig.editorconfig
-C:\Git\GeometryStreamer\2_Client\RhinoGH\GeometryStreamer\obj\Debug\net7.0-windows\GeometryStreamer.AssemblyInfoInputs.cache
-C:\Git\GeometryStreamer\2_Client\RhinoGH\GeometryStreamer\obj\Debug\net7.0-windows\GeometryStreamer.AssemblyInfo.cs
-C:\Git\GeometryStreamer\2_Client\RhinoGH\GeometryStreamer\obj\Debug\net7.0-windows\GeometryStreamer.csproj.CoreCompileInputs.cache
-C:\Git\GeometryStreamer\2_Client\RhinoGH\GeometryStreamer\obj\Debug\net7.0-windows\GeometryStreamer.sourcelink.json
