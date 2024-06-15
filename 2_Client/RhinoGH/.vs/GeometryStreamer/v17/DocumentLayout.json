@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\Git\\GeometryStreamer\\2_Client\\RhinoGH\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A24F2C36-3579-4A65-BD4A-3DB4371C1B64}|GeometryStreamer.csproj|c:\\git\\geometrystreamer\\2_client\\rhinogh\\geometrystreamerinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A24F2C36-3579-4A65-BD4A-3DB4371C1B64}|GeometryStreamer.csproj|solutionrelative:geometrystreamerinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A24F2C36-3579-4A65-BD4A-3DB4371C1B64}|GeometryStreamer.csproj|c:\\git\\geometrystreamer\\2_client\\rhinogh\\geometrystreamercomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A24F2C36-3579-4A65-BD4A-3DB4371C1B64}|GeometryStreamer.csproj|solutionrelative:geometrystreamercomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Git\\GeometryStreamer\\2_Client\\RhinoGH\\GeometryStreamerComponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GeometryStreamerComponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,28 +19,13 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GeometryStreamerInfo.cs",
-              "DocumentMoniker": "C:\\Git\\GeometryStreamer\\2_Client\\RhinoGH\\GeometryStreamerInfo.cs",
-              "RelativeDocumentMoniker": "GeometryStreamerInfo.cs",
-              "ToolTip": "C:\\Git\\GeometryStreamer\\2_Client\\RhinoGH\\GeometryStreamerInfo.cs",
-              "RelativeToolTip": "GeometryStreamerInfo.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAwAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T14:08:53.274Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "GeometryStreamerComponent.cs",
               "DocumentMoniker": "C:\\Git\\GeometryStreamer\\2_Client\\RhinoGH\\GeometryStreamerComponent.cs",
               "RelativeDocumentMoniker": "GeometryStreamerComponent.cs",
               "ToolTip": "C:\\Git\\GeometryStreamer\\2_Client\\RhinoGH\\GeometryStreamerComponent.cs",
               "RelativeToolTip": "GeometryStreamerComponent.cs",
-              "ViewState": "AQIAAHYAAAAAAAAAAAAowI4AAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T14:07:59.861Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-15T14:07:59.861Z"
             }
           ]
         }

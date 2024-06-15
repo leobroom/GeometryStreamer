@@ -7,15 +7,15 @@
       "RelativeMoniker": "D:0:0:{CEAE6EBE-8A10-409C-8E40-6A6B58F47863}|2_Client\\RhinoGH\\RhinoGH.csproj|solutionrelative:2_client\\rhinogh\\streamsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|2_Client\\RhinoGH_OLD\\RhinoGHOLd.csproj|c:\\git\\geometrystreamer\\2_client\\rhinogh_old\\component\\geograsshoppercomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|2_Client\\RhinoGH_OLD\\RhinoGHOLd.csproj|C:\\Git\\GeometryStreamer\\2_client\\rhinogh_old\\component\\geograsshoppercomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|2_Client\\RhinoGH_OLD\\RhinoGHOLd.csproj|solutionrelative:2_client\\rhinogh_old\\component\\geograsshoppercomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|2_Client\\RhinoGH_OLD\\RhinoGHOLd.csproj|c:\\git\\geometrystreamer\\2_client\\rhinogh_old\\component\\streampreviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|2_Client\\RhinoGH_OLD\\RhinoGHOLd.csproj|C:\\Git\\GeometryStreamer\\2_client\\rhinogh_old\\component\\streampreviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|2_Client\\RhinoGH_OLD\\RhinoGHOLd.csproj|solutionrelative:2_client\\rhinogh_old\\component\\streampreviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|2_Client\\RhinoGH_OLD\\RhinoGHOLd.csproj|c:\\git\\geometrystreamer\\2_client\\rhinogh_old\\sendgeometry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|2_Client\\RhinoGH_OLD\\RhinoGHOLd.csproj|C:\\Git\\GeometryStreamer\\2_client\\rhinogh_old\\sendgeometry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|2_Client\\RhinoGH_OLD\\RhinoGHOLd.csproj|solutionrelative:2_client\\rhinogh_old\\sendgeometry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -55,8 +55,7 @@
               "RelativeToolTip": "2_Client\\RhinoGH_OLD\\Component\\StreamPreviewComponent.cs",
               "ViewState": "AQIAADkAAAAAAAAAAAAAADEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T17:39:23.63Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-15T17:39:23.63Z"
             },
             {
               "$type": "Document",
@@ -68,8 +67,7 @@
               "RelativeToolTip": "2_Client\\RhinoGH_OLD\\SendGeometry.cs",
               "ViewState": "AQIAAIAAAAAAAAAAAAAAAK4AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T17:38:04.315Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-15T17:38:04.315Z"
             },
             {
               "$type": "Document",
@@ -81,8 +79,7 @@
               "RelativeToolTip": "2_Client\\RhinoGH_OLD\\Component\\GeoGrasshopperComponent.cs",
               "ViewState": "AQIAADYAAAAAAAAAAAAAAKIAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T17:37:15.146Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-15T17:37:15.146Z"
             },
             {
               "$type": "Document",
@@ -94,8 +91,7 @@
               "RelativeToolTip": "2_Client\\RhinoGH\\StreamText.cs",
               "ViewState": "AQIAAAgAAAAAAAAAAAAQwAkAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T17:35:39.453Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-15T17:35:39.453Z"
             }
           ]
         }
