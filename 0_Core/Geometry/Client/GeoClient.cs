@@ -37,49 +37,49 @@ namespace GeoStreamer
             switch (messageType)
             {
                 case MessageType.ConnectToServerMsg:
-                    var connectToServer = serializer.DeserializeFromBytes<ConnectToServerMsg>(data);
+                    var connectToServer = Serializer.DeserializeFromBytes<ConnectToServerMsg>(data);
 
                     Console.WriteLine(connectToServer);
                     break;
                 case MessageType.SimpleMsg:
-                    var simpleMsg = serializer.DeserializeFromBytes<SimpleMsg>(data);
+                    var simpleMsg = Serializer.DeserializeFromBytes<SimpleMsg>(data);
 
                     GetSimpleMsg(simpleMsg);
                     break;
                 case MessageType.BroadCastMsg:
-                    var bc = serializer.DeserializeFromBytes<BroadCastMsg>(data);
+                    var bc = Serializer.DeserializeFromBytes<BroadCastMsg>(data);
                     SendLog("BroadCast: " + bc.broadcastMsg);
                     break;
                 case MessageType.TestDataMsg:
-                    var testData = serializer.DeserializeFromBytes<TestDataMsg>(data);
+                    var testData = Serializer.DeserializeFromBytes<TestDataMsg>(data);
                     SendLog("Result1: " + testData.number);
                     break;
                 case MessageType.AlternativeTestDataMsg:
-                    var altTestData = serializer.DeserializeFromBytes<AlternativeTestDataMsg>(data);
+                    var altTestData = Serializer.DeserializeFromBytes<AlternativeTestDataMsg>(data);
                     Console.WriteLine("Result2: " + altTestData.txt);
-                    serializer.LogArr(altTestData.arr);
+                    Serializer.LogArr(altTestData.arr);
                     break;
                 case MessageType.BroadCastMesh:
                     SendLog("MessageType.BroadCastMesh: ");
-                    var mesh = serializer.DeserializeFromBytes<BroadCastMesh>(data);
+                    var mesh = Serializer.DeserializeFromBytes<BroadCastMesh>(data);
                     UpdateMesh(mesh);
                     break;
                 case MessageType.BroadCastCurve:
-                    var curves = serializer.DeserializeFromBytes<BroadCastCurve>(data);
+                    var curves = Serializer.DeserializeFromBytes<BroadCastCurve>(data);
                     UpdateCurves(curves);
                     break;
                 case MessageType.BroadCastGeometryInfo:
                     SendLog("BroadCastGeometryInfo:" + data.Length);
-                    var geoinfo = serializer.DeserializeFromBytes<BroadCastGeometryInfo>(data);
+                    var geoinfo = Serializer.DeserializeFromBytes<BroadCastGeometryInfo>(data);
                     SendLog("Serializer läuft:" + geoinfo.meshesCount + geoinfo.curvesCount);
                     UpdateGeometry(geoinfo);
                     break;
                 case MessageType.BroadCastIndex:
-                    var index = serializer.DeserializeFromBytes<BroadCastIndex>(data);
+                    var index = Serializer.DeserializeFromBytes<BroadCastIndex>(data);
                     UpdateIndex(index);
                     break;
                 case MessageType.BroadCastText:
-                    var txt = serializer.DeserializeFromBytes<BroadCastText>(data);
+                    var txt = Serializer.DeserializeFromBytes<BroadCastText>(data);
                     UpdateText(txt);
                     break;
                 default:
@@ -166,7 +166,7 @@ namespace GeoStreamer
                 AlternativeTestDataMsg testClass = new()
                 {
                     txt = name,
-                    arr = serializer.FillArr(numb)
+                    arr = Serializer.FillArr(numb)
                 };
 
                 Send(testClass);

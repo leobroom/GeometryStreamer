@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "tu1kqqz3t8w=",
+  "dgSpecHash": "JmtLu2fMrrc=",
   "success": true,
   "projectFilePath": "C:\\Git\\GeometryStreamer\\2_Client\\Console\\Console.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\leonb\\.nuget\\packages\\kgysoft.corelibraries\\8.1.0\\kgysoft.corelibraries.8.1.0.nupkg.sha512"
+  ],
   "logs": []
 }

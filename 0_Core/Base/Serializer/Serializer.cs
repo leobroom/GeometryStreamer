@@ -1,7 +1,7 @@
-﻿using System;
+﻿using KGySoft.Serialization.Binary;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace GeoStreamer
 {
@@ -9,7 +9,7 @@ namespace GeoStreamer
 
     public class Serializer
     {
-        private readonly Dictionary<Type, int> types = new();
+        private readonly Dictionary<Type, int> types = [];
 
         public const int HEADERSIZE = 24; //  8+16
 
@@ -19,7 +19,7 @@ namespace GeoStreamer
         protected void AddMType(Type type, int typeIdx) => types.Add(type, typeIdx);
 
         public int GetMessageType(object d) => types[d.GetType()];
-        public void LogArr<T>(T[] arr)
+        public static void LogArr<T>(T[] arr)
         {
             string s = "Arr: ";
 
@@ -29,13 +29,13 @@ namespace GeoStreamer
             Console.WriteLine(s);
         }
 
-        public double[] FillArr(int count)
+        public static double[] FillArr(int count)
         {
             int min = -99;
             int max = 99;
             Random random = new();
 
-            double[] arr = new double[count];
+            double[] arr = [count];
 
             for (int i = 0; i < count; i++)
                 arr[i] = random.NextDouble() * (max - min) + min;
@@ -51,9 +51,9 @@ namespace GeoStreamer
             header = GetHeader(messageType, serializedData.Length, id);
         }
 
-        public byte[] GetHeader(int messageType, int length, Guid id)
+        public static byte[] GetHeader(int messageType, int length, Guid id)
         {
-            byte[] data = new byte[HEADERSIZE];
+            byte[] data = [HEADERSIZE];
             byte[] byteId = id.ToByteArray();
 
             Array.Copy(BitConverter.GetBytes(messageType), 0, data, 0, 4);
@@ -65,9 +65,9 @@ namespace GeoStreamer
             return data;
         }
 
-        public byte[] GetHeader(byte[] d, int type, int length, Guid id)
+        public static byte[] GetHeader(byte[] d, int type, int length, Guid id)
         {
-            byte[] data = new byte[HEADERSIZE];
+            byte[] data = [HEADERSIZE];
             byte[] byteId = id.ToByteArray();
 
             Array.Copy(BitConverter.GetBytes(type), 0, data, 0, 4);
@@ -79,25 +79,22 @@ namespace GeoStreamer
             return data;
         }
 
-        public byte[] SerializeToBytes(ISerializableData source)
+        public static byte[] SerializeToBytes(ISerializableData source)
         {
-            using (var stream = new MemoryStream())
+            using (MemoryStream stream = new())
             {
-#pragma warning disable SYSLIB0011
-                var formatter = new BinaryFormatter();
-                formatter.Serialize(stream, source);
-#pragma warning disable SYSLIB0011
+                BinarySerializer.SerializeToStream(stream, source);
                 return stream.ToArray();
             }
         }
 
-        public T DeserializeFromBytes<T>(byte[] source)
+        public static T DeserializeFromBytes<T>(byte[] source)
         {
-            using (var stream = new MemoryStream(source))
+            using (MemoryStream stream = new(source))
             {
-                var formatter = new BinaryFormatter();
                 stream.Seek(0, SeekOrigin.Begin);
-                return (T)formatter.Deserialize(stream);
+
+                return BinarySerializer.DeserializeFromStream<T>(stream);
             }
         }
     }

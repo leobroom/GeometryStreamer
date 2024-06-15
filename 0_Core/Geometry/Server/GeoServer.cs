@@ -17,7 +17,7 @@ namespace GeoStreamer
             switch (messageType)
             {
                 case MessageType.ConnectToServerMsg:
-                    var connectToServer = serializer.DeserializeFromBytes<ConnectToServerMsg>(data);
+                    var connectToServer = Serializer.DeserializeFromBytes<ConnectToServerMsg>(data);
 
                     ClientObject clientObject = socketToClientTable[client];
                     clientObject.Set(connectToServer.id, connectToServer.clientName, (int)connectToServer.deviceType);
@@ -31,19 +31,19 @@ namespace GeoStreamer
                     break;
 
                 case MessageType.BroadCastMsg:
-                    var bc = serializer.DeserializeFromBytes<BroadCastMsg>(data);
+                    var bc = Serializer.DeserializeFromBytes<BroadCastMsg>(data);
 
                     SendToOthers(bc, client);
                     break;
 
                 case MessageType.TestDataMsg:
-                    var testData = serializer.DeserializeFromBytes<TestDataMsg>(data);
+                    var testData = Serializer.DeserializeFromBytes<TestDataMsg>(data);
                     Console.WriteLine(testData.number);
                     break;
 
                 case MessageType.AlternativeTestDataMsg:
-                    var altTestData = serializer.DeserializeFromBytes<AlternativeTestDataMsg>(data);
-                    serializer.LogArr(altTestData.arr);
+                    var altTestData = Serializer.DeserializeFromBytes<AlternativeTestDataMsg>(data);
+                    Serializer.LogArr(altTestData.arr);
                     break;
 
                 case MessageType.BroadCastMesh:
@@ -62,7 +62,7 @@ namespace GeoStreamer
                     SendToOthers(data, (int)typeFromHeader, client);
                     break;
                 case MessageType.SimpleMsg:
-                    var simMsgData = serializer.DeserializeFromBytes<SimpleMsg>(data);
+                    var simMsgData = Serializer.DeserializeFromBytes<SimpleMsg>(data);
 
                     if (simMsgData.message == SimpleMsg.Msg.ServerKillMe) 
                     {

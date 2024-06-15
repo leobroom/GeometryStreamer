@@ -347,7 +347,7 @@ namespace GeoStreamer
             Guid clientId = socketToClientTable[client].Id;
 
             Console.WriteLine("...Send to others");
-            byte[] headerData = serializer.GetHeader(data, type, data.Length, clientId);
+            byte[] headerData = Serializer.GetHeader(data, type, data.Length, clientId);
 
             foreach (Socket c in sendingDataQueueTable.Keys)
             {

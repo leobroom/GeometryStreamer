@@ -17,3 +17,4 @@ C:\Git\GeometryStreamer\1_Server\obj\Debug\net8.0\refint\Server.dll
 C:\Git\GeometryStreamer\1_Server\obj\Debug\net8.0\Server.pdb
 C:\Git\GeometryStreamer\1_Server\obj\Debug\net8.0\Server.genruntimeconfig.cache
 C:\Git\GeometryStreamer\1_Server\obj\Debug\net8.0\ref\Server.dll
+C:\Git\GeometryStreamer\1_Server\bin\Debug\net8.0\KGySoft.CoreLibraries.dll

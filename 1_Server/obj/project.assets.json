@@ -2,9 +2,25 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "KGySoft.CoreLibraries/8.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/KGySoft.CoreLibraries.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/KGySoft.CoreLibraries.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "KGySoft.CoreLibraries": "8.1.0"
+        },
         "compile": {
           "bin/placeholder/Core.dll": {}
         },
@@ -15,6 +31,47 @@
     }
   },
   "libraries": {
+    "KGySoft.CoreLibraries/8.1.0": {
+      "sha512": "2a8RFSjo3iz/Sclr2ytEyWEVg4uQ6TDNzcJ3iVWCGiEfr1sC6WCHeTLx202MB0BZhqWCTtMKlzYmu5BpADhdWw==",
+      "type": "package",
+      "path": "kgysoft.corelibraries/8.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon64.png",
+        "LICENSE",
+        "kgysoft.corelibraries.8.1.0.nupkg.sha512",
+        "kgysoft.corelibraries.nuspec",
+        "lib/net35/KGySoft.CoreLibraries.dll",
+        "lib/net35/KGySoft.CoreLibraries.xml",
+        "lib/net40/KGySoft.CoreLibraries.dll",
+        "lib/net40/KGySoft.CoreLibraries.xml",
+        "lib/net45/KGySoft.CoreLibraries.dll",
+        "lib/net45/KGySoft.CoreLibraries.xml",
+        "lib/net472/KGySoft.CoreLibraries.dll",
+        "lib/net472/KGySoft.CoreLibraries.xml",
+        "lib/net5.0/KGySoft.CoreLibraries.dll",
+        "lib/net5.0/KGySoft.CoreLibraries.xml",
+        "lib/net6.0/KGySoft.CoreLibraries.dll",
+        "lib/net6.0/KGySoft.CoreLibraries.xml",
+        "lib/net7.0/KGySoft.CoreLibraries.dll",
+        "lib/net7.0/KGySoft.CoreLibraries.xml",
+        "lib/net8.0/KGySoft.CoreLibraries.dll",
+        "lib/net8.0/KGySoft.CoreLibraries.xml",
+        "lib/netcoreapp2.0/KGySoft.CoreLibraries.dll",
+        "lib/netcoreapp2.0/KGySoft.CoreLibraries.xml",
+        "lib/netcoreapp2.1/KGySoft.CoreLibraries.dll",
+        "lib/netcoreapp2.1/KGySoft.CoreLibraries.xml",
+        "lib/netcoreapp3.0/KGySoft.CoreLibraries.dll",
+        "lib/netcoreapp3.0/KGySoft.CoreLibraries.xml",
+        "lib/netstandard2.0/KGySoft.CoreLibraries.dll",
+        "lib/netstandard2.0/KGySoft.CoreLibraries.xml",
+        "lib/netstandard2.1/KGySoft.CoreLibraries.dll",
+        "lib/netstandard2.1/KGySoft.CoreLibraries.xml",
+        "readme.md",
+        "readme.txt"
+      ]
+    },
     "Core/1.0.0": {
       "type": "project",
       "path": "../0_Core/Core.csproj",

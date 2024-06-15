@@ -1,0 +1,16 @@
+C:\Git\GeometryStreamer\2_Client\RhinoGH\obj\Debug\net8.0-windows\RhinoGH.csproj.AssemblyReference.cache
+C:\Git\GeometryStreamer\2_Client\RhinoGH\obj\Debug\net8.0-windows\RhinoGH.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\GeometryStreamer\2_Client\RhinoGH\obj\Debug\net8.0-windows\RhinoGH.AssemblyInfoInputs.cache
+C:\Git\GeometryStreamer\2_Client\RhinoGH\obj\Debug\net8.0-windows\RhinoGH.AssemblyInfo.cs
+C:\Git\GeometryStreamer\2_Client\RhinoGH\obj\Debug\net8.0-windows\RhinoGH.csproj.CoreCompileInputs.cache
+C:\Git\GeometryStreamer\2_Client\RhinoGH\obj\Debug\net8.0-windows\RhinoGH.sourcelink.json
+C:\Git\GeometryStreamer\2_Client\RhinoGH\bin\Debug\net8.0-windows\RhinoGH.deps.json
+C:\Git\GeometryStreamer\2_Client\RhinoGH\bin\Debug\net8.0-windows\RhinoGH.gha
+C:\Git\GeometryStreamer\2_Client\RhinoGH\bin\Debug\net8.0-windows\RhinoGH.pdb
+C:\Git\GeometryStreamer\2_Client\RhinoGH\bin\Debug\net8.0-windows\Core.dll
+C:\Git\GeometryStreamer\2_Client\RhinoGH\bin\Debug\net8.0-windows\Core.pdb
+C:\Git\GeometryStreamer\2_Client\RhinoGH\obj\Debug\net8.0-windows\RhinoGH.csproj.Up2Date
+C:\Git\GeometryStreamer\2_Client\RhinoGH\obj\Debug\net8.0-windows\RhinoGH.gha
+C:\Git\GeometryStreamer\2_Client\RhinoGH\obj\Debug\net8.0-windows\refint\RhinoGH.gha
+C:\Git\GeometryStreamer\2_Client\RhinoGH\obj\Debug\net8.0-windows\RhinoGH.pdb
+C:\Git\GeometryStreamer\2_Client\RhinoGH\obj\Debug\net8.0-windows\ref\RhinoGH.gha

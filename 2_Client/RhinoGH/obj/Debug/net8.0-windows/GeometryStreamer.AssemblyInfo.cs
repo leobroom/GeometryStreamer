@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Description of GeometryStreamer")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+f53922e2c73966d75d8fd7ba0a65270b29e38e21")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+5999c71a4abc8829846c8d998b965d862be8405a")]
 [assembly: System.Reflection.AssemblyProductAttribute("GeometryStreamer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GeometryStreamer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
