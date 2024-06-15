@@ -16,3 +16,4 @@ C:\Git\GeometryStreamer\GeoServer\PipeTest\obj\Debug\net6.0\ref\PipeServer.dll
 C:\Git\GeometryStreamer\GeoServer\PipeTest\bin\Debug\net6.0\PipeCore.dll
 C:\Git\GeometryStreamer\GeoServer\PipeTest\bin\Debug\net6.0\PipeCore.pdb
 C:\Git\GeometryStreamer\GeoServer\PipeTest\obj\Debug\net6.0\PipeServer.csproj.CopyComplete
+C:\Git\GeometryStreamer\GeoServer\PipeTest\bin\Debug\net6.0\Newtonsoft.Json.dll

@@ -57,7 +57,8 @@ C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.
 C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.AssemblyInfoInputs.cache
 C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.AssemblyInfo.cs
 C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.csproj.CoreCompileInputs.cache
-C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.csproj.CopyComplete
 C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.dll
 C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.pdb
 C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.genruntimeconfig.cache
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.sourcelink.json
+C:\Git\GeometryStreamer\GeoServer\GeoCoreClient\obj\Debug\netcoreapp2.0\Console.csproj.Up2Date

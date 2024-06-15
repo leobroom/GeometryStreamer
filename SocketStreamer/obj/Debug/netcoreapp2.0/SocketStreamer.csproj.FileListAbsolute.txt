@@ -32,3 +32,4 @@ C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.As
 C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.csproj.CoreCompileInputs.cache
 C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.dll
 C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.pdb
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\netcoreapp2.0\SocketStreamer.sourcelink.json

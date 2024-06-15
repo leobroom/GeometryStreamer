@@ -215,7 +215,7 @@ namespace SocketStreamer
 
                         if (bytes.Count != 0)
                         {
-                            Console.WriteLine(socketToClientTable[socket].Name + "send dataaaa" + bytes.Count);
+                            Console.WriteLine(socketToClientTable[socket].Name + "HELLO AECTECH+ BARCELONA - Send data" + bytes.Count);
                             Tuple<byte[], byte[]> headerData = bytes.Dequeue();
                             byte[] header = headerData.Item1;
                             byte[] data = headerData.Item2;
@@ -336,7 +336,8 @@ namespace SocketStreamer
                 if (c == client)
                     continue;
 
-                Console.WriteLine("...Send to: " + socketToClientTable[c].Name);
+                //Console.WriteLine("...Send to: " + socketToClientTable[c].Name);
+                Console.WriteLine("...Send to Client ");
 
                 sendingDataQueueTable[c].Enqueue(new Tuple<byte[], byte[]>(headerData, serializedData));
             }

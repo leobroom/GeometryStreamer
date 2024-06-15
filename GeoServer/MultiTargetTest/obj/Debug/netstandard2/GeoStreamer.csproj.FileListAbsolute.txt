@@ -41,6 +41,7 @@ C:\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netstandard2\GeoStre
 C:\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netstandard2\GeoStreamer.AssemblyInfoInputs.cache
 C:\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netstandard2\GeoStreamer.AssemblyInfo.cs
 C:\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netstandard2\GeoStreamer.csproj.CoreCompileInputs.cache
-C:\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netstandard2\GeoStreamer.csproj.CopyComplete
 C:\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netstandard2\GeoStreamer.dll
 C:\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netstandard2\GeoStreamer.pdb
+C:\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netstandard2\GeoStreamer.sourcelink.json
+C:\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\netstandard2\GeoStrea.00354C10.Up2Date

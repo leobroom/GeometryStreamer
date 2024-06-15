@@ -9,16 +9,25 @@ namespace PipeCore
 
     public class PipeConnection_Server : PipeConnection_SenderReciever
     {
-        public static PipeConnection_Server Instance { get; private set; }
+        private static PipeConnection_Server instance;
+        public static PipeConnection_Server Instance => instance;
 
-        public PipeConnection_Server() : base()
+        public static event EventHandler<string> OnMessage;
+
+        bool destroy = false;
+
+        private PipeConnection_Server(): base()
         {
-            Instance = this;
-
-            Console.WriteLine("Waiting for client connect....");
-
-            //FunctionUpdater.Create(ReadMessage)// Read messages on the main thread
+            OnMessage?.Invoke(this, "Initialize....");
         }
+
+        public static void Initialize()
+        {
+            if (instance == null)
+                instance = new PipeConnection_Server();
+        }
+
+   
 
         /// <summary>
         /// Thread for Reading Clientmessages
@@ -27,9 +36,12 @@ namespace PipeCore
         {
             NamedPipeServerStream pipeReadServer = new NamedPipeServerStream("MessageFromClient", PipeDirection.In);
 
+            OnMessage?.Invoke(this, "Wait for Connection");
+
             //Wait for clients to connect
             pipeReadServer.WaitForConnection();
-            Console.WriteLine("Client Read Connected");
+
+            OnMessage?.Invoke(this, "Client Read Connected");
 
             try
             {
@@ -37,8 +49,18 @@ namespace PipeCore
 
                 while (true)
                 {
+                    if (destroyed)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        OnMessage?.Invoke(this, "Thread_Read not destroyed");
+                    }
+
                     string message = streamReadString.ReadString();
-                    Console.WriteLine("Client MSG:" + message);
+
+                    OnMessage?.Invoke(this, "Client MSG:" + message);
 
                     // Lock to make it ThreadSafe
                     lock (readLock)
@@ -46,15 +68,17 @@ namespace PipeCore
                         readQueue.Enqueue(message);
                     }
 
-                    Thread.Sleep(10);
+                    Thread.Sleep(10);           
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error: " + e);
+
+                OnMessage?.Invoke(this, "Thread_Read Error: " + e);
             }
 
-            Console.WriteLine("Pipe closed!");
+
+            OnMessage?.Invoke(this, "Thread_Read Pipe closed!");
 
             pipeReadServer.Close();
         }
@@ -65,7 +89,8 @@ namespace PipeCore
 
             //Wait for clients to connect
             pipeWriteServer.WaitForConnection();
-            Console.WriteLine("Client Write Connected");
+
+            OnMessage?.Invoke(this, "Thread_Write Client Write Connected");
 
             try
             {
@@ -75,8 +100,16 @@ namespace PipeCore
 
                 while (true)
                 {
-                    string messageQueue = null;
+                    if (destroyed)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        OnMessage?.Invoke(this, "Thread_Write not destroyed");
+                    }
 
+                    string messageQueue = null;
 
                     // Lock to make it ThreadSafe
                     lock (writeLock)
@@ -85,12 +118,11 @@ namespace PipeCore
                         {
                             messageQueue = writeQueue.Dequeue();
                         }
-
                     }
 
                     if (messageQueue != null)
                     {
-                        Console.WriteLine("Send: " + messageQueue);
+                        OnMessage?.Invoke(this, "Send: " + messageQueue);
                         streamWriteString.WriteString(messageQueue);
                     }
 
@@ -102,9 +134,32 @@ namespace PipeCore
                 Console.WriteLine("Error: " + e);
             }
 
-            Console.WriteLine("Pipe closed!");
+            OnMessage?.Invoke(this, "Thread_Write Pipe closed!");
 
             pipeWriteServer.Close();
+        }
+
+        public override void DestroySelf()
+        {
+            OnMessage?.Invoke(this, "Pipe closing!");
+            destroyed = true;
+     
+            //Creagte Fake client, so Server is not waiting in Loop
+
+            NamedPipeClientStream pipeReadClient = new NamedPipeClientStream(".", "MessageFromClient", PipeDirection.Out, PipeOptions.Asynchronous);
+            pipeReadClient.Connect();
+
+            Thread.Sleep(100);
+
+            SendMessage("blaaaaaaaaaa");
+
+            //instance = null;
+
+            //OnMessage?.Invoke(this, "instance = null!");
+
+            //base.DestroySelf();
+
+            //OnMessage = null;
         }
     }
 }

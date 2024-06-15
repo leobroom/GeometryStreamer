@@ -1,0 +1,10 @@
+C:\Git\GeometryStreamer\SocketStreamer\bin\Debug\net48\SocketStreamer.dll
+C:\Git\GeometryStreamer\SocketStreamer\bin\Debug\net48\SocketStreamer.pdb
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\net48\SocketStreamer.csproj.AssemblyReference.cache
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\net48\SocketStreamer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\net48\SocketStreamer.AssemblyInfoInputs.cache
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\net48\SocketStreamer.AssemblyInfo.cs
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\net48\SocketStreamer.csproj.CoreCompileInputs.cache
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\net48\SocketStreamer.sourcelink.json
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\net48\SocketStreamer.dll
+C:\Git\GeometryStreamer\SocketStreamer\obj\Debug\net48\SocketStreamer.pdb

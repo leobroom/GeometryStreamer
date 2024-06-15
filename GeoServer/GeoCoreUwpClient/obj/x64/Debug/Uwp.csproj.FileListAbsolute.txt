@@ -46,3 +46,16 @@ C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\ProjectArchitectures.txt
 C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_636758516200000000.json
+C:\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\Uwp.csproj.AssemblyReference.cache
+C:\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\App.g.i.cs
+C:\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\App.g.cs
+C:\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\MainPage.g.i.cs
+C:\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\MainPage.g.cs
+C:\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\XamlTypeInfo.g.cs
+C:\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\App.xaml
+C:\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\MainPage.xaml
+C:\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\App.xbf
+C:\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\MainPage.xbf
+C:\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\XamlSaveStateFile.xml
+C:\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\GeoCoreUwpClient.exe
+C:\Git\GeometryStreamer\GeoServer\GeoCoreUwpClient\obj\x64\Debug\GeoCoreUwpClient.pdb

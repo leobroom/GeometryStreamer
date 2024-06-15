@@ -18,8 +18,12 @@ namespace PipeCore
 
         public event EventHandler<PipeCommand> OnPipeCommandReceived;
 
-        public PipeConnection_SenderReciever()
+        protected bool destroyed = true;
+
+        protected PipeConnection_SenderReciever()
         {
+            destroyed = false;
+
             readQueue = new Queue<string>();
             writeQueue = new Queue<string>();
 
@@ -62,13 +66,15 @@ namespace PipeCore
             //Call from anywhere to Send a Message
             lock (writeLock)
             {
-                string message =  JsonConvert.SerializeObject(pipeCommand, Formatting.Indented);
+                string message = JsonConvert.SerializeObject(pipeCommand, Formatting.Indented);
                 writeQueue.Enqueue(message);
             }
         }
 
-        public void DestroySelf()
+        public virtual void DestroySelf()
         {
+            Thread.Sleep(100);
+
             // Run on a OnDestroy, stop the threads
             readThread?.Abort();
             writeThread?.Abort();

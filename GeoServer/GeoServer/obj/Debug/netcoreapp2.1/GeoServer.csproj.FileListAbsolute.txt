@@ -57,7 +57,8 @@ C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.Ge
 C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfoInputs.cache
 C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfo.cs
 C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csproj.CoreCompileInputs.cache
-C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csproj.CopyComplete
 C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.dll
 C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.pdb
 C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.genruntimeconfig.cache
+C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.sourcelink.json
+C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csproj.Up2Date

@@ -6,15 +6,20 @@ namespace PipeCore
 {
     public class PipeConnection_Client : PipeConnection_SenderReciever
     {
-        public static PipeConnection_Client Instance { get; private set; }
+        private static PipeConnection_Client instance;
+        public static PipeConnection_Client Instance => instance;
 
         public PipeConnection_Client() : base()
         {
-            Instance = this;
-
             Console.WriteLine("Waiting for client connect....");
 
             //FunctionUpdater.Create(ReadMessage)// Read messages on the main thread
+        }
+
+        public static void Initialize()
+        {
+            if (instance == null)
+                instance = new PipeConnection_Client();
         }
 
         /// <summary>
@@ -49,6 +54,7 @@ namespace PipeCore
                     while (true)
                     {
                         string message = streamReadString.ReadString();
+
                         Console.WriteLine("Server MSG:" + message);
 
                         // Lock to make it ThreadSafe
@@ -129,6 +135,13 @@ namespace PipeCore
 
             pipeWriteClient.Close();
 
+        }
+
+        public override void DestroySelf()
+        {
+            base.DestroySelf();
+
+            instance = null;
         }
     }
 }
