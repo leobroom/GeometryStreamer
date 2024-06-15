@@ -1,0 +1,64 @@
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.deps.json
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.runtimeconfig.json
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.runtimeconfig.dev.json
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfoInputs.cache
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfo.cs
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csprojAssemblyReference.cache
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.deps.json
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.runtimeconfig.json
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.runtimeconfig.dev.json
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.dll
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.pdb
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoStreamer.dll
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoStreamer.pdb
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csprojAssemblyReference.cache
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfoInputs.cache
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfo.cs
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csproj.CopyComplete
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.dll
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.pdb
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\SocketStreamer.dll
+C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\SocketStreamer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoStreamer.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\SocketStreamer.dll
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\SocketStreamer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoStreamer.pdb
+C:\Users\leonb\Documents\GitHub\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csproj.CopyComplete
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.deps.json
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.runtimeconfig.json
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.runtimeconfig.dev.json
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\SocketStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\SocketStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csprojAssemblyReference.cache
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfoInputs.cache
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfo.cs
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csproj.CopyComplete
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.pdb
+C:\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.deps.json
+C:\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.runtimeconfig.json
+C:\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.runtimeconfig.dev.json
+C:\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.dll
+C:\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoServer.pdb
+C:\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoStreamer.dll
+C:\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\SocketStreamer.dll
+C:\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\SocketStreamer.pdb
+C:\Git\GeometryStreamer\GeoServer\GeoServer\bin\Debug\netcoreapp2.1\GeoStreamer.pdb
+C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csproj.AssemblyReference.cache
+C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfoInputs.cache
+C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.AssemblyInfo.cs
+C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csproj.CoreCompileInputs.cache
+C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.dll
+C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.pdb
+C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.genruntimeconfig.cache
+C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.sourcelink.json
+C:\Git\GeometryStreamer\GeoServer\GeoServer\obj\Debug\netcoreapp2.1\GeoServer.csproj.Up2Date

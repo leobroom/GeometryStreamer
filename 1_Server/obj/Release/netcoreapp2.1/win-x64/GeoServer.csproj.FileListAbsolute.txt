@@ -1,0 +1,16 @@
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Release\netcoreapp2.1\win-x64\GeoServer.exe
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Release\netcoreapp2.1\win-x64\GeoServer.deps.json
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Release\netcoreapp2.1\win-x64\GeoServer.runtimeconfig.json
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Release\netcoreapp2.1\win-x64\GeoServer.runtimeconfig.dev.json
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Release\netcoreapp2.1\win-x64\GeoServer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Release\netcoreapp2.1\win-x64\GeoServer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Release\netcoreapp2.1\win-x64\GeoStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Release\netcoreapp2.1\win-x64\SocketStreamer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Release\netcoreapp2.1\win-x64\SocketStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\bin\Release\netcoreapp2.1\win-x64\GeoStreamer.pdb
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Release\netcoreapp2.1\win-x64\GeoServer.csprojAssemblyReference.cache
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Release\netcoreapp2.1\win-x64\GeoServer.AssemblyInfoInputs.cache
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Release\netcoreapp2.1\win-x64\GeoServer.AssemblyInfo.cs
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Release\netcoreapp2.1\win-x64\GeoServer.csproj.CopyComplete
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Release\netcoreapp2.1\win-x64\GeoServer.dll
+C:\Users\Leon Brohmann\Documents\Git\GeometryStreamer\GeoServer\GeoServer\obj\Release\netcoreapp2.1\win-x64\GeoServer.pdb
