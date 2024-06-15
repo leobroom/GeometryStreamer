@@ -30,9 +30,9 @@ namespace GeoGrasshopper
             objMatIds.Add(id);
         }
 
-        private List<DisplayMaterial> materials = [];
-        private List<int> objMatIds = [];
-        private List<double> curveDivisions = [], curveWidths = [];
+        private List<DisplayMaterial> materials = new List<DisplayMaterial>();
+        private List<int> objMatIds = new List<int>();
+        private List<double> curveDivisions = new List<double>(), curveWidths = new List<double>();
 
         public static StreamSettings Default
         {

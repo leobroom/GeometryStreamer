@@ -9,7 +9,7 @@ namespace GeoStreamer
 
     public class Serializer
     {
-        private readonly Dictionary<Type, int> types = [];
+        private readonly Dictionary<Type, int> types = new Dictionary<Type, int>();
 
         public const int HEADERSIZE = 24; //  8+16
 
@@ -35,7 +35,7 @@ namespace GeoStreamer
             int max = 99;
             Random random = new();
 
-            double[] arr = [count];
+            double[] arr = new double[count];
 
             for (int i = 0; i < count; i++)
                 arr[i] = random.NextDouble() * (max - min) + min;
@@ -53,7 +53,7 @@ namespace GeoStreamer
 
         public static byte[] GetHeader(int messageType, int length, Guid id)
         {
-            byte[] data = [HEADERSIZE];
+            byte[] data = new byte[HEADERSIZE];
             byte[] byteId = id.ToByteArray();
 
             Array.Copy(BitConverter.GetBytes(messageType), 0, data, 0, 4);
@@ -67,7 +67,7 @@ namespace GeoStreamer
 
         public static byte[] GetHeader(byte[] d, int type, int length, Guid id)
         {
-            byte[] data = [HEADERSIZE];
+            byte[] data = new byte[HEADERSIZE];
             byte[] byteId = id.ToByteArray();
 
             Array.Copy(BitConverter.GetBytes(type), 0, data, 0, 4);

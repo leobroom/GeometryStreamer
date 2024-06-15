@@ -4,11 +4,18 @@ using GeoStreamer;
 
 namespace GeoGrasshopper
 {
-    public class IndexEventArgs(int gateId, int index) : EventArgs
+    public class IndexEventArgs : EventArgs
     {
-        public int index = index;
-        public int gateId = gateId;
+        public int index = -999;
+        public int gateId = -999;
+
+        public IndexEventArgs(int gateId, int index)
+        {
+            this.index = index;
+            this.gateId = gateId;
+        }
     }
+
 
     public class RhinoClient : GeoClient<RhinoClient>
     {
@@ -20,7 +27,7 @@ namespace GeoGrasshopper
 
         protected override void UpdateIndex(BroadCastIndex updateIndex)
         {
-            dispatcher.Invoke(() =>{ OnIndexChanged?.Invoke(this, new IndexEventArgs(updateIndex.gateId,updateIndex.index));});    
+            dispatcher.Invoke(() => { OnIndexChanged?.Invoke(this, new IndexEventArgs(updateIndex.gateId, updateIndex.index)); });
         }
 
         /// <summary>
