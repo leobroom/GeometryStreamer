@@ -42,7 +42,7 @@ namespace GeoCoreUwpClient
             string ip = Utils.GetTestIpAdress();
             int port = Utils.GetTestPort();
             //client =  Client.Initialize("192.168.178.34", 12345, "Client UWP", ThreadingType.Task, ClientType.UWP);
-            client = UwpClient.Initialize(ip, port, "Client UWP", ThreadingType.Task, ClientType.UWP);
+            client = UwpClient.Initialize(ip, port, "Client UWP", ThreadingType.Task, 100, ClientType.UWP);
 
             client.Message += RecieveMessage;
 
