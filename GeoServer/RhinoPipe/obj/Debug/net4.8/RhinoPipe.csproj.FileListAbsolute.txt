@@ -1,5 +1,0 @@
-C:\Git\GeometryStreamer\GeoServer\RhinoPipe\obj\Debug\net4.8\RhinoPipe.csproj.AssemblyReference.cache
-C:\Git\GeometryStreamer\GeoServer\RhinoPipe\obj\Debug\net4.8\RhinoPipe.GeneratedMSBuildEditorConfig.editorconfig
-C:\Git\GeometryStreamer\GeoServer\RhinoPipe\obj\Debug\net4.8\RhinoPipe.AssemblyInfoInputs.cache
-C:\Git\GeometryStreamer\GeoServer\RhinoPipe\obj\Debug\net4.8\RhinoPipe.AssemblyInfo.cs
-C:\Git\GeometryStreamer\GeoServer\RhinoPipe\obj\Debug\net4.8\RhinoPipe.csproj.CoreCompileInputs.cache

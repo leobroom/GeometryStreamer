@@ -3,19 +3,27 @@
   "WorkspaceRootPath": "C:\\Git\\GeometryStreamer\\GeoServer\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{69FF69E9-6249-4C9D-BB71-D54AB11BF30E}|GeoServer\\GeoServer.csproj|c:\\git\\geometrystreamer\\geoserver\\geoserver\\geoserver.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{69FF69E9-6249-4C9D-BB71-D54AB11BF30E}|GeoServer\\GeoServer.csproj|solutionrelative:geoserver\\geoserver.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{11142226-4438-4A4C-B5D5-38E73BA42BDB}|ConsoleApp1\\ConsoleApp1.csproj|c:\\git\\geometrystreamer\\geoserver\\consoleapp1\\consoleapp1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{11142226-4438-4A4C-B5D5-38E73BA42BDB}|ConsoleApp1\\ConsoleApp1.csproj|solutionrelative:consoleapp1\\consoleapp1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|GeoGrasshopper\\GeoGrasshopper.csproj|c:\\git\\geometrystreamer\\geoserver\\geograsshopper\\component\\streamsettingscomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|GeoGrasshopper\\GeoGrasshopper.csproj|solutionrelative:geograsshopper\\component\\streamsettingscomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|GeoGrasshopper\\GeoGrasshopper.csproj|c:\\git\\geometrystreamer\\geoserver\\geograsshopper\\component\\streampreviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|GeoGrasshopper\\GeoGrasshopper.csproj|C:\\Git\\GeometryStreamer\\GeoServer\\geograsshopper\\component\\streampreviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|GeoGrasshopper\\GeoGrasshopper.csproj|solutionrelative:geograsshopper\\component\\streampreviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|GeoGrasshopper\\GeoGrasshopper.csproj|c:\\git\\geometrystreamer\\geoserver\\geograsshopper\\component\\streamgatecomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|GeoGrasshopper\\GeoGrasshopper.csproj|C:\\Git\\GeometryStreamer\\GeoServer\\geograsshopper\\component\\streamgatecomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|GeoGrasshopper\\GeoGrasshopper.csproj|solutionrelative:geograsshopper\\component\\streamgatecomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|GeoGrasshopper\\GeoGrasshopper.csproj|c:\\git\\geometrystreamer\\geoserver\\geograsshopper\\sendgeometry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|GeoGrasshopper\\GeoGrasshopper.csproj|C:\\Git\\GeometryStreamer\\GeoServer\\geograsshopper\\sendgeometry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{430A638C-DFA1-4263-AE50-8D7C16213B7A}|GeoGrasshopper\\GeoGrasshopper.csproj|solutionrelative:geograsshopper\\sendgeometry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -69,6 +77,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "GeoServer",
+              "DocumentMoniker": "C:\\Git\\GeometryStreamer\\GeoServer\\GeoServer\\GeoServer.csproj",
+              "RelativeDocumentMoniker": "GeoServer\\GeoServer.csproj",
+              "ToolTip": "C:\\Git\\GeometryStreamer\\GeoServer\\GeoServer\\GeoServer.csproj",
+              "RelativeToolTip": "GeoServer\\GeoServer.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-15T10:43:01.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ConsoleApp1",
+              "DocumentMoniker": "C:\\Git\\GeometryStreamer\\GeoServer\\ConsoleApp1\\ConsoleApp1.csproj",
+              "RelativeDocumentMoniker": "ConsoleApp1\\ConsoleApp1.csproj",
+              "ToolTip": "C:\\Git\\GeometryStreamer\\GeoServer\\ConsoleApp1\\ConsoleApp1.csproj",
+              "RelativeToolTip": "ConsoleApp1\\ConsoleApp1.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-15T10:42:55.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "StreamSettingsComponent.cs",
               "DocumentMoniker": "C:\\Git\\GeometryStreamer\\GeoServer\\GeoGrasshopper\\Component\\StreamSettingsComponent.cs",
               "RelativeDocumentMoniker": "GeoGrasshopper\\Component\\StreamSettingsComponent.cs",
@@ -81,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "StreamPreviewComponent.cs",
               "DocumentMoniker": "C:\\Git\\GeometryStreamer\\GeoServer\\GeoGrasshopper\\Component\\StreamPreviewComponent.cs",
               "RelativeDocumentMoniker": "GeoGrasshopper\\Component\\StreamPreviewComponent.cs",
@@ -89,12 +123,11 @@
               "RelativeToolTip": "GeoGrasshopper\\Component\\StreamPreviewComponent.cs",
               "ViewState": "AQIAAEEAAAAAAAAAAAAIwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T10:38:04.311Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-15T10:38:04.311Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "StreamGateComponent.cs",
               "DocumentMoniker": "C:\\Git\\GeometryStreamer\\GeoServer\\GeoGrasshopper\\Component\\StreamGateComponent.cs",
               "RelativeDocumentMoniker": "GeoGrasshopper\\Component\\StreamGateComponent.cs",
@@ -102,12 +135,11 @@
               "RelativeToolTip": "GeoGrasshopper\\Component\\StreamGateComponent.cs",
               "ViewState": "AQIAACkAAAAAAAAAAAA9wAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T10:37:56.462Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-15T10:37:56.462Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "SendGeometry.cs",
               "DocumentMoniker": "C:\\Git\\GeometryStreamer\\GeoServer\\GeoGrasshopper\\SendGeometry.cs",
               "RelativeDocumentMoniker": "GeoGrasshopper\\SendGeometry.cs",
@@ -115,13 +147,12 @@
               "RelativeToolTip": "GeoGrasshopper\\SendGeometry.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T10:32:00.639Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-15T10:32:00.639Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SocketStreamer",
+              "DocumentIndex": 7,
+              "Title": "SocketStreamer.csproj",
               "DocumentMoniker": "C:\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj",
               "RelativeDocumentMoniker": "..\\SocketStreamer\\SocketStreamer.csproj",
               "ToolTip": "C:\\Git\\GeometryStreamer\\SocketStreamer\\SocketStreamer.csproj",
@@ -133,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "SerializableData.cs",
               "DocumentMoniker": "C:\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\Serialisation\\SerializableData.cs",
               "RelativeDocumentMoniker": "MultiTargetTest\\Serialisation\\SerializableData.cs",
@@ -141,12 +172,11 @@
               "RelativeToolTip": "MultiTargetTest\\Serialisation\\SerializableData.cs",
               "ViewState": "AQIAACEAAAAAAAAAAAAawC4AAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T13:23:48.176Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-20T13:23:48.176Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "GeoStreamer.csproj",
               "DocumentMoniker": "C:\\Git\\GeometryStreamer\\GeoServer\\MultiTargetTest\\GeoStreamer.csproj",
               "RelativeDocumentMoniker": "MultiTargetTest\\GeoStreamer.csproj",
@@ -159,7 +189,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "ConstructFiberWinding.cs",
               "DocumentMoniker": "C:\\Git\\GeometryStreamer\\GeoServer\\GeoGrasshopper\\Component\\FiberWinder\\ConstructFiberWinding.cs",
               "RelativeDocumentMoniker": "GeoGrasshopper\\Component\\FiberWinder\\ConstructFiberWinding.cs",
@@ -167,12 +197,11 @@
               "RelativeToolTip": "GeoGrasshopper\\Component\\FiberWinder\\ConstructFiberWinding.cs",
               "ViewState": "AQIAACoAAAAAAAAAAAAqwCoAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T13:19:19.53Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-20T13:19:19.53Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "BaseServer.cs",
               "DocumentMoniker": "C:\\Git\\GeometryStreamer\\SocketStreamer\\Server\\BaseServer.cs",
               "RelativeDocumentMoniker": "..\\SocketStreamer\\Server\\BaseServer.cs",
@@ -180,12 +209,11 @@
               "RelativeToolTip": "..\\SocketStreamer\\Server\\BaseServer.cs",
               "ViewState": "AQIAAB0BAAAAAAAAAAAvwEgBAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T13:19:16.901Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-20T13:19:16.901Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Git\\GeometryStreamer\\GeoServer\\GeoServer\\Program.cs",
               "RelativeDocumentMoniker": "GeoServer\\Program.cs",
@@ -193,12 +221,11 @@
               "RelativeToolTip": "GeoServer\\Program.cs",
               "ViewState": "AQIAABYAAAAAAAAAAAAgwBQAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T11:57:02.233Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-20T11:57:02.233Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Git\\GeometryStreamer\\GeoServer\\ConsoleApp1\\Program.cs",
               "RelativeDocumentMoniker": "ConsoleApp1\\Program.cs",
@@ -206,12 +233,11 @@
               "RelativeToolTip": "ConsoleApp1\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T11:56:57.47Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-20T11:56:57.47Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "Draw.cs",
               "DocumentMoniker": "C:\\Git\\GeometryStreamer\\GeoServer\\GeoGrasshopper\\Component\\FiberWinder\\Draw.cs",
               "RelativeDocumentMoniker": "GeoGrasshopper\\Component\\FiberWinder\\Draw.cs",
@@ -219,12 +245,11 @@
               "RelativeToolTip": "GeoGrasshopper\\Component\\FiberWinder\\Draw.cs",
               "ViewState": "AQIAAIQAAAAAAAAAAAAAAJAAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2022-09-22T15:41:25.438Z",
-              "EditorCaption": ""
+              "WhenOpened": "2022-09-22T15:41:25.438Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "Utils.cs",
               "DocumentMoniker": "C:\\Git\\GeometryStreamer\\GeoServer\\GeoGrasshopper\\Component\\FiberWinder\\Utils.cs",
               "RelativeDocumentMoniker": "GeoGrasshopper\\Component\\FiberWinder\\Utils.cs",
@@ -232,12 +257,11 @@
               "RelativeToolTip": "GeoGrasshopper\\Component\\FiberWinder\\Utils.cs",
               "ViewState": "AQIAAPIAAAAAAAAAAAAlwBEBAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2022-09-22T15:36:31.101Z",
-              "EditorCaption": ""
+              "WhenOpened": "2022-09-22T15:36:31.101Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "FiberWinder.cs",
               "DocumentMoniker": "C:\\Git\\GeometryStreamer\\GeoServer\\GeoGrasshopper\\Component\\FiberWinder\\FiberWinder.cs",
               "RelativeDocumentMoniker": "GeoGrasshopper\\Component\\FiberWinder\\FiberWinder.cs",
@@ -245,8 +269,7 @@
               "RelativeToolTip": "GeoGrasshopper\\Component\\FiberWinder\\FiberWinder.cs",
               "ViewState": "AQIAAD8AAAAAAAAAAAAtwE4AAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2022-09-22T15:29:08.252Z",
-              "EditorCaption": ""
+              "WhenOpened": "2022-09-22T15:29:08.252Z"
             }
           ]
         }
