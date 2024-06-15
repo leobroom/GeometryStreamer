@@ -9,7 +9,7 @@ namespace SocketStreamer
 
     public class Serializer
     {
-        private readonly Dictionary<Type, int> types = new Dictionary<Type, int>();
+        private readonly Dictionary<Type, int> types = new();
 
         public const int HEADERSIZE = 24; //  8+16
 
@@ -18,14 +18,7 @@ namespace SocketStreamer
         /// </summary>
         protected void AddMType(Type type, int typeIdx) => types.Add(type, typeIdx);
 
-        public int GetMessageType(object d)
-        {
-            int type = 0;
-
-            type = types[d.GetType()];
-
-            return type;
-        }
+        public int GetMessageType(object d) => types[d.GetType()];
         public void LogArr<T>(T[] arr)
         {
             string s = "Arr: ";
@@ -40,7 +33,7 @@ namespace SocketStreamer
         {
             int min = -99;
             int max = 99;
-            Random random = new Random();
+            Random random = new();
 
             double[] arr = new double[count];
 

@@ -7,7 +7,7 @@ namespace SocketStreamer
     {
         private void Receive(Socket client)
         {
-                HeaderState state = new HeaderState
+                HeaderState state = new ()
                 {
                     workSocket = client,
                     buffer = new byte[Serializer.HEADERSIZE]

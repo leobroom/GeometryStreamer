@@ -26,7 +26,7 @@ namespace SocketStreamer
             this.waitInMiliseconds = waitInMiliseconds;
 
             id = Guid.NewGuid();
-            useThreads = (taskType == ThreadingType.Thread) ? true : false;
+            useThreads = (taskType == ThreadingType.Thread);
         }
 
         protected virtual void SendLog(string message) { }

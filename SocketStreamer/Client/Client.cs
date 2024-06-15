@@ -19,9 +19,9 @@ namespace SocketStreamer
     public partial class Client<T> : BaseClient where T : IClient, new()
     {
         // ManualResetEvent instances signal completion.  
-        private static readonly ManualResetEvent connectDone = new ManualResetEvent(false);
-        private static readonly ManualResetEvent sendDone = new ManualResetEvent(false);
-        private static readonly ManualResetEvent receiveDone = new ManualResetEvent(false);
+        private static readonly ManualResetEvent connectDone = new(false);
+        private static readonly ManualResetEvent sendDone = new (false);
+        private static readonly ManualResetEvent receiveDone = new (false);
 
         private Socket socket;
 
@@ -33,7 +33,7 @@ namespace SocketStreamer
         private Task sendingTask;
 #endif
 
-        private readonly Queue<Tuple<byte[], byte[]>> sendingDataQueue = new Queue<Tuple<byte[], byte[]>>();
+        private readonly Queue<Tuple<byte[], byte[]>> sendingDataQueue = new();
 
         protected bool allowSending = false;
 
@@ -41,7 +41,7 @@ namespace SocketStreamer
 
         private bool abort = true;
 
-        protected Serializer serializer = new Serializer();
+        protected Serializer serializer = new();
 
         protected Client() { }
 
@@ -53,10 +53,7 @@ namespace SocketStreamer
 
         private bool isConnected;
 
-        public bool IsConnected
-        {
-            get { return isConnected; }
-        }
+        public bool IsConnected => isConnected;
 
         public static T Initialize(string ip, int port, string name, ThreadingType taskType, int waitInMiliseconds, int clientType = 1)
         {
@@ -83,10 +80,7 @@ namespace SocketStreamer
             try
             {
                 IPAddress ipAddress = IPAddress.Parse(ip);
-                IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
-
-
-
+                IPEndPoint remoteEP = new (ipAddress, port);
 
                 // Create a TCP/IP socket.  
                 socket = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
@@ -125,16 +119,13 @@ namespace SocketStreamer
 #if (useThreads)
                 listingThread?.Abort();
                 sendingThread?.Abort();
-            sendingThread = null;
-            listingThread= null;
+                sendingThread = null;
+                listingThread= null;
 #else
-
-
 
                 listingTask = null;
                 sendingTask = null;
 #endif
-
 
                 socket?.Dispose();
 
@@ -204,7 +195,6 @@ namespace SocketStreamer
                             double wait = waitInMiliseconds / 1000.00;
                             sendingTask.Wait(TimeSpan.FromSeconds(wait));
 #endif
-
                         }
                     }
                     catch (Exception e)
@@ -220,8 +210,6 @@ namespace SocketStreamer
 
         public void StartListening(Socket socket)
         {
-
-
 #if (useThreads)
             listingThread = new Thread(() =>ListenData());
             listingThread.Start();

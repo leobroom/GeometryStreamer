@@ -15,10 +15,7 @@ namespace GeoStreamer
     {
         private readonly string message;
 
-        public MessageArgs(string message)
-        {
-            this.message = message;
-        }
+        public MessageArgs(string message) => this.message = message;
 
         public string Message => message;
     }
@@ -27,18 +24,12 @@ namespace GeoStreamer
     {
         public event EventHandler<MessageArgs> Message;
 
-        public GeoClient() : base()
-        {
-            serializer = new GeoSerializer();
-        }
+        public GeoClient() : base() => serializer = new GeoSerializer();
 
         public static T Initialize(string ip, int port, string name, ThreadingType tType, int waitInMiliseconds, ClientType clientType = ClientType.Default)
             => Initialize(ip, port, name, tType, waitInMiliseconds, (int)clientType);
 
-        protected override void SendLog(string message)
-        {
-            Message?.Invoke(this, new MessageArgs(message));
-        }
+        protected override void SendLog(string message) => Message?.Invoke(this, new MessageArgs(message));
 
         protected override void Deserialize(Socket client, int typeFromHeader, byte[] data)
         {
@@ -102,15 +93,9 @@ namespace GeoStreamer
             Console.WriteLine("UpdateText");
         }
 
-        protected virtual void UpdateGeometry(BroadCastGeometryInfo geoinfo)
-        {
-            Console.WriteLine("Update Geometry");
-        }
+        protected virtual void UpdateGeometry(BroadCastGeometryInfo geoinfo) => Console.WriteLine("Update Geometry");
 
-        protected virtual void UpdateIndex(BroadCastIndex updateIdex)
-        {
-            Console.WriteLine("Update Index");
-        }
+        protected virtual void UpdateIndex(BroadCastIndex updateIdex) => Console.WriteLine("Update Index");
 
         protected override void StartSending(Socket socket)
         {
@@ -121,7 +106,7 @@ namespace GeoStreamer
 
         private void ConnectToServer(ClientType deviceType, string clientName, Guid clientId)
         {
-            ConnectToServerMsg data = new ConnectToServerMsg()
+            ConnectToServerMsg data = new()
             {
                 clientName = clientName,
                 deviceType = deviceType,
@@ -161,16 +146,17 @@ namespace GeoStreamer
             Console.WriteLine("Curves recieved:");
             //Serialisation.LogArr(curves.length);
             //Serialisation.LogArr(curves.positions);
-            //   Serialisation.LogArr(curves.colors);
+            //Serialisation.LogArr(curves.colors);
         }
 
         //protected override void SendHeaderStateToDebug(HeaderState state)
         //{
         //    SendLog($"STATEOBJ: ID: {id}, BufferLength: {state.buffer.Length}, HeaderType: {(MessageType)state.headerType}, DataSize: {state.dataSize}");
         //}
+
         public void SendingRandomData(int count)
         {
-            Random rnd = new Random();
+            Random rnd = new();
 
             // creates a number between 1 and 12
             for (int i = 0; i < count; i++)
@@ -178,7 +164,7 @@ namespace GeoStreamer
                 int numb = rnd.Next(1, 12);
 
                 //NEW STUFF
-                AlternativeTestDataMsg testClass = new AlternativeTestDataMsg
+                AlternativeTestDataMsg testClass = new()
                 {
                     txt = name,
                     arr = serializer.FillArr(numb)
@@ -188,17 +174,13 @@ namespace GeoStreamer
 
                 numb = rnd.Next(1, 200000000);
 
-                TestDataMsg testClass2 = new TestDataMsg
-                { number = numb };
+                TestDataMsg testClass2 = new() { number = numb };
 
                 Send(testClass2);
             }
         }
 
-        public void DoesDllWork()
-        {
-            SendLog("Geometry Dll is correctly loaded");
-        }
+        public void DoesDllWork() => SendLog("Geometry Dll is correctly loaded");
 
         public override void Disconnect()
         {
@@ -206,21 +188,15 @@ namespace GeoStreamer
 
             try
             {
-                SimpleMsg killMe = new SimpleMsg
-                {
-                    message = SimpleMsg.Msg.ServerKillMe
-                };
-
+                SimpleMsg killMe = new(){ message = SimpleMsg.Msg.ServerKillMe };
                 Send(killMe);
 
                 base.Disconnect();
-
             }
             catch (Exception e)
             {
-                SendLog("Disconnect: "+ e.Message);
+                SendLog("Disconnect: " + e.Message);
             }
-    
         }
     }
 }

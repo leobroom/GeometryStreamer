@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using GeoStreamer;
 using SocketStreamer;
@@ -29,10 +27,10 @@ class Program
 
     private static string GetIP()
     {
-        string strHostName = System.Net.Dns.GetHostName();
-        IPHostEntry ipEntry = System.Net.Dns.GetHostEntry(strHostName);
+        string strHostName = Dns.GetHostName();
+        IPHostEntry ipEntry = Dns.GetHostEntry(strHostName);
         IPAddress[] addr = ipEntry.AddressList;
-        return addr[addr.Length - 1].ToString();
+        return addr[^1].ToString();
     }
 
     private static void ProcessExit(object sender, EventArgs e)

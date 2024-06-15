@@ -10,23 +10,23 @@ namespace SocketStreamer
 {
     public abstract partial class BaseServer : IServer
     {
-        private static ManualResetEvent connectDone = new ManualResetEvent(false);
-        private static ManualResetEvent sendDone = new ManualResetEvent(false);
-        private static ManualResetEvent receiveDone = new ManualResetEvent(false);
+        private static ManualResetEvent connectDone = new(false);
+        private static ManualResetEvent sendDone = new(false);
+        private static ManualResetEvent receiveDone = new(false);
 
         // Thread signal.
-        public static ManualResetEvent allDone = new ManualResetEvent(false);
+        public static ManualResetEvent allDone = new(false);
 
         //Client dataBase
-        protected ConcurrentDictionary<Socket, ClientObject> socketToClientTable = new ConcurrentDictionary<Socket, ClientObject>();
-        protected ConcurrentDictionary<Socket, Queue<Tuple<byte[], byte[]>>> sendingDataQueueTable = new ConcurrentDictionary<Socket, Queue<Tuple<byte[], byte[]>>>();
+        protected ConcurrentDictionary<Socket, ClientObject> socketToClientTable = new();
+        protected ConcurrentDictionary<Socket, Queue<Tuple<byte[], byte[]>>> sendingDataQueueTable = new();
 
         protected Guid serverId;
 
         private string ip;
         private int port;
 
-        protected Serializer serializer = new Serializer();
+        protected Serializer serializer = new();
 
         public BaseServer() { }
 
@@ -44,10 +44,10 @@ namespace SocketStreamer
 
             // Establish the local endpoint for the socket.    
             IPAddress iPAdress = IPAddress.Parse(ip);
-            IPEndPoint localEndPoint = new IPEndPoint(iPAdress, port);
+            IPEndPoint localEndPoint = new(iPAdress, port);
 
             // Create a TCP/IP socket.
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            Socket socket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             // Bind the socket to the local endpoint and listen for incoming connections.
             try
@@ -79,7 +79,7 @@ namespace SocketStreamer
 
         public void Stop()
         {
-            List<Socket> clientsToRemove = new List<Socket>(socketToClientTable.Keys);
+            List<Socket> clientsToRemove = new(socketToClientTable.Keys);
 
             foreach (Socket toRemove in clientsToRemove)
             {
@@ -97,9 +97,9 @@ namespace SocketStreamer
             {
                 Message("Remove Client...");
 
-                if (socketToClientTable.ContainsKey(clientSocket))
+                if (socketToClientTable.TryGetValue(clientSocket, out ClientObject value))
                 {
-                    ClientObject client = socketToClientTable[clientSocket];
+                    ClientObject client = value;
                     client.StopThread = true;
                     socketToClientTable.TryRemove(clientSocket, out _);
                 }
@@ -122,7 +122,7 @@ namespace SocketStreamer
             // Get the socket that handles the client request.
             Socket listener = (Socket)ar.AsyncState;
             Socket clientSocket = listener.EndAccept(ar);
-            ClientObject clientObject = new ClientObject();
+            ClientObject clientObject = new();
 
             bool addClientToTable = socketToClientTable.TryAdd(clientSocket, clientObject);
             bool addToSendingTable = sendingDataQueueTable.TryAdd(clientSocket, new Queue<Tuple<byte[], byte[]>>());
@@ -132,11 +132,11 @@ namespace SocketStreamer
 
 
             // Create the state object.
-            HeaderState state = new HeaderState
-            {
-                workSocket = clientSocket,
-                buffer = new byte[Serializer.HEADERSIZE]
-            };
+            //HeaderState state = new()
+            //{
+            //    workSocket = clientSocket,
+            //    buffer = new byte[Serializer.HEADERSIZE]
+            //};
 
             StartSending(clientSocket, clientObject);
             StartListening(clientSocket, clientObject);
@@ -144,7 +144,7 @@ namespace SocketStreamer
 
         public void StartListening(Socket socket, ClientObject clientObject)
         {
-            Thread listingThread = new Thread(() => ListenData(clientObject));
+            Thread listingThread = new(() => ListenData(clientObject));
             listingThread.Start();
 
             void ListenData(ClientObject client)
@@ -173,7 +173,7 @@ namespace SocketStreamer
         {
             try
             {
-                HeaderState state = new HeaderState
+                HeaderState state = new()
                 {
                     workSocket = socket,
                     buffer = new byte[Serializer.HEADERSIZE]
@@ -200,7 +200,7 @@ namespace SocketStreamer
 
         private void StartSending(Socket socket, ClientObject clientObject)
         {
-            Thread sendingThread = new Thread(() => SendData(clientObject));
+            Thread sendingThread = new(() => SendData(clientObject));
             sendingThread.Start();
 
             void SendData(ClientObject client)
@@ -259,7 +259,6 @@ namespace SocketStreamer
             Socket socket = state.workSocket;
 
             // Read data from the client socket. 
-
             int bytesRead = 0;
             try
             {
@@ -279,7 +278,7 @@ namespace SocketStreamer
             {
                 Utils.WriteHeaderState(state);
 
-                Message($"{socketToClientTable[socket].Name} | NEW { state.ToString()}");
+                Message($"{socketToClientTable[socket].Name} | NEW {state}");
             }
 
             if (bytesRead == state.dataSize)
@@ -357,8 +356,8 @@ namespace SocketStreamer
 
                 Console.WriteLine("...Send to: " + socketToClientTable[c].Name);
 
-                if (sendingDataQueueTable.ContainsKey(c))
-                    sendingDataQueueTable[c].Enqueue(new Tuple<byte[], byte[]>(headerData, data));
+                if (sendingDataQueueTable.TryGetValue(c, out Queue<Tuple<byte[], byte[]>> value))
+                    value.Enqueue(new Tuple<byte[], byte[]>(headerData, data));
             }
         }
 
