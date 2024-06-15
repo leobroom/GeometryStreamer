@@ -1,4 +1,0 @@
-﻿[*.cs]
-
-# IDE0044: Modifizierer "readonly" hinzufügen
-dotnet_style_readonly_field = true:suggestion

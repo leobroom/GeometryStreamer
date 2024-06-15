@@ -10,9 +10,4 @@
     <GenerateSerializationAssemblies></GenerateSerializationAssemblies>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\SocketStreamer\SocketStreamer.csproj" />
-    <ProjectReference Include="..\MultiTargetTest\GeoStreamer.csproj" />
-  </ItemGroup>
-
 </Project>

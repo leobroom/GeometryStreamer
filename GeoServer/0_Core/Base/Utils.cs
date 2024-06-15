@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
 
-namespace SocketStreamer
+namespace GeoStreamer
 {
     public class Utils
-    { 
+    {
         /// <summary>
         /// Fills the StateObject with the actual Information
         /// </summary>
@@ -21,8 +21,8 @@ namespace SocketStreamer
             byte[] id = new byte[16];
             Array.Copy(headerBytes, 8, id, 0, 16);
 
-            state.headerType = BitConverter.ToInt32(headerType,0);
-            state.dataSize = BitConverter.ToInt32(dataSize,0);
+            state.headerType = BitConverter.ToInt32(headerType, 0);
+            state.dataSize = BitConverter.ToInt32(dataSize, 0);
             state.id = new Guid(id);
 
             try
@@ -32,9 +32,9 @@ namespace SocketStreamer
             catch (Exception e)
             {
 
-                throw new Exception("state.dataSize: " + state.dataSize  +"     - "+ e.Message);
+                throw new Exception("state.dataSize: " + state.dataSize + "     - " + e.Message);
             }
-            
+
         }
 
         /// <summary>

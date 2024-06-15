@@ -1,5 +1,4 @@
-﻿
-namespace SocketStreamer
+﻿namespace GeoStreamer
 {
     public interface IServer
     {

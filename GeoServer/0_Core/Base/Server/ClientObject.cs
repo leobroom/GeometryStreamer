@@ -1,9 +1,9 @@
 ﻿using System;
 
 
-namespace SocketStreamer
+namespace GeoStreamer
 {
-   public class ClientObject
+    public class ClientObject
     {
         private Guid id = Guid.Empty;
         private string name = "";
@@ -18,12 +18,12 @@ namespace SocketStreamer
 
 
 
-        private bool stopThread =false;
+        private bool stopThread = false;
 
         public bool StopThread
         {
             get { return stopThread; }
-            set { stopThread  = value; }
+            set { stopThread = value; }
         }
 
         public override string ToString() => $"{name}, Id: {id} , ClientType: {clientType}";
@@ -34,9 +34,9 @@ namespace SocketStreamer
         public void Set(Guid id, string name, int clientType)
         {
             //if (isSet)
-                //throw new Exception("ClientObject already set!");
+            //throw new Exception("ClientObject already set!");
 
-            this.id =id;
+            this.id = id;
             this.name = name;
             this.clientType = clientType;
 

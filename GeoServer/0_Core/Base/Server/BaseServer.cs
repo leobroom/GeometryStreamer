@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
-namespace SocketStreamer
+namespace GeoStreamer
 {
     public abstract partial class BaseServer : IServer
     {
@@ -205,7 +205,7 @@ namespace SocketStreamer
 
             void SendData(ClientObject client)
             {
-                Message("Send Data: client.Name: " + client.Name + ",StopThread: " + client.StopThread);      
+                Message("Send Data: client.Name: " + client.Name + ",StopThread: " + client.StopThread);
 
                 while (!client.StopThread)
                 {

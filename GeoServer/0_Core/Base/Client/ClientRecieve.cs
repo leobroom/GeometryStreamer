@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 
-namespace SocketStreamer
+namespace GeoStreamer
 {
     public abstract partial class Client<T> : BaseClient where T : IClient, new()
     {

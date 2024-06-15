@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SocketStreamer
+namespace GeoStreamer
 {
     public interface IClient
     {

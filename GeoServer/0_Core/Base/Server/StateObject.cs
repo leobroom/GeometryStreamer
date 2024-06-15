@@ -2,7 +2,7 @@
 using System.Net.Sockets;
 using System.Text;
 
-namespace SocketStreamer
+namespace GeoStreamer
 {
     /// <summary>
     /// State object for reading client data asynchronously

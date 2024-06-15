@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SocketStreamer
+namespace GeoStreamer
 {
     public abstract partial class BaseServer : IServer
     {
@@ -25,7 +25,7 @@ namespace SocketStreamer
                     Console.WriteLine("Waiting for a connection...");
                     break;
                 default:
-                    throw new System.Exception("No given Message");
+                    throw new Exception("No given Message");
             }
         }
 

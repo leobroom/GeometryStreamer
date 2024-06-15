@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 #endif
 
-namespace SocketStreamer
+namespace GeoStreamer
 {
     public enum ThreadingType
     {

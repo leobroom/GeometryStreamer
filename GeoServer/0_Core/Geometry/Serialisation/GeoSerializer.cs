@@ -1,5 +1,4 @@
 ﻿using System;
-using SocketStreamer;
 
 namespace GeoStreamer
 {
