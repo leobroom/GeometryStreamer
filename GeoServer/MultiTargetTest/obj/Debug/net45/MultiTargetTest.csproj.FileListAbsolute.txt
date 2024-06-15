@@ -1,6 +1,0 @@
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net45\MultiTargetTest.AssemblyInfoInputs.cache
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net45\MultiTargetTest.AssemblyInfo.cs
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\net45\MultiTargetTest.dll
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\bin\Debug\net45\MultiTargetTest.pdb
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net45\MultiTargetTest.dll
-C:\Users\N C Delille\Documents\Git\GeometryStreamer\GeoServer\MultiTargetTest\obj\Debug\net45\MultiTargetTest.pdb
