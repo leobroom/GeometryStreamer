@@ -90,8 +90,10 @@ namespace SocketStreamer
         {
             using (var stream = new MemoryStream())
             {
+#pragma warning disable SYSLIB0011
                 var formatter = new BinaryFormatter();
                 formatter.Serialize(stream, source);
+#pragma warning disable SYSLIB0011
                 return stream.ToArray();
             }
         }

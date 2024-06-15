@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SocketStreamer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+43f4a5cc4556fd1d5d3f16b485a8bdefffcd52ec")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5115693ac497424c3ca22a4107441f8eef7ca756")]
 [assembly: System.Reflection.AssemblyProductAttribute("SocketStreamer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SocketStreamer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
