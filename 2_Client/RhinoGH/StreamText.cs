@@ -11,7 +11,7 @@ namespace GeoGrasshopper
         private string text;
         private int textSize;
 
-        private static StreamText _default = new("notSet");
+        private static StreamText _default = new StreamText("notSet");
 
         public StreamText(string text)
         {

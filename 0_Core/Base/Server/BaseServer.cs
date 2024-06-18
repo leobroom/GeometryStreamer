@@ -10,23 +10,23 @@ namespace GeoStreamer
 {
     public abstract partial class BaseServer : IServer
     {
-        private static ManualResetEvent connectDone = new(false);
-        private static ManualResetEvent sendDone = new(false);
-        private static ManualResetEvent receiveDone = new(false);
+        private static ManualResetEvent connectDone = new ManualResetEvent(false);
+        private static ManualResetEvent sendDone = new ManualResetEvent(false);
+        private static ManualResetEvent receiveDone = new ManualResetEvent(false);
 
         // Thread signal.
-        public static ManualResetEvent allDone = new(false);
+        public static ManualResetEvent allDone = new ManualResetEvent(false);
 
         //Client dataBase
-        protected ConcurrentDictionary<Socket, ClientObject> socketToClientTable = new();
-        protected ConcurrentDictionary<Socket, Queue<Tuple<byte[], byte[]>>> sendingDataQueueTable = new();
+        protected ConcurrentDictionary<Socket, ClientObject> socketToClientTable = new ConcurrentDictionary<Socket, ClientObject>();
+        protected ConcurrentDictionary<Socket, Queue<Tuple<byte[], byte[]>>> sendingDataQueueTable = new ConcurrentDictionary<Socket, Queue<Tuple<byte[], byte[]>>>();
 
         protected Guid serverId;
 
         private string ip;
         private int port;
 
-        protected Serializer serializer = new();
+        protected Serializer serializer = new Serializer();
 
         public BaseServer() { }
 
@@ -44,10 +44,10 @@ namespace GeoStreamer
 
             // Establish the local endpoint for the socket.    
             IPAddress iPAdress = IPAddress.Parse(ip);
-            IPEndPoint localEndPoint = new(iPAdress, port);
+            IPEndPoint localEndPoint = new IPEndPoint(iPAdress, port);
 
             // Create a TCP/IP socket.
-            Socket socket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             // Bind the socket to the local endpoint and listen for incoming connections.
             try
@@ -79,7 +79,7 @@ namespace GeoStreamer
 
         public void Stop()
         {
-            List<Socket> clientsToRemove = new(socketToClientTable.Keys);
+            List<Socket> clientsToRemove = new List<Socket>(socketToClientTable.Keys);
 
             foreach (Socket toRemove in clientsToRemove)
             {
@@ -122,7 +122,7 @@ namespace GeoStreamer
             // Get the socket that handles the client request.
             Socket listener = (Socket)ar.AsyncState;
             Socket clientSocket = listener.EndAccept(ar);
-            ClientObject clientObject = new();
+            ClientObject clientObject = new ClientObject();
 
             bool addClientToTable = socketToClientTable.TryAdd(clientSocket, clientObject);
             bool addToSendingTable = sendingDataQueueTable.TryAdd(clientSocket, new Queue<Tuple<byte[], byte[]>>());
@@ -144,7 +144,7 @@ namespace GeoStreamer
 
         public void StartListening(Socket socket, ClientObject clientObject)
         {
-            Thread listingThread = new(() => ListenData(clientObject));
+            Thread listingThread = new Thread(() => ListenData(clientObject));
             listingThread.Start();
 
             void ListenData(ClientObject client)
@@ -173,7 +173,7 @@ namespace GeoStreamer
         {
             try
             {
-                HeaderState state = new()
+                HeaderState state = new HeaderState()
                 {
                     workSocket = socket,
                     buffer = new byte[Serializer.HEADERSIZE]
@@ -200,7 +200,7 @@ namespace GeoStreamer
 
         private void StartSending(Socket socket, ClientObject clientObject)
         {
-            Thread sendingThread = new(() => SendData(clientObject));
+            Thread sendingThread = new Thread(() => SendData(clientObject));
             sendingThread.Start();
 
             void SendData(ClientObject client)

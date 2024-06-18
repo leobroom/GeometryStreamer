@@ -105,7 +105,7 @@ namespace GeoStreamer
 
         private void ConnectToServer(ClientType deviceType, string clientName, Guid clientId)
         {
-            ConnectToServerMsg data = new()
+            ConnectToServerMsg data = new ConnectToServerMsg()
             {
                 clientName = clientName,
                 deviceType = deviceType,
@@ -155,7 +155,7 @@ namespace GeoStreamer
 
         public void SendingRandomData(int count)
         {
-            Random rnd = new();
+            Random rnd = new Random();
 
             // creates a number between 1 and 12
             for (int i = 0; i < count; i++)
@@ -163,7 +163,7 @@ namespace GeoStreamer
                 int numb = rnd.Next(1, 12);
 
                 //NEW STUFF
-                AlternativeTestDataMsg testClass = new()
+                AlternativeTestDataMsg testClass = new AlternativeTestDataMsg()
                 {
                     txt = name,
                     arr = Serializer.FillArr(numb)
@@ -173,7 +173,7 @@ namespace GeoStreamer
 
                 numb = rnd.Next(1, 200000000);
 
-                TestDataMsg testClass2 = new() { number = numb };
+                TestDataMsg testClass2 = new TestDataMsg() { number = numb };
 
                 Send(testClass2);
             }
@@ -187,7 +187,7 @@ namespace GeoStreamer
 
             try
             {
-                SimpleMsg killMe = new(){ message = SimpleMsg.Msg.ServerKillMe };
+                SimpleMsg killMe = new SimpleMsg(){ message = SimpleMsg.Msg.ServerKillMe };
                 Send(killMe);
 
                 base.Disconnect();

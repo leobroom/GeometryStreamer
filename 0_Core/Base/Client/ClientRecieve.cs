@@ -7,7 +7,7 @@ namespace GeoStreamer
     {
         private void Receive(Socket client)
         {
-                HeaderState state = new ()
+                HeaderState state = new HeaderState()
                 {
                     workSocket = client,
                     buffer = new byte[Serializer.HEADERSIZE]

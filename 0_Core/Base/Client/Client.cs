@@ -19,9 +19,9 @@ namespace GeoStreamer
     public partial class Client<T> : BaseClient where T : IClient, new()
     {
         // ManualResetEvent instances signal completion.  
-        private static readonly ManualResetEvent connectDone = new(false);
-        private static readonly ManualResetEvent sendDone = new (false);
-        private static readonly ManualResetEvent receiveDone = new (false);
+        private static readonly ManualResetEvent connectDone = new ManualResetEvent(false);
+        private static readonly ManualResetEvent sendDone = new ManualResetEvent(false);
+        private static readonly ManualResetEvent receiveDone = new ManualResetEvent(false);
 
         private Socket socket;
 
@@ -33,7 +33,7 @@ namespace GeoStreamer
         private Task sendingTask;
 #endif
 
-        private readonly Queue<Tuple<byte[], byte[]>> sendingDataQueue = new();
+        private readonly Queue<Tuple<byte[], byte[]>> sendingDataQueue = new Queue<Tuple<byte[], byte[]>>();
 
         protected bool allowSending = false;
 
@@ -41,7 +41,7 @@ namespace GeoStreamer
 
         private bool abort = true;
 
-        protected Serializer serializer = new();
+        protected Serializer serializer = new Serializer();
 
         protected Client() { }
 
@@ -80,7 +80,7 @@ namespace GeoStreamer
             try
             {
                 IPAddress ipAddress = IPAddress.Parse(ip);
-                IPEndPoint remoteEP = new (ipAddress, port);
+                IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
 
                 // Create a TCP/IP socket.  
                 socket = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);

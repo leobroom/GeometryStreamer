@@ -5,7 +5,7 @@ namespace GeoGrasshopper
 {
     public class StreamSettings
     {
-        private static StreamSettings _default = new(System.Drawing.Color.Gray) { };
+        private static StreamSettings _default = new StreamSettings(System.Drawing.Color.Gray) { };
 
         /// <summary>
         /// Default Values

@@ -46,5 +46,6 @@ namespace GeoStreamer
 
         public static string GetTestIpAdress() => "192.168.0.69"; //ITE
         public static int GetTestPort() => 11223;
+        public static string GetAssemblyLocation() => System.Reflection.Assembly.GetExecutingAssembly().Location;
     }
 }

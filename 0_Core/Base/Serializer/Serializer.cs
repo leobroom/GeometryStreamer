@@ -1,7 +1,10 @@
-﻿using KGySoft.Serialization.Binary;
+﻿
+using KGySoft.Serialization.Binary;
 using System;
 using System.Collections.Generic;
 using System.IO;
+
+
 
 namespace GeoStreamer
 {
@@ -33,7 +36,7 @@ namespace GeoStreamer
         {
             int min = -99;
             int max = 99;
-            Random random = new();
+            Random random = new Random();
 
             double[] arr = new double[count];
 
@@ -81,7 +84,7 @@ namespace GeoStreamer
 
         public static byte[] SerializeToBytes(ISerializableData source)
         {
-            using (MemoryStream stream = new())
+            using (MemoryStream stream = new MemoryStream())
             {
                 BinarySerializer.SerializeToStream(stream, source);
                 return stream.ToArray();
@@ -90,7 +93,7 @@ namespace GeoStreamer
 
         public static T DeserializeFromBytes<T>(byte[] source)
         {
-            using (MemoryStream stream = new(source))
+            using (MemoryStream stream = new MemoryStream(source))
             {
                 stream.Seek(0, SeekOrigin.Begin);
 

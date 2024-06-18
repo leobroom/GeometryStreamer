@@ -37,7 +37,7 @@ namespace GeoGrasshopper
         /// <param name="idx"></param>
         public void SendIndex(int idx)
         {
-            BroadCastIndex idxMsg = new()
+            BroadCastIndex idxMsg = new BroadCastIndex()
             {
                 gateId = 0,
                 index = idx
@@ -45,5 +45,7 @@ namespace GeoGrasshopper
 
             Send(idxMsg);
         }
+
+        public static string GetAssemblyLocation() => System.Reflection.Assembly.GetExecutingAssembly().Location;
     }
 }

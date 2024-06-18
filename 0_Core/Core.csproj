@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	  <TargetFramework>net7.0</TargetFramework>
+	  <TargetFramework>net4.8</TargetFramework>
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
@@ -10,6 +10,12 @@
 
   <ItemGroup>
     <PackageReference Include="KGySoft.CoreLibraries" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="KGySoft.CoreLibraries">
+      <HintPath>..\2_Client\RhinoGH\KGySoft.CoreLibraries.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
